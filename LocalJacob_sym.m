@@ -25,7 +25,7 @@ arguments (Input)
 end
 
 arguments (Output)
-    PosJ (3,3) sym
+    PosJ (3,1) sym
     RotJ (3,6) sym
 end
 
