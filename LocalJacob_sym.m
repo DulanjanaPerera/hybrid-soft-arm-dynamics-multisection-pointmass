@@ -7,6 +7,11 @@ function [PosJ, RotJ] = LocalJacob_sym(l, xi, L, r)
 % These matrices are used to develop Angular and velocity Jacobians and the
 % Hessian matrix.
 % 
+% The derivations are referenced from following paper.
+%   * Godage, Isuru S., Robert J. Webster, and Ian D. Walker. "Center-of-gravity-based 
+%     approach for modeling dynamics of multisection continuum arms." IEEE transactions 
+%     on robotics 35, no. 5 (2019): 1097-1108.
+% 
 % Inputs:
 %   l   : length change of the PMA [3x1] [constant] (m)
 %   xi  : selection factor of the backbone. xi=0 is the base and xi=1 is
@@ -15,7 +20,10 @@ function [PosJ, RotJ] = LocalJacob_sym(l, xi, L, r)
 %   r   : radial offset of the PMA [constant] (m)
 % 
 % Outputs:
-%   T   : HTM of the continuum arm at xi
+%   PosJ    : Jacobian matrix of the position with respect to l2 and l3
+%             [3x2]
+%   RotJ    : Jacobian matrix of the rotation matrix with respect to l2 and
+%             l3 [3x6]
 
 arguments (Input)
     l (1,3) sym
@@ -25,7 +33,7 @@ arguments (Input)
 end
 
 arguments (Output)
-    PosJ (3,1) sym
+    PosJ (3,2) sym
     RotJ (3,6) sym
 end
 

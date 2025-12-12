@@ -1,6 +1,11 @@
 function T = HTM(l, xi, L, r)
 % Compute the Homogeneous Transforamtion Matrix for a section. The symbolic equation is computed from the 
-% Maple file
+% Maple file.
+% 
+% The derivations are referenced from following paper.
+%   * Godage, Isuru S., Robert J. Webster, and Ian D. Walker. "Center-of-gravity-based 
+%     approach for modeling dynamics of multisection continuum arms." IEEE transactions 
+%     on robotics 35, no. 5 (2019): 1097-1108.
 % 
 % Inputs:
 %   l   : length change of the PMA [3x1] [constant] (m)

@@ -2,6 +2,11 @@ function [T, R, P] = HTM_sym(l, xi, L, r)
 % Compute the Homogeneous Transforamtion Matrix for a section. The symbolic equation is computed from the 
 % Maple file. The MATLAB symbols are used here for further calculations
 % 
+% The derivations are referenced from following paper.
+%   * Godage, Isuru S., Robert J. Webster, and Ian D. Walker. "Center-of-gravity-based 
+%     approach for modeling dynamics of multisection continuum arms." IEEE transactions 
+%     on robotics 35, no. 5 (2019): 1097-1108.
+% 
 % Inputs:
 %   l   : length change of the PMA [3x1] [constant] (m)
 %   xi  : selection factor of the backbone. xi=0 is the base and xi=1 is
