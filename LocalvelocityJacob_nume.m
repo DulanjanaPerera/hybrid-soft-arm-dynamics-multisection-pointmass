@@ -32,8 +32,8 @@ arguments (Output)
 end
 
 
-[~, R, ~] = HTM_sym(l, xi, L, r);
-[PosJ, RotJ] = LocalJacob_sym(l, xi, L, r);
+[~, R, ~] = HTM_nume(l, xi, L, r);
+[PosJ, RotJ] = LocalJacob_nume(l, xi, L, r);
 
 J_Omega = R' * RotJ;
 J_vel = R' * PosJ;
