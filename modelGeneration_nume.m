@@ -15,14 +15,24 @@
 
 
 clear
-N = 2;
+N = 4;
 L = 0.278;
 r = 0.013;
 cog_xi = 0.5*ones(1,N);
+mi = 0.1*ones(N,1);
+g = [0;0;9.81];
 l = [
      0.0, 0.010, 0.010;
-     0.0, 0.015, 0.015
+     0.0, 0.015, 0.015;
+     0.0, 0.001, 0.001;
+     0.0, -0.01, -0.01;
     ];
+
+dl = zeros(N,3);
+K = 1.2e3 * eye(2*N);
+
+Rglob = eye(3);
+Pglob = zeros(3,1);
 
 % The tip velocity Jacobians and Hessian
 J_Omegatip = zeros([3,6]);
@@ -36,29 +46,45 @@ J_velcog = zeros([3,2]);
 H_Omegacog = zeros([6,6]);
 H_velcog = zeros([6,2]);
 
+% M, C, G matrices,
+M = zeros(2, 2);
+C = zeros(2, 2);
+G = zeros(2, 1);
+
+
+dM = cell(N,1);   % dM{i} is (2i x 2i x 2i)
+for i = 1:N
+    ni = 2*i;               % number of DoFs up to section i
+    dM{i} = zeros(ni, ni, ni); % [[matrix size], # DoF]
+end
+
 for n=1:N 
+    tic
     fprintf("Section %d\n", n);
     % get the current length variables
     length = [0, l(n,2), l(n,3)];
 
     % compute the tip and CoG frame of n-th section
-    [Ttip, Rtip, Ptip] = HTM_sym(length, 1, L, r);
-    [Tcog, Rcog, Pcog] = HTM_sym(length, cog_xi(n), L, r);
+    [Ttip, Rtip, Ptip] = HTM_nume(length, 1, L, r);
+    [Tcog, Rcog, Pcog] = HTM_nume(length, cog_xi(n), L, r);
 
     % compute the jacobians of the above frames
-    [PJtip, RJtip, PJJtip, RJJtip] = LocalJacob_sym(length, 1, L, r);
-    [PJcog, RJcog, PJJcog, RJJcog] = LocalJacob_sym(length, cog_xi(n), L, r);
-
-
+    [PJtip, RJtip, PJJtip, RJJtip] = LocalJacob_nume(length, 1, L, r);
+    [PJcog, RJcog, PJJcog, RJJcog] = LocalJacob_nume(length, cog_xi(n), L, r);
+     
+    % Compute the global R and P for the n-th section
+    Rglob = Rglob * Rtip;
+    Pglob = Pglob + Rglob * Ptip;
+    
     % compute the common block multiplications. This is the n-th section
     % Hessians pf Omega and Velocity. Here only bottom-right block's second
     % term is computed
     % R' * R_q_q  -- bottom-right block's second term in Hessian_Omega
     % R' * P_q_q  -- bottom-right block's second term in Hessian_vel
-    syms temp_RRqq_mat [6,6] matrix
-    syms temp_RPqq_mat [6,2] matrix
-    syms temp_RRqq_mat_cog [6,6] matrix
-    syms temp_RPqq_mat_cog [6,2] matrix
+    temp_RRqq_mat = zeros([6,6]);
+    temp_RPqq_mat = zeros([6,2]);
+    temp_RRqq_mat_cog = zeros([6,6]);
+    temp_RPqq_mat_cog =zeros([6,2]);
 
     for b=1:2 % always 2 blocks,
         
@@ -117,31 +143,49 @@ for n=1:N
         H_Omegacog = RJcog.' * RJcog + temp_RRqq_mat_cog;
         H_velcog = RJcog.' * PJcog + temp_RPqq_mat_cog;
 
+        M = PJcog.' * PJcog;
+
+        % compute (M),h 
+        for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
+            dM{n}(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip);
+        end
+
+        G = ( (mi(n) * g' * Rglob * Rglob * PJcog) + ( K(1:2*n,1:2*n) * length(2:3).' ).' ).';
+
     else
         % need to know how many block are there in the Jacobian (for
-        % example, [3x6N]
+        % example, [3x6N] = [3x(3*b)]. For N=2|b=2, N=3|b=4 ==> (2(n-1))
         blocks = size(J_Omegatip,2)/3;
         
         % create a temporary matrices to compute block multiplication.
-        syms temp_JoR_mat [3,3*blocks] matrix;
-        syms temp_JoP_mat [3, 1*blocks] matrix;
+        temp_JoR_mat = zeros([3,3*blocks]);
+        temp_JoP_mat = zeros([3, 1*blocks]);
 
-        syms temp_JoR_mat_cog [3,3*blocks] matrix;
-        syms temp_JoP_mat_cog [3, 1*blocks] matrix;
+        temp_JoR_mat_cog = zeros([3,3*blocks]);
+        temp_JoP_mat_cog = zeros([3, 1*blocks]);
 
-        syms temp_RHoR_mat [3*blocks, 3*blocks] matrix % Rtip.' * H_Omegatip * Rtip
-        syms temp_RqJoR_mat [6, 3*blocks] matrix % RJtip.' * temp_Omega_mat
-        syms temp_RJoRq_mat [6, 3*blocks] matrix % RJtip.' * temp_Omega_mat
-        syms temp_RHvHoP_mat [3*blocks, blocks] matrix % Rtip.' * (H_veltip + H_Omegatip*Ptip)
-        syms temp_RqJvJoP_mat [6, blocks] matrix % Rq.' * (J_veltip + J_Omegatip * Ptip)
-        syms temp_RJoPq_mat [6, blocks] matrix % Rtip.' J_Omega * PJtip
+        temp_RHoR_mat = zeros([3*blocks, 3*blocks]); % Rtip.' * H_Omegatip * Rtip
+        temp_RqJoR_mat = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat
+        temp_RJoRq_mat = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat
+        temp_RHvHoP_mat = zeros([3*blocks, blocks]); % Rtip.' * (H_veltip + H_Omegatip*Ptip)
+        temp_RqJvJoP_mat = zeros([6, blocks]); % Rq.' * (J_veltip + J_Omegatip * Ptip)
+        temp_RJoPq_mat = zeros([6, blocks] ); % Rtip.' J_Omega * PJtip
 
-        syms temp_RHoR_mat_cog [3*blocks, 3*blocks] matrix % Rtip.' * H_Omegatip * Rtip
-        syms temp_RqJoR_mat_cog [6, 3*blocks] matrix % RJtip.' * temp_Omega_mat
-        syms temp_RJoRq_mat_cog [6, 3*blocks] matrix % RJtip.' * temp_Omega_mat
-        syms temp_RHvHoP_mat_cog [3*blocks, blocks] matrix % Rtip.' * (H_veltip + H_Omegatip*Ptip)
-        syms temp_RqJvJoP_mat_cog [6, blocks] matrix % Rq.' * (J_veltip + J_Omegatip * Ptip)
-        syms temp_RJoPq_mat_cog [6, blocks] matrix % Rtip.' J_Omega * PJtip
+        temp_RHoR_mat_cog = zeros([3*blocks, 3*blocks]); % Rtip.' * H_Omegatip * Rtip
+        temp_RqJoR_mat_cog = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat
+        temp_RJoRq_mat_cog = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat
+        temp_RHvHoP_mat_cog = zeros([3*blocks, blocks]); % Rtip.' * (H_veltip + H_Omegatip*Ptip)
+        temp_RqJvJoP_mat_cog = zeros([6, blocks]); % Rq.' * (J_veltip + J_Omegatip * Ptip)
+        temp_RJoPq_mat_cog = zeros([6, blocks]); % Rtip.' J_Omega * PJtip
+
+        % MASS matrix
+        temp_sigma_11 = zeros([blocks,blocks]);
+        temp_sigma_12 = zeros([blocks, 2]);
+        temp_sigma_22 = PJcog.' * PJcog;
+
+        % (M),h matrix
+        temp_neta_11 = zeros([blocks, blocks]);
+        
 
         for b=1:blocks % column loop
             % left block of the Jacobian_Omega tip and CoG
@@ -156,9 +200,10 @@ for n=1:N
             % extract 3x3 block and multiply is with 3x1. Then assign it back to
             % the 3x1 block
             temp_JoP_mat(:,b) = J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Ptip;
-            temp_JoP_mat_cog(:,b) = J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Pcog;
+            temp_JoP_mat_cog(:,b) = J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Pcog; % this is re-used in MASS matrix
 
-            
+       
+
             % This loop is mainly for top-left blocks where NxN is required
             for r=1:blocks % row loop
                 
@@ -190,11 +235,22 @@ for n=1:N
                 temp_RHvHoP_mat_cog(3*(r-1)+1: 3*(r-1)+3, b) = ...
                     Rcog.' * (H_veltip(3*(r-1)+1: 3*(r-1)+3, b) + H_Omegatip(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) * Pcog);
 
+                
+                % sigma_11 of MASS matrix without JoP.'JoP
+                % J_veltip' * (J_veltip + 2*J_Omegatip * Pcog)
+                % [2(n)x3] * ( [3x2(n)] + [3x6(n)]*[3x1])
+                % [2nx2n]
+                temp_sigma_11(r, b) = J_veltip(:,r).' * (J_veltip(:,b) + 2 * temp_JoP_mat_cog(:,b));
+
+               
+
             end
             
             % this loop is maily for bottom -left blocks where 6xkN
             % is required. Here k={2, 6}
+            % Also it is used for generate EoM matrices
             for r=1:2
+                % --------------- Tip -------------------------------------
                 % bottom-left block's first term in Hessian_Omega tip
                 % RJtip.' * J_Omegatip * Rtip
                 % [6x3] * [3x6(n)] * [3x3]
@@ -243,15 +299,36 @@ for n=1:N
                 % [3x3] * [3x6(n)] * [3x2]
                 temp_RJoPq_mat_cog(3*(r-1)+1: 3*(r-1)+3, b) = ...
                     Rcog' * J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * PJcog(:,r);
-
+                
+                % ----------------- MASS matrix ---------------------------
+                % sigma_12 of MASS matrix 
+                % here this loop goes column wise and blocks are used to
+                % row-wise
+                % (J_veltip + J_Omega*Pcog)' * PJcog
+                % ([3x2(n)] + [3x6(n)]*[3x1])' * [3x2]
+                % [2nx2]
+                temp_sigma_12(b,r) = (J_veltip(:,b) + temp_JoP_mat_cog(:,b)).' * PJcog(:,r);
             end
             
             
 
         end
 
+        % Update the M, C, amd G matrices
+        M = mi(n)*[M + temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog), temp_sigma_12;
+            temp_sigma_12.', PJcog.' * PJcog];
         
+        % compute (M),h
+        for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
+            dM{n}(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip);
+            
+        end
 
+        % constructing G matrix
+        Gi = mi(n) * g' * Rglob * ([J_veltip + temp_JoP_mat_cog, Rglob * PJcog + (K(2*(n-1)+1:2*(n-1)+2,2*(n-1)+1:2*(n-1)+2) * length(2:3).' ).']);
+        Gi(1, 1:2*(n-1)) = Gi(1,1:2*(n-1)) + G.';
+        G = Gi.';
+        
         % IMPORTANT: update the CoG first and then tip. Because, if tip is
         % updated then the J_vel and J_Omega are n-th section, and not
         % (n-1)-th section
@@ -275,7 +352,22 @@ for n=1:N
         H_veltip = [temp_RHvHoP_mat, zeros(size(temp_RHvHoP_mat,1), 2);
             temp_RqJvJoP_mat + temp_RJoPq_mat, RJtip.' * PJtip + temp_RPqq_mat];
 
-
+    
     end
+    toc
+end % end of section loop
 
+% constucting C matrices
+for n=1:N
+    if n==1
+        l_d = reshape(dl(1:n,2:3)',[2*n,1]);
+        C = C + christoffelSymbol(n, dM{n}, l_d);
+    else
+        l_d = reshape(dl(1:n,2:3)',[2*n,1]);
+        Ci = christoffelSymbol(n, dM{n}, l_d);
+        Ci(1:2*(n-1), 1:2*(n-1)) = Ci(1:2*(n-1), 1:2*(n-1)) + C;
+        C = Ci;
+    end
 end
+
+
