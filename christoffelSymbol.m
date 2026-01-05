@@ -35,12 +35,25 @@ C = zeros(Row,Col);
 
 for j=1:Row
     for k=1:Col
+        s = 0;
         for h=1:H
-            C(j,k) = C(j,k) ...
+            s = s ...
                 + (M(k,j,h) + M(k,h,j) - M(h,j,k)) * dl(h);
         end
-        C(j,k) = 0.5 * C(j,k);
+        C(j,k) = 0.5 * s;
     end
 end
+
+% % approximate Mdot via sum_h dM(:,:,h)*dq(h)
+% % this is for the sanity check
+% 
+% Mdot = zeros(size(C));
+% for h=1:length(dl)
+%     Mdot = Mdot + M(:,:,h) * dl(h);
+% end
+% 
+% S = Mdot - 2*C;
+% fprintf("Skew symmetry error: %g\n", norm(S + S.', 'fro'));
+
 
 end

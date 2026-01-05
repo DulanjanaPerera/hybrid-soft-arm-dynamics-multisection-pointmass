@@ -52,8 +52,6 @@ for i = 1:N
 end
 
 for n=1:N 
-    tic
-    fprintf("Section %d\n", n);
     % get the current length variables
     length = [0, l(n,1), l(n,2)];
 
@@ -65,9 +63,9 @@ for n=1:N
     [PJtip, RJtip, PJJtip, RJJtip] = LocalJacob_nume(length, 1, L, r);
     [PJcog, RJcog, PJJcog, RJJcog] = LocalJacob_nume(length, cog_xi(n), L, r);
      
-    % Compute the global R and P for the n-th section
-    Rglob = Rglob * Rtip;
+    % Compute the global R and P for the n-th section 
     Pglob = Pglob + Rglob * Ptip;
+    Rglob = Rglob * Rtip;
     
     % compute the common block multiplications. This is the n-th section
     % Hessians pf Omega and Velocity. Here only bottom-right block's second
@@ -136,7 +134,7 @@ for n=1:N
         H_Omegacog = RJcog.' * RJcog + temp_RRqq_mat_cog;
         H_velcog = RJcog.' * PJcog + temp_RPqq_mat_cog;
 
-        M = PJcog.' * PJcog;
+        M = mi(n) * (PJcog.' * PJcog);
 
         % compute (M),h 
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
@@ -308,8 +306,8 @@ for n=1:N
         end
 
         % Update the M, C, amd G matrices
-        M = mi(n)*[M + temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog), temp_sigma_12;
-            temp_sigma_12.', PJcog.' * PJcog];
+        M = [M + mi(n) * (temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog)), mi(n) * temp_sigma_12;
+             mi(n) * temp_sigma_12.', mi(n) * (PJcog.' * PJcog)];
         
         % compute (M),h
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
@@ -347,7 +345,7 @@ for n=1:N
 
     
     end
-    toc
+    
 end % end of section loop
 
 % constucting C matrices
@@ -363,7 +361,13 @@ for n=1:N
     end
 end
 flat_dl = reshape(dl(1:N,:)',[2*N,1]);
-ddl = M \ (tau - (C + D)*flat_dl - G);
+eps_reg = 1e-8;
+ddl = (M + eps_reg*eye(size(M))) \ (tau - (C + D)*flat_dl - G);
+
+rc = rcond(M);
+if rc < 1e-12
+    warning("rcond(M)=%e at t=%g", rc, t);
+end
 
 dX = [flat_dl; ddl];
 
