@@ -15,20 +15,24 @@
 
 
 clear
-N = 4;
+N = 2;
 L = 0.278;
 r = 0.013;
 cog_xi = 0.5*ones(1,N);
 mi = 0.1*ones(N,1);
 g = [0;0;9.81];
-l = [
-     0.0, 0.010, 0.010;
-     0.0, 0.015, 0.015;
-     0.0, 0.001, 0.001;
-     0.0, -0.01, -0.01;
-    ];
 
-dl = zeros(N,3);
+l = [0.005164724458893	0.004898139115750;	0.003754320081961	0.005698503784962];
+dl = [1.339818042610385e+11	-9.302784163571188e+10;	-9.927063684350482e+11	6.642909914477728e+11];
+% l = [
+%      0.010, 0.010;
+%      0.015, 0.015;
+%      0.001, 0.001;
+%      -0.01, -0.01;
+%     ];
+% 
+% dl = zeros(N,2);
+tau = zeros(2*N,1);
 K = 1.2e3 * eye(2*N);
 
 Rglob = eye(3);
@@ -50,7 +54,7 @@ H_velcog = zeros([6,2]);
 M = zeros(2, 2);
 C = zeros(2, 2);
 G = zeros(2, 1);
-
+D = 1.2e3 * eye(2*N);
 
 dM = cell(N,1);   % dM{i} is (2i x 2i x 2i)
 for i = 1:N
@@ -62,7 +66,7 @@ for n=1:N
     tic
     fprintf("Section %d\n", n);
     % get the current length variables
-    length = [0, l(n,2), l(n,3)];
+    length = [0, l(n,1), l(n,2)];
 
     % compute the tip and CoG frame of n-th section
     [Ttip, Rtip, Ptip] = HTM_nume(length, 1, L, r);
@@ -73,9 +77,9 @@ for n=1:N
     [PJcog, RJcog, PJJcog, RJJcog] = LocalJacob_nume(length, cog_xi(n), L, r);
      
     % Compute the global R and P for the n-th section
-    Rglob = Rglob * Rtip;
     Pglob = Pglob + Rglob * Ptip;
-    
+    Rglob = Rglob * Rtip;
+
     % compute the common block multiplications. This is the n-th section
     % Hessians pf Omega and Velocity. Here only bottom-right block's second
     % term is computed
@@ -143,14 +147,14 @@ for n=1:N
         H_Omegacog = RJcog.' * RJcog + temp_RRqq_mat_cog;
         H_velcog = RJcog.' * PJcog + temp_RPqq_mat_cog;
 
-        M = PJcog.' * PJcog;
+        M = mi(n)* (PJcog.' * PJcog);
 
         % compute (M),h 
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
             dM{n}(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip);
         end
 
-        G = ( (mi(n) * g' * Rglob * Rglob * PJcog) + ( K(1:2*n,1:2*n) * length(2:3).' ).' ).';
+        G = ( ( mi(n) * g' * Rglob * (Rglob * PJcog) ) + ( K(1:2*n,1:2*n) * length(2:3).' ).' ).';
 
     else
         % need to know how many block are there in the Jacobian (for
@@ -315,8 +319,8 @@ for n=1:N
         end
 
         % Update the M, C, amd G matrices
-        M = mi(n)*[M + temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog), temp_sigma_12;
-            temp_sigma_12.', PJcog.' * PJcog];
+        M = [M + mi(n)*(temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog)), mi(n)*temp_sigma_12;
+             mi(n)*temp_sigma_12.', mi(n)*(PJcog.' * PJcog)];
         
         % compute (M),h
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
@@ -325,9 +329,9 @@ for n=1:N
         end
 
         % constructing G matrix
-        Gi = mi(n) * g' * Rglob * ([J_veltip + temp_JoP_mat_cog, Rglob * PJcog + (K(2*(n-1)+1:2*(n-1)+2,2*(n-1)+1:2*(n-1)+2) * length(2:3).' ).']);
-        Gi(1, 1:2*(n-1)) = Gi(1,1:2*(n-1)) + G.';
-        G = Gi.';
+        Gp = mi(n) * g' * Rglob * ([J_veltip + temp_JoP_mat_cog, Rglob * PJcog]);
+        Ge = [zeros(1,2*(n-1)), (K(2*(n-1)+1:2*(n-1)+2,2*(n-1)+1:2*(n-1)+2) * length(2:3).' ).'];
+        G = [G; zeros(2,1)] + Gp.' + Ge.';
         
         % IMPORTANT: update the CoG first and then tip. Because, if tip is
         % updated then the J_vel and J_Omega are n-th section, and not
@@ -360,14 +364,14 @@ end % end of section loop
 % constucting C matrices
 for n=1:N
     if n==1
-        l_d = reshape(dl(1:n,2:3)',[2*n,1]);
+        l_d = reshape(dl(1:n,:)',[2*n,1]);
         C = C + christoffelSymbol(n, dM{n}, l_d);
     else
-        l_d = reshape(dl(1:n,2:3)',[2*n,1]);
+        l_d = reshape(dl(1:n,:)',[2*n,1]);
         Ci = christoffelSymbol(n, dM{n}, l_d);
         Ci(1:2*(n-1), 1:2*(n-1)) = Ci(1:2*(n-1), 1:2*(n-1)) + C;
         C = Ci;
     end
 end
-
-
+f_dl =  reshape(dl(1:n,:)',[2*n,1]);
+ddl = M \ (tau - (C+D) * f_dl - G);
