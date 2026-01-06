@@ -1,14 +1,15 @@
 clear
-N = 4;
+N = 2;
+loc = 0.99;
 params.N = N;
 params.L = 0.278;
 params.r = 0.013;
-params.cog_xi = 0.1*ones(1,N);
-params.mi = 0.2*ones(N,1);
-params.g = [0;0;-9.81];
-params.K = 1.2e3 * eye(2*N);
+params.cog_xi = loc*ones(1,N);
+params.mi = 1*ones(N,1);
+params.g = [0; 0; -9.81];
+params.K = 2.2e3 * eye(2*N);
 params.tau = zeros(2*N,1);
-params.D = 1000* eye(2*N);
+params.D = 100* eye(2*N);
 
 % initial length changes
 % l0 = [
@@ -32,8 +33,7 @@ tic
 [t, X] = ode15s(@(t,X) armS_dynamics_nume(t,X,params), tspan, X0, opts);
 toc
 
-%% ===================== DRAW N-SECTION ARM (colored segments) =====================
-% Assumes you already have: t, X from ode15s, and params with N,L,r
+%% ===================== DRAW + PLOT STATES (SIMULTANEOUS ANIMATION) =====================
 N = params.N;
 L = params.L;
 r = params.r;
@@ -42,42 +42,89 @@ xi = linspace(0,1,25);
 Nt = length(t);
 Nx = length(xi);
 
-% --- Figure setup ---
+% Optional: rotate drawing 180deg about X if you want Z flipped
+% Rx = [1 0 0; 0 -1 0; 0 0 -1];
+useFlipZ = true;  % set true if you want 180 deg flip about X
+
+%% --------------------- Figure 1: Arm drawing ---------------------
 figure(1); clf
-ax = axes; hold(ax,'on'); grid(ax,'on'); axis(ax,'equal');
-xlabel(ax,'X'); ylabel(ax,'Y'); zlabel(ax,'Z');
-rotate3d(ax,'on');
-ht = title(ax,'N-section continuum arm backbone');
+ax1 = axes; hold(ax1,'on'); grid(ax1,'on'); axis(ax1,'equal');
+xlabel(ax1,'X'); ylabel(ax1,'Y'); zlabel(ax1,'Z');
+rotate3d(ax1,'on');
+str1 = sprintf('%d-section continuum arm with CoG at %.2f', N, loc);
+ht1 = title(ax1,str1);
 
-% axis limits (adjust as needed)
-xlim(ax, [-1 1]); ylim(ax, [-1 1]); zlim(ax, [-0.1 1.7]);
+xlim(ax1, [-1 1]); ylim(ax1, [-1 1]); zlim(ax1, [-1.5 1.1]);
 
-% --- One line per section (different colors automatically) ---
+% one line per section (auto colors) + section tip marker
 h_seg = gobjects(N,1);
 h_tip_seg = gobjects(N,1);
+segColor = zeros(N,3);
 
 for s = 1:N
-    h_seg(s) = plot3(ax, NaN, NaN, NaN, 'LineWidth', 2);          % line color auto
-    col = h_seg(s).Color;                                        % capture auto color
-    h_tip_seg(s) = plot3(ax, NaN, NaN, NaN, 's', ...
-        'MarkerFaceColor', col, 'MarkerEdgeColor', 'none', 'MarkerSize', 7);
+    h_seg(s) = plot3(ax1, NaN, NaN, NaN, 'LineWidth', 2);
+    segColor(s,:) = h_seg(s).Color;
+    h_tip_seg(s) = plot3(ax1, NaN, NaN, NaN, 's', ...
+        'MarkerFaceColor', segColor(s,:), 'MarkerEdgeColor','none', 'MarkerSize', 7);
 end
 
 % overall tip (end of arm)
-h_tip = plot3(ax, NaN, NaN, NaN, 'o', ...
+h_tip = plot3(ax1, NaN, NaN, NaN, 'o', ...
     'MarkerFaceColor',[.8 .2 .2], 'MarkerEdgeColor','none', 'MarkerSize', 7);
 
-% --- Animation loop ---
+%% --------------------- Figure 2: Length-change plot ---------------------
+figure(2); clf
+ax2 = axes; hold(ax2,'on'); grid(ax2,'on');
+axis(ax2,'tight');
+
+% Plot ALL length-change signals (first 2N columns of X)
+h_l = gobjects(2*N,1);
+for i = 1:2*N
+    h_l(i) = plot(ax2, t, X(:,i), 'LineWidth', 1.5);
+end
+
+str = sprintf('length change of %d Sections', N);
+title(ax2, str);
+xlabel(ax2, 'time (s)');
+ylabel(ax2, 'length change (m)');
+
+% Legend labels
+leg = strings(2*N,1);
+for ksec = 1:N
+    leg(2*(ksec-1)+1) = "l_{" + ksec + "1}";
+    leg(2*(ksec-1)+2) = "l_{" + ksec + "2}";
+end
+legend(ax2, leg, 'Location','best');
+
+% Moving time cursor
+yl = ylim(ax2);
+h_cursor = plot(ax2, [t(1) t(1)], yl, 'k--', 'LineWidth', 1.2);
+
+% Moving markers (dots) on each curve at current time
+h_dot = gobjects(2*N,1);
+for i = 1:2*N
+    % use same color as the corresponding curve
+    col = h_l(i).Color;
+    h_dot(i) = plot(ax2, t(1), X(1,i), 'o', ...
+        'MarkerFaceColor', col, 'MarkerEdgeColor', 'none', 'MarkerSize', 6);
+end
+
+%% --------------------- Animation loop (updates both figures) ---------------------
 for k = 1:Nt
 
-    % generalized coordinates at this time step (N x 2): [l2 l3]
-    l_mat = reshape(X(k, 1:2*N).', [2, N]).';
+    % ===== Update Figure 2 (time cursor + dots) =====
+    tk = t(k);
+    set(h_cursor, 'XData', [tk tk], 'YData', ylim(ax2));  % keep cursor spanning y-limits
 
-    % global transform at base of section 1
+    for i = 1:2*N
+        set(h_dot(i), 'XData', tk, 'YData', X(k,i));
+    end
+
+    % ===== Update Figure 1 (arm drawing) =====
+    l_mat = reshape(X(k, 1:2*N).', [2, N]).';  % N x 2 : [l2 l3]
+
     Rglob = eye(3);
     Pglob = zeros(3,1);
-
-    % keep track of final tip
     final_tip = [NaN;NaN;NaN];
 
     for s = 1:N
@@ -86,54 +133,45 @@ for k = 1:Nt
         % sample this section backbone in GLOBAL
         Xs = zeros(Nx,1); Ys = zeros(Nx,1); Zs = zeros(Nx,1);
         for j = 1:Nx
-            [~, ~, Ploc] = HTM_nume(length_s, xi(j), L, r) ;
-            Ppoint =  (Pglob + Rglob * Ploc);
+            [~, ~, Ploc] = HTM_nume(length_s, xi(j), L, r);
+            Ppoint = Pglob + Rglob * Ploc;
+
+            if useFlipZ
+                Ppoint = [1 0 0; 0 -1 0; 0 0 -1] * Ppoint; %#ok<MINV>
+            end
+
             Xs(j) = Ppoint(1); Ys(j) = Ppoint(2); Zs(j) = Ppoint(3);
         end
 
-        % update this section line
         set(h_seg(s), 'XData', Xs, 'YData', Ys, 'ZData', Zs);
 
-        % compute section tip transform (xi = 1) and update section-tip marker
+        % section tip
         [~, Rtip, Ptip] = HTM_nume(length_s, 1, L, r);
-        Pglob_tip = (Pglob + Rglob * Ptip);              % tip in global
+        Pglob_tip = Pglob + Rglob * Ptip;
+
+        if useFlipZ
+            Pglob_tip = [1 0 0; 0 -1 0; 0 0 -1] * Pglob_tip; %#ok<MINV>
+        end
+
         set(h_tip_seg(s), 'XData', Pglob_tip(1), 'YData', Pglob_tip(2), 'ZData', Pglob_tip(3));
 
-        % advance base frame to next section
-        Pglob = Pglob_tip;
+        % advance to next section (NOTE: advance uses unflipped transforms)
+        % so do NOT use flipped Pglob_tip here; use the original:
+        Pglob = Pglob + Rglob * Ptip;
         Rglob = Rglob * Rtip;
 
-        final_tip = Pglob_tip;
+        final_tip = Pglob;
+        if useFlipZ
+            final_tip = [1 0 0; 0 -1 0; 0 0 -1] * final_tip; %#ok<MINV>
+        end
     end
 
-    % update overall tip marker (end effector)
     set(h_tip, 'XData', final_tip(1), 'YData', final_tip(2), 'ZData', final_tip(3));
 
-    set(ht, 'String', sprintf('N-section arm — frame %d / %d   t = %.3f s', ...
+    set(ht1, 'String', sprintf('N-section arm — frame %d / %d   t = %.3f s', ...
         k, Nt, t(k)));
-    % view([45, 45])
+
     drawnow
-    pause(0.001);
+    % pause(0.001);
 end
-% ==============================================================================
-
-figure(2)
-hold on
-for i=1:N
-    plot(t, X(:,i));
-end
-hold off
-grid on
-axis tight
-str = sprintf('length change of %d Sections', N);
-title(str)
-xlabel 'time (s)'
-ylabel 'length change (m)'
-
-leg = strings(2*N,1);
-for k=1:N
-    leg(2*(k-1)+1) = "l_{" + k + "1}";
-    leg(2*(k-1)+2) = "l_{" + k + "2}";
-end
-
-legend(leg)
+%% ==============================================================================
