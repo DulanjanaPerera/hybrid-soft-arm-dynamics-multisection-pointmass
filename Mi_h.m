@@ -93,4 +93,8 @@ else
           eta_12.', eta_22];
 end
 
+if any(isnan(Mih), 'all') || any(isinf(Mih), 'all')
+    Mih = eye(size(Mih));
+end
+
 end
