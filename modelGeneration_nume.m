@@ -76,9 +76,7 @@ for n=1:N
     [PJtip, RJtip, PJJtip, RJJtip] = LocalJacob_nume(length, 1, L, r);
     [PJcog, RJcog, PJJcog, RJJcog] = LocalJacob_nume(length, cog_xi(n), L, r);
      
-    % Compute the global R and P for the n-th section
-    Pglob = Pglob + Rglob * Ptip;
-    Rglob = Rglob * Rtip;
+    
 
     % compute the common block multiplications. This is the n-th section
     % Hessians pf Omega and Velocity. Here only bottom-right block's second
@@ -154,7 +152,8 @@ for n=1:N
             dM{n}(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip);
         end
 
-        G = ( ( mi(n) * g' * Rglob * (Rglob * PJcog) ) + ( K(1:2*n,1:2*n) * length(2:3).' ).' ).';
+        % G = ( ( mi(n) * g' * Rglob * (Rglob * PJcog) ) + ( K(1:2*n,1:2*n) * length(2:3).' ).' ).';
+        G = ( ( mi(n) * g' * (Rglob * PJcog) ) + ( K(1:2*n,1:2*n) * length(2:3).' ).' ).';
 
     else
         % need to know how many block are there in the Jacobian (for
@@ -329,10 +328,16 @@ for n=1:N
         end
 
         % constructing G matrix
-        Gp = mi(n) * g' * Rglob * ([J_veltip + temp_JoP_mat_cog, Rglob * PJcog]);
+        % Gp = mi(n) * g' * Rglob * ([J_veltip + temp_JoP_mat_cog, Rglob * PJcog]);
+        Gp = mi(n) * ([ g' * Rglob * (J_veltip + temp_JoP_mat_cog),  g' * Rglob * PJcog]);
         Ge = [zeros(1,2*(n-1)), (K(2*(n-1)+1:2*(n-1)+2,2*(n-1)+1:2*(n-1)+2) * length(2:3).' ).'];
         G = [G; zeros(2,1)] + Gp.' + Ge.';
         
+
+        % Compute the global R and P for the n-th section
+        Pglob = Pglob + Rglob * Ptip;
+        Rglob = Rglob * Rtip;
+
         % IMPORTANT: update the CoG first and then tip. Because, if tip is
         % updated then the J_vel and J_Omega are n-th section, and not
         % (n-1)-th section
@@ -373,5 +378,6 @@ for n=1:N
         C = Ci;
     end
 end
-f_dl =  reshape(dl(1:n,:)',[2*n,1]);
+f_dl =  reshape(dl(1:N,:)',[2*N,1]);
 ddl = M \ (tau - (C+D) * f_dl - G);
+rc = rcond(M)
