@@ -413,7 +413,7 @@ for n=1:N
 
         % n-th section Hessian_vel tip
         H_veltip = [temp_RHvHoP_mat, zeros(size(temp_RHvHoP_mat,1), 2);
-            temp_RqJvJoP_mat + temp_RJoPq_mat, temp_RqPq_mat_cog + temp_RPqq_mat];
+            temp_RqJvJoP_mat + temp_RJoPq_mat, temp_RqPq_mat + temp_RPqq_mat];
 
     
     end
