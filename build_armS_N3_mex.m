@@ -22,6 +22,6 @@ cfg.GenerateReport = true;
 cfg.TargetLang = 'C++';
 cfg.EnableOpenMP = false; % keep false unless you explicitly parallelize
 
-codegen -config cfg armS_dynamics_N3_mex_entry ...
+codegen -config cfg armS_dynamics_N3_entry_mex ...
     -args {t, X, L, r, cog_xi, mi, g, Kmin, D, tau, mu, lKbounds};
 end
