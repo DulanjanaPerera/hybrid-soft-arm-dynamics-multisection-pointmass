@@ -35,10 +35,10 @@ Rglob = eye(3);
 Pglob = zeros(3,1);
 
 % The tip velocity Jacobians and Hessian
-J_Omegatip = zeros([3,6]);
-J_veltip = zeros([3,2]);
-H_Omegatip = zeros([6,6]);
-H_veltip = zeros([6,2]);
+J_Omegatip = zeros([3,6*N]);
+J_veltip = zeros([3,2*N]);
+H_Omegatip = zeros([6*N,6*N]);
+H_veltip = zeros([6*N,2*N]);
 
 % M, C, G matrices,
 M = zeros(2*N, 2*N);
@@ -134,16 +134,16 @@ for n=1:N
     % thereafter, the recursive method is applied.
     if n==1
 
-        J_Omegatip = Rtip.' * RJtip;                                % CHECKED 2025/01/06                             
-        J_veltip = Rtip.' *  PJtip;                                 % CHECKED 2025/01/06
-        H_Omegatip = temp_RqRq_mat + temp_RRqq_mat;                 % CHECKED 2025/01/06
-        H_veltip = temp_RqPq_mat + temp_RPqq_mat;                   % CHECKED 2025/01/07
+        J_Omegatip(:,1:6*(n)) = Rtip.' * RJtip;                                % CHECKED 2025/01/06                             
+        J_veltip(:,1:2*(n)) = Rtip.' *  PJtip;                                 % CHECKED 2025/01/06
+        H_Omegatip(1:6*(n),1:6*(n)) = temp_RqRq_mat + temp_RRqq_mat;                 % CHECKED 2025/01/06
+        H_veltip(1:6*(n),1:2*(n)) = temp_RqPq_mat + temp_RPqq_mat;                   % CHECKED 2025/01/07
 
         M(1:2*n, 1:2*n) = mi(n) * (PJcog.' * PJcog);
         M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
         % compute (M),h 
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
-            dM1(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip);     
+            dM1(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n)), J_Omegatip(:,1:6*(n)), H_veltip, H_Omegatip(1:6*(n),1:6*(n)));     
         end
         
 
@@ -158,8 +158,7 @@ for n=1:N
     else
         % need to know how many block are there in the Jacobian (for
         % example, [3x6N] = [3x(3*b)]. For N=2|b=2, N=3|b=4 ==> (2(n-1))
-        blocks = size(J_Omegatip,2)/3;
-        assert(blocks == 2*(n-1),"number of blocks are not equal to 2(n-1). %d ~= %d", blocks, 2*(n-1));
+        blocks = 2*(n-1);
         
         % create a temporary matrices to compute block multiplication.
         temp_JoR_mat = zeros([3,3*blocks]);                                                             % CHECKED 2025/01/06                        
@@ -277,18 +276,19 @@ for n=1:N
         % compute (M),h
         if n==2
             for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
-                dM2(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip);
+                % dM2(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip);
+                dM2(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n-1)), J_Omegatip(:,1:6*(n-1)), H_veltip(1:6*(n-1),1:2*(n-1)), H_Omegatip(1:6*(n-1),1:6*(n-1)));
             end
         elseif n == 3
             for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
-                dM3(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip); 
+                dM3(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n-1)), J_Omegatip(:,1:6*(n-1)), H_veltip(1:6*(n-1),1:2*(n-1)), H_Omegatip(1:6*(n-1),1:6*(n-1))); 
             end
         end
         
 
         % constructing G matrix
         % Gp = mi(n) * g' * Rglob * ([J_veltip + temp_JoP_mat_cog, Rglob * PJcog]);
-        Gp = mi(n) * (g' * Rglob * [ (J_veltip + temp_JoP_mat_cog), PJcog]);
+        Gp = mi(n) * (g' * Rglob * [ (J_veltip(:,1:2*(n-1)) + temp_JoP_mat_cog), PJcog]);
         Ge = [zeros(1,2*(n-1)), (K(2*(n-1)+1:2*(n-1)+2,2*(n-1)+1:2*(n-1)+2) * length(2:3).' ).'];
         G(1:2*n, 1) = [G(1:2*(n-1), 1); zeros(2,1)] + Gp.' + Ge.';
         
@@ -300,17 +300,17 @@ for n=1:N
         % updated then the J_vel and J_Omega are n-th section, and not
         % (n-1)-th section
         % J_velcog = Rcog.' * [J_veltip + temp_JoP_mat_cog, PJcog];
-        J_veltip = Rtip.' * [J_veltip + temp_JoP_mat, PJtip];
+        J_veltip(:,1:2*(n)) = Rtip.' * [J_veltip(:,1:2*(n-1)) + temp_JoP_mat, PJtip];
 
         % J_Omegacog = Rcog.' * [temp_JoR_mat_cog, RJcog];
-        J_Omegatip = Rtip.' * [temp_JoR_mat, RJtip];
+        J_Omegatip(:,1:6*(n)) = Rtip.' * [temp_JoR_mat, RJtip];
 
 
-        H_Omegatip = [temp_RHoR_mat, zeros(size(temp_RHoR_mat,1),6);
+        H_Omegatip(1:6*(n),1:6*(n)) = [temp_RHoR_mat, zeros(size(temp_RHoR_mat,1),6);
             temp_RqJoR_mat + temp_RJoRq_mat, temp_RqRq_mat + temp_RRqq_mat];
 
         % n-th section Hessian_vel tip
-        H_veltip = [temp_RHvHoP_mat, zeros(size(temp_RHvHoP_mat,1), 2);
+        H_veltip(1:6*(n),1:2*(n)) = [temp_RHvHoP_mat, zeros(size(temp_RHvHoP_mat,1), 2);
             temp_RqJvJoP_mat + temp_RJoPq_mat, temp_RqPq_mat + temp_RPqq_mat];
 
     
