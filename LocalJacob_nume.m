@@ -25,11 +25,19 @@ function [PosJ, RotJ, PosJJ, RotJJ] = LocalJacob_nume(l, xi, L, r)
 %   RotJ    : Jacobian matrix of the rotation matrix with respect to l2 and
 %             l3 [3x6]
 %   PosJJ   : Second derivative of the PosJ. Matrix shape is [6x2]. The
-%             matrix arrangment is [dP/dl2dl2, dP/dl2dl3; dP/dl3dl2,
-%             dP/dl3dl3]. The dP/dl2dl2 = [3x1]
+%             matrix arrangment is 
+%               [
+%                dP/dl2dl2, dP/dl2dl3;
+%                dP/dl3dl2, dP/dl3dl3
+%               ]
+%             The dP/dl2dl2 = [3x1]
 %   RotJJ   : Second derivative of the RotJ. Matrix shape is [6x6]. The
-%             matrix arrangment is [dR/dl2dl2, dR/dl2dl3; dR/dl3dl2,
-%             dR/dl3dl3]. The dR/dl2dl2 = [3x3]
+%             matrix arrangment is 
+%               [
+%                dR/dl2dl2, dR/dl2dl3; 
+%                dR/dl3dl2, dR/dl3dl3
+%               ]
+%             The dR/dl2dl2 = [3x3]
 
 arguments (Input)
     l (1,3) double
