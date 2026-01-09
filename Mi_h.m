@@ -1,4 +1,5 @@
 function Mih = Mi_h(n, h, p, p_q, p_qq, J_vel, J_omega, H_vel, H_omega)
+%#codegen
 % This function derives the partial derivatives of M (MASS) matrix for the
 % given joint-space varible (h). The h here is an integer in {1,2,3,...,2n}
 % For example, if n=2, then h can be {1,2,3,4}. However, h={1,2}
