@@ -38,15 +38,15 @@ for j=1:Row
         s = 0;
         for h=1:H
             s = s ...
-                + (M(k,j,h) + M(k,h,j) - M(h,j,k)) * dl(h);
+                + 0.5 * (M(k,j,h) + M(k,h,j) - M(h,j,k)) * dl(h);
         end
-        C(j,k) = 0.5 * s;
+        C(j,k) = s;
     end
 end
 
-% % approximate Mdot via sum_h dM(:,:,h)*dq(h)
-% % this is for the sanity check
-% 
+% approximate Mdot via sum_h dM(:,:,h)*dq(h)
+% this is for the sanity check
+
 % Mdot = zeros(size(C));
 % for h=1:length(dl)
 %     Mdot = Mdot + M(:,:,h) * dl(h);
