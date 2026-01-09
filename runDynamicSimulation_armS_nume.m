@@ -1,15 +1,20 @@
 clear
 N = 2;
-loc = 0.99;
+loc = 0.1;
+m = 1;
+stiff = 2.2e3;
+damp = 1000;
 params.N = N;
 params.L = 0.278;
 params.r = 0.013;
 params.cog_xi = loc*ones(1,N);
-params.mi = 1*ones(N,1);
+params.mi = m*ones(N,1);
 params.g = [0; 0; -9.81];
-params.K = 2.2e3 * eye(2*N);
+params.K = stiff * eye(2*N);
 params.tau = zeros(2*N,1);
-params.D = 100* eye(2*N);
+params.D = damp * eye(2*N);
+params.lKbounds = [-0.02, 0.02, 1e6]; % lmin, lmax, Kmax
+params.mu = 2000;
 
 % initial length changes
 % l0 = [
@@ -19,7 +24,7 @@ params.D = 100* eye(2*N);
 %      -0.01, -0.01;
 %     ];
 
-l0 = 0.005* ones(N,2);
+l0 = -0.005* ones(N,2);
 fl0 = reshape(l0',[2*N,1]); % flattern the matrix
 dl0 = zeros(2*N,1); % initial length change speed flatterned
 X0 = [fl0;dl0];
@@ -30,8 +35,9 @@ tspan = [0 10];
 % Stiffer ODE solver is used as the matrices are tend to go ill-condition
 opts = odeset('RelTol',1e-6,'AbsTol',1e-8,'MaxStep',1e-3);
 tic
-[t, X] = ode15s(@(t,X) armS_dynamics_nume(t,X,params), tspan, X0, opts);
-toc
+% [t, X] = ode15s(@(t,X) armS_dynamics_nume_v3(t,X,params), tspan, X0, opts);
+[t, X] = ode15s(@(t,X) armS_dynamics_recursive(t,X,params), tspan, X0, opts);
+times = toc
 
 %% ===================== DRAW + PLOT STATES (SIMULTANEOUS ANIMATION) =====================
 N = params.N;
@@ -168,8 +174,8 @@ for k = 1:Nt
 
     set(h_tip, 'XData', final_tip(1), 'YData', final_tip(2), 'ZData', final_tip(3));
 
-    set(ht1, 'String', sprintf('N-section arm — frame %d / %d   t = %.3f s', ...
-        k, Nt, t(k)));
+    set(ht1, 'String', sprintf('%d-section arm (m=%.2f kg, xi = %.2f, sim time = %.4f s) \n stiff = %.1f | damp = %.1f \n frame %d / %d   t = %.3f s', ...
+        N, m, loc, times, stiff, damp, k, Nt, t(k)));
 
     drawnow
     % pause(0.001);
