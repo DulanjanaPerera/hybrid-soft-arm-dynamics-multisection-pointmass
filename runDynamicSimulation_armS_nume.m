@@ -10,13 +10,13 @@ damp = 10;
 params.N = N;
 params.L = 0.278;
 params.r = 0.013;
-params.cog_xi = loc*ones(1,N);
+params.cog_xi = loc*ones(N,1);
 params.mi = m*ones(N,1);
 params.g = [0; 0; -9.81];
 params.K = stiff * eye(2*N);
 params.tau = zeros(2*N,1);
 params.D = damp * eye(2*N);
-params.lKbounds = [-0.02, 0.02, 1e6]; % lmin, lmax, Kmax
+params.lKbounds = [-0.02; 0.02; 1e6]; % lmin, lmax, Kmax
 params.mu = 2000;
 
 % initial length changes
@@ -39,7 +39,7 @@ tspan = [0 10];
 opts = odeset('RelTol',1e-6,'AbsTol',1e-8,'MaxStep',1e-3);
 tic
 % [t, X] = ode15s(@(t,X) armS_dynamics_nume_N3(t,X,params), tspan, X0, opts);
-[t, X] = ode15s(@(t,X) armS_dynamics_N3_entry_mex(t, X, ...
+[t, X] = ode15s(@(t,X) armS_dynamics_N3_entry_mex_mex(t, X, ...
     params.L, params.r, params.cog_xi, params.mi, params.g, params.K, params.D, params.tau, params.mu, params.lKbounds), tspan, X0, opts);
 times = toc
 
