@@ -17,12 +17,25 @@ cog_xi = params.cog_xi;
 mi = params.mi;
 g = params.g;
 K = params.K;
+Kmin = K;
+mu = params.mu;
+
+lmin = params.lKbounds(1);
+lmax = params.lKbounds(2);
+Kmax = params.lKbounds(3);
+
+
 D = params.D;
 tau = params.tau;
 
-l = reshape(X(1:2*N,:)',[2,N])';
-dl = reshape(X(2*N+1:end,:)',[2,N])';
+l = reshape(X(1:2*N,1)',[2,N])';
+dl = reshape(X(2*N+1:end,1)',[2,N])';
 
+flat_l = X(1:2*N,1);
+for i=1:2*N
+    K(i,i) = Kmin(i,i) + 0.5 * Kmax * (2 +tanh(mu * (flat_l(i) - lmax)) ...
+        - tanh(mu * (flat_l(i)-lmin)));
+end
 
 Rglob = eye(3);
 Pglob = zeros(3,1);
@@ -87,33 +100,33 @@ for n=1:N
         % extract [3x3] block and multiply is with [3x3] Rtip'. assign
         % it back to the [3x3]
         % Rtip.' * RJJtip
-        % [3x3] * [6x6]
-        temp_RRqq_mat(1:3, 3*(b-1)+1:3*(b-1)+3) = ...
-            Rtip.' * RJJtip(1:3, 3*(b-1)+1:3*(b-1)+3);
-        temp_RRqq_mat(4:6, 3*(b-1)+1:3*(b-1)+3) = ...
-            Rtip.' * RJJtip(4:6, 3*(b-1)+1:3*(b-1)+3);
+        % [3x3] * [6x6] = [6x6]
+        temp_RRqq_mat(1:3, 3*(b-1)+1: 3*(b-1)+3) = ...
+            Rtip.' * RJJtip(1:3, 3*(b-1)+1: 3*(b-1)+3);             
+        temp_RRqq_mat(4:6, 3*(b-1)+1: 3*(b-1)+3) = ...
+            Rtip.' * RJJtip(4:6, 3*(b-1)+1: 3*(b-1)+3);             
         
         % bottom-right block's second term in Hessian_Omega CoG
         % Rcog.' * RJJcog
-        % [3x3] * [6x6]
-        temp_RRqq_mat_cog(1:3, 3*(b-1)+1:3*(b-1)+3) = ...
-            Rcog.' * RJJcog(1:3, 3*(b-1)+1:3*(b-1)+3);
-        temp_RRqq_mat_cog(4:6, 3*(b-1)+1:3*(b-1)+3) = ...
-            Rcog.' * RJJcog(4:6, 3*(b-1)+1:3*(b-1)+3);
+        % [3x3] * [6x6] = [6x6]
+        temp_RRqq_mat_cog(1:3, 3*(b-1)+1: 3*(b-1)+3) = ...
+            Rcog.' * RJJcog(1:3, 3*(b-1)+1: 3*(b-1)+3);             
+        temp_RRqq_mat_cog(4:6, 3*(b-1)+1: 3*(b-1)+3) = ...
+            Rcog.' * RJJcog(4:6, 3*(b-1)+1: 3*(b-1)+3);             
         
         % bottom-right block's second term in Hessian_vel tip -  No need to
         % compute the first term because it is simply RJtip' * PJtip
         % Rtip.' * PJJtip
-        % [3x3] * [6x2]
+        % [3x3] * [6x2] = [6x2]
         temp_RPqq_mat(3*(b-1)+1:3*(b-1)+3, 1:2) = ...
-            Rtip.' * PJJtip(3*(b-1)+1:3*(b-1)+3, 1:2);
+            Rtip.' * PJJtip(3*(b-1)+1:3*(b-1)+3, 1:2);              
 
         % bottom-right block's second term in Hessian_vel CoG - No need to
         % compute the first term because it is simply RJcog' * PJcog
         % Rcog.' * PJJcog
         % [3x3] * [6x2]
         temp_RPqq_mat_cog(3*(b-1)+1:3*(b-1)+3, 1:2) = ...
-            Rcog.' * PJJcog(3*(b-1)+1:3*(b-1)+3, 1:2);
+            Rcog.' * PJJcog(3*(b-1)+1:3*(b-1)+3, 1:2);              
     end
 
     % Accumulate the Jacobians for the n-th section
@@ -121,16 +134,16 @@ for n=1:N
     % thereafter, the recursive method is applied.
     if n==1
 
-        J_Omegatip = Rtip.' * RJtip;
-        J_veltip = Rtip.' *  PJtip;
-        H_Omegatip = RJtip.' * RJtip + temp_RRqq_mat;
-        H_veltip = RJtip.' * PJtip + temp_RPqq_mat;
+        J_Omegatip = Rtip.' * RJtip;                                
+        J_veltip = Rtip.' *  PJtip;                                 
+        H_Omegatip = (RJtip.' * RJtip) + temp_RRqq_mat;             
+        H_veltip = (RJtip.' * PJtip) + temp_RPqq_mat;               
 
 
-        J_Omegacog = Rcog.' * RJcog;
-        J_velcog = Rcog.' *  PJcog;
-        H_Omegacog = RJcog.' * RJcog + temp_RRqq_mat_cog;
-        H_velcog = RJcog.' * PJcog + temp_RPqq_mat_cog;
+        J_Omegacog = Rcog.' * RJcog;                                
+        J_velcog = Rcog.' *  PJcog;                                 
+        H_Omegacog = RJcog.' * RJcog + temp_RRqq_mat_cog;           
+        H_velcog = RJcog.' * PJcog + temp_RPqq_mat_cog;             
 
         M = mi(n) * (PJcog.' * PJcog);
 
@@ -146,24 +159,25 @@ for n=1:N
         % need to know how many block are there in the Jacobian (for
         % example, [3x6N] = [3x(3*b)]. For N=2|b=2, N=3|b=4 ==> (2(n-1))
         blocks = size(J_Omegatip,2)/3;
+        assert(blocks == 2*(n-1),"number of blocks are not equals to 2(n-1). %d ~= %d", blocks, 2*(n-1));
         
         % create a temporary matrices to compute block multiplication.
-        temp_JoR_mat = zeros([3,3*blocks]);
-        temp_JoP_mat = zeros([3, 1*blocks]);
+        temp_JoR_mat = zeros([3,3*blocks]);                         
+        temp_JoP_mat = zeros([3, blocks]);                          
 
-        temp_JoR_mat_cog = zeros([3,3*blocks]);
-        temp_JoP_mat_cog = zeros([3, 1*blocks]);
+        temp_JoR_mat_cog = zeros([3,3*blocks]);                     
+        temp_JoP_mat_cog = zeros([3, blocks]);                      
 
-        temp_RHoR_mat = zeros([3*blocks, 3*blocks]); % Rtip.' * H_Omegatip * Rtip
-        temp_RqJoR_mat = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat
-        temp_RJoRq_mat = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat
+        temp_RHoR_mat = zeros([3*blocks, 3*blocks]); % Rtip.' * H_Omegatip * Rtip                   
+        temp_RqJoR_mat = zeros([6, 3*blocks]); % RJtip.' * temp_JoR_mat                             
+        temp_RJoRq_mat = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat * RJtip                   
         temp_RHvHoP_mat = zeros([3*blocks, blocks]); % Rtip.' * (H_veltip + H_Omegatip*Ptip)
         temp_RqJvJoP_mat = zeros([6, blocks]); % Rq.' * (J_veltip + J_Omegatip * Ptip)
         temp_RJoPq_mat = zeros([6, blocks] ); % Rtip.' J_Omega * PJtip
 
-        temp_RHoR_mat_cog = zeros([3*blocks, 3*blocks]); % Rtip.' * H_Omegatip * Rtip
-        temp_RqJoR_mat_cog = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat
-        temp_RJoRq_mat_cog = zeros([6, 3*blocks]); % RJtip.' * temp_Omega_mat
+        temp_RHoR_mat_cog = zeros([3*blocks, 3*blocks]); % Rcog.' * H_Omegacog * Rcog               
+        temp_RqJoR_mat_cog = zeros([6, 3*blocks]); % RJcog.' * temp_JoR_mat_cog                     
+        temp_RJoRq_mat_cog = zeros([6, 3*blocks]); % Rcog.' * temp_Omega_mat_cog * RJcog            
         temp_RHvHoP_mat_cog = zeros([3*blocks, blocks]); % Rtip.' * (H_veltip + H_Omegatip*Ptip)
         temp_RqJvJoP_mat_cog = zeros([6, blocks]); % Rq.' * (J_veltip + J_Omegatip * Ptip)
         temp_RJoPq_mat_cog = zeros([6, blocks]); % Rtip.' J_Omega * PJtip
@@ -182,15 +196,15 @@ for n=1:N
             % extract 3x3 block and multiply it with 3x3. Then assign it back to
             % the 3x3 block
             temp_JoR_mat(:,3*(b-1)+1: 3*(b-1)+3) = ...
-                J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Rtip;
+                J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Rtip;              
             temp_JoR_mat_cog(:,3*(b-1)+1: 3*(b-1)+3) = ...
-                J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Rcog;
+                J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Rcog;              
             
             % 2nd term of left block of the Jacobian_velocity tip and CoG
             % extract 3x3 block and multiply is with 3x1. Then assign it back to
             % the 3x1 block
-            temp_JoP_mat(:,b) = J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Ptip;
-            temp_JoP_mat_cog(:,b) = J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Pcog; % this is re-used in MASS matrix
+            temp_JoP_mat(:,b) = J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Ptip;       
+            temp_JoP_mat_cog(:,b) = J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * Pcog;   
 
        
 
@@ -202,7 +216,7 @@ for n=1:N
                 % Rtip.' * Ho * Rtip
                 % [3x3] * [3x3] * [3x3]
                 temp_RHoR_mat(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) = ...
-                    Rtip.' * H_Omegatip(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) * Rtip;
+                    Rtip.' * H_Omegatip(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) * Rtip;                                              
                 
                 % Top-left block of Hessian_velocity tip
                 % Rtip.' * (Hvtip + HOtip*Ptip)
@@ -216,7 +230,7 @@ for n=1:N
                 % Rcog.' * Ho * Rcog
                 % [3x3] * [3x3] * [3x3]
                 temp_RHoR_mat_cog(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) = ...
-                    Rcog.' * H_Omegatip(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) * Rcog;
+                    Rcog.' * H_Omegatip(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) * Rcog;                                              
                 
                 % Top-left block of Hessian_velocity cog
                 % Rcog.' * (Hvtip + HOtip*Pcog)
@@ -234,7 +248,7 @@ for n=1:N
 
                
 
-            end
+            end % row loop end
             
             % this loop is maily for bottom -left blocks where 6xkN
             % is required. Here k={2, 6}
@@ -244,14 +258,15 @@ for n=1:N
                 % bottom-left block's first term in Hessian_Omega tip
                 % RJtip.' * J_Omegatip * Rtip
                 % [6x3] * [3x6(n)] * [3x3]
+                % [6x3] * [3x6(n)] = [6x6(n)]
                 temp_RqJoR_mat(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) = ...
-                   RJtip(:,3*(r-1)+1: 3*(r-1)+3).' * temp_JoR_mat(:,3*(b-1)+1: 3*(b-1)+3);
+                   RJtip(:,3*(r-1)+1: 3*(r-1)+3).' * temp_JoR_mat(:,3*(b-1)+1: 3*(b-1)+3);                               
             
                 % bottom-left block's second term in Hessian_Omega tip
                 % Rtip.' * J_Omegatip * RJtip
                 % [3x3] * [3x6(n)] * [3x6]
                 temp_RJoRq_mat(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) = ...
-                    Rtip.' * J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * RJtip(:,3*(r-1)+1: 3*(r-1)+3);
+                    Rtip.' * J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * RJtip(:,3*(r-1)+1: 3*(r-1)+3);                              
 
                 % bottom-left block's first term in Hessian_vel tip
                 % RJtip.' * (J_veltip + J_Omegatip * Ptip)
@@ -270,13 +285,13 @@ for n=1:N
                 % RJcog.' * J_Omegatip * Rcog
                 % [6x3] * [3x6(n)] * [3x3]
                 temp_RqJoR_mat_cog(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) = ...
-                   RJcog(:,3*(r-1)+1: 3*(r-1)+3).' * temp_JoR_mat_cog(:,3*(b-1)+1: 3*(b-1)+3);
+                   RJcog(:,3*(r-1)+1: 3*(r-1)+3).' * temp_JoR_mat_cog(:,3*(b-1)+1: 3*(b-1)+3);                           
             
                 % bottom-left block's second term in Hessian_Omega cog
                 % Rcog.' * J_Omegatip * RJcog
                 % [3x3] * [3x6(n)] * [3x6]
                 temp_RJoRq_mat_cog(3*(r-1)+1: 3*(r-1)+3, 3*(b-1)+1: 3*(b-1)+3) = ...
-                    Rcog.' * J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * RJcog(:,3*(r-1)+1: 3*(r-1)+3);
+                    Rcog.' * J_Omegatip(:,3*(b-1)+1: 3*(b-1)+3) * RJcog(:,3*(r-1)+1: 3*(r-1)+3);                                     
 
                 % bottom-left block's first term in Hessian_vel cog
                 % RJcog.' * (J_veltip + J_Omegatip * Pcog)
@@ -316,7 +331,7 @@ for n=1:N
 
         % constructing G matrix
         % Gp = mi(n) * g' * Rglob * ([J_veltip + temp_JoP_mat_cog, Rglob * PJcog]);
-        Gp = mi(n) * ([ g' * (J_veltip + temp_JoP_mat_cog),  g' * Rglob * PJcog]);
+        Gp = mi(n) * ([ g' * Rglob * (J_veltip + temp_JoP_mat_cog),  g' * Rglob * PJcog]);
         Ge = [zeros(1,2*(n-1)), (K(2*(n-1)+1:2*(n-1)+2,2*(n-1)+1:2*(n-1)+2) * length(2:3).' ).'];
         G = [G; zeros(2,1)] + Gp.' + Ge.';
         
@@ -364,7 +379,8 @@ for n=1:N
         C = Ci;
     end
 end
-flat_dl = reshape(dl(1:N,:)',[2*N,1]);
+% flat_dl = reshape(dl(1:N,:)',[2*N,1]);
+flat_dl = X(2*N+1:end,1);
 eps_reg = 1e-8;
 ddl = (M + eps_reg*eye(size(M))) \ (tau - (C + D)*flat_dl - G);
 
