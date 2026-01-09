@@ -1,7 +1,7 @@
 clear
 N = 3;
-loc = 0.99;
-m = 0.1;
+loc = 0.1;
+m = 1;
 stiff = 2.2e1;
 damp = 10;
 
@@ -10,8 +10,10 @@ damp = 10;
 params.N = N;
 params.L = 0.278;
 params.r = 0.013;
-params.cog_xi = loc*ones(N,1);
-params.mi = m*ones(N,1);
+% params.cog_xi = loc*ones(N,1);
+params.cog_xi = [0.5; 0.5; 0.5];
+% params.mi = m*ones(N,1);
+params.mi = [0.01; 1; 0.01];
 params.g = [0; 0; -9.81];
 params.K = stiff * eye(2*N);
 params.tau = zeros(2*N,1);
