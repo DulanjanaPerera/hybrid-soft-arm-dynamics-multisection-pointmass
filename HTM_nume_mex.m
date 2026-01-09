@@ -1,0 +1,41 @@
+function [T, R, P] = HTM_nume_mex(l, xi, L, r)
+%#codegen
+% Compute the Homogeneous Transforamtion Matrix for a section. The symbolic equation is computed from the 
+% Maple file.
+% 
+% The derivations are referenced from following paper.
+%   * Godage, Isuru S., Robert J. Webster, and Ian D. Walker. "Center-of-gravity-based 
+%     approach for modeling dynamics of multisection continuum arms." IEEE transactions 
+%     on robotics 35, no. 5 (2019): 1097-1108.
+% 
+% Inputs:
+%   l   : length change of the PMA [3x1] [constant] (m)
+%   xi  : selection factor of the backbone. xi=0 is the base and xi=1 is
+%         the tip. [constant] {0,1}
+%   L   : Length of the continuum arm [constant] (m)
+%   r   : radial offset of the PMA [constant] (m)
+% 
+% Outputs:
+%   T   : HTM of the continuum arm at xi [4x4]
+%   R   : Rotation matrix [3x3]
+%   P   : position vector [3x1]
+
+arguments (Input)
+    l (1,3) double 
+    xi (1,1) double
+    L (1,1) double 
+    r (1,1) double 
+end
+
+arguments (Output)
+    T (4,4) double
+    R (3,3) double
+    P (3,1) double
+end
+
+T =  [(((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3 * xi ^ 8 * (l(2) + l(3)) ^ 2 - 42 * (l(2) + l(3)) ^ 2 * xi ^ 6 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2 * r ^ 2 + 945 * (l(2) + l(3)) ^ 2 * xi ^ 4 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * r ^ 4 - 8505 * (l(2) + l(3)) ^ 2 * xi ^ 2 * r ^ 6 + 17010 * r ^ 8) / r ^ 8) / 0.17010e5 (-((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3 * xi ^ 6) / 0.8505e4 + 0.2e1 / 0.405e3 * (r ^ 2) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (xi ^ 4) - (r ^ 4 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * xi ^ 2) / 0.9e1 + (r ^ 6)) * (l(2) + l(3)) * (-l(3) + l(2)) * (xi ^ 2) * sqrt(0.3e1) / (r ^ 8) / 0.6e1 (l(2) + l(3)) * xi * ((r ^ 8) - 0.2e1 / 0.9e1 * (xi ^ 2) * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * (r ^ 6) + 0.2e1 / 0.135e3 * (xi ^ 4) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (r ^ 4) - 0.4e1 / 0.8505e4 * (xi ^ 6) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3) * (r ^ 2) + 0.2e1 / 0.229635e6 * (xi ^ 8) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 4)) / (r ^ 9) (-((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3 * xi ^ 6) / 0.8505e4 + 0.2e1 / 0.405e3 * (r ^ 2) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (xi ^ 4) - (r ^ 4 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * xi ^ 2) / 0.9e1 + (r ^ 6)) * (l(2) + l(3)) * (xi ^ 2) * L / (r ^ 7) / 0.2e1; (-((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3 * xi ^ 6) / 0.8505e4 + 0.2e1 / 0.405e3 * (r ^ 2) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (xi ^ 4) - (r ^ 4 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * xi ^ 2) / 0.9e1 + (r ^ 6)) * (l(2) + l(3)) * (-l(3) + l(2)) * (xi ^ 2) * sqrt(0.3e1) / (r ^ 8) / 0.6e1 (((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3 * xi ^ 8 * (-l(3) + l(2)) ^ 2 + (-42 * r ^ 2 * l(2) ^ 6 + 84 * r ^ 2 * l(2) ^ 3 * l(3) ^ 3 - 42 * r ^ 2 * l(3) ^ 6) * xi ^ 6 + 945 * (-l(3) + l(2)) ^ 2 * xi ^ 4 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * r ^ 4 - 8505 * (-l(3) + l(2)) ^ 2 * xi ^ 2 * r ^ 6 + 51030 * r ^ 8) / r ^ 8) / 0.51030e5 -(-l(3) + l(2)) * xi * ((r ^ 8) - 0.2e1 / 0.9e1 * (xi ^ 2) * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * (r ^ 6) + 0.2e1 / 0.135e3 * (xi ^ 4) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (r ^ 4) - 0.4e1 / 0.8505e4 * (xi ^ 6) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3) * (r ^ 2) + 0.2e1 / 0.229635e6 * (xi ^ 8) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 4)) * sqrt(0.3e1) / (r ^ 9) / 0.3e1 -(-((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3 * xi ^ 6) / 0.8505e4 + 0.2e1 / 0.405e3 * (r ^ 2) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (xi ^ 4) - (r ^ 4 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * xi ^ 2) / 0.9e1 + (r ^ 6)) * (-l(3) + l(2)) * sqrt(0.3e1) * (xi ^ 2) * L / (r ^ 7) / 0.6e1; -(l(2) + l(3)) * xi * ((r ^ 8) - 0.2e1 / 0.9e1 * (xi ^ 2) * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * (r ^ 6) + 0.2e1 / 0.135e3 * (xi ^ 4) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (r ^ 4) - 0.4e1 / 0.8505e4 * (xi ^ 6) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3) * (r ^ 2) + 0.2e1 / 0.229635e6 * (xi ^ 8) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 4)) / (r ^ 9) (-l(3) + l(2)) * xi * ((r ^ 8) - 0.2e1 / 0.9e1 * (xi ^ 2) * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * (r ^ 6) + 0.2e1 / 0.135e3 * (xi ^ 4) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (r ^ 4) - 0.4e1 / 0.8505e4 * (xi ^ 6) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3) * (r ^ 2) + 0.2e1 / 0.229635e6 * (xi ^ 8) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 4)) * sqrt(0.3e1) / (r ^ 9) / 0.3e1 ((-4 * xi ^ 10 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 5 + 270 * xi ^ 8 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 4 * r ^ 2 - 11340 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3 * xi ^ 6 * r ^ 4 + 255150 * xi ^ 4 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2 * r ^ 6 - 2296350 * xi ^ 2 * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * r ^ 8 + 3444525 * r ^ 10) / r ^ 10) / 0.3444525e7 ((r ^ 8) - 0.2e1 / 0.9e1 * (xi ^ 2) * (l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) * (r ^ 6) + 0.2e1 / 0.135e3 * (xi ^ 4) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 2) * (r ^ 4) - 0.4e1 / 0.8505e4 * (xi ^ 6) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 3) * (r ^ 2) + 0.2e1 / 0.229635e6 * (xi ^ 8) * ((l(2) ^ 2 + l(2) * l(3) + l(3) ^ 2) ^ 4)) * xi * L / (r ^ 8); 0 0 0 1;];
+
+R = T(1:3,1:3);
+P = T(1:3,4);
+
+end
