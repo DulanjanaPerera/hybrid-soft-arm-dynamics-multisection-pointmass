@@ -28,7 +28,7 @@ for i=1:2*N
         - tanh(mu * (flat_l(i)-lmin)));
 end
 
-[M, C, G] = armS_core_N3(t, l, dl, L, r, cog_xi, mi, g, K);
+[M, C, G] = armS_core_N3_mex(t, l, dl, L, r, cog_xi, mi, g, K);
 
 % flat_dl = reshape(dl(1:N,:)',[2*N,1]);
 flat_dl = X(2*N+1:end,1);
