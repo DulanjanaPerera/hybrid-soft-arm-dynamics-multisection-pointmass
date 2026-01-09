@@ -15,6 +15,8 @@ function dX = armS_dynamics_N3_entry_mex(t, X, L, r, cog_xi, mi, g, Kmin, D, tau
 
 N = 3;
 
+K = zeros(size(Kmin));
+
 lmin = lKbounds(1);
 lmax = lKbounds(2);
 Kmax = lKbounds(3);
