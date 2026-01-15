@@ -38,9 +38,9 @@ for j=1:Row
         s = 0;
         for h=1:H
             s = s ...
-                + 0.5 * (M(k,j,h) + M(k,h,j) - M(h,j,k)) * dl(h);
+                + (M(k,j,h) + M(k,h,j) - M(h,j,k)) * dl(h);
         end
-        C(j,k) = s;
+        C(j,k) = s * 0.5;
     end
 end
 
