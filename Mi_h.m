@@ -39,6 +39,13 @@ eta_22 = zeros(2,2);
 % gamma_12 = zeros(d,2);
 % gamma_22 = zeros(2,2);
 
+% beta_v1 = 1;
+% beta_v2 = 1;
+% beta_v3 = 1;
+beta_v1 = 1.3155;
+beta_v2 = 1.5053;
+beta_v3 = 1.8011;
+
 for r=1:d
     for c=1:d
         if(h <= 2*(n-1))
@@ -48,11 +55,11 @@ for r=1:d
             % ci = 2 - mod(c,2); % this is to obtain the index 1 and 2 for odd and even numbers of column
 
             eta_11(r,c) = 2 * H_vel(3*(h-1)+1:3*(h-1)+3,r).' * (J_vel(:,c) + J_omega(:,3*(c-1)+1:3*(c-1)+3)*p) ...
-                + 2 * (J_vel(:,r).' + (J_omega(:,3*(r-1)+1:3*(r-1)+3)* p).') * (H_omega(3*(h-1)+1:3*(h-1)+3, 3*(c-1)+1:3*(c-1)+3) * p);                                  % CHECKED 2025/01/07
+                + 2 * (J_vel(:,r).' + beta_v1 * (J_omega(:,3*(r-1)+1:3*(r-1)+3)* p).') * (H_omega(3*(h-1)+1:3*(h-1)+3, 3*(c-1)+1:3*(c-1)+3) * p);                                  % CHECKED 2025/01/07
             
             if c<=2 % only two column exist
                 eta_12(r,c) = (H_vel(3*(h-1)+1:3*(h-1)+3, r) ...
-                    + H_omega(3*(h-1)+1:3*(h-1)+3,3*(r-1)+1:3*(r-1)+3) * p).' ...
+                    + beta_v2 * H_omega(3*(h-1)+1:3*(h-1)+3,3*(r-1)+1:3*(r-1)+3) * p).' ...
                     * p_q(:,c);                                                                             % CHECKED 2025/01/07
             end
 
@@ -63,15 +70,16 @@ for r=1:d
             hi = 2 - mod(h,2); % this is to obtain the index 1 and 2 for odd and even numbers of h
 
             eta_11(r,c) = 2 * J_vel(:,r).' * (J_omega(:,3*(c-1)+1:3*(c-1)+3) * p_q(:,hi)) ...
-                + 2 * (J_omega(:,3*(r-1)+1:3*(r-1)+3) * p_q(:,hi)).' * (J_omega(:,3*(c-1)+1:3*(c-1)+3) * p); % CHECKED 2025/01/07
+                + 2 * beta_v1 *(J_omega(:,3*(r-1)+1:3*(r-1)+3) * p_q(:,hi)).' * (J_omega(:,3*(c-1)+1:3*(c-1)+3) * p); % CHECKED 2025/01/07
 
             if c<=2
-                eta_12(r,c) = (J_vel(:,r) + J_omega(:,3*(r-1)+1:3*(r-1)+3) * p).' ...
-                    * p_qq(3*(hi-1)+1:3*(hi-1)+3, c)...
-                    + (J_omega(:,3*(r-1)+1:3*(r-1)+3) * p_q(:,hi)).' * p_q(:,c);                             % CHECKED 2025/01/07 
-
+                eta_12(r,c) = (J_vel(:,r) + beta_v2 * J_omega(:,3*(r-1)+1:3*(r-1)+3) * p).' ...
+                    * p_qq(3*(c-1)+1:3*(c-1)+3, hi)...
+                    + beta_v2 * (J_omega(:,3*(r-1)+1:3*(r-1)+3) * p_q(:,hi)).' * p_q(:,c);                             % CHECKED 2025/01/07 
+                    % changed the row column in p_qq  % CHECKED 2025/01/15
                 if r <=2
-                    eta_22(r,c) = p_qq(3*(hi-1)+1:3*(hi-1)+3, r).' * p_q(:,c);                                % CHECKED 2025/01/07
+                    eta_22(r,c) = 2 * beta_v3 * p_qq(3*(r-1)+1:3*(r-1)+3, hi).' * p_q(:,c);                                % CHECKED 2025/01/07
+                    % changed the row column in p_qq % CHECKED 2025/01/15
                 end
 
             end
@@ -84,7 +92,7 @@ if d == 0
     eta_22 = zeros(2,2);
     for r=1:2
         for c=1:2
-            eta_22(r,c) = p_qq(3*(r-1)+1:3*(r-1)+3, h).' * p_q(:,c);                                        % CHECKED 2025/01/07
+            eta_22(r,c) = 2 * beta_v3 * p_qq(3*(r-1)+1:3*(r-1)+3, h).' * p_q(:,c);                                        % CHECKED 2025/01/07
         end
     end
     eta_22 = 0.5*(eta_22 + eta_22.');
@@ -97,7 +105,9 @@ else
     Mih = [eta_11, eta_12;
           eta_12.', eta_22];
 end
-
-Mih(~isfinite(Mih)) = 0;
+% miz = eye(size(Mih));
+% Mih = miz;
+% rcond(Mih)
+% Mih(~isfinite(Mih)) = 0;
 
 end

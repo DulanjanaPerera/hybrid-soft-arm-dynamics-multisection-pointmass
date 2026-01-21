@@ -231,8 +231,6 @@ for n=1:N
         temp_sigma_11 = zeros([blocks,blocks]);
         temp_sigma_12 = zeros([blocks, 2]);
 
-        
-
         for c=1:blocks % column loop
             % left block of the Jacobian_Omega tip and CoG
             % extract 3x3 block and multiply it with 3x3. Then assign it back to

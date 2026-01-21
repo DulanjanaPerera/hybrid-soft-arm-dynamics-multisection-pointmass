@@ -1,22 +1,24 @@
 clear
 N = 3;
-loc = 0.1;
-m = 1;
-stiff = 2.2e1;
-damp = 10;
+loc = 0.5;
+m = 0.1;
+A = pi*(0.013/2)^2;
+stiff = 2.2e3;
+damp = 400;
 
 
 
 params.N = N;
 params.L = 0.278;
 params.r = 0.013;
-% params.cog_xi = loc*ones(N,1);
-params.cog_xi = [0.5; 0.5; 0.5];
-% params.mi = m*ones(N,1);
-params.mi = [0.01; 1; 0.01];
+params.cog_xi = loc*ones(N,1);
+% params.cog_xi = [0.5; 0.5; 0.5];
+params.mi = m*ones(N,1);
+% params.mi = [0.1; 0.1; 0.1];
 params.g = [0; 0; -9.81];
 params.K = stiff * eye(2*N);
-params.tau = zeros(2*N,1);
+% params.tau = zeros(2*N,1);
+params.tau = -(A * 2 * 1e5)*ones(2*N,1);
 params.D = damp * eye(2*N);
 params.lKbounds = [-0.02; 0.02; 1e6]; % lmin, lmax, Kmax
 params.mu = 2000;
@@ -29,18 +31,22 @@ params.mu = 2000;
 %      -0.01, -0.01;
 %     ];
 
-l0 = -0.005* ones(N,2);
+l0 = -0.000* ones(N,2);
+l0(1,:) = -0.001;
+% l0(2,:) = -0.01;
 fl0 = reshape(l0',[2*N,1]); % flattern the matrix
-dl0 = zeros(2*N,1); % initial length change speed flatterned
+dl0 = 0.000001 * ones(2*N,1); % initial length change speed flatterned
 X0 = [fl0;dl0];
 
 % Integrate
 tspan = [0 10];
 
 % Stiffer ODE solver is used as the matrices are tend to go ill-condition
-opts = odeset('RelTol',1e-6,'AbsTol',1e-8,'MaxStep',1e-3);
+opts = odeset('RelTol',1e-8,'AbsTol',1e-10,'MaxStep',1e-1);
 tic
-% [t, X] = ode15s(@(t,X) armS_dynamics_nume_N3(t,X,params), tspan, X0, opts);
+% [t, X] = ode15s(@(t,X) armS_dynamics_nume(t,X,params), tspan, X0, opts);
+% [t, X] = ode15s(@(t,X) armS_dynamics_N3_entry_mex(t, X, ...
+%     params.L, params.r, params.cog_xi, params.mi, params.g, params.K, params.D, params.tau, params.mu, params.lKbounds), tspan, X0, opts);
 [t, X] = ode15s(@(t,X) armS_dynamics_N3_entry_mex_mex(t, X, ...
     params.L, params.r, params.cog_xi, params.mi, params.g, params.K, params.D, params.tau, params.mu, params.lKbounds), tspan, X0, opts);
 times = toc
@@ -63,6 +69,7 @@ figure(1); clf
 ax1 = axes; hold(ax1,'on'); grid(ax1,'on'); axis(ax1,'equal');
 xlabel(ax1,'X'); ylabel(ax1,'Y'); zlabel(ax1,'Z');
 rotate3d(ax1,'on');
+view([11,13])
 str1 = sprintf('%d-section continuum arm with CoG at %.2f', N, loc);
 ht1 = title(ax1,str1);
 
@@ -182,7 +189,7 @@ for k = 1:Nt
 
     set(ht1, 'String', sprintf('%d-section arm (m=%.2f kg, xi = %.2f, sim time = %.4f s) \n stiff = %.1f | damp = %.1f \n frame %d / %d   t = %.3f s', ...
         N, m, loc, times, stiff, damp, k, Nt, t(k)));
-
+    
     drawnow
     % pause(0.001);
 end

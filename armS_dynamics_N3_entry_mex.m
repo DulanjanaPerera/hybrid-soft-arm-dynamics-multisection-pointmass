@@ -33,9 +33,18 @@ end
 [M, C, G] = armS_core_N3_mex(t, l, dl, L, r, cog_xi, mi, g, K);
 
 % flat_dl = reshape(dl(1:N,:)',[2*N,1]);
+Ge = K * flat_l;
 flat_dl = X(2*N+1:end,1);
-eps_reg = 1e-8;
-ddl = (M + eps_reg*eye(size(M))) \ (tau - (C + D)*flat_dl - G);
+eps_reg = 0;
+ddl = (M + eps_reg*eye(size(M))) \ (tau - (C + D)*flat_dl - (G+Ge));
+
+% persistent minRc
+% if isempty(minRc), minRc = inf; end
+% rc = rcond(M);
+% minRc = min(minRc, rc);
+% if rc < 1e-10
+%     fprintf("t=%g  rcond(M)=%e  min=%e\n", t, rc, minRc);
+% end
 
 
 dX = [flat_dl; ddl];

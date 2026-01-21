@@ -27,8 +27,6 @@ N  = 3;
 %
 % Then call christoffelSymbol with those.
 
-
-
 % ... your loop n=1:3, fill M, G, and fill dM1/dM2/dM3
 
 Rglob = eye(3);
@@ -143,12 +141,12 @@ for n=1:N
         M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
         % compute (M),h 
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
-            dM1(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n)), J_Omegatip(:,1:6*(n)), H_veltip, H_Omegatip(1:6*(n),1:6*(n)));     
+            dM1(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n)), J_Omegatip(:,1:6*(n)), H_veltip(1:6*(n),1:2*(n)), H_Omegatip(1:6*(n),1:6*(n)));     
         end
         
 
         % G = ( (mi(n) * g' * Rglob * (Rglob * PJcog) ) + ( K(1:2*n,1:2*n) * length(2:3).' ).' ).';
-        G(1:2*n,1) = ( ( mi(n) * g' * (Rglob * PJcog) ) + ( K(1:2*n,1:2*n) * length(2:3).' ).' ).';                      % CHECKED 2025/01/07
+        G(1:2*n,1) = ( ( mi(n) * g' * (Rglob * PJcog) ) ).';                      % CHECKED 2025/01/15 (removed the stiffness pot
         
         % Compute the global R and P for the n-th section 
         Pglob = Pglob + Rglob * Ptip;
@@ -289,8 +287,8 @@ for n=1:N
         % constructing G matrix
         % Gp = mi(n) * g' * Rglob * ([J_veltip + temp_JoP_mat_cog, Rglob * PJcog]);
         Gp = mi(n) * (g' * Rglob * [ (J_veltip(:,1:2*(n-1)) + temp_JoP_mat_cog), PJcog]);
-        Ge = [zeros(1,2*(n-1)), (K(2*(n-1)+1:2*(n-1)+2,2*(n-1)+1:2*(n-1)+2) * length(2:3).' ).'];
-        G(1:2*n, 1) = [G(1:2*(n-1), 1); zeros(2,1)] + Gp.' + Ge.';
+        % Ge = [zeros(1,2*(n-1)), (K(2*(n-1)+1:2*(n-1)+2,2*(n-1)+1:2*(n-1)+2) * length(2:3).' ).'];
+        G(1:2*n, 1) = [G(1:2*(n-1), 1); zeros(2,1)] + Gp.';
         
         % Compute the global R and P for the n-th section 
         Pglob = Pglob + Rglob * Ptip;
@@ -335,6 +333,7 @@ for n=1:N
         C(1:2*n, 1:2*n) = Ci;
     end
 end
+
 
 % ... build C from dM1/dM2/dM3 exactly as you already do ...
 
