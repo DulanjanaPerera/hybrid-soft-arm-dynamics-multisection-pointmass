@@ -1,7 +1,8 @@
 function [M, C, G] = armS_core_N3_mex(t, l, dl, L, r, cog_xi, mi, g, K)
 %#codegen
 % N fixed to 3
-N  = 3;
+[N, ~] = size(cog_xi);
+% N  = length(cog_xi);
 
 % ---- paste your recursion here ----
 % Replace:
@@ -43,6 +44,11 @@ M = zeros(2*N, 2*N);
 C = zeros(2*N, 2*N);
 G = zeros(2*N, 1);
 
+r_offset = r;
+
+% if t >=1
+%    disp(t);
+% end
 
 dM1 = zeros(2,2,2);
 dM2 = zeros(4,4,4);
@@ -53,12 +59,12 @@ for n=1:N
     length = [0, l(n,1), l(n,2)];
 
     % compute the tip and CoG frame of n-th section
-    [~, Rtip, Ptip] = HTM_nume_mex(length, 1, L, r);
-    [~, Rcog, Pcog] = HTM_nume_mex(length, cog_xi(n), L, r);
+    [~, Rtip, Ptip] = HTM_nume_mex(length, 1, L, r_offset);
+    [~, Rcog, Pcog] = HTM_nume_mex(length, cog_xi(n), L, r_offset);
 
     % compute the jacobians of the above frames
-    [PJtip, RJtip, PJJtip, RJJtip] = LocalJacob_nume_mex(length, 1, L, r);
-    [PJcog, ~, PJJcog, ~] = LocalJacob_nume_mex(length, cog_xi(n), L, r);
+    [PJtip, RJtip, PJJtip, RJJtip] = LocalJacob_nume_mex(length, 1, L, r_offset);
+    [PJcog, ~, PJJcog, ~] = LocalJacob_nume_mex(length, cog_xi(n), L, r_offset);
      
 
     % compute the common blocks at Hessian.
