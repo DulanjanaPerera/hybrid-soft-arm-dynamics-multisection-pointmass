@@ -12,7 +12,7 @@ function dX = armS_dynamics_nume(t,X, params)
 
 N = params.N;
 L = params.L;
-r = params.r;
+r_offset = params.r;
 cog_xi = params.cog_xi;
 mi = params.mi;
 g = params.g;
@@ -69,12 +69,12 @@ for n=1:N
     length = [0, l(n,1), l(n,2)];
 
     % compute the tip and CoG frame of n-th section
-    [~, Rtip, Ptip] = HTM_nume(length, 1, L, r);
-    [~, Rcog, Pcog] = HTM_nume(length, cog_xi(n), L, r);
+    [~, Rtip, Ptip] = HTM_nume(length, 1, L, r_offset);
+    [~, Rcog, Pcog] = HTM_nume(length, cog_xi(n), L, r_offset);
 
     % compute the jacobians of the above frames
-    [PJtip, RJtip, PJJtip, RJJtip] = LocalJacob_nume(length, 1, L, r);
-    [PJcog, ~, PJJcog, ~] = LocalJacob_nume(length, cog_xi(n), L, r);
+    [PJtip, RJtip, PJJtip, RJJtip] = LocalJacob_nume(length, 1, L, r_offset);
+    [PJcog, ~, PJJcog, ~] = LocalJacob_nume(length, cog_xi(n), L, r_offset);
      
 
     % compute the common blocks at Hessian.

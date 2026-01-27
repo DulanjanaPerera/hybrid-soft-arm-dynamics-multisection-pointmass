@@ -1,4 +1,5 @@
 function [PosJ, RotJ, PosJJ, RotJJ] = LocalJacob_nume(l, xi, L, r)
+%#codegen
 % This function computes the symbolic Local Jacobians of Position vector and the
 % Rotation matrix. However, the rotation matrix is [3x(3x2)]. Because, our
 % arm has only 2 DoF and, we stack R = [R_l2, R_l3], where R_L2 is the
@@ -41,9 +42,9 @@ function [PosJ, RotJ, PosJJ, RotJJ] = LocalJacob_nume(l, xi, L, r)
 
 arguments (Input)
     l (1,3) double
-    xi (1,1) double {mustBeBetween(xi, 0, 1, "closed")} = 1
-    L (1,1) double {mustBeGreaterThanOrEqual(L, 0)} = 0.278
-    r (1,1) double {mustBePositive} = 0.013
+    xi (1,1) double
+    L (1,1) double 
+    r (1,1) double 
 end
 
 arguments (Output)

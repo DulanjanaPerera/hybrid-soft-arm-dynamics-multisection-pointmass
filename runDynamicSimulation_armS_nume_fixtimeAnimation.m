@@ -46,7 +46,7 @@ tspan = [0 10];
 % Stiffer ODE solver is used as the matrices are tend to go ill-condition
 opts = odeset('RelTol',1e-8,'AbsTol',1e-10,'MaxStep',1e-2);
 tic
-% [t, X] = ode15s(@(t,X) armS_dynamics_nume(t,X,params), tspan, X0, opts);
+[t, X] = ode15s(@(t,X) armS_dynamics_nume(t,X,params), tspan, X0, opts);
 % [t, X] = ode15s(@(t,X) armS_dynamics_N3_entry_mex(t, X, ...
 %     params.L, params.r, params.cog_xi, params.mi, params.g, params.K, params.D, params.tau, params.mu, params.lKbounds), tspan, X0, opts);
 [t, X] = ode15s(@(t,X) armS_dynamics_N3_entry_mex_mex(t, X, ...
