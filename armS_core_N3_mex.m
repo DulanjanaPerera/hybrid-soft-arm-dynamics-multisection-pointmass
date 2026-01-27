@@ -46,10 +46,6 @@ G = zeros(2*N, 1);
 
 r_offset = r;
 
-% if t >=1
-%    disp(t);
-% end
-
 dM1 = zeros(2,2,2);
 dM2 = zeros(4,4,4);
 dM3 = zeros(6,6,6);

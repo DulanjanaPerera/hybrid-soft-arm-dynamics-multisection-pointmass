@@ -38,17 +38,14 @@ flat_dl = X(2*N+1:end,1);
 eps_reg = 0;
 ddl = (M + eps_reg*eye(size(M))) \ (tau - (C + D)*flat_dl - (G+Ge));
 
-% if t >=1
-%    disp(t);
-% end
 
-persistent minRc
-if isempty(minRc), minRc = inf; end
-rc = rcond(M);
-minRc = min(minRc, rc);
-if rc < 1e-10
-    fprintf("t=%g  rcond(M)=%e  min=%e\n", t, rc, minRc);
-end
+% persistent minRc
+% if isempty(minRc), minRc = inf; end
+% rc = rcond(M);
+% minRc = min(minRc, rc);
+% if rc < 1e-10
+%     fprintf("t=%g  rcond(M)=%e  min=%e\n", t, rc, minRc);
+% end
 
 
 dX = [flat_dl; ddl];
