@@ -13,7 +13,7 @@ function dX = armS_dynamics_N3_entry_mex(t, X, L, r, cog_xi, mi, g, Kmin, D, tau
 %   params : parameters for matrices (structure)
 
 
-N = 3;
+N = length(cog_xi);
 
 K = zeros(size(Kmin));
 
@@ -38,13 +38,17 @@ flat_dl = X(2*N+1:end,1);
 eps_reg = 0;
 ddl = (M + eps_reg*eye(size(M))) \ (tau - (C + D)*flat_dl - (G+Ge));
 
-% persistent minRc
-% if isempty(minRc), minRc = inf; end
-% rc = rcond(M);
-% minRc = min(minRc, rc);
-% if rc < 1e-10
-%     fprintf("t=%g  rcond(M)=%e  min=%e\n", t, rc, minRc);
+% if t >=1
+%    disp(t);
 % end
+
+persistent minRc
+if isempty(minRc), minRc = inf; end
+rc = rcond(M);
+minRc = min(minRc, rc);
+if rc < 1e-10
+    fprintf("t=%g  rcond(M)=%e  min=%e\n", t, rc, minRc);
+end
 
 
 dX = [flat_dl; ddl];
