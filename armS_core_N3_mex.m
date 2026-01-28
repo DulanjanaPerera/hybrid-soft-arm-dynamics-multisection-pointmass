@@ -268,11 +268,14 @@ for n=1:N
 
         end
         
+        % if t>=0.8
+        %     disp(t);
+        % end
 
         % Update the M, C, amd G matrices
         M(1:2*n, 1:2*n) = [M(1:2*(n-1), 1:2*(n-1)) + mi(n) * (temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog)), mi(n) * temp_sigma_12;
              mi(n) * temp_sigma_12.', mi(n) * (PJcog.' * PJcog)];                                                       % CHECKED 2025/01/07
-        M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
+        % M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
         % compute (M),h
         if n==2
             for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
