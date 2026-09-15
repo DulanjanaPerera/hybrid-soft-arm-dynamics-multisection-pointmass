@@ -140,7 +140,7 @@ for n=1:N
         H_veltip(1:6*(n),1:2*(n)) = temp_RqPq_mat + temp_RPqq_mat;                   % CHECKED 2025/01/07
 
         M(1:2*n, 1:2*n) = mi(n) * (PJcog.' * PJcog);
-        M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
+        % M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
         % compute (M),h 
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
             dM1(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n)), J_Omegatip(:,1:6*(n)), H_veltip(1:6*(n),1:2*(n)), H_Omegatip(1:6*(n),1:6*(n)));     
@@ -275,7 +275,7 @@ for n=1:N
         % Update the M, C, amd G matrices
         M(1:2*n, 1:2*n) = [M(1:2*(n-1), 1:2*(n-1)) + mi(n) * (temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog)), mi(n) * temp_sigma_12;
              mi(n) * temp_sigma_12.', mi(n) * (PJcog.' * PJcog)];                                                       % CHECKED 2025/01/07
-        % M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
+        M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
         % compute (M),h
         if n==2
             for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}

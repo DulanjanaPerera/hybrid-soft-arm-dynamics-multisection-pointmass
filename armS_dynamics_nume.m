@@ -357,6 +357,7 @@ for n=1:N
 
         end
         
+        
 
         % Update the M, C, amd G matrices
         M(1:2*n, 1:2*n) = [M(1:2*(n-1), 1:2*(n-1)) + mi(n) * (temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog)), mi(n) * temp_sigma_12;
@@ -446,7 +447,7 @@ for n=1:N
 end
 Ge = K * flat_l;
 flat_dl = X(2*N+1:end,1);
-eps_reg = 1e-12;
+eps_reg = 0;
 ddl = (M + eps_reg*eye(size(M))) \ (tau - (C + D)*flat_dl - (G+Ge));
 
 % rc = rcond(M);

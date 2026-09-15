@@ -1,10 +1,11 @@
-function drawingArms(t, X, dt, params)
+function drawingArms(t, X, dt, params, delay)
 
 loc = params.loc;
 m = params.m;
 stiff = params.stiff;
 damp = params.damp;
 times = params.times;
+press = params.pressure;
 
 %% ===================== RESAMPLE FOR SMOOTH ANIMATION =====================
 dt_anim = dt;                        % desired animation timestep
@@ -152,10 +153,11 @@ for k = 1:Nt
     set(h_tip, 'XData', final_tip(1), 'YData', final_tip(2), 'ZData', final_tip(3));
 
     set(ht1, 'String', sprintf(['%d-section arm (m=%.2f kg, xi=%.2f, sim time=%.4f s)\n' ...
-        'stiff=%.1f | damp=%.1f\nframe %d / %d   t=%.2f s'], ...
-        N, m, loc, times, stiff, damp, k, Nt, tk));
-
+        'stiff=%.1f | damp=%.1f | pressure=%.2f Bar \nframe %d / %d   t=%.2f s'], ...
+        N, m, loc, times, stiff, damp, press, k, Nt, tk));
+    
     drawnow limitrate
+    pause(delay);
 end
 
 end
