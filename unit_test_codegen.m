@@ -1,0 +1,13 @@
+cfg = coder.config('mex');
+cfg.GenerateReport = false;
+cfg.LaunchReport = false;
+cfg.InlineBetweenUserFunctions = 'Never';
+cfg.GenCodeOnly = true;
+
+tic
+codegen('-v', '-config', cfg, ...
+    'integratedJacobianProduct_compact', ...
+    '-args', {[0,0,0], 0.278, 0.013}, ...
+    '-nargout', 2, ...
+    '-d', 'C:\MATLAB_build\probe_E_compact');
+toc
