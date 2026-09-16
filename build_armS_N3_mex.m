@@ -22,6 +22,11 @@ cfg.GenerateReport = true;
 cfg.TargetLang = 'C++';
 cfg.EnableOpenMP = false; % keep false unless you explicitly parallelize
 
+% Release the previously loaded compiled function.
+clear armS_dynamics_N3_entry_mex_mex
+
+% Generate and compile in a short folder outside OneDrive.
 codegen -config cfg armS_dynamics_N3_entry_mex ...
+    -d C:\MATLAB_build\armS_N3 ...
     -args {t, X, L, r, cog_xi, mi, g, Kmin, D, tau, mu, lKbounds};
 end
