@@ -39,12 +39,12 @@ eta_22 = zeros(2,2);
 % gamma_12 = zeros(d,2);
 % gamma_22 = zeros(2,2);
 
-% beta_v1 = 1;
-% beta_v2 = 1;
-% beta_v3 = 1;
-beta_v1 = 1.3155;
-beta_v2 = 1.5053;
-beta_v3 = 1.8011;
+beta_v1 = 1;
+beta_v2 = 1;
+beta_v3 = 1;
+% beta_v1 = 1.3155;
+% beta_v2 = 1.5053;
+% beta_v3 = 1.8011;
 
 for r=1:d
     for c=1:d

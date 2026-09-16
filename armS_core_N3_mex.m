@@ -143,7 +143,9 @@ for n=1:N
         % M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
         % compute (M),h 
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
-            dM1(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n)), J_Omegatip(:,1:6*(n)), H_veltip(1:6*(n),1:2*(n)), H_Omegatip(1:6*(n),1:6*(n)));     
+            dM1(:,:,h) = mi(n)*Mi_h(n, h, Pcog, PJcog, PJJcog,...
+                J_veltip(:,1:2*(n)), J_Omegatip(:,1:6*(n)),...
+                H_veltip(1:6*(n),1:2*(n)), H_Omegatip(1:6*(n),1:6*(n)));     
         end
         
 
@@ -280,11 +282,11 @@ for n=1:N
         if n==2
             for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
                 % dM2(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip, J_Omegatip, H_veltip, H_Omegatip);
-                dM2(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n-1)), J_Omegatip(:,1:6*(n-1)), H_veltip(1:6*(n-1),1:2*(n-1)), H_Omegatip(1:6*(n-1),1:6*(n-1)));
+                dM2(:,:,h) = mi(n)*Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n-1)), J_Omegatip(:,1:6*(n-1)), H_veltip(1:6*(n-1),1:2*(n-1)), H_Omegatip(1:6*(n-1),1:6*(n-1)));
             end
         elseif n == 3
             for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
-                dM3(:,:,h) = Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n-1)), J_Omegatip(:,1:6*(n-1)), H_veltip(1:6*(n-1),1:2*(n-1)), H_Omegatip(1:6*(n-1),1:6*(n-1))); 
+                dM3(:,:,h) = mi(n)* Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n-1)), J_Omegatip(:,1:6*(n-1)), H_veltip(1:6*(n-1),1:2*(n-1)), H_Omegatip(1:6*(n-1),1:6*(n-1))); 
             end
         end
         
