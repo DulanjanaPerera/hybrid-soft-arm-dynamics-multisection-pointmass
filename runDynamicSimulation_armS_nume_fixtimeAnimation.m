@@ -1,10 +1,10 @@
 clear
 N = 3;
-loc = 0.5;
+loc = 0.1;
 m = 0.1;
 A = pi*(0.013/2)^2;
 stiff = 2.2e3;
-damp = 100;
+damp = 600;
 pressure = 0.0;
 
 
@@ -36,8 +36,8 @@ params.lKbounds = [-0.02; 0.02; 1e6]; % lmin, lmax, Kmax
 params.mu = 2000;
 
 l0 = -0.000001* ones(N,2);
-l0(1,:) = -0.01;
-l0(2,:) = -0.01;
+l0(1,:) = -0.001;
+l0(2,:) = -0.001;
 fl0 = reshape(l0',[2*N,1]); % flattern the matrix
 dl0 = 0.000001 * ones(2*N,1); % initial length change speed flatterned
 X0 = [fl0; dl0];
