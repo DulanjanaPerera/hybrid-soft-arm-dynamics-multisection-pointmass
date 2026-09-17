@@ -32,6 +32,9 @@ codegen/
 # Cloud based storage dotfile
 .MATLABDriveTag
 
+# Local hybrid simulation recordings
+hybrid_recordings/
+
 # buildtool cache folder
 .buildtool/
 
