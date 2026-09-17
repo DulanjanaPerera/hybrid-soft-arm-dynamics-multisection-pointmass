@@ -1,7 +1,4 @@
-function dX = armS_dynamics_N3_entry_mex(t, X, L, r, cog_xi, mi, g, Kmin, D, tau, mu, lKbounds, beta)
-%#codegen
-% beta: 3-by-3, section rows and [v1 v2 v3] columns; default all ones.
-if nargin<13, beta=ones(3,3); end
+function dX = armS_dynamics_N3_entry_mex(t, X, L, r, cog_xi, mi, g, Kmin, D, tau, mu, lKbounds)
 % The function to compute the EoM matrices.
 % 
 % The model of ******** 3-section *********
@@ -33,7 +30,7 @@ for i=1:2*N
         - tanh(mu * (flat_l(i)-lmin)));
 end
 
-[M, C, G] = armS_core_N3_mex(t, l, dl, L, r, cog_xi, mi, g, K, beta);
+[M, C, G] = armS_core_N3_mex(t, l, dl, L, r, cog_xi, mi, g, K);
 
 % flat_dl = reshape(dl(1:N,:)',[2*N,1]);
 Ge = K * flat_l;
