@@ -3,6 +3,7 @@ function results = comparePointmassStandardExperiment()
 ref = load('comparison_after_C_correction.mat','t','X','params');
 p = ref.params;
 p.cog_xi = 0.5*ones(3,1);
+p.beta = ones(3,3);
 assert(p.N==3 && exist('armS_standard_mex','file')==3 && ...
     exist('armS_dynamics_N3_entry_mex_mex','file')==3);
 t = ref.t(:);
@@ -29,7 +30,7 @@ for u=1:2
         std=@(tt,x) armS_standard_mex(tt,x,p.L,p.r,p.mi(:),p.g(:), ...
             p.K,p.D,tau,p.mu,p.lKbounds(:));
         pm=@(tt,x) armS_dynamics_N3_entry_mex_mex(tt,x,p.L,p.r, ...
-            p.cog_xi(:),p.mi(:),p.g(:),p.K,p.D,tau,p.mu,p.lKbounds(:));
+            p.cog_xi(:),p.mi(:),p.g(:),p.K,p.D,tau,p.mu,p.lKbounds(:),p.beta);
         [ts,xs]=ode15s(std,t,x0,opts);
         [tp,xp]=ode15s(pm,t,x0,opts);
         assert(isequal(ts,tp) && all(isfinite(xs(:))) && all(isfinite(xp(:))));
@@ -69,7 +70,7 @@ for k=1:size(states,2)
     q=states(:,k); dq=dq0;
     [Ms,Cs,Gs]=armS_standard_core(q,dq,p);
     [Mp,Cp,Gp]=armS_core_N3_mex(0,reshape(q,2,3).', ...
-        reshape(dq,2,3).',p.L,p.r,p.cog_xi,p.mi,p.g,p.K);
+        reshape(dq,2,3).',p.L,p.r,p.cog_xi,p.mi,p.g,p.K,p.beta);
     static(k,1)=norm(Ms-Mp,'fro')/norm(Ms,'fro');
     conditioning(k,:)=[rcond(Ms),rcond(Mp)];
     static(k,2)=norm(Gs-Gp)/max(norm(Gs),eps);

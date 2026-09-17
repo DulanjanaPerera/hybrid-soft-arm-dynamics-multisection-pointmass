@@ -16,6 +16,7 @@ D = 10*eye(nd);
 tau = zeros(nd,1);
 mu = 2000;
 lKbounds = [-0.02; 0.02; 1e6];
+beta = ones(N,3); % rows: sections 1..3; columns: beta_v1,v2,v3
 
 cfg = coder.config('mex');
 cfg.GenerateReport = true;
@@ -28,5 +29,5 @@ clear armS_dynamics_N3_entry_mex_mex
 % Generate and compile in a short folder outside OneDrive.
 codegen -config cfg armS_dynamics_N3_entry_mex ...
     -d C:\MATLAB_build\armS_N3 ...
-    -args {t, X, L, r, cog_xi, mi, g, Kmin, D, tau, mu, lKbounds};
+    -args {t, X, L, r, cog_xi, mi, g, Kmin, D, tau, mu, lKbounds, beta};
 end

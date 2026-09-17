@@ -11,6 +11,8 @@ function dX = armS_dynamics_nume(t,X, params)
 
 
 N = params.N;
+if isfield(params,'beta'), beta=params.beta; else, beta=ones(N,3); end
+assert(isequal(size(beta),[N,3]) && all(isfinite(beta(:))));
 L = params.L;
 r_offset = params.r;
 cog_xi = params.cog_xi;
@@ -182,11 +184,10 @@ for n=1:N
         % H_Omegacog = temp_RqRq_mat_cog + temp_RRqq_mat_cog;         % CHECKED 2025/01/06 (no need)
         % H_velcog = temp_RqPq_mat_cog + temp_RPqq_mat_cog;           % CHECKED 2025/01/07 (no need)
 
-        M(1:2*n, 1:2*n) = mi(n) * (PJcog.' * PJcog);
-        M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
+        M(1:2*n, 1:2*n) = mi(n)*beta(n,3)*(PJcog.'*PJcog);
         % compute (M),h 
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
-            dM{n}(:,:,h) = mi(n)*Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n)), J_Omegatip(:,1:6*(n)), H_veltip(1:6*(n),1:2*(n)), H_Omegatip(1:6*(n),1:6*(n)));     
+            dM{n}(:,:,h) = mi(n)*Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n)), J_Omegatip(:,1:6*(n)), H_veltip(1:6*(n),1:2*(n)), H_Omegatip(1:6*(n),1:6*(n)),beta(n,:));
         end
         
 
@@ -226,8 +227,6 @@ for n=1:N
         % temp_RJoPq_mat_cog = zeros([6, blocks]); % Rtip.' J_Omega * PJtip                               % CHECKED 2025/01/07 (no need)
 
         % MASS matrix
-        temp_sigma_11 = zeros([blocks,blocks]);
-        temp_sigma_12 = zeros([blocks, 2]);        
 
         for c=1:blocks % column loop
             % left block of the Jacobian_Omega tip and CoG
@@ -282,7 +281,6 @@ for n=1:N
                 % J_veltip' * (J_veltip + 2*J_Omegatip * Pcog)
                 % [2(n)x3] * ( [3x2(n)] + [3x6(n)]*[3x1])
                 % [2nx2n]
-                temp_sigma_11(r, c) = J_veltip(:,r).' * ( J_veltip(:,c) + 2 * temp_JoP_mat_cog(:,c) );                              % CHECKED 2025/01/07
 
                
 
@@ -350,7 +348,6 @@ for n=1:N
                 % (J_veltip + J_Omega*Pcog)' * PJcog
                 % ([3x2(n)] + [3x6(n)]*[3x1])' * [3x2]
                 % [2nx2]
-                temp_sigma_12(c,r) = ( J_veltip(:,c) + temp_JoP_mat_cog(:,c) ).' * PJcog(:,r);                          % CHECKED 2025/01/07
             end
             
             
@@ -360,12 +357,15 @@ for n=1:N
         
 
         % Update the M, C, amd G matrices
-        M(1:2*n, 1:2*n) = [M(1:2*(n-1), 1:2*(n-1)) + mi(n) * (temp_sigma_11 + (temp_JoP_mat_cog.' * temp_JoP_mat_cog)), mi(n) * temp_sigma_12;
-             mi(n) * temp_sigma_12.', mi(n) * (PJcog.' * PJcog)];                                                       % CHECKED 2025/01/07
-        M(1:2*n, 1:2*n) = 0.5*(M(1:2*n, 1:2*n) + M(1:2*n, 1:2*n).');
+        A=J_veltip(:,1:blocks); B=temp_JoP_mat_cog; P=PJcog;
+        M11=A.'*A+A.'*B+B.'*A+beta(n,1)*(B.'*B);
+        M12=A.'*P+beta(n,2)*(B.'*P);
+        M22=beta(n,3)*(P.'*P);
+        M(1:2*n, 1:2*n) = [M(1:blocks,1:blocks)+mi(n)*M11,mi(n)*M12;
+            mi(n)*M12.',mi(n)*M22];
         % compute (M),h
         for h=1:2*n % Here h={l11, l12, l21, l22, ..., ln1, ln2, ...}
-            dM{n}(:,:,h) = mi(n)*Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n-1)), J_Omegatip(:,1:6*(n-1)), H_veltip(1:6*(n-1),1:2*(n-1)), H_Omegatip(1:6*(n-1),1:6*(n-1)));
+            dM{n}(:,:,h) = mi(n)*Mi_h(n, h, Pcog, PJcog, PJJcog, J_veltip(:,1:2*(n-1)), J_Omegatip(:,1:6*(n-1)), H_veltip(1:6*(n-1),1:2*(n-1)), H_Omegatip(1:6*(n-1),1:6*(n-1)),beta(n,:));
             
         end
         % if n ==2
