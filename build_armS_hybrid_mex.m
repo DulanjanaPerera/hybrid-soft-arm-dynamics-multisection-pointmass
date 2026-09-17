@@ -1,6 +1,15 @@
 function build_armS_hybrid_mex(buildFolder)
 % Build hybrid distributed-plus-added-point-mass RHS with runtime masses/xi.
-if nargin<1, buildFolder='C:\MATLAB_build\armHybrid3'; end
+% Builds a native MEX for the current OS; requires MATLAB Coder and a C++ compiler.
+if nargin<1 || isempty(buildFolder)
+    buildFolder=fullfile(tempdir,'armS_hybrid_mex_build');
+end
+assert(ischar(buildFolder) || (isstring(buildFolder) && isscalar(buildFolder)), ...
+    'buildFolder must be a folder path.');
+buildFolder=char(buildFolder);
+if isempty(mex.getCompilerConfigurations('C++','Selected'))
+    error('No C++ MEX compiler selected. Run mex -setup C++ in MATLAB.');
+end
 sourceFolder=fileparts(mfilename('fullpath'));
 oldFolder=pwd; oldPath=path;
 cleanup=onCleanup(@() restoreEnvironment(oldFolder,oldPath)); %#ok<NASGU>
@@ -33,7 +42,7 @@ for k=1:2
     assert(all(isfinite(actual)) && err<1e-8);
 end
 binary=fullfile(pwd,['armS_hybrid_mex.',mexext]);
-assert(isfile(binary));
+assert(isfile(binary),'Native MEX was not created: %s',binary);
 clear armS_hybrid_mex
 copyfile(binary,fullfile(sourceFolder,['armS_hybrid_mex.',mexext]),'f');
 fprintf('Copied validated hybrid MEX to %s\n',sourceFolder);
