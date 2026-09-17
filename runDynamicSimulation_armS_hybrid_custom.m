@@ -10,8 +10,8 @@ params.r = 0.013;                 % Original arm geometry parameter (m)
 params.mi = [0.1; 0.1; 0.1];     % Existing distributed section masses (kg)
 params.g = [0; 0; -9.81];        % Existing gravity convention (m/s^2)
 
-params.addedMass = [0.05; 0.025; 0.85]; % Additional masses (kg), section 1:3
-params.addedXi = [0.1; 0.5; 0.99]; % Attachment positions, base=0, tip=1
+params.addedMass = [0.05; 0.025; 0.085]; % Additional masses (kg), section 1:3
+params.addedXi = [0.5; 0.5; 0.99]; % Attachment positions, base=0, tip=1
 % Replace these editable example values with measured attachment masses.
 params.exampleOnly = true;        % Set false when using measured payload data
 
@@ -24,8 +24,8 @@ params.lKbounds = [-0.02; 0.02; 1e6]; % lmin, lmax, Kmax
 params.mu = 2000;
 
 % Each row is a section; columns are its two length-change coordinates.
-q0BySection = [-0.02, -0.02;
-               -0.001, -0.001;
+q0BySection = [-0.01, -0.01;
+               -0.01, -0.01;
                -0.001, -0.001];
 dq0BySection = 1e-6 * ones(N,2); % Initial length-change speeds (m/s)
 q0 = reshape(q0BySection.',2*N,1);
@@ -38,7 +38,7 @@ tspan = (0:1/framesPerSecond:durationSeconds).';
 odeOptions = odeset('RelTol',1e-8,'AbsTol',1e-10,'MaxStep',1e-3);
 useMex = true;                   % Set false to run the MATLAB implementation
 showAnimation = true;            % Set false for simulation without figures
-recordVideo = true;              % Save an MP4 of the arm animation
+recordVideo = false;              % Save an MP4 of the arm animation
 recordingDir = fullfile(fileparts(mfilename('fullpath')),'hybrid_recordings');
 recordingName = 'hybrid_added_mass'; % Timestamp is appended to both files
 
