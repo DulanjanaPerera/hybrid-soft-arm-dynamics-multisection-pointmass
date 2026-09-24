@@ -1,0 +1,13 @@
+function dX = armS_stationary_base_entry(t,X,L,r,mi,R_world_from_arm,g_world,K,D,tau,mu,lKbounds)
+%#codegen
+% Stationary base with fixed orientation during the solve.
+% R_world_from_arm maps arm-frame vectors into world coordinates.
+assert(isequal(size(R_world_from_arm),[3,3]) && ...
+    all(isfinite(R_world_from_arm(:))) && ...
+    norm(R_world_from_arm.'*R_world_from_arm-eye(3),'fro') < 1e-10 && ...
+    det(R_world_from_arm) > 0, 'R_world_from_arm must be a proper rotation.');
+assert(isequal(size(g_world),[3,1]) && all(isfinite(g_world(:))), ...
+    'g_world must be a finite 3-by-1 vector.');
+g_arm = R_world_from_arm.'*g_world;
+dX = armS_standard_entry(t,X,L,r,mi,g_arm,K,D,tau,mu,lKbounds);
+end
