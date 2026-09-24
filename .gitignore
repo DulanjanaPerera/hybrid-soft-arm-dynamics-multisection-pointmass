@@ -44,3 +44,6 @@ hybrid_recordings/
 
 # Local standard-arm orientation recordings
 standard_orientation_recordings/
+
+# Local single-module simulation recordings
+single_module_recordings/

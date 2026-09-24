@@ -106,3 +106,21 @@ A MATLAB R2025a test called the animator twice in one session
 (identity then +90 degree roll): both figure handles were reused,
 exactly two figures existed, and all three limits matched the
 requested values. No dynamics files changed.
+
+## Single-module branch and implementation on 2026-09-24
+
+Created local branch `codex/single-module` in the independent OneDrive clone at `Lab/Research/float_dynamic/standard-arm-floating-base` from `99f281c`. Preserved the preexisting modified and untracked files; did not edit the three-section standard or stationary-base source. No commit or push was made.
+
+Added `armS_single_core.m`, `armS_single_dynamics.m`, and `armS_single_entry.m` for one distributed section with `q=[l12;l13]` and `X=[q;dq]`. The core uses the existing compact integrated-position and integrated-Jacobian products with `N=1`. Mass, Christoffel, gravity, nonlinear stiffness, damping, and actuation laws follow the standard distributed-mass model. The thin `armS_single_stationary_base_entry.m` accepts runtime `R_world_from_arm` and `g_world`, validates a proper rotation, computes `g_arm=R_world_from_arm.'*g_world`, and calls the single-module entry. It introduces no moving-base terms.
+
+Added `validate_armS_single.m`, `build_armS_single_stationary_base_mex.m`, `runDynamicSimulation_armS_single_custom.m`, and `drawingArm_single_stationary_base.m`. The runner accepts one fixed orientation as RPY degrees or a measured rotation matrix, an editable signed two-pressure vector, and source or MEX RHS. The animator transforms the one-section backbone into world coordinates, reuses Figures 1 and 2, and keeps X/Y [-1,1] m, Z [-1.5,1.1] m, view [11,13]. Optional recordings go into the Git-ignored `single_module_recordings/` folder.
+
+MATLAB R2025a validation covered three poses and eight fixed orientations. All assertions passed. Maximum relative independent 16-node quadrature errors: M 2.305e-15 and G 2.359e-15. The isolated first section of the three-section model matched to 4.441e-16; the identity-orientation RHS matched exactly (absolute error 0). Maximum relative finite-difference dM error was 3.270e-10; the Mdot-2C skew residual was 1.145e-16; static-compensation RHS norm was 4.512e-16.
+
+MATLAB Coder and the configured Microsoft C++ compiler built the separate `armS_single_stationary_base_mex.mexw64` in 82.0 s. It passed 24 pose-orientation MATLAB/MEX comparisons, including runtime mass, torque, and gravity changes, with worst scaled RHS error 0.000e+00. The default MEX runner reached 5.000 s with 301 frames, final state-change norm 1.414213e-02, and final q approximately [-6.87667e-10;-6.87667e-10]. A 0.1 s signed-pressure check gave pressure [-2;-2] bar, q=[-0.00360418;-0.00360418], tip X=-0.075119314 m; pressure [2;2] bar gave q=[0.00360418;0.00360418], tip X=0.075119314 m. A +90-degree roll animation check gave world-frame tip-geometry error 0, reused both figure handles, produced exactly two figures, and retained all requested axis limits.
+
+This branch provides one stationary-orientation module for control experiments. Recursive multi-section and quadruped extensions remain future work; moving-base dynamics were not introduced.
+
+## Git commit record for the single-module branch
+
+The earlier standard-arm validation, Maple worksheet, MEX binaries, and stationary-orientation simulation and animation files were committed as `a020747` (`Add standard-arm validation and orientation simulations`). The single-module source, MEX, runner, animation, validation, README, and recording ignore rule are committed in the following commit (`Add single distributed module with stationary orientation`). The earlier statements that files were uncommitted describe their state when those entries were written. Both commits are local to `codex/single-module`; no push was made.

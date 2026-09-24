@@ -115,3 +115,11 @@ solve without figures. Set `recordVideo=true` to save an MP4 and MAT file
 under `standard_orientation_recordings/`; this folder is ignored by Git.
 Set `useMex=false` if the native stationary-base MEX is unavailable.
 The editable gravity default follows the current orientation-sweep runner.
+
+## Single distributed module at a stationary orientation
+
+On branch `codex/single-module`, run `runDynamicSimulation_armS_single_custom` from this folder. It models one distributed section with `q=[l12;l13]` and state `X=[q;dq]`. The editable parameters, pressure, initial state, orientation, and animation controls are near the top of the script. The source path is `armS_single_stationary_base_entry`; set `useMex=false` to use it without a compiled binary. With MATLAB Coder and a configured C++ compiler, run `build_armS_single_stationary_base_mex` to rebuild the separate native MEX.
+
+Specify a fixed orientation using `baseRPYDeg=[roll pitch yaw]` in degrees (`Rz*Ry*Rx`), or select `baseOrientationMode='matrix'` and provide `R_world_from_arm_input`. The interface computes `g_arm=R_world_from_arm.'*g_world` at runtime and uses the one-section distributed-mass dynamics. It assumes a stationary base. The signed pressure input is ordered [PMA 2; PMA 3], in bar; `params.tau=area*pressureBar*1e5`. With the present frame and pressure convention, `[-2;-2]` bends the tip toward negative X. The animation reuses Figures 1 and 2 and the original fixed axis limits. Optional MP4 and MAT output goes into `single_module_recordings/`.
+
+Use `validate_armS_single` to check the source dynamics against independent quadrature, the isolated first section of the three-section standard model, finite-difference mass derivatives, and orientation-dependent gravity. The three-section source and its six-coordinate interface remain available for later recursive extensions.
