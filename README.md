@@ -76,3 +76,42 @@ no beta values to tune in this simulation branch.
 The attached mass is modeled as a point on the section backbone. An offset
 mount or a rigid payload with meaningful rotational inertia needs an
 extended model.
+
+## Standard distributed arm at stationary base orientations
+
+Run `runDynamicSimulation_armS_stationary_base` from this folder to compare
+fixed base orientations without attached point masses. Edit
+`orientationRPYDeg` near the top of the script; each row is
+`[roll pitch yaw]` in degrees, with
+`R_world_from_arm = Rz(yaw)*Ry(pitch)*Rx(roll)`. The orientation is fixed
+during each ODE solve. The script uses the same six coordinates and existing
+standard distributed-mass dynamics, stiffness, damping, and pressure law.
+It leaves `results`, `X0`, and `params` in the MATLAB workspace; each
+`results(k)` contains the rotation, arm-frame gravity, time vector, state
+history, and elapsed solve time. It plots coordinate histories and final
+arm shapes in world coordinates when `showPlots=true`.
+
+Set `useMex=false` to run MATLAB source. With `useMex=true`, the separate
+`armS_stationary_base_mex` binary is required. Rebuild it on another
+platform with `build_armS_stationary_base_mex`. This stationary-base model
+accounts for orientation-dependent gravity; it assumes zero base velocity
+and acceleration throughout each solve.
+
+## Animate one fixed base orientation
+
+Run `runDynamicSimulation_armS_stationary_base_custom` to simulate and
+animate one stationary base orientation, using the standard distributed arm
+without attached point masses. Edit `baseRPYDeg` with
+`baseOrientationMode='rpy'`, or set `baseOrientationMode='matrix'` and
+provide a measured `R_world_from_arm_input`. The matrix maps arm-frame
+axes into world coordinates and is held fixed throughout the solve.
+The script leaves `t`, `X`, `X0`, and `params` in the workspace.
+
+The animation draws the backbone and base axes in world coordinates and
+shows the six coordinate histories. Repeated runs reuse Figures 1 and 2.
+The arm view uses the original fixed limits: X and Y [-1,1] m,
+Z [-1.5,1.1] m, and view [11,13]. Set `showAnimation=false` for a
+solve without figures. Set `recordVideo=true` to save an MP4 and MAT file
+under `standard_orientation_recordings/`; this folder is ignored by Git.
+Set `useMex=false` if the native stationary-base MEX is unavailable.
+The editable gravity default follows the current orientation-sweep runner.

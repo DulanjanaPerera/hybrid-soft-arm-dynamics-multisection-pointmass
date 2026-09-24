@@ -57,3 +57,52 @@ MATLAB Coder and Microsoft C++ built the separate MEX in 305.4 s. Its build scri
 
 Next: derive and validate moving-base velocity, acceleration, and coupling terms in a separate step. This stationary wrapper does not model moving-base dynamics.
 
+
+## Stationary-orientation simulation runner on 2026-09-24
+
+Added `runDynamicSimulation_armS_stationary_base.m` in the independent
+OneDrive clone under `Lab/Research/float_dynamic/standard-arm-floating-base`.
+It runs one fixed-orientation `ode15s` solve per editable
+`[roll pitch yaw]` row, using `Rz*Ry*Rx`, the original standard distributed
+arm RHS, and either the separate stationary-base MEX or MATLAB source.
+The script stores each trajectory with its rotation and arm-frame gravity,
+and plots coordinate histories and final world-frame backbone shapes.
+It does not add point masses or moving-base inertial terms.
+
+MATLAB R2025a smoke run used identity, +90 degree roll, and +90 degree
+pitch with the script's default physical parameters and bent initial pose.
+Each solve reached 0.1 s with 11 requested output points and all states
+finite. The final state-change norms were 3.669358e-02, 3.261798e-02,
+and 4.183200e-02, respectively. Plotting completed without error. The
+new runner was not committed or pushed.
+
+## Fixed-orientation standard-arm animation on 2026-09-24
+
+Added `runDynamicSimulation_armS_stationary_base_custom.m` and
+`drawingArms_stationary_base.m`. The editable runner accepts one fixed
+base orientation as roll/pitch/yaw degrees or a measured 3x3
+`R_world_from_arm` matrix. It uses the unchanged standard distributed
+arm dynamics and existing pressure, stiffness, and damping laws. The
+animator rotates the entire recursive backbone into world coordinates,
+draws the arm-frame axes at the fixed base origin, and can record MP4
+plus MAT output. Recordings are ignored by Git. The gravity default is
+`[0;0;9.81]`, matching the user's current orientation-sweep runner;
+the prior validation used `[0;0;-9.81]`. Gravity direction remains an
+editable world-frame input.
+
+MATLAB R2025a ran the default identity case for 5 s with 301 frames,
+finite states, and final state-change norm 1.318550e-02. A temporary
+matrix-input +90 degree roll test ran for 0.1 s with 3 frames; the
+rendered section-1 endpoint matched `R_world_from_arm*p_tip` with
+error 0. The MP4 and MAT were created at 56,446 and 1,937 bytes.
+
+## Animation figure reuse and fixed limits on 2026-09-24
+
+Updated `drawingArms_stationary_base.m` to clear and reuse Figures 1
+and 2, following the original `drawingArms.m`. The arm axes now use
+fixed X and Y limits [-1,1] m, Z limits [-1.5,1.1] m, and view
+[11,13]. The world-frame backbone rotation remains unchanged.
+A MATLAB R2025a test called the animator twice in one session
+(identity then +90 degree roll): both figure handles were reused,
+exactly two figures existed, and all three limits matched the
+requested values. No dynamics files changed.
