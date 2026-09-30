@@ -47,3 +47,12 @@ standard_orientation_recordings/
 
 # Local single-module simulation recordings
 single_module_recordings/
+
+# Local NDI orientation calibration and test captures
+ndi_orientation_recordings/
+
+# Local pressure versus NDI dynamic comparisons
+ndi_dynamics_recordings/
+
+# Local feedback controller experiments
+ndi_control_recordings/

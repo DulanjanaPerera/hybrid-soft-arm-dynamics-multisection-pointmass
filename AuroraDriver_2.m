@@ -45,6 +45,7 @@ classdef AuroraDriver_2 < handle
 
         selected_command_format;
         device_init;
+        tracking_started = false;
     end
 
     methods (Access = public)
@@ -107,16 +108,18 @@ classdef AuroraDriver_2 < handle
         end
 
         function init(obj)
-            obj.INIT();
+            obj.requireOkay(obj.INIT(), 'INIT');
             obj.device_init = 1;
         end
 
         function startTracking(obj)
-            obj.TSTART(obj.TRACKING_OPTION_RESET_COUNTER);
+            obj.tracking_started = true; % Also clean up an ambiguous start reply.
+            obj.requireOkay(obj.TSTART(obj.TRACKING_OPTION_RESET_COUNTER), 'TSTART');
         end
 
         function stopTracking(obj)
-            obj.TSTOP();
+            obj.requireOkay(obj.TSTOP(), 'TSTOP');
+            obj.tracking_started = false;
         end
 
         function detectAndAssignPortHandles(obj)
@@ -157,7 +160,7 @@ classdef AuroraDriver_2 < handle
         end
 
         function initPortHandle(obj, port_handle_id)
-            obj.PINIT(port_handle_id);
+            obj.requireOkay(obj.PINIT(port_handle_id), 'PINIT');
         end
 
         function initPortHandleAll(obj)
@@ -168,7 +171,7 @@ classdef AuroraDriver_2 < handle
         end
 
         function enablePortHandleDynamic(obj, port_handle_id)
-            obj.PENA(port_handle_id, obj.TT_PRIORITY_DYNAMIC);
+            obj.requireOkay(obj.PENA(port_handle_id, obj.TT_PRIORITY_DYNAMIC), 'PENA');
         end
 
         function enablePortHandleDynamicAll(obj)
@@ -278,14 +281,18 @@ classdef AuroraDriver_2 < handle
             frame = handle.frame_number;
         end
 
-        function [x, y, z, error_val, valid, frame] = measureTipPositionAll(obj)
+        function [x, y, z, error_val, valid, frame, quaternion] = measureTipPositionAll(obj, sensorIds)
             obj.updateSensorDataAll();
             if obj.n_port_handles < 2
                 error('AuroraDriver_2:TwoSensorsRequired', ...
                     'Two sensor port handles are required.');
             end
-            handle1 = obj.port_handles(1,1);
-            handle2 = obj.port_handles(1,2);
+            indices = [1 2];
+            if nargin > 1
+                indices = obj.sensorIndices(sensorIds);
+            end
+            handle1 = obj.port_handles(indices(1));
+            handle2 = obj.port_handles(indices(2));
             valid = [handle1.hasUsablePosition(), handle2.hasUsablePosition()];
             T1 = handle1.trans;
             T2 = handle2.trans;
@@ -296,6 +303,23 @@ classdef AuroraDriver_2 < handle
             z = [T1(3), T2(3)];
             error_val = [handle1.error, handle2.error];
             frame = [handle1.frame_number, handle2.frame_number];
+            % Same BX reply as XYZ; scalar-first [q0;qx;qy;qz] per sensor.
+            quaternion = [handle1.rot(:), handle2.rot(:)];
+            quaternion(:,~valid) = NaN;
+        end
+
+        function indices = sensorIndices(obj, sensorIds)
+            assert(numel(sensorIds)==2 && ~strcmpi(sensorIds{1},sensorIds{2}), ...
+                'NDI:SensorIds', 'Two distinct base/tip handle IDs are required.');
+            ids = arrayfun(@(h) h.id, obj.port_handles, 'UniformOutput', false);
+            indices = zeros(1,2);
+            for j=1:2
+                found = find(strcmpi(ids,sensorIds{j}));
+                if numel(found) ~= 1
+                    error('NDI:SensorIdMissing', 'Expected handle %s exactly once.', sensorIds{j});
+                end
+                indices(j) = found;
+            end
         end
 
         function error_val = getError(obj)
@@ -389,16 +413,37 @@ classdef AuroraDriver_2 < handle
 
     methods
         function delete(obj)
-            if strcmp(obj.serial_port.Status, 'open')
-                obj.RESET(obj.RESET_SOFT);
-                pause(3);
-                obj.closeSerialPort();
+            % Always close, even if stop or baud restoration fails.
+            try
+                if strcmp(obj.serial_port.Status, 'open')
+                    if obj.tracking_started
+                        try, obj.stopTracking();
+                        catch e, warning('NDI:StopFailed','%s',e.message); end
+                    end
+                    % Return both endpoints to the constructor's 9600 baud.
+                    % RESET replies can arrive after the device changes baud.
+                    if obj.serial_port.BaudRate ~= 9600
+                        try, obj.setBaudRate(9600);
+                        catch e, warning('NDI:BaudRestoreFailed','%s',e.message); end
+                    end
+                end
+            catch e
+                warning('NDI:CleanupFailed','%s',e.message);
             end
-            delete(obj.serial_port);
+            try, obj.closeSerialPort();
+            catch e, warning('NDI:CloseFailed','%s',e.message); end
+            try, delete(obj.serial_port);
+            catch e, warning('NDI:SerialDeleteFailed','%s',e.message); end
         end
     end
 
     methods (Access = private)
+        function requireOkay(~, reply, command)
+            if ~startsWith(reply,'OKAY')
+                error('NDI:CommandFailed','%s failed: %s',command,reply);
+            end
+        end
+
         function value = readScalar(obj, precision)
             [value, count] = fread(obj.serial_port, 1, precision);
             if count ~= 1
