@@ -107,9 +107,56 @@ classdef AuroraDriver_2 < handle
             pause(0.1);
         end
 
-        function init(obj)
-            obj.requireOkay(obj.INIT(), 'INIT');
+        function init(obj, targetBaud)
+            % The NDI app or an interrupted run can leave the SCU at the
+            % acquisition baud. A wrong-baud probe can leave a delayed
+            % ERROR02 reply; retry that response once after flushing input.
+            if nargin < 2, targetBaud = obj.serial_port.BaudRate; end
+            initialBaud = obj.serial_port.BaudRate;
+            reply = '';
+            for phase = 1:2
+                if phase == 2
+                    if ~isempty(reply) || initialBaud == targetBaud
+                        break;
+                    end
+                    fprintf('NDI: no INIT reply at %d baud; trying %d baud.\n', ...
+                        initialBaud,targetBaud);
+                    if targetBaud >= 115200
+                        set(obj.serial_port,'FlowControl','hardware');
+                    else
+                        set(obj.serial_port,'FlowControl','none');
+                    end
+                    set(obj.serial_port,'BaudRate',targetBaud);
+                    pause(0.1);
+                end
+                for attempt = 1:2
+                    flushinput(obj.serial_port);
+                    reply = obj.INIT();
+                    if ~startsWith(reply,'ERROR02'), break; end
+                    if attempt == 1
+                        fprintf('NDI: retrying INIT after ERROR02 at %d baud.\n', ...
+                            obj.serial_port.BaudRate);
+                    end
+                    pause(0.1);
+                end
+                if ~isempty(reply), break; end
+            end
+            if isempty(reply)
+                error('NDI:InitNoReply', ...
+                    'INIT had no reply at %d or %d baud.', ...
+                    initialBaud,obj.serial_port.BaudRate);
+            end
+            if ~startsWith(reply,'OKAY')
+                error('NDI:CommandFailed', ...
+                    'INIT at %d baud failed: %s',obj.serial_port.BaudRate,reply);
+            end
             obj.device_init = 1;
+            % Discard any late reply from an earlier probe before COMM/PHSR.
+            pause(0.05);
+            flushinput(obj.serial_port);
+            if obj.serial_port.BaudRate ~= targetBaud
+                obj.setBaudRate(targetBaud);
+            end
         end
 
         function startTracking(obj)

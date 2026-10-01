@@ -19,7 +19,7 @@ function [theta_est, phi_est, fitResidual, info] = f20260219_2_task2config_withL
 
     arguments (Input)
         p_target (3,1) double {mustBeFinite}
-        L (3,1) double {mustBeFinite,mustBeNonnegative} = ndiSensorGeometry()
+        L (3,1) double {mustBeFinite,mustBeNonnegative} = ndiSupportFnc.sensorGeometry()
         xi (1,1) double {mustBeFinite,mustBePositive} = 1
         phi0 (1,1) double {mustBeFinite} = 0.01
         thetaPrior (1,1) double {mustBeFinite} = 0
