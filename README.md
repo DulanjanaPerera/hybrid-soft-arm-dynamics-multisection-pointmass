@@ -1,6 +1,6 @@
 # Single-module feedback-control baseline
 
-This branch contains the starting pieces for a new feedback-linearization model. It does not contain a controller or the prior dynamics-comparison experiments.
+This branch contains the NDI and pressure-regulator models, the connected single-module feedback-linearization model, forward-validation recordings, and estimator comparisons. See PROJECT_LOG.md for the current handoff, assumptions, test evidence, and remaining control work.
 
 ## Models
 
@@ -23,10 +23,14 @@ The preflight's initial engineering limits are at least 90% valid pairs, median 
 
 The Aurora driver starts by trying `INIT` at its host default of 9600 baud. If the tracker does not reply because a previous session left it at the configured 921600 baud, the driver switches only the host serial settings and retries `INIT`. It also retries one `ERROR02` response after clearing stale input, since a wrong-baud probe may leave a delayed malformed-command reply. Other errors stop startup. A successful 9600-baud startup still changes the tracker to 921600 for acquisition. The legacy MATLAB `serial` deprecation warning does not by itself indicate an acquisition failure.
 
-No experiment recordings, MEX binaries, old three-section models, or prior feedback files are tracked on this branch. MATLAB and the NI/SMC hardware support installed on the experiment computer are still required for the physical Simulink models.
+The six forward-validation recordings are tracked under forwardModelValidation/. Compiled MEX binaries and old three-section models are not required for this baseline. MATLAB and NI/SMC hardware support on the experiment computer are required for physical Simulink runs.
 
 ## Offline single-module animation
 
 Run `runDynamicSimulation_armS_single_custom` in MATLAB to solve and animate the single-module dynamics without connecting to NDI or the pressure valves. Edit the parameter block at the top of the script for initial length changes, signed pressure input, base orientation, and recording options. The defaults use the confirmed 0.17411 m module length, a downward-pointing arm, and the nominal coupled stiffness `1350*[2 1; 1 2]` N/m. The script leaves `t`, `X`, `X0`, and `params` in the workspace. Set `recordVideo=true` to save an MP4 and MAT file under `single_module_recordings`.
 
 The animation uses `drawingArm_single_stationary_base.m` and `HTM_nume.m`; the simulation uses the existing `armS_single_entry.m` dynamics. No compiled MEX is needed.
+
+## Feedback-linearization handoff
+
+`feedback_linearization.slx` now connects desired and NDI-inferred length derivatives, tracking errors, virtual acceleration, inverse dynamics, and positive 0–3 bar valve commands. It uses nominal coupled stiffness `1350*[2 1;1 2]` N/m, initial `Kp=[4;4]` and `Kd=[4;4]`, and provisional 0.8 bar deadzone compensation. Its desired sine references still reach 3 rad; review the target and keep the valve Kill at zero before any first hardware test. An ordinary run of this model opens the NDI reader and NI analog outputs. The controller has passed synthetic and hardware-free offline checks, not a closed-loop hardware test. The full method, validation limits, current checkout path, and instructions for the next Codex task are in `PROJECT_LOG.md`.
