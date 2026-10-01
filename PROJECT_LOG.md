@@ -112,3 +112,47 @@ reduce derivative-feedback effectiveness. A sinusoidal pressure command need
 not produce sinusoidal velocity when deadzone, stiffness variation, and
 transients are present. No Simulink files or hardware were changed in this
 sensitivity check.
+
+## 2026-10-01 — First connected feedback-linearization model
+
+Before editing, committed the user's new `feedback_linearization.slx`, updated
+validation models, six pressure trials, and estimator-analysis results as
+`ee6cd0e` so the starting point is recoverable. The new model had placeholder
+derivative, error, controller, and inverse-dynamics functions; its controller
+and inverse model were not connected to the valves.
+
+`feedback_linearization.slx` now uses reduced lengths `[l2;l3]` throughout.
+The desired length path is sampled at 0.05 s and uses causal first-order
+filters with 0.10 s velocity and 0.15 s acceleration time constants. The
+measured path takes NDI's inferred `[l1;l2;l3]`, selects `[l2;l3]`, and uses
+the physical BX poll timestamp with 0.20 s velocity and 0.30 s acceleration
+filters. Invalid readings hold the derivative state; the NDI orientation
+validity flag is also connected to the inverse model so a missing reading
+commands zero pressure. Errors are desired minus measured position, velocity,
+and acceleration, computed directly from these filtered signals without
+differentiating an error signal. The virtual acceleration is
+`ddl_des + Kd.*(dl_des-dl_meas) + Kp.*(l_des-l_meas)`. Editable initial gains
+are `Kp=[4;4] 1/s^2` and `Kd=[4;4] 1/s`.
+
+The inverse uses the same one-section mass, Coriolis, downward gravity,
+damping, nonlinear bound penalty, and coupled `1350*[2 1;1 2]` N/m stiffness
+as the forward model. It maps generalized force through
+`B = pi*(0.013/2)^2*1e5*[-1 1 0;-1 0 1]` N/bar, chooses the smallest
+nonnegative three-pressure solution, applies the provisional 0.8 bar valve
+deadzone to active channels, and proportionally scales effective pressure
+when needed to keep all commands at or below 3 bar. Named logged signals
+include the command, desired and available generalized forces, saturation,
+and inverse-model validity. The valve Kill constant was saved as `0` (zero
+pressure) because the existing theta/phi sine sources span 0–3 rad, much
+larger than a reviewed first hardware target. Change the reference and
+review a low-gain run before enabling pressure.
+
+Offline MATLAB function checks passed for missing frames, sine-wave
+derivatives, error sign, bounded pressure, force reconstruction, saturation,
+and invalid-frame zero pressure. A temporary model copy with both NDI and NI
+hardware subsystems removed compiled successfully and simulated for 0.5 s;
+the logged synthetic pressure range was 0–0.8002 bar. No hardware controller
+run has been performed. The two derivative time constants and 0.8 bar
+deadzone are starting values, not identified plant parameters. NDI-derived
+lengths are inferred from orientation and are not independent muscle-strain
+measurements.
