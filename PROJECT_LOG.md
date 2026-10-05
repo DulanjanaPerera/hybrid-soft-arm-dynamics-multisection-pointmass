@@ -1,5 +1,12 @@
 # Project research log
 
+## Collaboration preference
+
+The user prefers discussion by default. Do not modify code, Simulink models,
+or other files unless the user explicitly requests the change. Questions,
+discussion, and requests to inspect results do not authorize file edits.
+This preference was explicitly recorded at the user's request on 2026-10-01.
+
 This log records reproducible decisions, datasets, methods, results, and open
 questions for the single-module NDI/dynamics/control experiments. Add dated
 entries as work proceeds. Numerical results should remain linked to the raw
@@ -262,3 +269,242 @@ path and kill gate, and log validity, poll timing, desired/measured
 lengths and angles, pressure commands, saturation, and model-valid
 diagnostics. Compare model predictions with those measurements before
 changing physical parameters or introducing a learned residual model.
+
+## 2026-10-02 — Length-bound expansion
+
+At the user's request, increased the modeled reduced-coordinate length bounds
+from +/-30 mm to +/-35 mm in Dynamic_model_Val.slx and feedback_linearization.slx,
+the offline simulation runner, and the forward/inverse stiffness sweep.
+Windows denied writes to Dynamic_model_Val_FWDnINV.slx and Inv_Dyn_val.slx;
+those two saved models remain unchanged pending release of their file locks. The
+nonlinear penalty magnitude and transition sharpness are unchanged. Existing
+model wiring and user edits are preserved. This is a model assumption change,
+not verification of a physical length limit. Historical inverse-analysis
+settings remain at +/-30 mm. No hardware was operated.
+
+There is no separate 15 mm cap on l1/l2. For the symmetric pressure case the
+model yields l1=l2=-l3/2; a roughly -30 mm l3 plateau consequently produces
+roughly +15 mm l1/l2. Plot units are mm: 0.015 m is 15 mm, not 0.015 mm.
+
+**File-lock follow-up.** After the user reported closing both models and
+requested completion, updated Dynamic_model_Val_FWDnINV.slx forward and
+inverse bounds to +/-0.035 m. Verified only those two Stateflow XML members
+changed and all XML parses. Windows still denied writing Inv_Dyn_val.slx;
+that model remains pending at +/-0.030 m. No hardware or simulation was run.
+
+## 2026-10-05 - Follow-up experiments, plotting, and hysteresis/MPC direction
+
+**Standing collaboration preference.** The user prefers discussion by default and
+does not authorize edits to code, Simulink models, or other files unless explicitly
+requested. On 2026-10-05 the user separately authorized ongoing updates to
+PROJECT_LOG.md whenever new project code is written or an important technical
+discussion occurs. This standing authorization applies to this log only.
+
+**Prior identification as a possible PAC baseline (discussion, 2026-10-04).**
+The earlier continuum-arm system-identification handoff report is at
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\Controlling\Dynamic_jointspace_feedbacklinearization\ChatGPT\continuum_arm_hysteresis_sysid_handoff_report.md.
+Its P2/P3-chirp simulation fit gave a coupled stiffness matrix approximately
+[2576.3, 1271.0; 1271.0, 1886.0] N/m and damping diag([16.15, 18.50])
+N s/m. Its fitted Bouc-Wen *mechanical-force* state used
+hdot = alpha_h*dq - beta_h*abs(dq).*h - gamma_h*dq.*abs(h), with
+alpha_h=65.59, beta_h=49.04, gamma_h=-19.93. This is separate from
+pressure-command deadzone and pressure-side hysteresis. These values are
+candidate initial estimates for a future passivity-based adaptive controller
+(PAC), not validated drop-in parameters. The older simulation passed
+[0,l2,l3] to its dynamics and used direct [F2,F3] input on P2/P3-only
+trials; the current model contract uses l1=-l2-l3 and [F2-F1,F3-F1].
+Those force mappings agree when P1=0 but differ when P1 participates.
+A coupled adaptive K must remain positive definite, and K/D adaptation
+does not by itself learn valve memory. The user's more recent forward/inverse
+comparison suggested scalar stiffness near 650 N/m for its trajectories;
+that estimate and the older full matrix need comparison on common held-out
+data, geometry, and pressure conventions.
+
+**Closed-loop test testing_20261004_1311.mat (analysis, 2026-10-04).**
+The user ran the hardware-bearing feedback_linearization_trackingWorks.slx
+and saved feedbacklinearization_tests/testing_20261004_1311.mat. Earlier
+statements above that no closed-loop hardware run had occurred describe the
+October 1 handoff only. Inspection of the saved trackingWorks model, whose
+timestamp predates this recording, found inverse-block stiffness
+K=250*[2 1;1 2] N/m, despite the later 650 N/m forward-model estimate.
+Its separate forward block has a different K; always check the block used
+by the recorded run. No model was edited in this analysis.
+
+Over the 95-125 s hold, desired/measured phi averaged 1.768/1.049 rad.
+Reduced length errors averaged [+9.37,-4.01] mm. Logged
+acceleration-correction force averaged [10.04,0.79] N, combined gravity
+and stiffness [5.97,-0.41] N, Coriolis-plus-damping near zero, and requested
+generalized force [16.01,0.39] N. Mean pressure command [P1,P2,P3] was
+[0,2.006,0.829] bar. Inverse validity remained true, pressure limiting
+remained false, and reconstructed available force matched requested force
+only by the controller's assumed pressure/deadzone mapping; actual chamber
+pressure was not measured. P3's modeled effective pressure was about
+0.029 bar. At the measured pose, the first generalized gravity component
+was about 1.03 N and K=250 stiffness contributed about 4.94 N; K=650 would
+contribute about 12.84 N. Gravity alone does not explain the plateau.
+With PD-only correction, a force-model or valve mismatch can leave steady
+tracking error without the pressure command continuing to rise.
+
+**Continuous circle and plotting code (2026-10-05).** A continuous circular
+reference uses unwrapped theta_des(t)=2*pi*t/T and a nonzero desired phi;
+the configuration-to-length sine/cosine terms make desired lengths repeat
+without numerically resetting theta. Saved tests are
+feedbacklinearization_tests/circle_1_round.mat (62.65 s),
+circle_2_round.mat (124.20 s), and circle_multi_rounds_20s.mat (64.05 s).
+Desired theta is logged unwrapped; measured orientation theta wraps at
++/-pi, and desired phi rises as high as 1.5 rad.
+
+At the user's request, feedbacklinearization_tests/plotCircleTracking.m was
+added. Passing out directly or a circle MAT path opens seven figure groups:
+desired/measured theta and phi, all three actuator length changes, three
+pressure commands, 3D desired/measured tip-sensor XYZ, angle errors, length
+errors, and XYZ component/norm errors. It returns data and figure handles
+without saving plots or running Simulink/hardware. Desired XYZ uses the
+constant-curvature sensor-offset geometry [0.055,0.17411,0.05] m; measured
+XYZ comes from NDI position. Measured theta/phi and lengths use orientation,
+a distinct measurement from XYZ, so their reconstructed task positions need
+not coincide exactly with measured XYZ. The script masks invalid samples,
+unwraps measured theta for trajectory comparison, and uses the shortest
+signed angular difference for theta error. It was run offline against all
+three circle MAT-files and with an out object passed directly; each
+produced seven figures.
+
+**Deadzone and forward-model MPC idea (discussion, 2026-10-05).**
+The inverse pressure allocator sets inactive channels to zero, but when a
+channel requests any positive effective pressure it commands
+p_effective+0.8 bar. This makes a mathematical command jump from zero to
+about 0.8 bar at activation, independent of any mechanical hysteresis.
+Valid channel switch-ons in circle_multi_rounds_20s.mat started around
+0.80-0.83 bar. At least two channels were commanded in 98.8% of its
+0.05 s samples. Actual chamber pressure and true valve switching
+thresholds were not logged. Adding the old mechanical Bouc-Wen force term
+to the left side of the EoM would not remove this allocator discontinuity.
+A separately validated pressure-side hysteresis/valve state would belong
+on the actuator-input side.
+
+The old project's tapped-delay forward MLP uses pressure, pressure-rate,
+loading-state and previous-length histories to predict active-actuator
+length. Its direct length-to-pressure inverse performed poorly. A proposed
+nonlinear MPC would instead optimize future pressure sequences using a
+validated forward predictor, penalizing future length error, pressure
+changes and valve switching under pressure and rate limits; apply only
+the first command, then replan from new measurements. This could resolve
+the multivalued inverse caused by loading/unloading history and pressure
+redundancy. The old forward models were trained as active-only outputs,
+whereas current circles usually command multiple actuators together, so
+their cross-actuator and multi-step predictive accuracy is unproven.
+Before implementation, evaluate one-step and recursive multi-step
+predictions on held-out current circle data, feeding *predicted* future
+lengths into the tapped history during rollout. If performance fails,
+identify a full three-pressure/two-length forward model using
+simultaneous-actuation trials. Keep pressure/valve dynamics distinct from
+passive mechanical K, D and hysteresis to avoid double counting.
+No controller or Simulink files were changed during this discussion.
+
+## 2026-10-05 - Backfill of inverse and planar stiffness validation
+
+The offline inverse-dynamics analysis lives in
+inverDynamic_test/analyzeInverseDynamics.m and reads
+inverDynamic_test/simulationresulta_20261001_1936.mat. Its saved report
+found 2,659 samples over 167.836 s of physical BX poll time, 99.85%
+valid measurements, 7.48% pressure-limited samples, three qualifying
+reference holds, two stationary tails, and one target reached and
+maintained under its stated 1 mm/two-second rule. The analysis reports
+tracking, force decomposition, validity, and timing but cannot identify
+dynamic terms from zero-rate holds or establish actual chamber force
+from software-reconstructed available force. Outputs and assumptions are
+documented in inverDynamic_test/README.md and results/.
+
+The forward/inverse comparison was replayed offline in
+FWD_INV_COmparision/sweepStiffness.m using
+FWD_INV_COmparision/Comparision_results.mat. Only the scalar in
+K=k*[2 1;1 2] was swept from 1350 down to 200 N/m while retaining
+D=40*eye(2), the 0.8 bar assumed deadzone, 6.5 mm effective-pressure
+radius, 13 mm actuator offset, gravity, and +/-35 mm bound penalty.
+The saved sweep report selected 650 N/m from this grid, with 3.55231 mm
+RMS error in the independent reduced coordinates over 600 valid
+samples. The 1350 baseline replay agreed with the logged forward
+trajectory to within 4.61e-7 m. This is a same-recording conditional fit;
+it cannot independently identify material stiffness, pressure calibration,
+hysteresis, timing, or actuator symmetry. The score table and plots are
+under FWD_INV_COmparision/stiffness_sweep_results/.
+
+The P1-only stepped-ramp experiment and analysis are under
+planar_stiffness_test/. Each pressure level is held for ten simulation
+seconds over three loading/unloading cycles. The offline
+estimatePlanarStiffness.m fits a static effective scalar stiffness per
+hold from commanded P1 and orientation-derived lengths. It deliberately
+assumes zero deadzone, and its post-Kill command is not measured chamber
+pressure. Loading and unloading are pooled by pressure level.
+fitStiffnessCurve.m builds an empirical PCHIP from those means;
+stiffnessFromPhiBlock.m is a MATLAB Function block version with endpoint
+extension. The saved mean estimates range from 4132 N/m near phi=0.094
+rad to about 953 N/m near phi=2.056 rad, with very large low-angle
+standard deviations (1843 and 2597 N/m at the first two levels).
+The user reported poor agreement, particularly on unloading, when using
+the phi-only stiffness function on stepped-triangle and sine tests.
+These values therefore reflect pressure/deadzone/hysteresis and model
+assumptions as well as any mechanical stiffness. The apparent low-angle
+jump must not be treated as proven material stiffening. The fit is
+plane-specific and not validated as a controller or general forward law.
+The test files, curves, mean tables, and caveats are in
+planar_stiffness_test/README.md and results/.
+
+## 2026-10-05 - Common-pressure allocation and possible co-contraction
+
+The user proposed a roughly 2 bar command on all three PMAs at neutral,
+then bending by lowering the opposing channel while increasing the other
+two without crossing the valve deadzone. This is a discussion and
+experiment proposal; no controller or Simulink code was changed.
+
+The current ideal input map is tau = f*[-1 1 0;-1 0 1]*p_effective,
+where f=pi*(0.0065)^2*1e5 = approximately 13.273 N/bar. Its nullspace
+is span([1;1;1]): equal *effective* pressures cancel from the two
+modeled bending forces. When all command pressures exceed the assumed
+0.8 bar deadzone, an equal common command also cancels algebraically.
+At [2,2,2] bar the nominal effective pressures are [1.2,1.2,1.2]
+bar and modeled bending force is zero. For desired theta=0, the
+configuration-to-length convention requires P2 and P3 above P1.
+For example, [1,3,3] bar gives differential pressure [2,2] bar and
+nominal generalized forces about [26.55,26.55] N while all three
+channels remain above the nominal deadzone.
+
+Starting at 2 bar does not inherently reduce the maximum nominal
+differential pressure if the common level may change: approaching
+[0.8,3,3] reaches the same 2.2 bar difference as the existing
+minimum-common-pressure allocator with P1 inactive. A guaranteed
+above-deadzone floor, a required margin around the real switching
+threshold, a fixed mean pressure, and finite pressure rates do reduce
+the reachable differential range. The allocator should choose common
+pressure within per-channel lower/upper bounds and report infeasible
+requested forces rather than silently assume 2 bar is always possible.
+
+This nullspace exists in the current reduced *force map*, not
+necessarily in the physical arm. Co-pressurizing PMAs may change
+incremental bending stiffness, axial shortening, stored energy, valve
+dynamics and hysteresis; the current EoM holds K constant and omits
+a common-length coordinate, so it predicts none of those effects.
+Pressure-dependent stiffness is plausible for antagonistic PMAs but
+has not been identified for this module. NDI orientation-derived
+lengths mainly reflect bending; log tip XYZ/Z as well to detect
+common-mode axial motion. A useful validation is to vary common
+pressure at fixed pressure differences, then apply small differential
+perturbations at several common levels while logging loading and
+unloading, measured pose, and actual pressure if available.
+
+A read-only inspection of feedback_linearization_trackingWorks.slx
+on 2026-10-05 found its inverse block had since been changed to
+K=650*[2 1;1 2] N/m. It still uses the hard zero-versus-
+p_effective+0.8 bar channel activation rule. The earlier K=250
+finding applies to the timestamped 2026-10-04 13:11 recording, not
+automatically to the current saved model.
+
+## 2026-10-05 - Backbone constraint and pressure nullspace clarification
+
+The user clarified that this module has a backbone restricting axial length. In the ideal fixed-backbone, symmetric three-PMA geometry, physical actuator length changes satisfy dl1+dl2+dl3=0; the third length is dependent on the other two. This is the reason for the two-coordinate bending model. Equal actuator forces/pressures have zero generalized work in those two bending coordinates: with dl1=-dl2-dl3, F1*dl1+F2*dl2+F3*dl3=(F2-F1)*dl2+(F3-F1)*dl3. Thus the common-pressure direction is a force-allocation nullspace under the ideal pressure-to-force model, not an omitted free axial degree of freedom.
+
+Correction to the preceding discussion: for a sufficiently stiff backbone, common pressurization should not be described as causing appreciable common-mode axial shortening. It may instead change backbone load/prestress, PMA bulging and effective incremental bending stiffness, so the physical pressure-to-bending map may still depend on the common level. Tip Z may change from bending at fixed backbone arc length; Z change by itself is not evidence of axial shortening. Any proposed common-pressure baseline should therefore be evaluated by holding pressure differences fixed and measuring orientation/length response, then comparing small differential bends at several common levels. Actual chamber pressure sensing would separate valve behavior from mechanical effects. This is a discussion only; no controller or Simulink files were changed.
+
+## 2026-10-05 - Two-computer Git handoff discussion
+
+The project is used from two computers. Local branch codex/feedback-linearization-clean was at 028c3ef and tracked origin/codex/feedback-linearization-clean, but was 10 commits ahead of the last fetched remote-tracking ref (0664270). New local branch codex/common-pressure-testing was created from the same 028c3ef and had no upstream. Modified and untracked experiment files remained in the shared checkout and were not committed on either branch. Discussion: pushing branches is appropriate for the two-computer workflow, but only committed files transfer; review and commit intended changes before relying on the second computer, fetch remote changes before pushing, and avoid force-pushing shared branches. No commit, fetch, or push was performed during this discussion.

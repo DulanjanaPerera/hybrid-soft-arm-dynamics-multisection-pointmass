@@ -34,3 +34,16 @@ The animation uses `drawingArm_single_stationary_base.m` and `HTM_nume.m`; the s
 ## Feedback-linearization handoff
 
 `feedback_linearization.slx` now connects desired and NDI-inferred length derivatives, tracking errors, virtual acceleration, inverse dynamics, and positive 0–3 bar valve commands. It uses nominal coupled stiffness `1350*[2 1;1 2]` N/m, initial `Kp=[4;4]` and `Kd=[4;4]`, and provisional 0.8 bar deadzone compensation. Its desired sine references still reach 3 rad; review the target and keep the valve Kill at zero before any first hardware test. An ordinary run of this model opens the NDI reader and NI analog outputs. The controller has passed synthetic and hardware-free offline checks, not a closed-loop hardware test. The full method, validation limits, current checkout path, and instructions for the next Codex task are in `PROJECT_LOG.md`.
+
+## Length-bound update (2026-10-02)
+
+Dynamic_model_Val.slx, Dynamic_model_Val_FWDnINV.slx, feedback_linearization.slx,
+and the offline runner now use a smooth nonlinear
+length-bound penalty at +/-0.035 m in reduced l2/l3 coordinates, replacing
++/-0.030 m. This is not a hard clip or a measured physical limit. The stiffness
+sweep uses the same updated bounds. Historical inverse-test analysis retains
+its original +/-0.030 m settings to interpret that recording.
+
+Pending: Inv_Dyn_val.slx still could not be written because Windows denied
+access; its saved bounds remain +/-0.030 m. Dynamic_model_Val_FWDnINV.slx
+was successfully updated after the user closed it.

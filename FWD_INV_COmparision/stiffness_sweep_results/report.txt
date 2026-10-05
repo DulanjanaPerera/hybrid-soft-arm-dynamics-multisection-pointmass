@@ -1,0 +1,9 @@
+Input: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\FWD_INV_COmparision\Comparision_results.mat
+Best tested stiffness: 650 N/m; reduced RMS 3.55231 mm
+Baseline replay max length difference: 4.61098e-07 m
+Valid samples 600/601; simulation duration 30.000 s; physical duration 30.687 s
+Fixed: coupled K=k*[2 1;1 2], D=40*eye(2), mass .1 kg, geometry radius .013 m, pressure radius .0065 m, deadzone .8 bar, bounds +/- .035 m.
+Pressure commands are linearly interpolated on logged simulation time. No delay fitting, retiming, or hardware runs.
+Score uses equally weighted valid NDI samples. l1 is dependent; best score uses l2/l3. This same-recording fit is not independent validation.
+NearBoundFraction flags sampled states within 2 mm of +/-35 mm, where nonlinear stiffness can affect the result.
+Changing stiffness cannot independently establish pressure calibration, kinematic accuracy, timing, or actuator symmetry.

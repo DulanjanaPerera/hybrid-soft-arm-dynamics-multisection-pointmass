@@ -1,0 +1,9 @@
+Input: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\inverDynamic_test\simulationresulta_20261001_1936.mat
+Samples: 2659; physical duration 167.836 s; simulation duration 132.900 s
+Valid 99.85%; limited 7.48%; median/max poll interval 0.06016/0.38492 s
+Candidate holds: 3; stationary tails: 2; targets reached and maintained: 1
+Static residual = nominal required force at mean measured pose minus logged available force. Interpret only stationary tails.
+Available force is a model estimate, not measured chamber force. No post-Kill command or measured chamber pressure is assumed.
+Transient peak tracking error is not signed overshoot; changing directions and multiple coordinates make a single overshoot percentage ambiguous.
+Near-straight theta errors are excluded. Dynamic identification is not supported by static inputs.
+Tail rules: last 3.0 s, max speed <= 0.20 mm/s, range <= 0.50 mm; settling each coordinate <= 1.00 mm, maintained to hold end for >= 2.0 s.

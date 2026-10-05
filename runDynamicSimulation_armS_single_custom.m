@@ -4,18 +4,20 @@
 
 params.N=1;
 params.L=.17411;               % Confirmed module length (m)
-params.r=.013;
+params.r=.013;                  % PMA radial offset from backbone (m)
 params.mi=.1;                     % One distributed-section mass (kg)
 params.gWorld=[0;0;-9.81];      % World +Z is up; gravity points down
 params.K=1350*[2 1;1 2];       % Nominal coupled stiffness (N/m)
 params.D=40*eye(2);
 params.mu=2000;
-params.lKbounds=[-.03;.03;1e6];
+params.lKbounds=[-.035;.035;1e6];
 
 % Signed pressure convention used by the current standard-arm runner:
 % negative pressure produces negative generalized force (contraction).
 pressureBar=[0;0];                % [PMA 2; PMA 3], e.g. [-2;-2]
-area=pi*(params.r/2)^2;
+pressureDiameter_m=0.013;         % Effective pressure-area diameter (m)
+pressureRadius_m=pressureDiameter_m/2;
+area=pi*pressureRadius_m^2;
 params.tau=area*pressureBar*1e5;
 
 baseOrientationMode='rpy';        % 'rpy' or 'matrix'
