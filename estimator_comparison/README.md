@@ -55,6 +55,6 @@ cfg = struct('FilterTau_s', 0.15, ...
 compareNdiEstimators(cfg);
 ```
 
-The current findings and data provenance are in `../PROJECT_LOG.md`. The
-script and figures are analysis artifacts; neither estimator is yet connected
-to feedback linearization.
+The current findings and data provenance are in [validation results](../project_docs/VALIDATION_RESULTS.md) and [history](../project_docs/PROJECT_LOG.md). The
+script and figures are analysis artifacts; the filtered-difference baseline was subsequently connected
+to feedback linearization; see [current state](../project_docs/PROJECT_STATE.md).

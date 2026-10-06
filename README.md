@@ -1,7 +1,23 @@
 # Single-module feedback-control baseline
 
-This branch contains the NDI and pressure-regulator models, the connected single-module feedback-linearization model, forward-validation recordings, and estimator comparisons. See PROJECT_LOG.md for the current handoff, assumptions, test evidence, and remaining control work.
+This branch contains the NDI and pressure-regulator models, the connected single-module feedback-linearization model, forward-validation recordings, and estimator comparisons. Start with [project_docs/PROJECT_STATE.md](project_docs/PROJECT_STATE.md) for the current handoff, assumptions and next task. The sections below retain baseline setup instructions and historical model context; current experiment status is maintained in project_docs.
 
+
+## Project documentation
+
+- [Current state and maintenance rules](project_docs/PROJECT_STATE.md) — read first.
+- [Chronological history](project_docs/PROJECT_LOG.md) — append-only; search as needed.
+- [Important decisions](project_docs/DECISIONS.md).
+- [Validation results](project_docs/VALIDATION_RESULTS.md).
+- [Open issues](project_docs/OPEN_ISSUES.md).
+- [Current architecture](project_docs/MODEL_ARCHITECTURE.md).
+- [Technical explanations](project_docs/TECHNICAL_NOTES.md).
+
+Routine work reads current state plus the relevant specialized document.
+Check the state date against newer relevant activity. After significant work,
+append history and update state and affected specialized documents; do not
+update documentation merely because a file was touched. Physical models can
+operate NI/NDI hardware; this documentation migration did not run them.
 ## Models
 
 - NDI_readingOnly.slx reads two-sensor XYZ and orientation, with the confirmed arm/NDI axis rotation and offsets. It uses COM12, 921600 baud, one BX poll per paired sample, sensor 0A as base, sensor 0B as tip, and a nominal 0.05 s sample period. Its MATLAB dependencies are AuroraReader_s2_Position_only.m, AuroraDriver_2.m, PortHandle.m, ndiSupportFnc.m, and f20260219_2_task2config_withLenExt.m. Geometry, acquisition defaults, sample validation, and XYZ comparison are methods in ndiSupportFnc.m.
@@ -31,9 +47,9 @@ Run `runDynamicSimulation_armS_single_custom` in MATLAB to solve and animate the
 
 The animation uses `drawingArm_single_stationary_base.m` and `HTM_nume.m`; the simulation uses the existing `armS_single_entry.m` dynamics. No compiled MEX is needed.
 
-## Feedback-linearization handoff
+## Historical feedback-linearization handoff (2026-10-01)
 
-`feedback_linearization.slx` now connects desired and NDI-inferred length derivatives, tracking errors, virtual acceleration, inverse dynamics, and positive 0–3 bar valve commands. It uses nominal coupled stiffness `1350*[2 1;1 2]` N/m, initial `Kp=[4;4]` and `Kd=[4;4]`, and provisional 0.8 bar deadzone compensation. Its desired sine references still reach 3 rad; review the target and keep the valve Kill at zero before any first hardware test. An ordinary run of this model opens the NDI reader and NI analog outputs. The controller has passed synthetic and hardware-free offline checks, not a closed-loop hardware test. The full method, validation limits, current checkout path, and instructions for the next Codex task are in `PROJECT_LOG.md`.
+`feedback_linearization.slx` now connects desired and NDI-inferred length derivatives, tracking errors, virtual acceleration, inverse dynamics, and positive 0–3 bar valve commands. It uses nominal coupled stiffness `1350*[2 1;1 2]` N/m, initial `Kp=[4;4]` and `Kd=[4;4]`, and provisional 0.8 bar deadzone compensation. Its desired sine references still reach 3 rad; review the target and keep the valve Kill at zero before any first hardware test. An ordinary run of this model opens the NDI reader and NI analog outputs. At that handoff, the controller had passed synthetic and hardware-free offline checks; subsequent hardware tests are summarized in [current validation results](project_docs/VALIDATION_RESULTS.md). The full method, validation limits, current checkout path, and instructions for the next Codex task are in [project_docs/PROJECT_LOG.md](project_docs/PROJECT_LOG.md).
 
 ## Length-bound update (2026-10-02)
 

@@ -7,8 +7,8 @@ params.L=.17411;               % Confirmed module length (m)
 params.r=.013;                  % PMA radial offset from backbone (m)
 params.mi=.1;                     % One distributed-section mass (kg)
 params.gWorld=[0;0;-9.81];      % World +Z is up; gravity points down
-params.K=1350*[2 1;1 2];       % Nominal coupled stiffness (N/m)
-params.D=40*eye(2);
+params.K=650*[2 1;1 2];       % Nominal coupled stiffness (N/m)
+params.D=20*eye(2);
 params.mu=2000;
 params.lKbounds=[-.035;.035;1e6];
 

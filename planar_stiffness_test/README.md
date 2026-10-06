@@ -7,7 +7,7 @@ cycles plus a final zero hold. P2/P3 stay zero. The standalone
 `stepped_ramp_wave.m` matches the MATLAB Function3 block for inspection.
 
 Existing valve Kill/dashboard behavior is preserved; verify its live state.
-The model uses NDI startup preflight. This setup has not been run on hardware.
+The model uses NDI startup preflight. This historical setup note predates the later recorded P1 experiment; see [validation results](../project_docs/VALIDATION_RESULTS.md).
 Explicit logging includes commanded and post-Kill/saturation valve pressures,
 NDI lengths, orientation angles, validity, and physical poll timestamps.
 Initialize ndiConfig and save the run as a MAT-file containing `out`.
