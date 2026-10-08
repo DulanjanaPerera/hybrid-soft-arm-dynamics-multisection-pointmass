@@ -89,7 +89,8 @@ classdef AuroraReader_s2_BaseRotation < matlab.System
                 obj.aurora.initPortHandleAll();
                 obj.aurora.enablePortHandleDynamicAll();
                 obj.aurora.startTracking();
-                pause(0.1);
+                % Let both sensors settle before the scored preflight capture.
+                pause(1.0);
                 if ~isempty(obj.calibration)
                     fprintf('NDI: hold the arm in its straight reference pose for preflight.\n');
                     cfg = ndiSupportFnc.acquisitionSettings();
