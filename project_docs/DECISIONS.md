@@ -89,3 +89,13 @@ current state edited in place; history append-only after initial migration;
 specialized files maintained for material work. Read state plus relevant specialty
 and search historical entries only as needed. This restructuring does not change
 the technical-edit collaboration preference.
+
+## D-11 — Circle reference settings remain in the block (2026-10-07)
+
+For the user-pasted circle MATLAB Function, retain one time input `t` and
+place desired phi, seconds per revolution, and integer circle count as
+editable variables inside the block code. This supersedes the previously
+suggested external `des_phi` and `circle_time_s` Simulink input ports. Each
+lap smoothly runs through 2*pi while phi holds its target. The code remains
+paste-ready guidance until the user installs and logs it; the saved model
+still has the earlier one-input reference hardcoded to 0.1 rad.

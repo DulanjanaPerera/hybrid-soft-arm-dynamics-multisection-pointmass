@@ -26,6 +26,20 @@ COM12, 921600 baud, nominal 0.05 s polling. Arm axes satisfy
 Calibrated base-relative orientation is the primary theta/phi/length signal;
 XYZ inverse kinematics is an independent comparison route. Held display values
 on invalid frames are stale; validity flags must gate estimation/control.
+The BX poll includes the base quaternion, but the current System block does not
+output absolute base attitude. Whole-arm tilt relative to gravity therefore
+does not currently reach the dynamics. A proposed extension would use the
+calibrated base-sensor-to-arm rotation and a known NDI-frame vertical to form
+the arm-frame gravity vector, with invalid-pose gating and a checked sign
+convention before closed-loop use.
+An experimental `AuroraReader_s2_BaseRotation.m` class now preserves outputs
+1:19 of the original reader and adds output 20 `R_NDI_from_arm` (3x3), output
+21 `gravity_arm` (3x1), and output 22 `baseOrientationValid` (logical). The
+default reference-model gravity `[0;0;-9.81]` reproduces the current inverse
+convention at the original vertical calibration pose; its physical sign still
+needs an independent static check. Invalid frames hold the last values while
+clearing validity. The saved Simulink models still use the original reader and
+do not yet consume these outputs.
 
 ## Mechanical dynamics
 
@@ -38,6 +52,11 @@ on invalid frames are stale; validity flags must gate estimation/control.
 K is a coupled 2x2 matrix; smooth diagonal penalties bound reduced lengths.
 The common-pressure inverse currently uses K=650*[2 1;1 2], D=40*I,
 gravity [0;0;-9.81], mu=2000, bounds [-0.035;0.035;1e6].
+In the saved `FBL_commonP_circle.slx`, the active V2 inverse hardcodes that
+gravity vector, while its `forwardModel` block separately hardcodes the same
+vector and still uses K=1350*[2 1;1 2]. Base rotation currently updates
+neither path. The forward block's stiffness setting is separate from the
+orientation change and should be accounted for when comparing predictions.
 The offline runner uses K=650, D=20, signed two-input force and world-to-arm
 gravity rotation; its conventions differ from the three-positive-valve path.
 
@@ -65,6 +84,17 @@ unequal empirical trim and incremental s/a corrections. Source interfaces:
   model-valid flags, mass/Coriolis/static-force diagnostics in existing order.
 - `commonPressureFeedbackReferenceBlock(t)` returns theta and phi for the
   240 s small-step protocol. Saved FBL_commonP contains both scripts as of migration.
+- The user-maintained `FBL_commonP_circle.slx` saves V2 in its active inverse
+  chart with feedback from t=0, five-second blend, +/-1 bar s/a correction
+  bounds, 1.2–3 bar active-pressure clipping, 2 bar/s internal slew, and vent
+  from 220 s. These current saved values differ from the older standalone V2
+  source. The saved active one-input `thetaCircle(t)` now sets internal
+  `des_phi=1`, `circle_time_s=30`, `num_circles=5`, starts circles at 10 s,
+  and returns phi over 20 s after the last lap. It therefore has no fixed-phi
+  hold between the 5–10 s bend ramp and circle motion. The user superseded
+  the previously suggested external-input reference. The saved model was
+  written after the latest MAT recording; confirm logged `des_phi`, circle
+  count, gains and pressure command behavior for each individual run.
 - Open-loop sequence/trim/manual/local-calibration functions supply scalar
   P1/P2/P3 commands and phase annotations; manual block requires downstream slew.
 
@@ -84,7 +114,7 @@ An ordinary hardware-bearing Simulink run may open both serial and NI hardware.
 | `FWD_INV_COmparision/` | Offline command replay and stiffness grid sweep |
 | `planar_stiffness_test/` | P1 static fits, PCHIP evaluator and paste-ready block |
 | `feedbacklinearization_tests/` | Hardware/circle recordings and seven-group plot utility |
-| `common_pressure_testing/` | Pressure protocols, trim/feedback sources, recordings and offline analyses |
+| `common_pressure_testing/` | Pressure protocols, trim/feedback sources, recordings and offline analyses, including `analyzeCommonPressureCircle.m` for compact reports and `plotCommonPressureTracking.m` for six logged-run figures |
 | `ndi_orientation_recordings/` | Calibration raw poses and fitted references |
 | `project_docs/` | Current state, history, decisions, evidence, issues and reusable theory |
 

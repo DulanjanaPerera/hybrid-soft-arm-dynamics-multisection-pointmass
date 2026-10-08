@@ -1,5 +1,5 @@
-Last Updated: 2026-10-06
-Current Milestone: Bounded common-pressure feedback validation around the 1.6 bar trim
+Last Updated: 2026-10-07
+Current Milestone: 1 rad circle undertracking with lower-rail and symmetric-correction limits
 
 # Current project state
 
@@ -35,22 +35,31 @@ See [MODEL_ARCHITECTURE.md](MODEL_ARCHITECTURE.md) for interfaces and data flow.
 
 ## Current implementation status
 
-The active experiment is `FBL_commonP.slx` with paste-ready source files in
-`common_pressure_testing/`. Its 240 s test ramps to trial-4 trim
+The earlier small-step experiment is `FBL_commonP.slx` with paste-ready source
+files in `common_pressure_testing/`. Its 240 s test ramps to trial-4 trim
 `[1.6656,1.6492,1.4852]` bar at mean 1.6 bar, captures the static model-force
 anchor at 50 s, blends incremental feedback over five seconds, and requests
 separate 0.01 rad U/V steps. Corrections in both differential settings are
-bounded to +/-0.04 bar. The normal command slew limit is 0.8 bar/s, with
-an invalid-input exception described below. No additional 0.8 bar deadzone
-offset is added to this all-active allocation.
+bounded to +/-0.04 bar. The normal command slew limit is 0.8 bar/s; V2 holds
+a brief invalid input and ramps to zero after a sustained fault. No additional
+0.8 bar deadzone offset is added to this all-active allocation.
 
-During this documentation migration, read-only SLX inspection confirmed that
-the saved inverse chart contains `commonPressureFeedbackInverseBlock` and
-the chart historically named thetaCircle contains
-`commonPressureFeedbackReferenceBlock`. This supersedes the earlier October 6
-log observation that the saved file still held the old scripts. Full wiring,
-current gain values, Kill state, and compilation were not verified here;
-equivalence to the recorded run remains to be established.
+Read-only SLX archive inspection after the V2 recording found
+`commonPressureFeedbackInverseBlockV2` in the main `MATLAB Function1` chart;
+`MATLAB Function8` retains a V1 copy. The model was saved before the V2 MAT
+recording. The chart historically named thetaCircle contains
+`commonPressureFeedbackReferenceBlock`. Full wiring, Kill state, and
+post-Kill pressure behavior have not been verified from this recording.
+
+The current circle experiment is the user-maintained `FBL_commonP_circle.slx`.
+Its saved reference now has the requested one-input `thetaCircle(t)` with
+internal `des_phi=1`, `circle_time_s=30`, `num_circles=5`, and circle start
+10 s. The saved inverse uses `maxDeltaS_bar=maxDeltaA_bar=1`, 1.2–3 bar
+active pressure bounds, a 2 bar/s command slew, active trim/feedback from
+t=0, a five-second blend, and venting from 220 s. The latest circle MAT
+logs Kp=[3000;3000], Kd=[120;120]. The saved SLX was written after the
+trial-4 MAT; use the MAT logs for actual run settings and do not assume every
+earlier trial used the latest saved reference.
 
 Earlier models and workflows remain available: nominal feedback linearization,
 trackingWorks/circle trials, stiffness-function variants, inverse analysis,
@@ -69,38 +78,99 @@ and recording. No controller/model/code was changed by this migration.
 - User-recorded hardware experiments now exist; the October 1 statement that
   no closed-loop hardware test had occurred is historical.
 - Common-pressure source functions passed documented offline numerical checks;
-  the latest physical recording exposed a fault-path exception absent from the
-  nominal slew checks. Results and limitations are in
+  an earlier physical recording exposed a fault-path exception absent from the
+  nominal slew checks, and V2 subsequently held one invalid frame. The latest
+  circle runs expose bend undertracking. Results and limitations are in
   [VALIDATION_RESULTS.md](VALIDATION_RESULTS.md).
 
-## Latest feedback result and current task
+## Latest circle result and current task
 
-`common_pressure_testing/feedback_testing_results.mat` spans 240 s with
-4800/4801 valid NDI samples. Recorded gains were `Kp=[1100;1100]` and
-`Kd=[100;100]`, constant during that run. U and V steps moved in the intended
-directions but left persistent error: desired/measured U was 0.0100/0.0054 rad
-in the U hold, and desired/measured V was 0.0100/-0.0032 rad in the V hold.
-The local correction clamp was inactive throughout 3300 feedback samples.
-The run does not establish a suitable gain increase or integral/bias design.
+The latest inspected recording,
+`FB_circle_phi_1rad_trial6_good_5s_0.5bar.mat`, logs five 5 s circles at
+desired phi=1 rad with Kp=[3000,3000], Kd=[22,22] and a user-reported
+0.5 bar active command floor. Mean measured phi=0.9883 rad, phi MAE=0.0485
+rad, and measured theta advances 4.989 turns. Pressure limiting falls to
+65/500 circle samples; 93/500 have at least one command below 0.8 bar,
+but no sample reaches 0.5 bar. Theta MAE remains 0.3173 rad and l2/l3
+RMSE=2.7649/3.0615 mm. Circle time and Kd also changed, so the floor's
+independent effect is unmeasured. Eleven circle samples are NDI/model
+invalid; NI-path and controller software commands match exactly.
+An additional retrospective comparison estimates a repeatable 0.23–0.25 s
+theta phase lag across the five laps. Shifting desired theta and lengths
+back by 0.24 s in offline comparison reduces theta MAE to 0.069 rad and
+l2/l3 RMSE to 0.82/1.11 mm; this is not a controller improvement or a
+uniquely identified actuator delay. The 2 bar/s command slew is reached
+in 65/499 adjacent circle intervals. Keep the current gains/floor as the
+baseline while checking repeatability and speed dependence before tuning.
+The newer 10 s/circle MAT at the same logged phi target=1 rad and gains
+has phi MAE=0.0485 rad, theta MAE=0.2713 rad and only 5/1000 limited
+samples. Its retrospective pure time shift is 0.40 s, showing that a
+single fixed 0.24 s physical delay is not established. Across the 5 s
+and 10 s runs, theta error fits an offset about 0.15–0.20 rad plus a
+speed-related coefficient about 0.12–0.13 s. A 0.12 s theta-reference
+advance is a proposed isolated test, not a verified compensation; a
+remaining angular offset must be evaluated separately. The saved SLX
+currently sets `des_phi=1.5`, whereas both inspected MATs logged 1.0.
+The user subsequently clarified that the desired implementation is a
+compensator added to the existing FBL/PD controller, not a manual change
+to the `thetaCircle` timing. The reference-advance code shown in discussion
+was not adopted in the model. A bounded desired-velocity feedforward or a
+model-based predictor before pressure allocation is under consideration;
+its gains and the separate speed-independent theta offset are unvalidated.
 
-At 14.40 s a single invalid NDI pair drove pressure immediately to zero
-(about 33.3 bar/s), then pressure recovered at 0.8 bar/s. The source's early
-return resets pressure state and bypasses the normal slew limiter.
-The next technical priority is to discuss and explicitly authorize a fault-path
-fix, preserving an appropriate persistent-invalid fail-to-zero behavior, then
-verify fault injection and the exact saved model before another physical run.
+The earlier `FB_circle_phi_1rad_trial4.mat` logs five 30 s circles at desired phi=1 rad.
+Measured theta advances 4.977 turns, but mean phi is 0.7425 rad, falling
+from 0.7540 in lap 1 to 0.7360 in lap 5. The 1.2 bar lower rail is reached
+on 2881/3000 circle samples; `pressureLimited` is true on 2894/3000, and
+an offline reconstruction of the saved allocation gives a +/-1 bar symmetric
+correction clamp on 1835/2990 valid samples. No channel reaches the 3 bar
+upper rail. Mean actual phi varies by desired-theta sector from about 0.57
+to 0.93 rad. Ten invalid NDI frames are isolated and the logged pressure
+command holds through them. Trial 3 (one 25 s circle) likewise averages
+0.7693 rad phi and is limited for 468/500 samples. The reported 5–10 s
+"pre-circle hold" is actually a phi ramp, so neither run includes a steady
+1 rad fixed-theta hold. Controller and NI-path pressure-equivalent logs match;
+actual chamber pressure remains unmeasured. Earlier 0.2/0.1 rad trials had
+undertracking without active limiting; the file named `FB_circle_phi_1rad.mat`
+historically logged only 0.1 rad. See
+[VALIDATION_RESULTS.md](VALIDATION_RESULTS.md) and
+[OPEN_ISSUES.md](OPEN_ISSUES.md) for evidence and next diagnostics.
+For subsequent circle MAT files, run
+`common_pressure_testing/analyzeCommonPressureCircle.m` and share its compact
+printed report; it reads saved logs only and detects the actual reference and
+lap count. It includes logged Kp/Kd, validity, force and pressure summaries.
+Usage is in the [experiment README](../common_pressure_testing/README.md).
+
+The preceding small-step baseline remains useful:
+
+`common_pressure_testing/feedback_testing_results_V2_newGains.mat` spans
+240 s with Kp=[1400;1400], Kd=[120;120] and 0.01 rad U/V steps. At its sole
+invalid NDI frame (22 s), V2 held the controller and NI-path commands and
+resumed without a step; sustained-fault behavior remains an offline check.
+Zero-target length-error norms were about 0.020–0.028 mm, while U/V holds
+were 0.090/0.134 mm. The bending-plane angle was unobservable during
+3298/3300 feedback samples, limiting directional conclusions from inferred
+lengths near straight. Full figures and the earlier V1 fault history are in
+[VALIDATION_RESULTS.md](VALIDATION_RESULTS.md).
 
 ## Open issues
 
-1. Invalid-input slew bypass remains in source and saved inverse script.
-2. Residual small-step tracking error, trim drift, and history dependence.
+1. V2 single-invalid-frame command hold is recorded; sustained-invalid fault
+   latch and actual chamber pressure remain unverified physically.
+2. Circle bend undertracking, especially l3, plus residual small-step error,
+   trim drift and history dependence.
 3. Visually observed local buckle is outside the tip-only/two-coordinate model;
    distributed shape stability is unverified.
-4. Saved-model wiring/reproducibility and missing post-Kill logs in the latest MAT.
+4. Saved-model reference reproducibility: the nominal 1 rad file contains a
+   0.1 rad target, and the saved reference still hardcodes that value. Chamber
+   pressure remains unknown; the circle MAT files include controller and
+   post-Kill NI command logs.
 5. Parameter consistency across models and the pending historical Inv_Dyn_val
    +/-30 versus +/-35 mm bounds discrepancy.
 6. Earlier tapped-delay predictor lacks simultaneous-actuation recursive rollout
    validation for NMPC.
+7. Bending-plane angle is unobservable near straight; orientation-derived
+   lengths use the held angle, limiting directional tracking assessment.
 
 Details, attempted approaches, and next actions: [OPEN_ISSUES.md](OPEN_ISSUES.md).
 
@@ -115,19 +185,24 @@ Details, attempted approaches, and next actions: [OPEN_ISSUES.md](OPEN_ISSUES.md
 - Trial-4 trim is a local candidate, not a globally straight or buckle-free pose.
   Geometric U=V=0 and a measured zero-pressure reference are different targets.
 - Discussion is the default. Questions and result inspections do not authorize
-  edits to code/models or hardware operation. The October 5 standing automatic
-  update authorization named the project log only; this request authorizes this
-  documentation restructuring and supplies maintenance rules, not code changes.
+  edits to code/models or hardware operation. Maintain the relevant specialized
+  documentation when recording material findings in the project log; this does
+  not authorize controller/Simulink or hardware changes.
 
 ## Next steps
 
-Resolve the invalid-sample command behavior; establish exact saved-model wiring,
-gain/settings, reference, validity logging and Kill path; validate offline fault
-cases before a user-directed experiment. Then compare repeatable long holds and
-small reference steps, assessing drift, pressure authority and local buckle.
-Consider bounded integral/disturbance/trim correction only after evidence and
-explicit implementation direction. NMPC remains a later candidate pending
-held-out recursive predictor validation.
+For the 1 rad test, separate lower-pressure clipping, +/-1 bar symmetric
+correction clamping, and direction-dependent response before changing gains.
+An offline allocation review can test whether a higher common command would
+preserve requested differential pressure within 1.2–3 bar; this is not a
+validated physical operating point because common pressure changes prestress
+and the known local buckle. A measured fixed-theta 1 rad hold, if later
+chosen, would distinguish static bend capability from circle-motion lag.
+Retain the earlier V2 one-frame fault result, and verify its sustained-fault
+path separately. Assess tip-only buckle limits and near-straight theta
+observability when comparing trials. Consider bounded integral/disturbance/trim
+correction only after evidence and explicit implementation direction. NMPC
+remains a later candidate pending held-out recursive predictor validation.
 
 ## Documentation maintenance
 

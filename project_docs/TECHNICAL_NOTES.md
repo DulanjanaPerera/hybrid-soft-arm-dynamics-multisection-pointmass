@@ -79,12 +79,30 @@ Absolute tauDesired and ideal tauAvailable of the rate-limited command need
 not match at trim; this is not automatically a force-reconstruction bug.
 Anchoring the entire desired force would also cancel the initial PD correction.
 
-PD correction vanishes in velocity at rest; a constant unmodeled bias generally
-leaves position error unless gains/authority or a bias-compensation mechanism
-remove it. Higher gain may encounter delay, slew, oscillation or saturation.
-The latest residual was inside local pressure limits; the data do not identify
-a stable new gain or integral design. Invalid-input returns currently bypass
-normal slew; nominal smooth-output checks do not validate fault transitions.
+The virtual acceleration is `v=ddq_des+Kd*edot+Kp*e`, and the logged
+"desired acceleration force" is `M*v`, not a measured acceleration or force
+delivered by the valves. With exact dynamics and unconstrained pressure
+allocation, the intended error law is `edd+Kd*edot+Kp*e=0`. A static model
+or actuator mismatch appears as a disturbance, so finite PD gain can leave
+a steady position error even when the requested correction is deliverable.
+Higher gain may encounter delay, slew, oscillation or saturation; it cannot
+make an infeasible pressure differential available. An integral or adaptive
+bias term would also need pressure headroom and anti-windup.
+
+In the one-radian circle runs the dominant additional issue is allocation
+limiting. At trial-4 t=85.60 s (desired bend-plane phase 190.8 degrees),
+desired/actual phi is 1.000/0.583 rad and the logged acceleration force is
+[-8.39,-19.59] N. The requested symmetric correction is -1.680 bar but
+is clamped to -1.000 bar. The resulting raw pressure target is approximately
+[2.332,1.692,0.776] bar; clipping P3 to 1.2 bar yields the logged
+[2.332,1.692,1.200] bar. The P3-P1 differential changes from a requested
+-1.556 to -1.132 bar even *after* the symmetric correction clamp. Thus the
+model can continue requesting a large correction while the valve command
+cannot express it. Incremental anchoring also means absolute logged
+`tauDesired_N` and `tauAvailable_N` have a fixed baseline offset; compare
+changes around trim rather than assuming their absolute values must match.
+The earlier 0.1/0.2 rad tests had residuals without active pressure limiting;
+the 1 rad results should not be explained by that earlier mechanism alone.
 
 ## Measurement, timing and equilibrium interpretation
 

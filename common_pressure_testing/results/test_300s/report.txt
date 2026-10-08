@@ -1,0 +1,36 @@
+Common-pressure experiment: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\common_pressure_testing\test_300s.mat
+Simulation range: 0.00 to 300.00 s; NDI samples: 6001
+Valid orientation/paired-sensor/configuration samples: 6001/6001 (100.0%)
+Physical poll interval median: 0.0508 s; observed poll span: 304.58 s
+Logged raw Kill dashboard state: 1
+Maximum regulator-path versus commanded signal difference: 0.00000 bar
+These are logged commands, not measured chamber pressures.
+U=(l2+l3)/r is signed bending toward theta=0; V=(l3-l2)/(sqrt(3)*r).
+Each phase row averages its final 5.0 simulation seconds.
+
+Largest 5 s within-phase U range: 0.00477 rad; largest absolute slope: 0.00088 rad/s
+
+Common  neutral-U  +delta-U  -delta-U  neutral drift  meas gain  model gain  apparent K
+ bar      rad        rad       rad          rad       rad/bar    rad/bar      N/m
+  1.2    +0.1065   +0.1701   +0.0463       -0.0107    +0.3096     +0.9641      2198.7
+  1.6    +0.1702   +0.2734   +0.0874       -0.0169    +0.4649     +0.9641      1464.1
+  2.0    +0.1958   +0.2805   +0.1246       -0.0119    +0.3897     +0.9641      1746.8
+
+Common  neutral-V  differential V gain  return after +  return after -
+ bar       rad           rad/bar              rad             rad
+  1.2    +0.0717          -0.0698           +0.0490         -0.0597
+  1.6    +0.1444          -0.0791           +0.0574         -0.0743
+  2.0    +0.1523          -0.0726           +0.0374         -0.0493
+
+Zero-pressure U drift, final minus initial: -0.00286 rad
+
+Apparent K assumes nominal equal pressure-force gains, the
+symmetric K=k*[2 1;1 2] model, equilibrium, and repeatable valves.
+It is a command-to-motion diagnostic, not identified material stiffness.
+The forward model predicts zero bend at equal commands; measured
+equal-command bend can reflect asymmetry, pressure dynamics, or preload.
+Even the model-derived apparent K can differ from its configured
+K=650 because these are finite-time phase-tail responses.
+Cross-plane V and within-hold motion further limit that interpretation.
+Positive and negative steps were run in one order at each level;
+time drift and hysteresis are not separately identifiable here.

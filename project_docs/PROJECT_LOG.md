@@ -715,3 +715,653 @@ the common-pressure inverse: K=650 and D=20 with world-to-arm gravity rotation,
 versus K=650 and D=40 with directly specified arm gravity in the inverse.
 No technical code, Simulink model, recording or analysis result was modified,
 no MATLAB tests rerun, and no hardware operated during migration.
+
+## 2026-10-06 - Project log maintenance preference
+
+The user confirmed the new project documentation structure and asked that
+future project-log maintenance follow it. Read PROJECT_STATE.md first, append
+significant work to this PROJECT_LOG.md, and update the relevant specialized
+documents when the project state materially changes. The root PROJECT_LOG.md
+remains a navigation pointer. No code, Simulink model, experimental data, or
+analysis script was changed for this clarification.
+
+## 2026-10-06 - Paste-ready V2 for the next common-pressure feedback test
+
+At the user's request, added `common_pressure_testing/commonPressureFeedbackInverseBlockV2.m`
+without changing the saved Simulink model or the existing V1 source. V2 holds
+the last pressure command through a brief invalid NDI/model sample. If valid
+data does not return within 0.10 s of the last valid sample, it latches a
+fault and slews all channels toward zero at 0.8 bar/s; recovery requires a
+simulation restart. An invalid Clock value remains an immediate-zero exception
+because the slew interval is unavailable. The separate Kill path is unchanged.
+
+Added an offline fault-injection test and ran it successfully in MATLAB R2025a:
+single-invalid-frame hold/recovery, sustained-fault slew to zero, and no
+automatic re-pressurization after the latch. This verifies source behavior,
+not Simulink compilation or physical delivery. Keep the 0.01 rad U/V reference
+steps. A cautious next gain comparison is Kp=[1400;1400] and Kd=[120;120]
+instead of the last logged [1100;1100] and [100;100]; gains are outside this
+inverse block and were not changed. No hardware was operated.
+
+## 2026-10-06 - Read-only analysis of V2 feedback recording
+
+Analyzed `common_pressure_testing/feedback_testing_results_V2.mat` offline
+against the first feedback recording, without running Simulink/NI/NDI or
+changing controller code/model files. The V2 MAT spans 240 s and has 4800/4801
+valid NDI samples; the single invalid sample was at 12.65 s. The gain logs
+remained Kp=[1100;1100] and Kd=[100;100], so the proposed [1400;1400] and
+[120;120] gain test was not performed. The desired U/V step holds remained
+0.01 rad.
+
+At 115–125 s, V2 measured U,V=(0.00415,-0.00760) rad and mean length-error
+norm 0.133 mm, versus V1 (0.00543,-0.00649) and 0.112 mm. At 185–195 s,
+V2 measured (-0.00040,-0.00555) and 0.248 mm versus V1
+(0.00156,-0.00324) and 0.211 mm. The V2 zero-target baseline was different:
+U,V=(0.00168,-0.00555) at 80–90 s versus V1 (0.00379,-0.00530).
+Relative to their own preceding zero holds, the U response was +0.00247 rad
+in V2 versus +0.00164 in V1; the V response was +0.00221 versus +0.00360.
+These run-to-run differences do not isolate a V2-code effect.
+
+V2 `logsout` has 48 signals versus 56 in V1 and omits controller pressure,
+limiting, model-validity, tau, and inverse force signals. Neither recording
+logs measured chamber pressure; V2 also lacks post-Kill regulator commands.
+The V2 MAT therefore cannot directly verify the pressure hold at 12.65 s,
+correction bounds, or delivered pressure. Read-only inspection of the saved
+`FBL_commonP.slx`, modified before the MAT recording, found V2 in main
+`MATLAB Function1` and V1 in `MATLAB Function8`. Restore pressure/validity
+logging before claiming the physical fault-path fix is validated. This result
+and the documentation state/issues/results were updated; no source or model
+file was edited.
+
+## 2026-10-07 - Higher-gain V2 feedback recording near straight
+
+Analyzed `common_pressure_testing/feedback_testing_results_V2_newGains.mat`
+offline. It spans 240 s with 4800/4801 valid NDI/model samples, uses
+Kp=[1400;1400], Kd=[120;120], and retains the 0.01 rad U/V reference steps.
+The restored controller-pressure, inverse-validity/limiting, force, Kill and
+post-Kill NI-command logs support a direct command-path check. At its only
+invalid NDI sample, 22.00 s, the controller and NI commands held the previous
+[1.6656,1.64918,1.48522] bar and resumed at that value on the next valid
+sample. The logged NI command channels equaled controller pressure at all
+4801 timestamps. This verifies a single-frame command hold in this run, not
+measured chamber pressure or a sustained-invalid fault response.
+
+During 55–220 s feedback, common pressure stayed 1.6000 bar; individual
+channel ranges were at most 0.0115 bar, maximum pressure slew 0.0123 bar/s,
+and no feedback sample set pressureLimited. The NDI tip XYZ maximum adjacent
+step was 0.239 mm. No command spike or tip-position snap is evident in this
+recording, but tip-only sensing cannot certify the known local buckle or
+general stability. Zero-target mean reduced length-error norms were
+0.020–0.028 mm; the U and V target holds had 0.090 and 0.134 mm.
+Relative to preceding zero holds, U advanced +0.00320 rad for its 0.01 rad
+step, whereas V advanced only +0.00015 rad for its step.
+
+The central measurement limitation is near-straight observability. During
+3298/3300 feedback samples thetaObservable was false while inverseModelValid
+was true. The NDI estimator freezes the last theta when phi is below the
+calibrated 0.5-degree threshold; theta remained 0.8166 rad in every steady
+hold. Median feedback phi was 0.00270 rad. The reported measured lengths and
+U/V are derived using that held angle, so the apparent steady tracking
+cannot establish control of bending direction near the singular straight
+pose. The 0.01 rad desired bend is only slightly above the 0.00873 rad
+observability threshold, and actual phi usually stayed below it. Future
+directional tests should examine thetaObservable, raw orientation magnitude
+and tip XYZ, and repeat at an observable bend. No controller, Simulink model,
+analysis script, or hardware was changed by this offline analysis.
+
+## 2026-10-07 - Proposed next common-pressure circle test
+
+The user proposed applying the higher-gain V2 common-pressure controller to
+circle tracking and noted that the new run remained well behaved near straight.
+The recorded command and tip-position traces support trying a bounded circle,
+but the 0.01 rad static steps did not validate directional tracking: measured
+phi was generally below the calibrated 0.5-degree theta-observability
+threshold, and thetaObservable was false for 3298/3300 feedback samples.
+
+Discussed a cautious first circle: retain Kp=[1400;1400], Kd=[120;120], the
+1.6 bar trim, +/-0.04 bar differential corrections, 0.8 bar/s command slew,
+V2 fault behavior and physical Kill path. Ramp desired phi gradually to about
+0.02 rad, hold to assess actual phi/thetaObservable and local buckle, then
+attempt one slow approximately 120 s theta revolution at constant phi before
+ramping down. The 0.02 rad value is a proposed test amplitude, not a verified
+safe/trackable operating bend; actual phi must clear 0.00873 rad for theta to
+be observable, and the weak prior V response may prevent that in all
+quadrants. Log thetaObservable, desired/measured orientation and lengths,
+tip XYZ, controller/NI commands, validity, limiting and pressure rate.
+Treat any below-threshold portions as an observability-limited test, not
+proof of circle tracking. No circle reference code, model, or hardware was
+changed in this discussion.
+
+## 2026-10-07 - Reconsidered circle bend amplitude
+
+The user pointed out that a 0.02 rad desired circle may be too small to keep
+the measured bend above the 0.00873 rad theta-observability threshold and
+asked about a 0.2 rad circle. That concern is valid: in the latest 0.01 rad
+step test, measured phi remained below the threshold through nearly all
+feedback samples. A 0.2 rad bend is about 11.5 degrees, but it is twenty
+times the tested 0.01 rad reference and lies far outside the present local
+common-pressure calibration. The empirical near-trim Jacobian
+J=d[U,V]/d[s,a]≈[[0.397,0.069],[-0.079,0.490]] rad/bar would, if naively
+extrapolated, require roughly 0.49 bar in s for U=0.2 or 0.40 bar in a for
+V=0.2. This is an order-of-magnitude indication only; the J fit was measured
+over +/-0.04 bar and should not be used as a large-bend model. The current
+controller clamps each differential correction to +/-0.04 bar, so a direct
+0.2 rad circle would likely test saturation rather than accurate tracking.
+
+A larger observable bend should be sought by staged static references (for
+example 0.05 then 0.1 rad), checking measured phi, thetaObservable, pressure
+limiting, tip XYZ, and the visually observed local buckle before a 0.2 rad
+circle or any bound expansion. This is discussion, not a code/model or
+hardware change.
+
+## 2026-10-07 - Clarified the common-pressure correction clamp
+
+The user asked what the correction clamp means. In the V2 inverse block,
+`ds_bar` and `da_bar` are each limited to +/-0.04 bar around the empirical
+trim `s0=-0.098398...` and `a0=-0.081982...` bar at common pressure 1.6 bar.
+This is a deliberately local software bound based on the +/-0.04 bar
+calibration probes. It is separate from the 1.2–3.0 bar active-pressure
+bound, the 0.8 bar/s slew limit, and the physical regulator/arm limits.
+`pressureLimited` may also be true for a slew or absolute-pressure bound,
+not only this correction clamp. In the October 7 higher-gain feedback window,
+the correction clamp was inactive; the recorded differential corrections
+were approximately ds=-0.01667..-0.00287 and da=-0.00268..+0.00545 bar.
+The earlier warning about a 0.2 rad circle concerns the current local test
+configuration and extrapolation uncertainty, not a proven physical maximum
+bend. No controller or Simulink file was changed.
+
+## 2026-10-07 - Read-only review of FBL_commonP_circle.slx
+
+At the user's request, inspected the saved `FBL_commonP_circle.slx` archive
+without opening/running the Simulink model or accessing NI/NDI hardware.
+The active `MATLAB Function1` inverse script matches the V2 paste-ready
+source exactly except `maxDeltaS_bar=maxDeltaA_bar=1` (versus 0.04 in the
+standalone file). Kp=[1400;1400] and Kd=[120;120]. The active reference is
+`MATLAB Function9` with `theta=2*pi*t/120`; the earlier 0.01 rad step
+`MATLAB Function7` is commented. The active phi path is a Ramp with slope
+0.3 rad/s starting at 1 s, switched to a constant 0.2 rad when the ramp
+exceeds 0.2, so phi reaches 0.2 by about 1.67 s. Desired theta/phi feed
+the desired-configuration Mux and NDI comparison path.
+
+The controller still commands zero pressure until 10 s, trim from 10–50 s,
+feedback from 50–220 s, and a return toward zero after 220 s; model Stop
+Time is 240 s. Thus the requested 0.2 rad circle is already rotating long
+before feedback begins (theta about 2.62 rad at 50 s) and remains active
+while pressure vents after 220 s. The onset is also fast relative to the
+previous 0.01 rad static tests. The valve subsystem's XML and model config
+match the parent model: Kill switches, 0–3 bar downstream saturations,
+10/9 bar-to-voltage gains, NI analog outputs, and Stop Time 240 are present.
+These static checks do not verify live Kill operation or actual chamber
+pressure. The active inverse retains its 1.2–3.0 bar active target bounds
+and 0.8 bar/s rate limit. Raising each differential correction bound to
+1 bar is 25 times the calibrated +/-0.04 bar probe; when a channel hits
+the 1.2/3.0 bar rail, the 1.6 bar common mean is no longer preserved.
+
+Conclusion: not ready for a direct hardware circle test as saved. Align the
+reference schedule with feedback engagement, ramp phi gradually, include a
+static hold/inspection at the larger bend, rotate for one bounded lap while
+feedback is active, and return phi to zero before controller venting. A
+static large-bend checkpoint before the full circle is prudent given the
+known local buckle and limited calibration. No model, code, analysis script,
+or hardware was modified by this review.
+
+## 2026-10-07 - Guidance to start circle feedback at simulation start
+
+The user chose to proceed with the 0.2 rad circle and asked how to remove the
+reference/controller timing mismatch while starting feedback from the
+beginning. Recommended manual edits, not applied to the model: in the active
+V2 inverse block, change the active-pressure condition from `t>=10 && t<220`
+to `t<220`, the feedback-entry condition from `t>=50` to `t>=0`, and the
+five-second blend argument from `(t-50)/5` to `t/5`. This captures the
+static-force anchor at the first valid measured pose, commands the empirical
+1.6 bar trim from t=0, and begins incremental feedback immediately while
+the existing 0.8 bar/s slew and five-second blend smooth engagement. The
+anchor is now taken at an unpressurized initial pose rather than after a trim
+hold, so the resulting static bias must be assessed in the first run. An
+invalid first NDI sample still latches the existing V2 fault path.
+
+To keep the desired trajectory aligned, replace the active theta-only
+reference plus Ramp/Switch phi source with a two-output reference: phi/theta
+zero to 5 s; smooth phi 0→0.2 rad during 5–20 s at theta=0; static hold to
+35 s; one smooth theta revolution during 35–155 s at phi=0.2; smooth phi
+return to zero during 155–175 s; zero reference thereafter. This leaves
+feedback active through 220 s and the existing vent period 220–240 s. The
+0.2 rad large-bend response and +/-1 bar correction remain unvalidated;
+watch pressure limiting, NI commands, theta observability and visible local
+buckle. No source/model file or hardware was changed by this guidance.
+
+## 2026-10-07 - Revised proposed phi ramp duration
+
+The user requested that the proposed circle reference reach phi=0.2 rad
+over a five-second ramp. In the previously supplied two-output theta/phi
+reference, keep the initial zero reference until t=5 s, change the phi ramp
+interval from 5–20 s to 5–10 s, and use `(t-5)/5` in the smoothstep.
+The static phi=0.2 hold consequently spans 10–35 s; the subsequent
+35–155 s circle and 155–175 s phi ramp-down remain unchanged. The user
+will edit the Simulink block manually. No model/source code or hardware was
+changed by this clarification.
+
+## 2026-10-07 - Parameterized desired circle bend
+
+At the user's request, provided revised paste-ready thetaCircle MATLAB
+Function code with `des_phi` as a second scalar input rather than repeated
+0.2 rad literals. The reference keeps theta/phi zero to 5 s, ramps phi to
+`des_phi` during 5–10 s, holds through 35 s, executes one smooth theta
+revolution during 35–155 s at that bend, and ramps phi down during
+155–175 s. A Simulink Constant or tunable source must feed the new input;
+the old phi Ramp/Switch must be disconnected when the block's phi output is
+used. Changing `des_phi` suddenly during a run would change the reference
+amplitude suddenly after the scheduled ramp; this version is intended for
+setting a value before each run. No Simulink model or source file was edited.
+
+## 2026-10-07 - Read-only analysis of two common-pressure circle runs
+
+Inspected `common_pressure_testing/FB_circle_phi_0.2rad.mat` and
+`FB_circle_phi_1rad.mat` offline, and read the saved `FBL_commonP_circle.slx`
+archive without running or editing the model or NI/NDI hardware. The second
+filename is misleading: its logged desired phi is 0.1 rad, not 1 rad. The
+saved active `MATLAB Function9` has one input `t` and an internal
+`des_phi = 0.1`; the parameterized two-input function previously supplied
+was not installed in this saved version. The 0.2 rad run logged a 5–20 s
+phi rise; the 0.1 rad run logged the revised 5–10 s rise.
+
+The arm did bend and rotate, but undertracked the bend magnitude. Over the
+static 30–35 s hold, the 0.2 rad run measured mean phi 0.1213 rad with
+pressure command/NI-path mean [1.53485,1.72173,1.54342] bar; desired
+[l2,l3]=[1.3,1.3] mm versus measured [1.1625,0.3410] mm. The 0.1 rad
+run measured mean phi 0.0613 rad, mean pressure
+[1.60849,1.68573,1.50578] bar; desired [0.65,0.65] mm versus measured
+[0.6463,0.0808] mm. Thus l3 holds most of the remaining length error in
+both runs (0.9590 and 0.5692 mm), while l2 is much closer. Circle-window
+mean measured phi was 0.1156 versus desired 0.2 rad and 0.0509 versus
+desired 0.1 rad; measured theta and XYZ show motion around the circle.
+
+Logged `pressureCommand_bar` and the three post-Kill `P*_NI_DAQ` pressure-
+equivalent traces match exactly in both files. During 10–220 s,
+`inverseModelValid` and NDI orientation validity stay true, and
+`pressureLimited` stays false. Hence the observed steady undertracking is
+not explained by software pressure saturation or a missing NI-path command.
+It is consistent with a mismatch in actuator pressure-to-length response
+or the static model/common-pressure inverse, especially in l3, but the logs
+cannot distinguish those causes or verify actual chamber pressure without
+a pressure sensor. At 32 s in the 0.2 rad run, acceleration correction
+force is about [1.04,1.72] N and gravity/stiffness force about
+[1.88,1.30] N, so feedback correction is present; simply increasing the
+desired phi does not diagnose why the correction settles short. The next
+diagnostic should first verify the logged desired phi for each run, then
+compare a fixed-theta static target with measured l2/l3 and differential
+pressure as it settles before another large circle test. No controller,
+Simulink, or analysis code was changed.
+
+## 2026-10-07 - Parameterized circle duration guidance
+
+At the user's request, supplied paste-ready `thetaCircle(t, des_phi,
+circle_time_s)` code for manual installation in the active reference MATLAB
+Function block. The new third scalar input sets the duration of one smooth
+theta revolution beginning at t=35 s. Phi remains zero until 5 s, ramps to
+`des_phi` over 5–10 s, holds through the circle, then returns to zero over
+the following 20 s. The prior result showed that the saved model still had
+an internal `des_phi=0.1`; both `des_phi` and `circle_time_s` need actual
+Simulink inputs to make them independently tunable. With feedback ending at
+220 s, `circle_time_s` should be no more than 165 s to finish the phi
+return before venting (120 s reproduces the previous schedule). No Simulink
+model or controller source was edited.
+
+## 2026-10-07 - Multi-circle reference with internal settings
+
+The user clarified that desired phi and circle timing must be variables in
+the MATLAB Function block code, not extra Simulink inputs, and asked for
+multiple circles. This supersedes the proposed three-input interface above.
+Supplied paste-ready single-input `thetaCircle(t)` with editable internal
+`des_phi`, `circle_time_s` (seconds per revolution), and integer
+`num_circles`. Each lap uses a smoothstep theta progression while phi holds
+the requested bend; the five-second phi rise still starts at 5 s, circles
+start at 35 s, and a 20 s phi return follows the last lap. Example
+`des_phi=0.2`, `circle_time_s=40`, `num_circles=3` uses 35–155 s for three
+laps and 155–175 s for the return. For the current 220 s feedback cutoff,
+`num_circles*circle_time_s<=165` keeps the return before venting. The saved
+Simulink reference remains the earlier one-input version with internal
+`des_phi=0.1` until the user pastes this new code. No Simulink model or
+controller source was edited.
+
+## 2026-10-07 - Reusable offline common-pressure circle analyzer
+
+At the user's explicit request, added
+`common_pressure_testing/analyzeCommonPressureCircle.m` and documented its
+MATLAB invocation in the experiment README. It reads `out.logsout` only and
+prints a compact report suitable for pasting into a discussion; it creates
+no figures or output files and never opens/runs a Simulink model or NI/NDI
+hardware. It infers the logged phi target, circle count and per-lap duration
+from the saved reference rather than trusting the filename or intended block
+settings. It reports the final pre-circle hold, desired/measured phi and
+l2/l3, force components, validity/observability, pressure limits and range,
+post-Kill NI-path command comparison, overall circle tracking and each lap.
+It keeps commanded-versus-actual chamber pressure and NDI-inferred lengths
+distinct. Read-only MATLAB batch validation succeeded on both saved circle
+MAT files; their reports reproduced the previously inspected 0.1213/0.0613
+rad hold bends and the second file's logged 0.1 rad target.
+
+The user then requested that the reusable report also include the logged
+controller gains. The analyzer now prints Kp/Kd (and flags variation),
+separate model/NDI/configuration/observability counts, actual phi range,
+circle force magnitudes, and common/symmetric/antisymmetric pressure
+summaries in addition to the original hold and per-lap metrics. This keeps
+the pasted report sufficient for routine comparisons while preserving the
+raw MAT recording for unusual transients or detailed follow-up.
+MATLAB batch checks on both saved circle recordings passed after handling
+Kp/Kd as sparse change-event logs; both print [1400,1400] and [120,120].
+
+## 2026-10-07 - One-radian single- and five-circle results
+
+The user supplied compact analyzer reports for
+`common_pressure_testing/FB_circle_phi_1rad_trial3.mat` and `trial4.mat`.
+Read-only inspection of both MAT files and the subsequently saved
+`FBL_commonP_circle.slx` established that trial 3 requested one 25 s circle
+and trial 4 five 30 s circles; both requested phi=1 rad with Kp=3000 and
+Kd=120. The saved current reference internally sets phi=1 rad, five 30 s
+circles starting at 10 s, and has no stationary 1 rad hold before rotating.
+The analyzer's 5–10 s "pre-circle hold" label refers to the phi ramp for
+these runs. The saved inverse now has a 2 bar/s slew, +/-1 bar symmetric/
+antisymmetric correction clamps, and 1.2–3 bar active command bounds.
+
+Trial 3 measured mean phi=0.7693 rad over one circle, 0.976 turns and
+pressureLimited=468/500. Trial 4 measured mean phi=0.7425 rad, 4.977 turns,
+and pressureLimited=2894/3000. Trial-4 lap means drift gradually from
+0.7540 to 0.7360 rad, while mean bend varies about 0.566–0.926 rad across
+desired-theta sectors. NDI/model invalidity affected 1 and 10 isolated
+circle samples respectively; inspected invalid-frame pressure commands held.
+Controller and post-Kill NI-path pressure-equivalent logs match exactly,
+without chamber pressure sensing.
+
+Raw trial-4 pressure hits the 1.2 bar lower rail on 2881/3000 samples
+(P1/P2/P3 counts 1422/675/811); no channel reaches 3 bar. Trial 3 has
+463/500 lower-rail samples. Reconstructing the saved inverse's unclipped
+allocation from logged force and the initial static anchor matches every
+valid trial-4 circle command. Its symmetric correction requests exceed the
++/-1 bar clamp on 1835/2990 valid samples; the antisymmetric request does
+not. The unclipped pressure target falls below 1.2 bar on 2873/2990 valid
+samples, yet a common upward shift could preserve its differential within
+1.2–3 bar for 2583/2990 samples. This is only an allocation feasibility
+calculation: changing common pressure can alter prestress and the observed
+local buckle, and the remaining target spans can exceed the 1.8 bar allowed
+window. The evidence points to software allocation limits as a major
+contributor to the 1 rad error; it does not isolate dynamics or actual
+chamber response. No code, Simulink file, or hardware was changed.
+
+## 2026-10-07 - Why desired acceleration does not eliminate phi error
+
+In discussion, clarified that the logged acceleration term `M*v` is a
+requested model force, not observed arm acceleration. Ideal feedback
+linearization's zero-error law requires accurate dynamics and an allocator
+able to deliver the requested generalized force. Static model/actuator
+mismatch can leave finite PD steady error even within pressure bounds; in
+the new 1 rad runs a stronger mechanism is frequent correction and 1.2 bar
+lower-rail clipping. At trial-4 t=85.60 s, desired/actual phi=1.000/0.583
+rad, desired l3=-8.493 mm versus measured -2.639 mm, and the acceleration
+force's second channel is -19.59 N. The symmetric correction request is
+-1.680 bar, clamped to -1.000; the resulting raw pressure target
+[2.332,1.692,0.776] bar is clipped to the logged
+[2.332,1.692,1.200] bar. This reduces P3-P1 from the already-clamped
+-1.556 bar target to -1.132 bar, so the error-driven correction does not
+fully reach the valve command. Raising Kp alone requests more pressure
+without removing those limits; integral/adaptive compensation would still
+need feasible headroom and anti-windup. Recorded the reusable explanation
+in `TECHNICAL_NOTES.md`. No controller/Simulink code or hardware was changed.
+
+## 2026-10-07 - Proposed sensor-based gravity update for a rotated base
+
+The user proposes rotating the whole arm about its base X axis (for example,
+90 degrees) and having NDI update the dynamics gravity direction. Read-only
+inspection shows the NDI BX poll already contains base and tip quaternions,
+but `AuroraReader_s2_Position_only` currently outputs only base-relative
+theta/phi/lengths, not base attitude. Relative bending cannot identify the
+whole-arm tilt. With the base sensor rigidly attached to the arm and the NDI
+field fixed, its scalar-first quaternion yields `B=R_NDI_from_baseSensor`;
+the existing mounting calibration gives
+`A=R_NDI_from_arm=B*cal.R_baseSensor_from_arm`. Once the gravity direction
+is established in NDI coordinates from a known physical reference pose,
+the arm-frame model vector can be updated by `gArm=A.'*gNDI` and supplied
+to every dynamics path using gravity. The existing calibration should not be
+relearned in the rotated pose as though it were the original fixed arm axes.
+Invalid base poses must not silently update gravity. NDI measures attitude
+relative to its field, not gravity itself; a moved field generator or loose
+base sensor breaks this inference.
+
+Before physical control, verify the physical axis/sign convention. The saved
+common-pressure inverse hardcodes `params.g=[0;0;-9.81]`, while the offline
+runner computes a rotated arm-frame vector from its world gravity and a
+180-degree pitch. Moreover `armS_single_core` forms `G=mi*muq.'*params.g`
+and the RHS subtracts `G`; the sign of the model parameter versus physical
+gravity must be checked with a known horizontal/vertical static pose. A
+mathematical +90-degree rotation about the original arm X axis maps the
+current inverse's vector to `[0;-9.81;0]` under that inverse's convention,
+but this is not yet a validated physical setting. Recommended order: first
+verify a fixed rotated orientation and logged gravity components without
+pressure, then expose/gate the base orientation for automatic updates, and
+only then evaluate the model and controller with bounded pressure. No code,
+Simulink model, calibration, or hardware was changed in this discussion.
+
+## 2026-10-07 - Five-second one-radian circles with 0.5 bar lower command bound
+
+Analyzed the user-recorded
+`common_pressure_testing/FB_circle_phi_1rad_trial6_good_5s_0.5bar.mat`
+read-only with `analyzeCommonPressureCircle` and direct inspection of its
+saved pressure timeseries. The user reports changing the active lower command
+bound to 0.5 bar. The MAT logs five 5 s circles over 10–35 s, phi target
+1 rad, Kp=[3000,3000] and Kd=[22,22]. During the circle, 489/500 samples
+pass the logged model/NDI/pair/configuration checks and theta is observable
+at those 489 samples. Measured theta advances 4.989 turns. Mean measured
+phi is 0.9883 rad, phi MAE 0.0485 rad, and lap means stay between 0.9854
+and 0.9918 rad. This is a large improvement in bend-magnitude tracking
+versus trial 4's 0.7425 rad mean/0.2575 rad MAE. However wrapped theta
+MAE is 0.3173 rad (trial 4: 0.2655), and l2/l3 RMSE is 2.7649/3.0615 mm
+(trial 4: 2.6058/3.5583 mm); improved phi does not establish equally good
+bending-plane or per-muscle-length tracking.
+
+The new pressure ranges are P1 0.8057–2.6656, P2 0.7521–2.5299, and
+P3 0.6052–2.2885 bar. At least one commanded channel is below 0.8 bar
+in 93/500 circle samples (P2 20, P3 73), while no sample reaches the
+user-reported 0.5 bar floor or 3 bar ceiling. `pressureLimited` is true on
+65/500 samples, versus 2894/3000 in trial 4; observed maximum absolute
+command slew is 2.0 bar/s on each channel. Controller and post-Kill
+NI-path software commands match exactly. The 5–10 s report window is a
+phi ramp, not a steady hold. Because lower bound, circle time (30 to 5 s),
+and Kd (120 to 22) changed between these runs, the improvement cannot be
+attributed uniquely to the lower bound. Actual chamber pressures remain
+unmeasured under the user's command-pressure working assumption; the
+earlier 0.8 bar deadzone estimate should not be treated as a precise
+measured threshold from this run. No code, Simulink model, analysis script,
+or hardware was changed by this inspection.
+
+## 2026-10-07 - Tuning direction from trial-6 phase-lag analysis
+
+Additional read-only analysis of trial 6 found signed theta
+reference-minus-measurement error averaging 0.3173 rad. Comparing measured
+theta against earlier desired theta values gives a best retrospective lag
+of 0.24 s: wrapped theta MAE falls from 0.3173 to 0.0692 rad. The fitted
+lag is consistent by lap (0.25, 0.24, 0.23, 0.23, 0.23 s). Applying the
+same 0.24 s *offline comparison shift* to saved desired lengths reduces
+l2/l3 RMSE from 2.765/3.062 to 0.820/1.110 mm. This demonstrates an
+effective phase offset in logged trajectories; it does not identify
+actuator, command slew, filtering, NDI timing or another cause. Commands
+reach the 2.0 bar/s slew limit in 65/499 adjacent circle intervals
+(P1/P2/P3 counts 31/24/26).
+
+Recommended tuning order in discussion: preserve Kp=3000, Kd=22 and the
+0.5 bar floor as the trial-6 baseline; repeat it for reproducibility;
+compare a slower circle with only duration changed to test speed dependence;
+then test a smoothly engaged planned-reference lead around 0.2–0.25 s if
+the apparent lag persists, advancing the full desired trajectory and its
+derivatives consistently. Evaluate remaining phi overshoot and any
+direction-dependent residual before altering damping, gravity, or stiffness.
+Do not raise Kp or pressure slew merely to chase a phase offset. No code,
+Simulink model, recording, or hardware was changed.
+
+## 2026-10-07 - Ten-second run revises the pure-delay interpretation
+
+The user reported that a new 10 s/circle run is better and asked how to
+add the proposed lead. Read-only inspection of
+`common_pressure_testing/FB_circle_phi_1rad_trial6_good_10s_0.5bar.mat`
+finds five 10 s circles from 10–60 s, logged desired phi=1 rad (although
+the currently saved `thetaCircle` block now has internal `des_phi=1.5`),
+Kp=[3000,3000], Kd=[22,22], 990/1000 valid circle samples, mean actual
+phi=0.9634 rad, phi MAE=0.0485 rad, wrapped theta MAE=0.2713 rad,
+4.978 measured turns, l2/l3 RMSE=2.3119/2.5840 mm, and only 5/1000
+pressureLimited samples. Controller and NI-path logged commands agree.
+
+A pure retrospective time shift fits 0.40 s for the 10 s run (theta MAE
+0.0767 rad) versus 0.24 s for the 5 s run, so the previous description
+of a single repeatable 0.24 s physical delay was too strong. Both runs
+instead fit a simple descriptive relation
+`theta error ~= angular offset + time coefficient*desired angular speed`:
+5 s gives offset 0.150 rad and coefficient 0.133 s; 10 s gives offset
+0.196 rad and coefficient 0.121 s. The fitted residual MAEs are
+0.047 and 0.039 rad respectively. A constant-angle offset alone gives
+MAE 0.072/0.050 rad after retrospective correction. These fits separate
+an approximately speed-dependent component from a large speed-independent
+component in the logs; they do not identify physical valve delay versus
+calibration, directional mechanics, pressure allocation, or timing.
+
+For a clean next intervention, explain a *theta-only* 0.12 s planned
+reference advance as a small one-variable test, smoothly starting just
+before circle onset and ending just before its planned end, while leaving
+phi timing, gains, floor, and pressure bounds unchanged. This will likely
+address only the speed-dependent component; evaluate a separate angular
+offset after its result. The saved model's reference block was read via
+the SLX archive and not edited. No simulation or hardware was run.
+
+## 2026-10-07 - User requests a compensator added to the controller
+
+The user clarified that manually advancing `thetaCircle` is not the intended
+implementation. The prior paste-ready reference function should be treated
+as an illustrative timing test, not the chosen architecture. The requested
+direction is an additional dynamic compensation path on top of the existing
+feedback-linearization/PD loop, leaving the nominal trajectory clock alone.
+A classical phase-lag network would not address positive tracking phase
+error; candidate architectures are bounded phase-lead feedforward or a
+predictor whose correction enters *before* pressure allocation and slew.
+For an initial two-degree-of-freedom feedforward interpretation, keep the
+original feedback error and add a desired-velocity term to virtual
+acceleration, e.g. `v_comp=v_existing+Kp*Tlead*dq_des`, equivalent to a
+first-order lead of the desired reduced-coordinate trajectory while leaving
+measured-state feedback and reference timing intact. The descriptive
+5/10 s regressions suggest a speed coefficient around 0.12–0.13 s, but
+this is not an identified actuator model or a validated gain. The large
+0.15–0.20 rad speed-independent theta offset requires separate diagnosis
+or slow trim and cannot be removed by velocity lead alone. A true model-based
+delay predictor would require identifying command-to-motion dynamics first.
+No controller, reference block, Simulink model, or hardware was changed.
+
+## 2026-10-07 - Review of proposed desired-velocity lead block
+
+The user proposed a separate MATLAB Function `feedbacklinearization(Kp,dl)`
+with `v=Kp(:)*dl*0.12`. Read-only inspection of the saved circle model shows
+its existing `feedbacklinearization(desired,e,Kd,Kp)` block still computes
+`desired(5:6)+Kd(:).*e(3:4)+Kp(:).*e(1:2)`; it must remain in the loop.
+The proposed matrix product is dimensionally invalid for two 2-vectors;
+the matching componentwise lead term is `0.12*(Kp(:).*dl(:))`, with units
+m/s^2. As a separate block, its output should be summed with the existing
+virtual acceleration before the inverse-dynamics/pressure allocation path,
+not replace the existing feedback block. If `dl` is total desired length
+velocity, the term also acts during the phi rise and return; the observed
+phi tracking is already good. A theta-only implementation should use the
+rotational component of desired length velocity, available from the
+desired theta, phi and analytic theta rate, or be gated smoothly to the
+circle. The fitted 0.12 s coefficient remains unvalidated as a controller
+gain, and feedforward pressure/command limits must be checked on a new run.
+No block, model, script, or hardware was modified.
+
+## 2026-10-07 - Six-figure common-pressure log plotter
+
+At the user's explicit request, added
+`common_pressure_testing/plotCommonPressureTracking.m` for plotting directly
+from `out`, `out.logsout`, or a MAT file containing `out`. It creates six
+figures: desired/measured theta and phi; wrapped theta and signed phi errors;
+desired/measured l1/l2/l3 with l1 constrained to -l2-l3; inverse-dynamics
+force components and requested total in both reduced coordinates; three
+commanded pressure traces; and desired/measured 3D tip-sensor XYZ. The
+desired XYZ uses the existing constant-curvature sensor-offset geometry
+[0.055,0.17411,0.05] m. Measured lengths use the current `meas_length`
+signal, and invalid NDI/configuration frames are masked rather than treated
+as fresh measurements. The script does not write files or run the model.
+MATLAB batch validation against the saved 10 s trial-6 MAT, both by path
+and by passing `out.logsout` directly, successfully created all six hidden
+figures and closed them. The experiment README and
+model-architecture inventory were updated. No controller or Simulink model
+was changed, and no NI/NDI hardware was accessed.
+
+## 2026-10-07 - Wrapped theta in the common-pressure plotter
+
+At the user's explicit request, updated only the display path of
+`plotCommonPressureTracking.m` so desired and measured theta are shown in
+[-pi,pi]. The plotting helper inserts gaps at +/-pi crossings instead of
+drawing false full-range lines. Wrapped theta tracking error, original
+desired angles used for XYZ, and the other five figures retain their
+previous meaning. Updated the experiment README. MATLAB batch validation
+on the saved 10 s trial-6 `out.logsout` created six hidden figures and
+checked that both theta traces stay within [-pi,pi] without finite
+segments crossing more than pi. No Simulink model or hardware was run.
+
+## 2026-10-07 - Concrete change points for base-orientation gravity
+
+At the user's request for an implementation plan, read-only inspection of
+`FBL_commonP_circle.slx` and the NDI reader found that the BX poll already
+returns base sensor 0A's quaternion, but the System block does not expose it
+or arm-frame gravity. In the saved circle model, active V2 inverse chart 35
+hardcodes `params.g=[0;0;-9.81]`; `forwardModel` chart 123 separately fixes
+`gArm=[0;0;-9.81]`. The forward block also retains K=1350, while the active
+inverse uses K=650, a pre-existing model mismatch independent of gravity.
+The older inverse chart 166 also hardcodes gravity but is not the active V2
+control path.
+
+Implementation sequence proposed: establish the fixed NDI-frame gravity
+direction and verify the model's physical sign in a known pose; use the
+calibrated base sensor rotation each valid poll to compute arm-frame model
+gravity; expose the three-vector and validity from the NDI System block;
+feed it to the active V2 inverse and any forward-model comparison; log the
+base attitude, gravity, validity and separate gravity force. Preserve the
+existing one-frame hold and sustained-invalid fault behavior for bad base
+poses. Validate identity and +/-90-degree rotations offline, then inspect
+NDI-only rotated static readings before a bounded controller run. Rigid
+base-sensor mounting and a fixed NDI field are required. No controller,
+Simulink model, calibration, or hardware was changed in this discussion.
+
+## 2026-10-07 - Vertical reference followed by a small hand-held tilt
+
+The user clarified that the first orientation experiment may be a hand-held
+tilt of about 10 degrees, not a prescribed 90-degree rotation, with both NDI
+sensors kept fixed on the arm. The appropriate sequence is to establish or
+confirm the original straight, still vertical calibration pose and physical
+down direction, run the reader's straight-pose preflight, then tilt the whole
+arm slowly and hold the new base orientation. The existing preflight checks
+base-relative tip pose, so rigid whole-arm rotation can still pass its pose
+criteria; it does not establish vertical. Recalibrating after each tilt would
+erase the absolute base rotation being measured. The NDI field must stay
+fixed. Because the dynamics assumes a stationary base, analysis should use
+stationary holds after each tilt rather than data during hand motion. The
+current inverse's `-Z` gravity convention still needs a static sign check
+against the vertical reference before pressure control. No controller,
+Simulink model, calibration, or hardware was changed in this discussion.
+
+## 2026-10-07 - Separate base-rotation NDI reader created
+
+At the user's request, created `AuroraReader_s2_BaseRotation.m` as a separate
+reader for the duplicated `FBL_commonP_circle_BRot.slx` experiment. It retains
+the original reader's first 19 outputs and the same paired BX poll, calibration,
+preflight and invalid-orientation behavior. Outputs 20:22 are the calibrated
+arm rotation in NDI axes (3x3), model gravity in arm axes (3x1), and a current
+base-orientation-valid flag. They use the base sensor quaternion and the
+original calibration pose via `g_NDI=cal.R_NDI_from_arm_reference *
+ReferenceGravity_arm` and `g_arm=R_NDI_from_arm' * g_NDI`. A bad base frame
+holds previous displayed rotation/gravity but clears validity; before any
+valid sample those outputs are NaN. The default reference gravity is
+`[0;0;-9.81]` to reproduce the current inverse convention, pending physical
+sign verification in a stationary known orientation. No controller or SLX
+file was changed; the new class is not yet selected in the model.
+
+Read-only MATLAB validation loaded the saved calibration and called only the
+new pure transform. A valid reference sample returned model gravity about
+[-0.0001,0.0076,-9.8100] m/s^2; a synthetic +10-degree rotation about arm X
+returned about [-0.0006,-1.6960,-9.6623] m/s^2 with norm 9.81. An invalid
+quaternion was rejected. The class constructed without calling setup, and
+Code Analyzer reported zero messages. NI and NDI hardware were not accessed.
