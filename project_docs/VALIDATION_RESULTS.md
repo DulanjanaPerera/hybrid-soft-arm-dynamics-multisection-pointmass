@@ -366,3 +366,63 @@ Historical log copied before editing with matching SHA-256
 Read-only FBL_commonP archive inspection finds both supplied feedback scripts;
 this updates the earlier old-script observation, without verifying wiring,
 compilation or recording equivalence. No experiment results were regenerated.
+
+## Dynamic Ki switch during 1.5 rad circles — 2026-10-08
+
+`StaticTest/changeKi_dynamically.mat` logs five 10 s circles at desired
+phi=1.5 rad with Kp=[3000,3000] and Kd=[42,42]. Ki changes from
+[700,700] to [0,0] at 43.31 s, inside lap 3. The base remains nearly
+vertical throughout. For a phase-matched comparison, complete laps 1-2
+(20-40 s, Ki on) and laps 4-5 (50-70 s, Ki off) were used; valid NDI/model
+counts were 389/400 and 395/400. Lengths are orientation-inferred. The
+angle error is desired minus measured, with theta wrapped to [-pi,pi].
+
+| Metric | Ki 700, 20-40 s | Ki 0, 50-70 s |
+| --- | ---: | ---: |
+| Phi signed error | +0.010 rad | +0.089 rad |
+| Phi MAE | 0.0917 rad | 0.1080 rad |
+| Phi error standard deviation | 0.111 rad | 0.083 rad |
+| Wrapped theta MAE | 0.2208 rad | 0.2194 rad |
+| l2 MAE | 2.391 mm | 2.391 mm |
+| l3 MAE | 3.030 mm | 2.976 mm |
+| l3 signed error | +0.478 mm | +1.002 mm |
+| `pressureLimited` | 1623/2000 (81%) | 115/2000 (6%) |
+
+Ki=700 substantially reduces persistent phi underbend but does not
+materially improve theta or absolute length tracking. Phi variation and
+pressure limiting increase with Ki on. Nominal pressure rails are touched
+for about 14.5% of command samples with Ki on and 5% with Ki off; the
+limited flag also includes internal correction and slew limits, so it is
+not equivalent to rail saturation. The integral state was not logged. The
+post-circle zero-reference hold occurs only with Ki off and is not a
+matched comparison. This single on-to-off trial does not establish a
+general stability margin or isolate slow drift. No model or hardware was
+run by Codex.
+
+## Integral-run fault at 123 s — 2026-10-08
+
+`integral_term/plot_data_110s.mat` records through 140.05 s and identifies
+model `FBL_commonP_circle_BRot`. The desired phi remains 1.5 rad and the
+theta reference continues past 123 s. The tip 0B validity briefly drops
+at 123.00-123.05 s, recovers, then drops again for 123.30-123.70 s;
+base 0A and base-orientation validity remain good. InverseModelValid is
+last true at 123.29 s. The controller holds [1.891,0.646,2.262] bar until
+123.39 s, begins a 2 bar/s ramp toward zero at 123.40 s, reaches all-zero
+at 124.50 s, and remains latched after NDI validity returns at 123.75 s.
+Controller and NI-path command logs match (max difference zero); the
+logged Kill state is 1. This validates the sustained-invalid command-path
+latch and recovery lockout for this user-recorded run. It does not measure
+actual chamber pressure or identify why tip tracking failed.
+
+The saved SLX StopTime is 250 s, while the inverse and integral controller
+time bounds are 220 s. No 120 s MATLAB Function time gate was found;
+the apparent stop at 123 s was the fault response.
+
+## Two-run Ki angle comparison script — 2026-10-08
+
+`integral_term/compareKiAngleErrors.m` was validated offline with
+`without_i_1rad.mat` and `withi_1rad.mat`. It generated the requested
+theta, phi, and angle-error figures on their shared 0-80 s interval.
+The logged desired references match. Kp differs (1800 versus 3000),
+while Ki differs (0 versus 300) and Kd is 42 in both runs, so these
+recordings cannot isolate the effect of Ki.

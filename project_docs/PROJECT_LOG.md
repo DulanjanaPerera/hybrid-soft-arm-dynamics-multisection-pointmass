@@ -1365,3 +1365,500 @@ new pure transform. A valid reference sample returned model gravity about
 returned about [-0.0006,-1.6960,-9.6623] m/s^2 with norm 9.81. An invalid
 quaternion was rejected. The class constructed without calling setup, and
 Code Analyzer reported zero messages. NI and NDI hardware were not accessed.
+
+## 2026-10-07 - BRot inverse gravity input wiring in progress
+
+Read-only inspection of the user-edited `FBL_commonP_circle_BRot.slx` found
+that its sensor block now selects `AuroraReader_s2_BaseRotation` and its active
+V2 inverse already accepts a fifth input named `gravity` and assigns
+`params.g=gravity`. The remaining code change is to add the reader's output
+22 (`baseOrientationValid`) as a sixth inverse input and require it, along
+with finite gravity, in `inputValid`. This retains the inverse's existing
+brief invalid-frame hold and sustained-invalid latch behavior. The forward
+comparison block still has fixed gravity and is a separate later change.
+No SLX or controller block was edited in this inspection.
+
+## 2026-10-07 - BRot timing does not yet reserve ten seconds for base tilt
+
+The user plans to complete NDI preflight, then hand-rotate the whole arm over
+ten seconds before the circle. Read-only inspection of the saved BRot model
+found that preflight occurs in reader setup before simulation t=0, but the
+current reference begins its phi ramp at t=5 s and starts circles at t=10 s.
+The active V2 inverse can command baseline/common pressure from t=0, blends
+feedback over t=0..5 s, and captures its static-force anchor on the first
+valid sample. Thus t=0..10 is not a pressure-free orientation setup window,
+and the anchor may reflect the original vertical pose rather than the final
+tilted pose. A cleaner experiment needs a separate initial tilt/hold window,
+delayed pressure/controller engagement and post-tilt force anchoring, then
+the phi ramp and circle. During hand motion, the stationary-base dynamics
+do not apply. No model or controller code was changed in this review.
+
+## 2026-10-07 - Initial BRot test had no calibration file
+
+Read-only inspection of `BaseRotation/initial_test.mat` and the saved
+`FBL_commonP_circle_BRot.slx` diagnosed zero pressure output. The new
+MATLAB System sensor block selects `AuroraReader_s2_BaseRotation` but has no
+`CalibrationFile` setting, so the reader skips preflight and cannot compute
+calibrated orientation or base gravity. Across 2,675 sensor polls (0..133.7 s),
+both `orientationValid` and logged `baseOreintationValid` were always false;
+all `gravity_arm` entries and `phiOrientation` were NaN. Consequently
+`inverseModelValid` was always false and `pressureCommand_bar` plus all three
+NI-path command logs were identically zero. Raw paired `sensorValid` was true
+throughout, so this is a missing calibration configuration rather than a
+missing NDI acquisition. The user identified the omitted calibration path.
+The BRot sensor block also has `Simulate using: Code generation`, whereas
+the earlier working circle model uses `Interpreted execution`; restore the
+earlier setting when enabling the calibration-dependent preflight path.
+The existing saved calibration is
+`ndi_orientation_recordings/calibration_20260930_190505_898.mat`; its physical
+vertical reference must be confirmed before using rotated gravity in control.
+No sensor code, SLX, data, or hardware was changed in this review.
+
+## 2026-10-07 - Sudden BRot movement triggered the latched NDI fault
+
+Read-only analysis of `BaseRotation/sudden_movement_test.mat` found normal
+pressure commands through 32.30 s. At 32.35, 32.40 and 32.45 s the tip
+sensor's paired-valid flag was false while the base sensor and base-orientation
+flags stayed true; `orientationValid` was false for those three polls and once
+more at 32.65 s. The active inverse held its last command for 0.10 s, then
+latched its sustained-invalid fault at 32.45 s because the last good model
+sample was 32.30 s. Pressure ramped down at the configured 2 bar/s and all
+three channels reached zero by 33.50 s. Tip orientation returned valid at
+32.50 s and was valid for every sample after 34 s, but `inverseModelValid`
+remained false because the latch resets only on simulation restart. The
+three logged NI-path commands exactly matched controller commands; Kill did
+not toggle until 57.51 s. Thus the pressure drop is the designed response
+to a 0.15 s tip-pose dropout, not a gravity-vector failure or NI mismatch.
+The gravity vector remained finite. The hand movement occurred during the
+circle, while the stationary-base dynamics is not valid. Potential follow-up
+is to test a modestly longer dropout grace interval or explicit valid-pose
+recovery policy, but only after deciding acceptable hold/fault behavior for
+the physical actuator. No model, code, recording, or hardware was changed.
+
+## 2026-10-07 - Intermittent preflight paired-pose failures
+
+The user reported repeated preflight counts around 88, 65, 55, 16, 0 and 55
+out of 100, making startup unreliable. The current five-second preflight
+requires at least 90% accepted paired samples. Each accepted sample requires
+both sensors' usable positions and valid scalar-first quaternions, finite XYZ,
+equal current frame numbers and no repeated frame for either sensor. This
+quality gate runs before the bend, twist, position and stillness checks, so
+low paired counts do not diagnose a calibration or gravity-sign mismatch.
+The reader calls `startTracking`, waits only 0.1 s, then begins capture.
+The successful `sudden_movement_test.mat` had 100% valid paired poses in its
+first 20 simulation seconds after preflight, which makes startup settling a
+plausible contributor but cannot explain every failed attempt without raw
+capture data. A low individual `valid [base tip]` count points to sensor
+tracking/field/connection quality; near-100 individual counts but low paired
+count points to frame synchronization, repeated frames or quaternion rejection.
+Recommended diagnostic change, if requested, is a bounded warm-up until
+consecutive valid paired poses precede the scored five-second capture, plus
+failure reason counts and retained failed capture. The pass threshold should
+not simply be lowered to hide invalid measurement. No code or hardware was
+changed in this discussion.
+
+## 2026-10-07 - Full preflight lines isolate base sensor 0A
+
+The user supplied four complete failed preflight reports: `valid [0 100],
+paired 0/100`; `[20 100], paired 20/100`; `[0 100], paired 0/100`; and
+`[44 100], paired 44/100`. Thus tip sensor 0B was valid throughout, and the
+paired count exactly equals the base 0A valid count on every attempt. Median
+poll intervals were about 0.051-0.056 s with zero or one overrun, and endpoint
+frame numbers matched. This revises the earlier broad startup/pairing
+hypothesis: base sensor 0A usability is the bottleneck; frame pairing and
+quaternion rejection are not causing additional losses in these reports.
+`AuroraDriver_2.measureTipPositionAll` uses `PortHandle.hasUsablePosition`,
+which rejects missing/disabled status, out-of-volume or partial-out-of-volume
+flags, sensor-broken flag or nonfinite position. The current preflight summary
+does not distinguish these reasons. A bounded warm-up alone cannot resolve a
+run with 0A invalid for all 100 samples. Compare live 0A status in NDI
+ToolBox or add per-reason diagnostics while keeping the arm still and pressure
+off; check base-sensor location within the tracking volume and its cable and
+connector. The earlier successful movement MAT had valid base tracking
+throughout, so this is intermittent rather than a permanent inability to read
+0A. No code or hardware was changed in this analysis.
+
+## 2026-10-07 - BRot preflight warm-up increased to one second
+
+The user confirmed that Cygna 6D detects both sensors and explicitly asked
+to increase startup warm-up. In `AuroraReader_s2_BaseRotation.m` only, changed
+the pause after `startTracking()` and before the scored preflight capture from
+0.1 s to 1.0 s. The five-second preflight sample count, 90% paired-validity
+criterion, calibration and controller were left unchanged. This tests whether
+startup settling contributes to intermittent base-sensor 0A invalidity; it
+does not establish the reason for runs where 0A remains invalid for all 100
+samples. No NDI or NI hardware was run by Codex.
+
+## 2026-10-07 - Field-generator movement can evade relative-pose preflight
+
+The user asked whether accidentally moving the NDI magnetic field generator
+between runs can leave preflight unchanged. The current preflight checks paired
+tracking quality and base-relative tip orientation/position; a rigid rotation
+of the NDI coordinate frame cancels from those relative quantities and can
+therefore pass preflight. `AuroraReader_s2_BaseRotation` instead constructs a
+fixed `gravity_NDI` from the original calibration's
+`R_NDI_from_arm_reference` and `ReferenceGravity_arm`, then transforms it
+with the current base attitude. If the generator rotates after that reference
+was established, this gravity direction is stale even when preflight passes.
+A near-pure translation with unchanged generator orientation preserves the
+gravity direction ideally, but may change tracking volume and quality.
+Therefore keep the field generator fixed after establishing the vertical
+reference; if its orientation may have changed, restore its recorded pose or
+redo the known-vertical reference/calibration and verify arm-frame gravity
+before pressure control. No code, model, or hardware was changed.
+
+## 2026-10-07 - Quadruped leg trajectory identified for BRot reference
+
+The user reported that the one-second NDI startup warm-up worked and asked
+for a replacement `thetaCircle` MATLAB Function block that replays
+`Quadruped_leg/Natha_quad_leg_1.mat` after the existing ten-second base
+rotation and five-second pressure-trim windows. Read-only MAT inspection
+found `t` as 860 monotonically increasing samples over 0..40 s at about
+0.046566 s spacing and `leg1_config` as a finite 2x860 matrix. Row 1 ranges
+-0.08834..0.07718 rad and is interpreted as theta; row 2 ranges
+0.00075..1.70604 rad and is interpreted as phi. The trajectory includes its
+own stand-up rise, so no extra phi ramp should precede it. Proposed block
+behavior: zero reference until 15 s, then linearly interpolate the original
+samples once, and hold the last recorded pose after 55 s rather than
+repeating stand-up or jumping to zero. Local MATLAB `coder.load` successfully
+read the file; model and hardware were not modified or run.
+
+## 2026-10-07 - Initial quadruped gait: baseline pressure and tracking
+
+Read-only analysis of `Quadruped_leg/initial_test.mat` found that the saved
+reference starts at 15 s, reaches a desired phi peak of 1.706 rad, plays the
+40 s leg trajectory once, then holds phi about 0.791 rad after 55 s. During
+the 20-55 s gait, measured phi stayed roughly 0.15-0.22 rad below desired;
+for example, the 25-35 s mean error was 0.170 rad and the 45-55 s mean error
+was 0.149 rad. After the reference decreased and held, the sign reversed:
+over 60-63.5 s measured phi averaged 0.934 rad, about 0.143 rad above the
+desired 0.791 rad. The dominant desired phi oscillation was about 0.28 Hz;
+a descriptive alignment suggests roughly 0.25 s tracking lag and measured
+oscillation amplitude about 42% of the desired amplitude. These observations
+are consistent with limited dynamic tracking plus direction-dependent
+offset; frequency alone does not explain the persistent and reversed errors.
+
+The common-pressure controller commands a mean of 1.6 bar across the three
+channels during the gait. P1/P2/P3 averaged about 0.472/2.223/2.106 bar,
+respectively. P2 and P3 provide the main positive bending differentials
+relative to P1. P1 was commanded at or below 0.8 bar for 697 of 700 gait
+samples; P2 and P3 stayed below 2.53 and 2.33 bar. The pressure-limited flag
+was set for only 1 of 700 gait samples, so sustained saturation at the upper
+pressure rail was not observed. Uniformly raising all three pressures would
+not change the ideal modeled differential bending force; it changes operating
+point and available headroom. Because there is no chamber pressure sensor,
+these values are commanded pressures, not verified chamber pressures.
+
+In the active inverse block, a captured model-force anchor and empirical
+pressure trim produce a near-constant difference between logged desired and
+available generalized forces of about [0.83, 3.21] N during the gait
+(equivalent to [0.063, 0.242] bar in the two differential channels). This is
+the expected algebraic result of the anchor/trim mapping, not evidence of
+pressure rail saturation. It may contribute to steady tracking bias but does
+not by itself identify the physical cause. A controlled next test is to
+replay the same trajectory at half speed while keeping trim, gains and
+pressure bounds fixed, then compare both the oscillatory and steady errors;
+the existing 10 s rotation and 5 s trim windows should remain unchanged.
+No controller, model, or hardware was changed during this analysis.
+
+## 2026-10-07 - Half-speed quadruped replay plan
+
+For the controlled tracking comparison, keep the original 0-40 s gait data
+and evaluate it at trajectory time `(t-15)/2` instead of `t-15`. This keeps
+the 10 s rotation and 5 s trim windows, replays stand-up and gait over
+simulation time 15-95 s, then holds the final pose. Set simulation Stop Time
+later than 95 s to observe the final hold, without changing the controller's
+220 s timeout or the pressure configuration. The saved BRot SLX still
+contains an older circle-reference block rather than the gait playback code
+used for the reported MAT run, so the user should save the correct gait
+model before relying on a repeat run. No model or controller code was edited.
+
+## 2026-10-07 - Half-speed gait with mid-run base rotation
+
+Read-only analysis of `Quadruped_leg/testing2_rotate_arm_in_middle.mat`
+confirmed the half-speed 15-95 s gait. With the arm initially down, the
+45-60 s interval had mean desired/measured phi 1.567/1.408 rad, mean absolute
+phi error 0.159 rad, and mean commanded P2-P1/P3-P1 differences
+1.71/1.63 bar. This steady underbend is similar to the 0.149 rad error
+observed near the end of the original-speed vertical run, so halving speed
+did not remove the principal offset. The arm-frame gravity vector changed
+from approximately [0,0,-9.81] to [-9.8,0,0] m/s^2 around 67-75 s,
+corresponding to the user's rotation with base X pointing downward.
+
+Once nearly horizontal (77-92 s), mean desired/measured phi was
+1.560/1.575 rad, mean absolute phi error 0.061 rad, and commanded
+P2-P1/P3-P1 differences fell to 1.27/1.12 bar. This is strong evidence
+that gravity assisted bending in the theta≈0 direction: phi reached the
+reference with roughly 0.44/0.51 bar less differential pressure, although
+those pressure differences are not a direct measurement of gravity torque.
+Pressure limiting was absent in both matched intervals, and model and
+orientation validity were complete. The logs show commanded pressure,
+not chamber pressure. The result supports a load-dependent vertical force
+deficit rather than frequency alone; it does not isolate gravity-model,
+pressure-force, stiffness, hysteresis or trim errors. During the final
+0.791 rad hold while horizontal (95-105 s), measured phi averaged 1.001 rad,
+indicating an opposite-sign unloading offset. A controlled next comparison
+would hold the same theta=0, phi≈1.55 rad reference at vertical and
+horizontal orientations, with adequate settling, then inspect pressure
+differences and tracking errors. No model, controller, or hardware was
+changed during the analysis.
+
+## 2026-10-08 - Proposed bounded integral of length error
+
+The user asked how to add integral action to `computeLengthError`. The
+proposed first implementation adds Clock time `t` and a fourth output
+`iel = integral(des_l(1:2)-meas_l(1:2)) dt` in m*s. A persistent accumulator
+uses actual elapsed time, resets on a new simulation and outside the
+20-220 s feedback window, pauses on invalid measurements, and is bounded
+per channel. The acceleration command must then include `Ki.*iel`; merely
+computing or logging `iel` cannot affect pressure. The current saved
+`feedbacklinearization` block also includes an acceleration-error term
+`[100;100].*e(5:6)`, which should be retained when adding the integral.
+Log `iel` and pressure limiting during trials; the simple accumulator cap
+limits wind-up but does not replace pressure-aware anti-windup if sustained
+saturation occurs. No model, controller code, or hardware was changed.
+
+## 2026-10-08 - User reports integral action removed steady-state error
+
+The user added the integral of length error to the desired-acceleration
+command in their Simulink controller and reports that the steady-state
+tracking error disappeared. This is consistent with a bounded integral
+supplying a persistent correction that pure PD feedback cannot provide in
+the presence of model or actuator bias. The result is user-reported; no new
+MAT recording, gain value, integral trace, pressure command, or saturation
+log was supplied for independent verification. The next saved run should
+compare vertical and rotated-base holds, check settling and overshoot,
+and inspect the integral state together with pressure limits, especially
+through reference reversals and invalid sensor samples. The result does
+not by itself identify whether gravity, stiffness, trim, or pressure-force
+mapping caused the original bias. Codex did not edit or run the model.
+
+## 2026-10-08 - Stability implications of added integral action
+
+The user asked whether integral error feedback violates the controller's
+inherent stability. In the ideal, exactly feedback-linearized, unsaturated
+per-coordinate model, with error `e = q_des-q` and `z_dot=e`, the law
+`v=qdd_des+Kd*edot+Kp*e+Ki*z` yields the characteristic polynomial
+`s^3+Kd*s^2+Kp*s+Ki`. Positive gains with `Kd*Kp>Ki` satisfy the cubic
+Routh-Hurwitz condition, so integral action does not inherently destabilize
+the ideal loop. The saved feedback block also has acceleration-error gain
+`Ka=100`; if that signal is an instantaneous exact acceleration error, the
+idealized polynomial becomes `(1+Ka)*s^3+Kd*s^2+Kp*s+Ki` and the condition
+becomes `Kd*Kp>(1+Ka)*Ki`. This is only a nominal calculation: the actual
+acceleration estimate is filtered, and NDI sampling, valve dynamics,
+pressure rails/deadzone, changing orientation and model mismatch invalidate
+the exact-cancellation assumption. The old PD proof cannot simply be reused
+for the augmented integrator state. A bounded integrator protects against
+unlimited accumulation but is not complete pressure-aware anti-windup.
+The user's latest unsaved gains/integral implementation and run data were
+not available, so no stability margin was claimed. No controller or model
+code was changed.
+
+## 2026-10-08 - Dynamic Ki switch test: phi bias improves, limiting increases
+
+Read-only analysis of `StaticTest/changeKi_dynamically.mat` found Ki logged
+as [700,700] until 43.31 s and [0,0] thereafter; Kp=[3000,3000] and
+Kd=[42,42] stayed fixed, and arm-frame gravity remained nearly
+[0,0,-9.81] m/s^2. The reference was five 10 s circles at phi=1.5 rad,
+not a static hold. The switch occurred within the third circle, so complete
+laps 20-40 s (Ki on) and 50-70 s (Ki off) were compared; the mixed 40-50 s
+lap was excluded. Valid NDI/model samples were 389/400 and 395/400.
+
+With Ki on/off respectively: phi signed desired-minus-measured bias was
++0.010/+0.089 rad, phi MAE 0.0917/0.1080 rad, and phi error standard
+deviation 0.111/0.083 rad. Wrapped theta MAE was 0.221/0.219 rad.
+Length MAE was l2 2.391/2.391 mm and l3 3.030/2.976 mm; signed l3 bias
+was +0.478/+1.002 mm. Thus Ki=700 substantially reduced the systematic
+phi underbend but did not meaningfully improve theta or absolute length
+tracking, and phi error varied more with Ki on. The pressureLimited flag
+was true for 1623/2000 (81%) 0.01 s samples with Ki on versus 115/2000
+(6%) with Ki off. About 14.5% versus 5% of those respective command
+samples touched the nominal 0.2 or 3.0 bar rail; the limited flag also
+includes internal correction/rate limiting. No integral state was logged,
+so windup cannot be assessed directly. After the circle ends, the desired
+phi is zero but Ki remains off; the measured phi settles near 0.14 rad,
+which has no matched Ki-on zero-reference period. One on-to-off switch
+cannot fully separate Ki effect from drift, though the reference and base
+orientation were stable over the matched laps. No model, controller or
+hardware was changed in this analysis.
+
+## 2026-10-08 - Apparent stop at 123 s was a latched tip-sensor fault
+
+Read-only inspection of `integral_term/plot_data_110s.mat` found that the
+recording actually runs to 140.05 s, with the desired phi=1.5 rad and
+theta trajectory continuing past 123 s. The logged model is
+`FBL_commonP_circle_BRot`. Tip sensor 0B became invalid at 123.00-123.05 s
+and recovered at 123.10 s; the controller held its command during this
+brief outage. A second 0B dropout began at 123.30 s and lasted through
+123.70 s. Base sensor 0A and base-orientation validity remained good;
+orientation/configuration validity and inverseModelValid fell with 0B.
+The last inverse-model-valid sample was 123.29 s. Pressure held at
+[1.891,0.646,2.262] bar through 123.39 s, began venting at 123.40 s,
+reached all zero at 124.50 s, and stayed zero even after NDI validity
+returned at 123.75 s. This matches the saved inverse block's rule: hold a
+short invalid period, then latch a fault after more than 0.10 s and slew
+commands to zero at 2 bar/s until simulation restart. Logged controller
+and post-Kill NI-path commands match exactly; the Kill signal is 1.
+
+The saved model configuration has StopTime=250 s. Its active inverse
+pressure branch is enabled until 220 s, and its integral block also stops
+at 220 s. No 120 s time cutoff was found in the inspected MATLAB Function
+scripts. The observed cessation at 123 s is therefore sensor-triggered,
+not a programmed 120 s limit. Frame counters continued increasing, and
+0B validity later recovered; this log does not explain the physical cause
+of the intermittent 0B loss. Chamber pressure was not measured. No
+controller/model code or hardware was changed by Codex.
+
+## 2026-10-08 - Proposed 10 cm square task-space reference
+
+At the user's request, prepared a paste-ready MATLAB Function reference
+block for an arm-frame X-Y square with vertices (+/-0.05,+/-0.05) m in
+tip-sensor coordinates. The fixed-backbone, constant-curvature geometry
+determines Z along the path; a fixed-Z Cartesian square would generally
+be infeasible. The block uses the same 55 mm base-sensor offset, 174.11 mm
+module length and 50 mm tip-sensor offset as
+`f20260219_2_task2config_withLenExt.m`, but inverts the radial mapping
+with a fixed-iteration bisection instead of running its fit at every
+control sample. An edge midpoint has rho=0.050 m, phi=0.370571 rad and
+Z=0.271758 m; a corner has rho=0.070711 m, phi=0.532940 rad and
+Z=0.264050 m. Both points were checked by the existing task-to-config
+function with numerical fit residual approximately zero.
+
+The proposed default sequence retains 10 s base rotation and 5 s trim,
+approaches the first corner over 10 s, holds there 5 s, traces one square
+over 40 s (10 s per side with smooth starts/stops), and returns straight
+over 10 s. The path ends at 80 s. Theta is unwrapped across all four
+sides so the desired-length derivatives do not see +/-pi jumps. The
+proposed third output logs desired XYZ for direct comparison with NDI
+position; the first two outputs retain desired theta and phi. This is a
+proposal to paste into the user's model; Codex did not edit or run the
+Simulink model or hardware.
+
+## 2026-10-08 - Reusable two-run Ki angle comparison
+
+Added `integral_term/compareKiAngleErrors.m`. It accepts two MAT file paths
+containing `out.logsout` and opens three figures: desired and measured theta
+for both runs, desired and measured phi for both runs, and overlaid theta/phi
+errors. Theta traces and errors are wrapped to [-pi,pi]. Invalid NDI
+orientation samples are omitted, and measured theta is omitted when the
+bending-plane angle is unobservable. The function plots only the shared
+time interval, warns if references or non-Ki gains differ, prints logged
+Kp/Kd/Ki, and writes no files.
+
+Offline MATLAB validation with `integral_term/without_i_1rad.mat` and
+`integral_term/withi_1rad.mat` produced all three figures over 0-80 s;
+the desired references match. The no-Ki recording has Kp=[1800,1800],
+Kd=[42,42], Ki=[0,0]; the Ki recording has Kp=[3000,3000], Kd=[42,42],
+Ki=[300,300]. Their performance difference therefore cannot be assigned
+to Ki alone. No Simulink model or hardware was run or edited.
+
+## 2026-10-08 - Square-run plotter uses logged XYZ
+
+Added `square/plotSquareTracking.m`, a wrapper around the existing six-figure
+common-pressure tracking plotter. Its sixth figure uses logged
+`des_position` and `meas_position` directly instead of rebuilding desired
+tip XYZ from theta/phi. The two XYZ signals retain their logged sample rates;
+measured samples with invalid configuration are omitted. MATLAB's 3D
+rotation control is enabled. `square/README.md` documents usage.
+
+Offline MATLAB validation on user-recorded `square/initial_test.mat`
+produced all six figures and confirmed the 3D desired trace matches the
+22,646 logged `des_position` samples. The measured trace contains 4,530
+logged samples before validity masking. No Simulink model or hardware was
+run or edited.
+
+## 2026-10-08 - Common-pressure derivation and current implementation review
+
+For the user's mathematical explanation, rechecked the active inverse chart
+in saved `FBL_commonP_circle_BRot.slx` and the integral/virtual-acceleration
+charts. With `l1+l2+l3=0`, virtual work gives reduced force
+`tau=[F2-F1;F3-F1]`; under equal active pressure-force gains
+`f=pi*(0.0065)^2*1e5=13.2732 N/bar`, common pressure along [1;1;1]
+does not change the ideal reduced force. The implemented fixed-mean map is
+`p=[c-2s/3;c+s/3-a;c+s/3+a]`, where `c=1.6` bar and empirical
+`s0=-0.098398`, `a0=-0.081982` bar produce trial-4 trim
+`[1.6656,1.6492,1.4852]` bar. The inverse computes
+`tau_des=M*v+(C+D)*dq+G+Keff*q`, captures the static model force
+`tau_anchor=G+Keff*q` once after trim, then maps
+`deltaTau=tau_des-tau_anchor` to
+`ds=(deltaTau_1+deltaTau_2)/(2f)` and
+`da=(deltaTau_2-deltaTau_1)/(2f)` before adding them to s0/a0.
+
+The current saved base-rotation chart blends feedback from 15-20 s,
+clamps `ds,da` to +/-2.5 bar, clips each command to 0.2-3 bar, slews at
+2 bar/s, and vents after 220 s. The integral chart accumulates length
+error only from 20-220 s. These values supersede the older standalone V2
+source's +/-0.04 bar, 1.2-3 bar, 0.8 bar/s, and 50 s engagement settings.
+The present 0.2 bar floor does not guarantee all chambers remain above
+the estimated 0.8 bar deadzone; once a channel falls below activation,
+`f*[p2-p1;p3-p1]` is no longer a reliable delivered-force estimate.
+The empirical trim also means logged absolute `tauAvailable_N` is not
+directly comparable with `tauDesired_N`; the intended mapping is local
+and incremental. This was a read-only review; no controller, model, or
+hardware was changed.
+
+## 2026-10-08 - Literature context for common pressure, integral feedback, and rotating gravity
+
+Literature search found a close combined precedent: Pilch et al., *Mechatronics*
+115 (2026), 103462, DOI 10.1016/j.mechatronics.2026.103462, use a dynamic
+model of an inextensible pneumatic continuum manipulator, PID feedback, and a
+mean-pressure offset in their pressure allocation. Their stated reason for
+mean pressure is faster simultaneous pressurization/depressurization, not
+specifically avoidance of a measured activation threshold. Martens et al.,
+*Actuators* 7 (2018), 82, DOI 10.3390/act7040082, use mean pressure in
+antagonistic PAMs and choose it to keep both muscles generating force. Wang
+et al., *IEEE/ASME Transactions on Mechatronics* 26 (2021), 777-788, DOI
+10.1109/TMECH.2020.2999847, implement computed-torque feedback
+linearization with an outer PID, including an integral of position error,
+on a pneumatic OctArm. Lai et al., *International Journal of Robotics
+Research* (2026), DOI 10.1177/02783649261416061, update gravity direction
+from base orientation for a portable soft slender robot, though their
+actuation and compensation method differ from ours. Thus the three broad
+ideas have prior art; a specific contribution would require controlled
+evidence for threshold-aware pressure allocation, integral feedback, and
+rotated gravity compensation together on this module. The present saved
+0.2-3 bar command clip does not enforce the roughly 0.8 bar actuator
+activation threshold. Command logs are not chamber-pressure measurements.
+No controller, model, or hardware was changed for this literature review.
+
+## 2026-10-08 - Proposed payload identification and compensation experiments
+
+Discussed adding a tip payload and estimating its mass from the additional
+quasi-static effort relative to unloaded measurements at matched measured
+configurations. A point load maps through the attachment-point translational
+Jacobian: `tau_external=Jv(q)'*(m*g_arm)`; the additional actuator effort
+to balance that applied load has the opposite sign. A rigid payload with
+offset CoM additionally transmits a moment, and moving payloads add inertia;
+a hanging weight behaves as a vertical point force only while sufficiently
+settled. Identification must distinguish payload effects from stiffness,
+hysteresis, pressure-map error, and integral-controller effort. A planar
+0-to-45-degree ramp can calibrate a scalar mass if adequately excited, but
+held-out bending planes and base orientations are needed for validation.
+Recommended comparison is PID inverse dynamics versus the same controller
+with payload feedforward, retaining identical gains and reporting tracking,
+transients, saturation, and integral effort across multiple masses/repeats.
+Prior art includes Chen et al. (2021), DOI 10.3389/frobt.2020.586490,
+on external load estimation of a soft arm including pressure-deadzone effects.
+Payload compensation alone does not establish novelty; RA-L fit requires a
+clear innovative robotics contribution, while T-ASE benefits from a concrete
+automation task and reliability evidence. No controller/model code changed.
+
+## 2026-10-08 - Adaptive-control discussion and branch checkpoint
+
+Discussed retaining feedback gains across payloads when the dynamics model
+accounts for payload gravity and, at higher speeds, inertia. A future
+passivity-based adaptive controller could estimate payload mass and selected
+stiffness/damping parameters while feedback gains remain fixed; improvement
+over the existing integral controller is unverified. Pressure limitations,
+hysteresis, and pneumatic dynamics must be considered separately. No PAC
+implementation was requested or made.
+
+At the user's request, prepared a local checkpoint on
+`codex/common-pressure-testing` from HEAD `ddc3f08`. Included the saved
+base-rotation model, analysis/plot runners, Ki comparison and square plotter,
+project documentation, and 24 MAT recordings in BaseRotation, Quadruped_leg,
+StaticTest, circle, integral_term, and square (73,008,444 bytes total).
+Checked Git whitespace and that the saved SLX archive contains its block
+diagram. This is an archival checkpoint, not a new model or hardware
+validation. No simulation or hardware was run. A new branch has not yet
+been created; this checkpoint provides its starting point.

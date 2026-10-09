@@ -1,5 +1,5 @@
-Last Updated: 2026-10-07
-Current Milestone: 1 rad circle undertracking with lower-rail and symmetric-correction limits
+Last Updated: 2026-10-08
+Current Milestone: Evaluate integral feedback against pressure limits and angle/length tracking
 
 # Current project state
 
@@ -85,7 +85,42 @@ and recording. No controller/model/code was changed by this migration.
 
 ## Latest circle result and current task
 
-The latest inspected recording,
+The latest inspected Ki comparison is
+`StaticTest/changeKi_dynamically.mat`: Ki=[700,700] through 43.31 s,
+then [0,0], while Kp=3000 and Kd=42 stay fixed. The reference is five
+10 s circles at phi=1.5 rad, so the switch occurs during lap 3 rather
+than during a static hold. Comparing complete on laps 20-40 s with off
+laps 50-70 s, phi signed error worsens from +0.010 to +0.089 rad and
+phi MAE from 0.0917 to 0.1080 rad after Ki is disabled. Wrapped theta
+MAE stays about 0.22 rad and l2/l3 MAE about 2.4/3.0 mm. With Ki on,
+phi error varies more and `pressureLimited` is true for 81% of command
+samples versus 6% after Ki is disabled. The integral state is not logged.
+This supports integral correction of systematic phi underbend but leaves
+tracking tradeoffs and pressure-aware anti-windup unresolved. The saved
+BRot model inspected by Codex still lacks the user's running Ki/gait edits;
+use MAT logs to identify tested settings. Detailed results are in
+[VALIDATION_RESULTS.md](VALIDATION_RESULTS.md).
+
+In a later user-recorded `integral_term/plot_data_110s.mat` run, pressure
+ceased around 123 s because tip sensor 0B stayed invalid for about 0.45 s,
+tripping the inverse controller's >0.10 s latched-fault path. Commands
+ramped to zero and did not resume when tracking recovered. The reference
+continued; the saved model StopTime is 250 s and the active inverse/integral
+time bounds are 220 s, with no inspected 120 s cutoff. See
+[VALIDATION_RESULTS.md](VALIDATION_RESULTS.md) and [OPEN_ISSUES.md](OPEN_ISSUES.md).
+
+A 10 cm X-Y square reference was proposed with Z following fixed-backbone
+geometry, a 15-25 s corner approach, 25-30 s hold, and laps beginning at
+30 s. The user has since saved `square/initial_test.mat`, which contains
+logged `des_position` and `meas_position` XYZ. The new
+`square/plotSquareTracking.m` opens the six tracking figures and uses those
+logged signals directly in its 3D figure. Its offline plotting check passed;
+square tracking performance has not yet been evaluated. Codex did not edit
+or run the Simulink model.
+
+The earlier circle baseline remains relevant:
+
+An earlier inspected recording,
 `FB_circle_phi_1rad_trial6_good_5s_0.5bar.mat`, logs five 5 s circles at
 desired phi=1 rad with Kp=[3000,3000], Kd=[22,22] and a user-reported
 0.5 bar active command floor. Mean measured phi=0.9883 rad, phi MAE=0.0485
@@ -155,8 +190,9 @@ lengths near straight. Full figures and the earlier V1 fault history are in
 
 ## Open issues
 
-1. V2 single-invalid-frame command hold is recorded; sustained-invalid fault
-   latch and actual chamber pressure remain unverified physically.
+1. V2 brief-invalid hold and sustained-invalid fault latch are recorded in
+   command-path logs; tip 0B intermittently dropped out, and actual chamber
+   pressure remains unmeasured.
 2. Circle bend undertracking, especially l3, plus residual small-step error,
    trim drift and history dependence.
 3. Visually observed local buckle is outside the tip-only/two-coordinate model;
@@ -191,8 +227,12 @@ Details, attempted approaches, and next actions: [OPEN_ISSUES.md](OPEN_ISSUES.md
 
 ## Next steps
 
-For the 1 rad test, separate lower-pressure clipping, +/-1 bar symmetric
-correction clamping, and direction-dependent response before changing gains.
+For the current integral controller, compare repeated matched circle or
+fixed-pose trials at lower and higher Ki, log the integral state, and separate
+the cause of `pressureLimited` before increasing gain. Check reversal and
+zero-reference recovery; implement pressure-aware anti-windup if saturation
+persists. For the earlier 1 rad test, separate lower-pressure clipping,
++/-1 bar symmetric correction clamping, and direction-dependent response.
 An offline allocation review can test whether a higher common command would
 preserve requested differential pressure within 1.2–3 bar; this is not a
 validated physical operating point because common pressure changes prestress
@@ -200,8 +240,7 @@ and the known local buckle. A measured fixed-theta 1 rad hold, if later
 chosen, would distinguish static bend capability from circle-motion lag.
 Retain the earlier V2 one-frame fault result, and verify its sustained-fault
 path separately. Assess tip-only buckle limits and near-straight theta
-observability when comparing trials. Consider bounded integral/disturbance/trim
-correction only after evidence and explicit implementation direction. NMPC
+observability when comparing trials. NMPC
 remains a later candidate pending held-out recursive predictor validation.
 
 ## Documentation maintenance

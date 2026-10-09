@@ -115,6 +115,7 @@ An ordinary hardware-bearing Simulink run may open both serial and NI hardware.
 | `planar_stiffness_test/` | P1 static fits, PCHIP evaluator and paste-ready block |
 | `feedbacklinearization_tests/` | Hardware/circle recordings and seven-group plot utility |
 | `common_pressure_testing/` | Pressure protocols, trim/feedback sources, recordings and offline analyses, including `analyzeCommonPressureCircle.m` for compact reports and `plotCommonPressureTracking.m` for six logged-run figures |
+| `square/` | Square-trajectory recordings and `plotSquareTracking.m`, which uses logged desired/measured XYZ in the 3D figure |
 | `ndi_orientation_recordings/` | Calibration raw poses and fitted references |
 | `project_docs/` | Current state, history, decisions, evidence, issues and reusable theory |
 

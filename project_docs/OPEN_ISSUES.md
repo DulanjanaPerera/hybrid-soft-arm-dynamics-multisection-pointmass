@@ -1,6 +1,6 @@
 # Active unresolved issues
 
-Current as of 2026-10-07. Resolutions belong in the log and relevant results or
+Current as of 2026-10-08. Resolutions belong in the log and relevant results or
 decisions; remove resolved items here. Prior code edits require explicit direction.
 
 ## OI-01 — Invalid-input pressure discontinuity
@@ -15,10 +15,14 @@ decisions; remove resolved items here. Prior code edits require explicit directi
   slews to zero at 0.8 bar/s. Offline MATLAB fault injection passed.
 - Status/action: the October 7 higher-gain run logged one invalid frame at
   22.00 s; controller pressure and post-Kill NI command both held the previous
-  trim, and the next valid frame resumed without a step. The transient
-  command-path fault is verified for this one case. Persistent-invalid latch,
-  unusable Clock exception, and actual chamber-pressure response remain
-  untested physically; retain the physical Kill path.
+  trim, and the next valid frame resumed without a step. The October 8
+  `integral_term/plot_data_110s.mat` run additionally logged a 0.45 s tip-0B
+  dropout beginning 123.30 s. After the 0.10 s grace period, the controller
+  latched the fault, slewed to zero at 2 bar/s, and stayed off when tracking
+  returned. The transient hold and sustained-invalid command-path latch
+  are now observed in user-recorded runs. The intermittent tip-tracking
+  cause, unusable Clock exception, and actual chamber-pressure response
+  remain unresolved; retain the physical Kill path.
 
 ## OI-02 — Persistent tracking error and imperfect trim
 
@@ -63,6 +67,13 @@ decisions; remove resolved items here. Prior code edits require explicit directi
   a 0.15–0.20 rad offset plus a 0.12–0.13 s speed coefficient; neither
   regression identifies the physical cause. Test timing lead separately
   from a later angular offset rather than assuming a fixed 0.24 s delay.
+- In `StaticTest/changeKi_dynamically.mat`, Ki=[700,700] for complete
+  20-40 s laps and Ki=[0,0] for complete 50-70 s laps, with fixed
+  Kp=[3000,3000], Kd=[42,42] and nearly fixed vertical base. Ki reduced
+  phi signed underbend from +0.089 to +0.010 rad, but theta and absolute
+  l2/l3 errors changed little. Phi error variation and the pressure-limited
+  fraction increased (81% on versus 6% off). The integral state was not
+  logged; the zero-reference hold occurred only with Ki off.
 - Status/action: open. The near-straight NDI angle was unobservable during
   nearly all small-step feedback samples, so inferred directional lengths
   there are limited. At 1 rad, further gain increases alone cannot resolve
@@ -70,7 +81,10 @@ decisions; remove resolved items here. Prior code edits require explicit directi
   Review allocator headroom offline and, if a physical test is later chosen,
   use fixed-theta holds to separate static capability from rotation lag.
   The user-observed local buckle limits assumptions about raising common
-  pressure. Command-only data cannot isolate model stiffness from actuator
+  pressure. For the Ki controller, log its state and determine whether
+  internal correction bounds, pressure rails or slew cause frequent limiting;
+  compare matched repeated trials and assess anti-windup before increasing
+  Ki. Command-only data cannot isolate model stiffness from actuator
   asymmetry or actual chamber pressure.
 
 ## OI-03 — History-dependent operating pose and local buckle
