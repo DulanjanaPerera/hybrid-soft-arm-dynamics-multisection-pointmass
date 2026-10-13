@@ -1,0 +1,38 @@
+PAC STATIC REPORT: PAC_circle/static_phi_lambda_200_damp_20_theta_Pi.mat
+Record 0.00..101.55 s; hold 30.05..60.00; settled 45.02..60.00 s
+Inferred from logged forces: Ks [20 20] N s/m; lambda [200 200] 1/s; Ks*lambda [4000 4000] N/m
+Gain inference uses constant desired lengths/rates; these are estimates, not logged gain settings.
+Status 0: full 200/2032; hold 0/600 samples
+Status 1: full 100/2032; hold 0/600 samples
+Status 2: full 100/2032; hold 0/600 samples
+Status 3: full 1632/2032; hold 600/600 samples
+Status 4: full 0/2032; hold 0/600 samples
+Status 5: full 0/2032; hold 0/600 samples
+Hold anchorReady true: 600/600
+Hold modelValid true: 600/600
+Hold orientationValid true: 600/600
+Hold baseOreintationValid true: 600/600
+Hold limited true: 0/600
+Hold allAboveActivation true: 600/600
+First status 1 at 10.000 s
+First status 2 at 15.000 s
+First status 3 at 20.000 s
+Settled phi desired/actual 0.20000/0.16713 rad; signed error 0.03287; MAE 0.03287
+Theta wrapped MAE 0.03166 rad; evaluated only at measured phi>0.05 (300 samples)
+Settled desired lengths [-1.3 -1.3] mm; actual [-1.1453 -1.0262] mm; mean error [-0.15466 -0.27375] mm; RMSE [0.15664 0.27478] mm
+Hold pressures min [1.8442 1.5636 1.3603]; max [1.8603 1.5866 1.384]; settled mean [1.8479 1.5812 1.3709] bar
+Settled P2-P1/P3-P1 [-0.26672 -0.47695] bar
+Settled feedbackForce_N mean [-0.61858 -1.0949]; peak absolute [0.91554 1.2869] N
+Settled inertialForce_N mean [0.0013426 0.0014157]; peak absolute [0.044098 0.040927] N
+Settled coriolisForce_N mean [3.1088e-07 5.4936e-07]; peak absolute [1.6325e-05 1.2138e-05] N
+Settled dampingForce_N mean [-0.00014165 -0.00016624]; peak absolute [0.0056158 0.0059783] N
+Settled staticForce_N mean [-2.3505 -2.2577]; peak absolute [2.4068 2.3258] N
+Settled tauRequested_N mean [-2.9679 -3.3514]; peak absolute [3.1933 3.4824] N
+Settled tauEquivalent_N mean [-2.9679 -3.3514]; peak absolute [3.1933 3.4824] N
+Settled allocationResidual_N mean [-6.1432e-16 -8.4081e-16]; peak absolute [4.4409e-15 4.4409e-15] N
+Settled forceBias_N mean [-0.57235 -2.9793]; peak absolute [0.57235 2.9793] N
+Hold timestamp age min/max 0.00000/0.00000 s
+Max controller-to-NI-command difference [0 0 0] bar
+Settled gravity_arm [-0.019179 0.034 -9.8099] m/s^2
+Interpretation: NI signals are commands; lengths are NDI orientation-derived.
+No saturation does not imply sufficient force. This is the fixed-parameter PAC baseline.

@@ -1,0 +1,2 @@
+holdId,theta_rad,phiDesired_rad,phiActual_rad,phiMAE_rad,thetaMAE_rad,q2_mm,q3_mm,e2_mm,e3_mm,feedback2_N,feedback3_N,bias2_N,bias3_N,limitedFraction,validFraction,lambda2,lambda3,Ks2,Ks3,aboveActivationFraction
+1,0,0.2,0.0153943000105294,0.184605699989471,NaN,0.172325548706654,-0.170673765032428,1.12767445129335,1.47067376503243,0.0225404779786485,0.0294703994144621,-0.395828774727864,-2.7882316623955,0,1,2,2,10,10,1

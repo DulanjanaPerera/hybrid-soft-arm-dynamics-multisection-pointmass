@@ -1,5 +1,7 @@
+addpath('passivity_adaptive_control')
+addpath('integral_term')
 addpath('common_pressure_testing')
-plotCommonPressureTracking(out.logsout)
+% plotCommonPressureTracking(out.logsout)
 
 
 
@@ -9,4 +11,4 @@ plotCommonPressureTracking(out.logsout)
 % result = compareKiAngleErrors(path1, path2);
 
 % addpath('square')
-% figures = plotSquareTracking('square/test_2.mat');
+% figures = plotSquareTracking('square/test_2_5s.mat', 0.2903);

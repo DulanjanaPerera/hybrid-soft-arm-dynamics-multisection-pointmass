@@ -1,0 +1,22 @@
+PAC STATIC SWEEP REPORT: passivity_adaptive_control/experimentations/changing_enabling_adaptive_tr1.mat
+Detected 2 holds from logged reference.
+
+Hold 1 30.01..60.00 s: theta/phiDesired 0.0000/0.5000; phiActual/MAE 0.5067/0.0067; thetaMAE 0.0121 rad
+  length error [-0.11246 0.025819] mm; feedback [-0.22494 0.05181] N; bias [-0.84026 -3.1452] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 0.619; aboveActivation 1.000
+  pressures [1.2763 1.8069 1.7168] bar; engaged 1500/1500; max |allocationResidual| [0.0050267 0.002633] N
+
+Hold 2 80.01..110.00 s: theta/phiDesired 0.0000/0.8000; phiActual/MAE 0.9288/0.1288; thetaMAE 0.2858 rad
+  length error [-0.72268 -0.41022] mm; feedback [-1.4369 -0.84304] N; bias [-0.84026 -3.1452] N
+  lambda [50 50]; Ks [40 40]; valid 0.893; limited 0.878; aboveActivation 1.000
+  pressures [1.1864 1.8595 1.7472] bar; engaged 1338/1500; max |allocationResidual| [17.242 17.901] N
+
+Use repeated theta=0/phi=.2 holds to assess drift. Compare their bias, errors and feedback.
+Plateau is defined by the reference; physical settling is not guaranteed. Inspect plots for drift/oscillation.
+
+    <strong>holdId</strong>    <strong>theta_rad</strong>    <strong>phiDesired_rad</strong>    <strong>phiActual_rad</strong>    <strong>phiMAE_rad</strong>    <strong>thetaMAE_rad</strong>    <strong>q2_mm</strong>     <strong>q3_mm</strong>      <strong>e2_mm</strong>       <strong>e3_mm</strong>      <strong>feedback2_N</strong>    <strong>feedback3_N</strong>    <strong>bias2_N</strong>     <strong>bias3_N</strong>    <strong>limitedFraction</strong>    <strong>validFraction</strong>    <strong>lambda2</strong>    <strong>lambda3</strong>    <strong>Ks2</strong>    <strong>Ks3</strong>    <strong>aboveActivationFraction</strong>
+    <strong>______</strong>    <strong>_________</strong>    <strong>______________</strong>    <strong>_____________</strong>    <strong>__________</strong>    <strong>____________</strong>    <strong>______</strong>    <strong>______</strong>    <strong>________</strong>    <strong>________</strong>    <strong>___________</strong>    <strong>___________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_______________</strong>    <strong>_____________</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>___</strong>    <strong>___</strong>    <strong>_______________________</strong>
+
+      1           0             0.5              0.5067       0.0067069       0.012118      3.3625    3.2242    -0.11246    0.025819     -0.22494        0.05181      -0.84026    -3.1452        0.61867                 1         50         50       40     40                1           
+      2           0             0.8             0.92876         0.12876        0.28581      5.9227    5.6102    -0.72268    -0.41022      -1.4369       -0.84304      -0.84026    -3.1452          0.878           0.89333         50         50       40     40                1           
+

@@ -1,0 +1,12 @@
+ADAPTIVE PAC REPORT: passivity_adaptive_control/experimentations/static_phi_test1_unstable.mat
+Samples 15131; time 0.00..151.30 s
+Parameter order: k1 k2 k3 d2 d3 h1 h2 h3 b2 b3
+Initial [650 650 650 40 40 0 0 0 0 0]
+Final [559.71 817.32 838.51 40.05 40.077 0.22777 0.038386 0.08562 -0.36172 -0.012328]
+Min [502.98 649.98 419.21 40 40 0 0 0 -0.47746 -0.23451]
+Max [699.25 824.15 959.67 40.05 40.077 0.24151 0.049021 0.086814 0.1282 0.31142]
+Adaptive updates 1287; bound flag 4505; limited 7244; fault 0 samples
+hysteresisForce_N control mean [0.039593 0.046425]; peak abs [0.16145 0.18329] N
+adaptiveBias_N control mean [-0.2206 0.059137]; peak abs [0.47746 0.31142] N
+adaptiveForce_N control mean [1.1533 2.3286]; peak abs [2.9335 6.1875] N
+allocationResidual_N control mean [-0.69306 -0.75244]; peak abs [16.282 20.48] N

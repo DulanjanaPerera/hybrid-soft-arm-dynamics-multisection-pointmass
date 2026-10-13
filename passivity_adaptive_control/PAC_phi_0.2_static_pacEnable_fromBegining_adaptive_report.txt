@@ -1,0 +1,12 @@
+ADAPTIVE PAC REPORT: passivity_adaptive_control/PAC_phi_0.2_static_pacEnable_fromBegining.mat
+Samples 1512; time 0.00..75.55 s
+Parameter order: k1 k2 k3 d2 d3 h1 h2 h3 b2 b3
+Initial [650 650 650 40 40 0 0 0 0 0]
+Final [649.84 648.94 648.71 40 40.002 0.0026562 0.00027212 0.001233 -0.024697 -0.044406]
+Min [649.84 648.94 648.71 40 40 0 0 0 -0.026697 -0.045798]
+Max [650 650 650 40 40.002 0.0028787 0.00030452 0.001486 0 0]
+Adaptive updates 112; bound flag 400; limited 932; fault 0 samples
+hysteresisForce_N control mean [0.00013803 0.00021773]; peak abs [0.0012868 0.0020096] N
+adaptiveBias_N control mean [-0.023542 -0.04216]; peak abs [0.026697 0.045798] N
+adaptiveForce_N control mean [-0.025782 -0.045069]; peak abs [0.033835 0.063989] N
+allocationResidual_N control mean [0.18563 0.1254]; peak abs [88.605 93.12] N

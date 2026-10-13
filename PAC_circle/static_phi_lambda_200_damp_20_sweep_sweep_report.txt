@@ -1,0 +1,77 @@
+PAC STATIC SWEEP REPORT: PAC_circle/static_phi_lambda_200_damp_20_sweep.mat
+Detected 10 holds from logged reference.
+
+Hold 1 30.01..60.00 s: theta/phiDesired 0.0000/0.1000; phiActual/MAE 0.0726/0.0274; thetaMAE 0.0554 rad
+  length error [0.13372 0.22421] mm; feedback [0.53488 0.89678] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.6068 1.6715 1.5217] bar; engaged 300/300; max |allocationResidual| [3.9968e-15 3.9968e-15] N
+
+Hold 2 80.01..110.00 s: theta/phiDesired 0.0000/0.2000; phiActual/MAE 0.1452/0.0548; thetaMAE 0.0523 rad
+  length error [0.27233 0.44309] mm; feedback [1.0893 1.7723] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.5208 1.7046 1.5747] bar; engaged 300/300; max |allocationResidual| [3.9968e-15 3.5527e-15] N
+
+Hold 3 130.01..160.00 s: theta/phiDesired 0.0000/0.3000; phiActual/MAE 0.2280/0.0720; thetaMAE 0.0439 rad
+  length error [0.35677 0.58218] mm; feedback [1.4271 2.3287] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.4411 1.7376 1.6213] bar; engaged 300/300; max |allocationResidual| [5.3291e-15 4.4409e-15] N
+
+Hold 4 180.01..210.00 s: theta/phiDesired 1.5708/0.1000; phiActual/MAE 0.0954/0.0046; thetaMAE 0.5454 rad
+  length error [-0.52937 -0.11387] mm; feedback [-2.1175 -0.45546] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.7232 1.5131 1.5637] bar; engaged 300/300; max |allocationResidual| [3.9968e-15 4.4409e-15] N
+
+Hold 5 230.01..260.00 s: theta/phiDesired 1.5708/0.2000; phiActual/MAE 0.1828/0.0172; thetaMAE 0.2738 rad
+  length error [-0.59135 -0.051405] mm; feedback [-2.3654 -0.20566] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.7232 1.4378 1.639] bar; engaged 300/300; max |allocationResidual| [3.9968e-15 3.9968e-15] N
+
+Hold 6 280.01..310.00 s: theta/phiDesired 1.5708/0.3000; phiActual/MAE 0.2789/0.0211; thetaMAE 0.2010 rad
+  length error [-0.66226 -0.061589] mm; feedback [-2.6491 -0.24637] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.7271 1.3685 1.7044] bar; engaged 300/300; max |allocationResidual| [5.3291e-15 3.9968e-15] N
+
+Hold 7 330.01..360.00 s: theta/phiDesired 3.1416/0.1000; phiActual/MAE 0.0463/0.0537; thetaMAE NaN rad
+  length error [-0.17779 -0.56378] mm; feedback [-0.71116 -2.2551] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.797 1.6355 1.3675] bar; engaged 300/300; max |allocationResidual| [4.2188e-15 4.4409e-15] N
+
+Hold 8 380.01..410.00 s: theta/phiDesired 3.1416/0.2000; phiActual/MAE 0.1247/0.0753; thetaMAE 0.1247 rad
+  length error [-0.32096 -0.6702] mm; feedback [-1.2838 -2.6807] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.8779 1.5905 1.3316] bar; engaged 300/300; max |allocationResidual| [4.4409e-15 5.3291e-15] N
+
+Hold 9 430.01..460.00 s: theta/phiDesired 3.1416/0.3000; phiActual/MAE 0.2135/0.0865; thetaMAE 0.0694 rad
+  length error [-0.39879 -0.73218] mm; feedback [-1.5951 -2.9287] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.9536 1.5507 1.2957] bar; engaged 300/300; max |allocationResidual| [4.4409e-15 4.4409e-15] N
+
+Hold 10 480.01..510.00 s: theta/phiDesired 0.0000/0.2000; phiActual/MAE 0.1095/0.0905; thetaMAE 0.0184 rad
+  length error [0.56606 0.61136] mm; feedback [2.2642 2.4454] N; bias [-0.69562 -2.9912] N
+  lambda [200 200]; Ks [20 20]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.4989 1.7311 1.57] bar; engaged 300/300; max |allocationResidual| [4.4409e-15 4.4409e-15] N
+
+EXPLORATORY feedback ~= deltaK*q+b
+DeltaK (N/m): [1159.7 -22.415;1241 987.44]
+b (N): [-0.045984 -0.45184]
+Training RMSE (N): [0.68587 0.65032]; scaled predictor condition 2.338
+This fit combines mechanics, pressure mapping and trim errors; it is NOT physical stiffness identification.
+No symmetry/positive-definiteness constraint imposed. Do not insert directly into the controller.
+
+Use repeated theta=0/phi=.2 holds to assess drift. Compare their bias, errors and feedback.
+Plateau is defined by the reference; physical settling is not guaranteed. Inspect plots for drift/oscillation.
+
+    <strong>holdId</strong>    <strong>theta_rad</strong>    <strong>phiDesired_rad</strong>    <strong>phiActual_rad</strong>    <strong>phiMAE_rad</strong>    <strong>thetaMAE_rad</strong>     <strong>q2_mm</strong>        <strong>q3_mm</strong>       <strong>e2_mm</strong>        <strong>e3_mm</strong>      <strong>feedback2_N</strong>    <strong>feedback3_N</strong>    <strong>bias2_N</strong>     <strong>bias3_N</strong>    <strong>limitedFraction</strong>    <strong>validFraction</strong>    <strong>lambda2</strong>    <strong>lambda3</strong>    <strong>Ks2</strong>    <strong>Ks3</strong>    <strong>aboveActivationFraction</strong>
+    <strong>______</strong>    <strong>_________</strong>    <strong>______________</strong>    <strong>_____________</strong>    <strong>__________</strong>    <strong>____________</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>___________</strong>    <strong>___________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_______________</strong>    <strong>_____________</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>___</strong>    <strong>___</strong>    <strong>_______________________</strong>
+
+       1            0           0.1            0.072587        0.027413       0.055388       0.51628      0.42579     0.13372      0.22421      0.53488        0.89678      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+       2            0           0.2             0.14517        0.054828        0.05226        1.0277      0.85691     0.27233      0.44309       1.0893         1.7723      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+       3            0           0.3               0.228        0.072001       0.043916        1.5932       1.3678     0.35677      0.58218       1.4271         2.3287      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+       4       1.5708           0.1            0.095388        0.004612        0.54541      -0.59647       1.2397    -0.52937     -0.11387      -2.1175       -0.45546      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+       5       1.5708           0.2             0.18283        0.017167        0.27384       -1.6603       2.3031    -0.59135    -0.051405      -2.3654       -0.20566      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+       6       1.5708           0.3             0.27894        0.021062        0.20097       -2.7152       3.4391    -0.66226    -0.061589      -2.6491       -0.24637      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+       7       3.1416           0.1            0.046264        0.053736            NaN      -0.47221    -0.086224    -0.17779     -0.56378     -0.71116        -2.2551      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+       8       3.1416           0.2             0.12473         0.07527        0.12467      -0.97904      -0.6298    -0.32096      -0.6702      -1.2838        -2.6807      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+       9       3.1416           0.3             0.21352        0.086482       0.069409       -1.5512      -1.2178    -0.39879     -0.73218      -1.5951        -2.9287      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+      10            0           0.2             0.10945        0.090548        0.01837       0.73394      0.68864     0.56606      0.61136       2.2642         2.4454      -0.69562    -2.9912           0                 1            200        200      20     20                1           
+

@@ -116,6 +116,7 @@ An ordinary hardware-bearing Simulink run may open both serial and NI hardware.
 | `feedbacklinearization_tests/` | Hardware/circle recordings and seven-group plot utility |
 | `common_pressure_testing/` | Pressure protocols, trim/feedback sources, recordings and offline analyses, including `analyzeCommonPressureCircle.m` for compact reports and `plotCommonPressureTracking.m` for six logged-run figures |
 | `square/` | Square-trajectory recordings and `plotSquareTracking.m`, which uses logged desired/measured XYZ in the 3D figure |
+| `passivity_adaptive_control/` | Isolated nominal passivity force controller and common-pressure wrapper, calibrated trim bias, command supervision and offline checks; SLX wiring/adaptation pending |
 | `ndi_orientation_recordings/` | Calibration raw poses and fitted references |
 | `project_docs/` | Current state, history, decisions, evidence, issues and reusable theory |
 
@@ -125,3 +126,17 @@ and do not operate hardware. Animation uses `drawingArm_single_stationary_base.m
 and `HTM_nume.m`; no MEX is required. Existing local READMEs give execution
 instructions and output paths; the older learned-predictor project is an external
 research reference, not an installed dependency of this controller.
+
+
+PAC.slx saved wiring was reviewed on 2026-10-08 without compilation/execution.
+The eight controller inputs and direct bounded/Kill NI path are connected.
+Explicit 0.05 s controller/timestamp scheduling, reference hold until engagement,
+signal logging selection and disconnected desired XYZ scope input remain open.
+See VALIDATION_RESULTS.md for the saved-model review details.
+
+
+Adaptive PAC path: pacAdaptiveCommonPressureBlock combines structured K/D,
+three muscle-history features, signed bias and unchanged pressure supervisor.
+Eleven inputs/26 outputs; see ADAPTIVE_INTEGRATION.md for dimensions, types,
+logging and update gates. Nominal M/C/G retained; Dhat*v differs from nominal
+D*dq wrapper. Adaptive history weights are not internal Bouc-Wen adaptation.

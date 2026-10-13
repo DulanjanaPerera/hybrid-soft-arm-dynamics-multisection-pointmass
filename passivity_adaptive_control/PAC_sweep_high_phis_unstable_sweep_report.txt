@@ -1,0 +1,70 @@
+PAC STATIC SWEEP REPORT: passivity_adaptive_control/PAC_sweep_high_phis_unstable.mat
+Detected 10 holds from logged reference.
+
+Hold 1 30.01..60.00 s: theta/phiDesired 0.0000/0.5000; phiActual/MAE 0.5078/0.0078; thetaMAE 0.0117 rad
+  length error [-0.11729 0.016317] mm; feedback [-0.23455 0.032611] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.2686 1.8046 1.7268] bar; engaged 300/300; max |allocationResidual| [4.4409e-15 5.3291e-15] N
+
+Hold 2 80.01..110.00 s: theta/phiDesired 0.0000/0.8000; phiActual/MAE 0.8081/0.0081; thetaMAE 0.0033 rad
+  length error [-0.082152 -0.022439] mm; feedback [-0.16436 -0.044834] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.0428 1.8977 1.8595] bar; engaged 300/300; max |allocationResidual| [5.3291e-15 5.3291e-15] N
+
+Hold 3 130.01..160.00 s: theta/phiDesired 0.0000/1.5000; phiActual/MAE 1.3484/0.1516; thetaMAE 0.1616 rad
+  length error [1.1325 1.0991] mm; feedback [2.266 2.1941] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 0.930; limited 0.880; aboveActivation 0.420
+  pressures [0.77477 2.0309 1.9827] bar; engaged 279/300; max |allocationResidual| [13.892 16.778] N
+
+Hold 4 180.01..210.00 s: theta/phiDesired 1.5708/0.5000; phiActual/MAE 0.5198/0.2587; thetaMAE 0.2858 rad
+  length error [-0.94995 -0.85459] mm; feedback [-1.9122 -1.6883] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 0.960; limited 0.940; aboveActivation 0.987
+  pressures [1.8018 1.2977 1.6701] bar; engaged 288/300; max |allocationResidual| [16.652 17.68] N
+
+Hold 5 230.01..260.00 s: theta/phiDesired 1.5708/0.8000; phiActual/MAE 0.7806/0.1990; thetaMAE 0.1761 rad
+  length error [-1.4188 -0.55114] mm; feedback [-2.844 -1.0928] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 0.993; aboveActivation 0.840
+  pressures [1.8214 1.1211 1.8311] bar; engaged 300/300; max |allocationResidual| [13.073 14.085] N
+
+Hold 6 280.01..310.00 s: theta/phiDesired 1.5708/1.5000; phiActual/MAE 1.4170/0.0830; thetaMAE 0.1627 rad
+  length error [-2.6376 -0.34661] mm; feedback [-5.275 -0.69326] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 0.000; aboveActivation 0.000
+  pressures [1.8999 0.57384 2.3263] bar; engaged 300/300; max |allocationResidual| [3.0765 5.3291e-15] N
+
+Hold 7 330.01..360.00 s: theta/phiDesired 3.1416/0.5000; phiActual/MAE 0.4800/0.0575; thetaMAE 0.6347 rad
+  length error [-0.38787 -1.2887] mm; feedback [-0.78554 -2.5655] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 0.973; limited 0.960; aboveActivation 0.957
+  pressures [2.0468 1.5123 1.2544] bar; engaged 292/300; max |allocationResidual| [18.126 20.879] N
+
+Hold 8 380.01..410.00 s: theta/phiDesired 3.1416/0.8000; phiActual/MAE 0.7018/0.0982; thetaMAE 0.3854 rad
+  length error [-0.38708 -1.6799] mm; feedback [-0.77437 -3.3593] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 1.000; aboveActivation 0.850
+  pressures [2.2135 1.3852 1.1622] bar; engaged 300/300; max |allocationResidual| [17.608 18.91] N
+
+Hold 9 430.01..460.00 s: theta/phiDesired 3.1416/1.5000; phiActual/MAE 1.2445/0.2555; thetaMAE 0.1301 rad
+  length error [-1.1805 -2.3063] mm; feedback [-2.3573 -4.6155] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 0.923; aboveActivation 0.587
+  pressures [2.643 1.211 0.94356] bar; engaged 300/300; max |allocationResidual| [11.203 12.077] N
+
+Hold 10 480.01..510.00 s: theta/phiDesired 0.0000/0.5000; phiActual/MAE 0.4915/0.0718; thetaMAE 0.6404 rad
+  length error [0.59384 0.89292] mm; feedback [1.1783 1.7892] N; bias [-0.78791 -3.0548] N
+  lambda [50 50]; Ks [40 40]; valid 0.930; limited 0.913; aboveActivation 1.000
+  pressures [1.3874 1.7655 1.6522] bar; engaged 279/300; max |allocationResidual| [18.692 20.583] N
+
+Use repeated theta=0/phi=.2 holds to assess drift. Compare their bias, errors and feedback.
+Plateau is defined by the reference; physical settling is not guaranteed. Inspect plots for drift/oscillation.
+
+    <strong>holdId</strong>    <strong>theta_rad</strong>    <strong>phiDesired_rad</strong>    <strong>phiActual_rad</strong>    <strong>phiMAE_rad</strong>    <strong>thetaMAE_rad</strong>     <strong>q2_mm</strong>      <strong>q3_mm</strong>       <strong>e2_mm</strong>        <strong>e3_mm</strong>      <strong>feedback2_N</strong>    <strong>feedback3_N</strong>    <strong>bias2_N</strong>     <strong>bias3_N</strong>    <strong>limitedFraction</strong>    <strong>validFraction</strong>    <strong>lambda2</strong>    <strong>lambda3</strong>    <strong>Ks2</strong>    <strong>Ks3</strong>    <strong>aboveActivationFraction</strong>
+    <strong>______</strong>    <strong>_________</strong>    <strong>______________</strong>    <strong>_____________</strong>    <strong>__________</strong>    <strong>____________</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>_________</strong>    <strong>_________</strong>    <strong>___________</strong>    <strong>___________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_______________</strong>    <strong>_____________</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>___</strong>    <strong>___</strong>    <strong>_______________________</strong>
+
+       1            0           0.5              0.5078       0.0078045       0.011683       3.3673     3.2337     -0.11729     0.016317     -0.23455        0.032611     -0.78791    -3.0548              0                 1         50         50       40     40                   1        
+       2            0           0.8             0.80805       0.0080504      0.0032811       5.2822     5.2224    -0.082152    -0.022439     -0.16436       -0.044834     -0.78791    -3.0548              0                 1         50         50       40     40                   1        
+       3            0           1.5              1.3484         0.15159        0.16163       8.6175     8.6509       1.1325       1.0991        2.266          2.1941     -0.78791    -3.0548           0.88              0.93         50         50       40     40                0.42        
+       4       1.5708           0.5             0.51979         0.25873         0.2858      -4.6792     6.4838     -0.94995     -0.85459      -1.9122         -1.6883     -0.78791    -3.0548           0.94              0.96         50         50       40     40             0.98667        
+       5       1.5708           0.8             0.78056         0.19896        0.17614      -7.5879     9.5578      -1.4188     -0.55114       -2.844         -1.0928     -0.78791    -3.0548        0.99333                 1         50         50       40     40                0.84        
+       6       1.5708           1.5               1.417        0.083028        0.16272       -14.25     17.234      -2.6376     -0.34661       -5.275        -0.69326     -0.78791    -3.0548              0                 1         50         50       40     40                   0        
+       7       3.1416           0.5             0.48001        0.057483        0.63474      -2.8621    -1.9613     -0.38787      -1.2887     -0.78554         -2.5655     -0.78791    -3.0548           0.96           0.97333         50         50       40     40             0.95667        
+       8       3.1416           0.8              0.7018        0.098198        0.38544      -4.8129    -3.5201     -0.38708      -1.6799     -0.77437         -3.3593     -0.78791    -3.0548              1                 1         50         50       40     40                0.85        
+       9       3.1416           1.5              1.2445         0.25555        0.13008      -8.5695    -7.4437      -1.1805      -2.3063      -2.3573         -4.6155     -0.78791    -3.0548        0.92333                 1         50         50       40     40             0.58667        
+      10            0           0.5             0.49152        0.071788        0.64042       2.6562     2.3571      0.59384      0.89292       1.1783          1.7892     -0.78791    -3.0548        0.91333              0.93         50         50       40     40                   1        
+

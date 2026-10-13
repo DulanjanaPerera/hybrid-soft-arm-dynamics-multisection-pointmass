@@ -1821,6 +1821,20 @@ rotated gravity compensation together on this module. The present saved
 activation threshold. Command logs are not chamber-pressure measurements.
 No controller, model, or hardware was changed for this literature review.
 
+## 2026-10-09 - Optional yaw for square XYZ comparison
+
+`square/plotSquareTracking.m` now accepts an optional second argument,
+`rotationAngle_rad`, defaulting to zero. It rotates only logged desired XYZ
+about +Z before drawing Figure 6 against the logged measured XYZ; positive
+angles move +X toward +Y. The suggested call uses 0.2903 rad for the user's
+approximately 17-degree module rotation, with negative angle available if
+the offset direction is opposite. The other five figures and MAT data are
+unchanged. `square/README.md` includes the call and sign convention. Static
+diff check passed. An offline MATLAB batch plot check could not start because
+MATLAB exited at startup with `System Error: File system inconsistency`;
+therefore execution on the saved recording remains unverified. No Simulink
+model or hardware was run or changed.
+
 ## 2026-10-08 - Proposed payload identification and compensation experiments
 
 Discussed adding a tip payload and estimating its mass from the additional
@@ -1862,3 +1876,507 @@ Checked Git whitespace and that the saved SLX archive contains its block
 diagram. This is an archival checkpoint, not a new model or hardware
 validation. No simulation or hardware was run. A new branch has not yet
 been created; this checkpoint provides its starting point.
+
+## 2026-10-08 - Proposed staged PAC implementation plan
+
+On codex/passivity-adaptive-controller, proposed a reduced-length controller
+using q=[l2;l3], reference velocity dq_r=dq_des-Lambda*(q-q_des),
+s=dq-dq_r, and effort M*ddq_r+C*dq_r+D*dq+elastic+gravity-Ks*s.
+First validate nonadaptive passivity control with current nominal parameters;
+then introduce projected payload-mass adaptation with a regressor consistent
+with quasi-static gravity-only or full payload dynamics as appropriate.
+Stiffness/damping adaptation is a later stage, with physical bounds and
+identifiability checks; older identification values are not drop-in baselines.
+Reuse NDI validity and common-pressure safety paths, but derive the absolute
+force/trim relationship explicitly instead of retaining tau_anchor subtraction
+without analysis. Log requested/allocated generalized effort and their residual;
+freeze adaptation on invalid/stale data and sustained allocation limitations.
+These practical guards require separate sampled/saturated-system validation
+and do not inherit the ideal continuous-time passivity proof automatically.
+Proposed an isolated passivity_adaptive_control folder for core, regressors,
+paste-ready block, numerical checks and comparison analysis. User requested
+planning only: no implementation, Simulink edits, simulation or hardware run.
+Reference: Azizkhani et al., Dynamic Control of Soft Robotic Arm: An
+Experimental Study, DOI 10.1109/LRA.2023.3243802 (author preprint
+https://arxiv.org/abs/2209.11332).
+
+## 2026-10-08 - PAC scope correction: no payload
+
+The user clarified that the immediate PAC objective is improved tracking of
+the unloaded module, not payload identification or compensation. This
+supersedes the payload-first sequence above. Proposed sequence: validate
+fixed-parameter passivity control, then adapt a small physically bounded
+stiffness/damping parameter set while retaining nominal inertia and measured
+base-orientation gravity. Start with scalar stiffness/damping scales using
+regressor columns K0*q and D0*dq; assess coupling only if held-out results
+justify more parameters. Compare current PID feedback linearization, fixed
+passivity control, and adaptive passivity control on matched trajectories,
+with pressure allocation residuals and validity logged. Existing pressure
+limits, deadzone, delay and hysteresis remain distinct limitations. No
+payload model, controller implementation, or Simulink edits were made.
+
+## 2026-10-08 - Fixed-parameter passivity controller, isolated stage 1
+
+Added passivity_adaptive_control/pacNominalParameters.m,
+pacFixedController.m, pacFixedBlock.m, validatePacFixed.m and README.md.
+The force-only controller uses q=[l2;l3], e=q-qd,
+dqr=dqd-Lambda*e, ddqr=ddqd-Lambda*(dq-dqd), s=dq-dqr and
+`tau=M*ddqr+C*dqr+D*dq+G+Keff*q-Ks*s`. Nominal geometry, K=650*[2 1;1 2],
+D=40*I and existing smooth length penalties are reused without changing the
+shared dynamics routines. Lambda=[2;2] 1/s and Ks=[10;10] N*s/m are offline
+starting gains, not experimentally validated tuning. Wrapper inputs are 4x1
+measured q/dq, 6x1 desired q/dq/ddq, gravity_arm and measurement/base validity;
+outputs include force decomposition, reference rates, s and model validity.
+No payload, adaptation, integral, persistent pressure state or hardware I/O.
+
+Hardware-free MATLAB R2025a checks passed on a nine-point +/-8 mm coordinate
+grid: minimum inertia eigenvalue 0.4991, maximum skew-symmetry residual
+1.9626e-17, analytic-vs-finite-difference inertia derivative relative error
+2.5032e-10, and closed-loop balance residual 1.7101e-15 N. Nonfinite/invalid
+measurement and invalid-base rejection passed; changing gravity direction
+changes static force. A four-second continuous-time matched-model ode15s
+integration ended with length-error norm 3.8647e-7 m. This is implementation
+verification under ideal force delivery, not physical-performance evidence.
+Code Analyzer reported no messages in controller/parameter/wrapper files;
+one obsolete test suppression was removed. MATLAB needed execution outside
+the filesystem sandbox after a startup filesystem error.
+
+Existing Simulink models are unchanged; no device or Simulink execution.
+Pressure allocation/empirical trim reconciliation, code-generation compilation,
+explicit discrete sampling and fault supervisor integration are pending.
+Invalid outputs must gate a supervisor: zero generalized force is not venting.
+Project state and architecture index updated for the new isolated component.
+
+## 2026-10-08 - PAC common-pressure command path, isolated stage 2
+
+Added pacPressureConfig, pacAllocatePressure, pacPressureInitialState,
+pacPressureStep, pacCommonPressureBlock and validatePacPressure in the isolated
+passivity_adaptive_control folder. The combined wrapper accepts measured q/dq,
+desired q/dq/ddq, gravity, pose/base validity, last-successful paired sample
+time, Clock, and enablePressure. Requires explicit discrete 0.05 s execution.
+No existing Simulink model was edited and no hardware/Simulink run occurred.
+
+Defined a local constant force-map bias b=Fhat(pTrim)-tauStaticAnchor so
+pressure force requests tauPAC+b, equivalently differential increments from
+tauPAC-tauStaticAnchor at the empirical trim. This captures the nominal static
+force once; subsequent gravity-vector changes remain in the PAC request.
+Fhat uses the nominal max(p-0.8,0) force map. Logs distinguish raw PAC force,
+blended request, nominal equivalent force Fhat(command)-b, allocation residual,
+and all-above-activation flag. These are command-derived estimates. Nonzero
+allocation residual enters the ideal energy rate as s'*residual, so pressure
+limits and force-map error cannot be omitted from a passivity claim.
+
+Defaults: mean 1.6 bar, trial-4 s/a trim, +/-2.5 bar differential correction
+bounds, 0.2-3 bar rails, 2 bar/s slew. The inherited lower rail is below the
+nominal 0.8 bar activation threshold. Pressure begins at 10 s; capture at/after
+15 s requires reached trim and speeds <=0.5 mm/s; feedback blends for five
+seconds from actual capture. Stop time is explicitly Inf, with external
+disable/end gating. Invalid samples hold up to 0.10 s from last usable update;
+aged samples (>0.075 s) are rejected, sustained invalidity latches, and the
+command slews to zero. Validity recovery does not rearm. Disable clears the
+anchor; later enable repeats trim. Invalid Clock immediately commands zero;
+reversed Clock faults. External physical Kill remains primary.
+
+MATLAB R2025a offline checks passed for unsaturated trim/increment mapping,
+force residuals through clipping and threshold crossing, slew, anchor speed
+condition, gravity changes without recapture, brief-invalid hold/recovery,
+sustained/stale-data latch, no automatic recovery, disable/re-enable and Clock
+faults, plus persistent combined-wrapper smoke checks. Maximum unconstrained
+mapping residual was 2.2888e-15 N and maximum slew 2.0 bar/s. Stage-1 model
+checks still passed. Code Analyzer was clean after removing unused status
+initialization. MATLAB Coder generated C source for the final combined wrapper
+in a temporary folder; binary and actual SLX compilation remain pending.
+README, project state, architecture index and validation results updated.
+
+## 2026-10-08 - PAC input wiring clarification
+
+Confirmed AuroraReader_s2_BaseRotation outputs orientationValid for valid
+paired calibrated relative-orientation/length estimates, and
+baseOrientationValid for current base quaternion/gravity. PAC measurementValid
+should use the former (plus actual derivative readiness if available), baseValid
+the latter; thetaObservable is not the near-straight validity gate. Sensor
+hostTime/pollStart are wall-clock stopwatch times and must not be directly
+compared against Simulink Clock. Proposed measurement timestamp is Simulink
+Clock captured at the sensor's 0.05 s sample hit only when both validity flags
+are true, then held on invalid samples. An unconditional sampled Clock cannot
+detect stale held sensor data. Constant logical true may enable the controller
+while retaining the external Kill. No code/model changes made.
+
+
+## 2026-10-08 - PAC.slx saved wiring review (no execution)
+
+Read-only ZIP/XML inspection of the user-created PAC.slx confirms measured
+[q;dq] (4), desired [qd;dqd;ddqd] (6), gravity_arm, orientationValid_control,
+baseOrientationValid, conditional measurement timestamp, Clock and boolean
+true enable are connected to the eight pacCommonPressureBlock inputs in order.
+The sensor uses AuroraReader_s2_BaseRotation, COM12/921600, 0.05 s, the existing
+20260930 calibration (file exists), and reference gravity [0;0;-9.81].
+Pressure connects directly to the retained Kill switches, 0-3 bar saturation,
+10/9 voltage conversion and NI outputs. Kill has no saved Value override
+(default Constant value 1, which selects pressure through these switches).
+
+Outstanding integration findings: controller and validMeasurementTime have no
+saved explicit discrete rate and receive continuous Clock; configure both
+Discrete 0.05 s to avoid continuous persistent-state execution and false
+timestamp freshness between polls. Solver is VariableStepAuto. Active circle
+reference is phi=1.5 rad, 20 laps at 5 s/lap; phi ramp begins at 15 s and
+circles at 20 s, overlapping the earliest 15-20 s feedback blend. Hold the
+reference through trim/engagement (status=3) before starting its ramp.
+The XYZ scope desired input has no source. Controller diagnostics are named
+and terminated, but no DataLogging enable entries were found in saved system
+XML; naming and global logsout enable do not select individual signals.
+Enable signal logging explicitly for controller outputs, inputs, validity,
+gravity/timestamp and post-Kill pressures. Ensure root and isolated PAC folder
+are on MATLAB path. No SLX compile/run or hardware was attempted; no model
+or controller source changed. This remains the fixed-parameter passivity
+baseline, with adaptation pending.
+
+
+## 2026-10-09 - First PAC circle recording: feedback authority too low
+
+Offline MATLAB read of PAC_circle/1rad_10s_1cycle.mat (78 logged signals,
+0-61.1 s). Supervisor trim starts 10 s, anchor captures 15 s, blend finishes
+20 s; one invalid hold 30.60-30.65 s, no latched fault. Circle 25-35 s:
+phiOrientation mean 0.016283 rad (range 0.011401-0.019246), desired phi 1 rad.
+All pressure commands remain above activation; limited false throughout circle.
+Controller pressure equals post-Kill NI-path commands; ranges P1 1.6614-1.6794,
+P2 1.6306-1.6817, P3 1.4452-1.4974 bar. Valid model 199/200 circle samples.
+Feedback force components bounded approximately +/-0.295 N; inertial terms
+approximately +/-0.028 N. Valid allocation residuals are roundoff (~4e-15 N).
+Therefore no evidence of command gating or saturation as cause of poor bending.
+
+Source nominal gains lambda=2 /s and Ks=10 N s/m give restoring coefficient
+Ks*lambda=20 N/m (plus M*lambda velocity feedback), much weaker than nominal
+650*[2 1;1 2] N/m stiffness. At qd=[6.5;6.5] mm, q near zero, static feedback
+is about [0.13;0.13] N versus nominal stiffness force [12.675;12.675] N at the
+desired pose. The compensation uses measured q, so near straight it supplies
+little stiffness compensation; finite force-feedback gains must drive initial
+error reduction. Initial gains were offline matched-model starting values, not
+experiment-tuned gains. Increase/tune restoring authority with damping and
+allocation limits considered; adaptation is still absent. No source/model edits
+or hardware/model execution were performed.
+
+
+## 2026-10-09 - Reusable PAC static analysis and first static test
+
+Added PAC_circle/analyzePacStatic.m and local README at user request. Offline
+only: automatic longest nonzero constant-reference hold, latter-half settled
+metrics, inferred Ks/lambda from recorded forces/sliding signal, engagement/
+fault/validity/pressure rails/freshness, post-Kill command comparison, force
+components/residual, tracking plots, text report and compact analysis MAT.
+Explicit hold window handles repeat trials. Gains are identified under settled
+desired-rate assumptions rather than read from current controller source.
+
+Validated on static_phi_test1.mat: 0-99.25 s; plateau 30.05-60 s; settled
+45.025-60 s. Desired/measured phi .2/.01539 rad; inferred Ks=[10 10],
+lambda=[2 2]; feedback means [.02254 .02947] N. Mean length errors
+[1.1277 1.4707] mm. Anchor 15 s, full control 20 s; no latched fault or
+limiting in hold; one invalid hold sample. NI-path command difference zero;
+residual roundoff, timestamp age 0-.05 s. Weak restoring authority persists.
+No controller or SLX edits; no hardware/model execution.
+
+
+## 2026-10-11 - PAC static gain-pair comparison (user-supplied reports)
+
+Compared lambda=400,Ks=10 with lambda=200,Ks=20; both Ks*lambda=4000 N/m.
+Reported settled phi .15444 vs .15214 rad, errors .04556 vs .04786 rad.
+Length errors [.21436 .38031] vs [.23269 .39172] mm. New run has no hold
+limiting/fault/invalidity and controller-to-NI command difference zero.
+Settled inertial-force peaks fall [.11041 .085709] to [.021285 .016562] N
+(about fivefold); lower measured motion also contributes, so this is not a
+controlled proof of gain effect. Gravity and captured forceBias differ between
+runs. Static error remains near 24 percent, supporting a persistent mismatch
+rather than allocation clipping. Keep 200/20 as provisional baseline; repeat
+static holds/directions to check consistency before adaptive compensation.
+Evidence is pasted reports/screenshots, not independently reloaded raw MAT.
+No controller or SLX edits.
+
+
+## 2026-10-11 - Direction-dependent PAC static performance
+
+User-supplied reports/screenshots for static_phi_lambda_200_damp_20_theta_Piby2.mat
+and static_phi_lambda_200_damp_20_theta_Pi.mat; raw MAT not independently
+reloaded for this comparison. All use phi=.2 rad, lambda=200 /s, Ks=20 N s/m,
+Ks*lambda=4000 N/m, hold 30.05-60 s and settled latter half.
+
+| Desired theta | Settled phi | Phi MAE rad | Theta wrapped MAE rad | Mean l2/l3 error mm |
+| --- | --- | --- | --- | --- |
+| 0 (previous run) | .15214 | .04786 | .04643 | .23269 / .39172 |
+| pi/2 | .19065 | .00935 | .16734 | -.34171 / -.071021 |
+| pi | .16713 | .03287 | .03166 | -.15466 / -.27375 |
+
+Both new holds have full engagement/anchor, 600/600 valid samples, zero limited
+samples, all commands above activation and zero controller/NI command mismatch.
+Gravity is similar to theta=0 trial. pi/2 feedback mean [-1.3668 -.28411] N;
+pi feedback mean [-.61858 -1.0949] N. Static allocation residuals are roundoff;
+pi/2 ramp/return shows oscillations and a transient residual outside the hold.
+Good pi/2 phi alone hides a ~9.59 degree direction error and unequal length
+errors. pi theta error ~1.81 degrees. Captured forceBias differs by trial.
+
+Interpretation: persistent mismatch is direction dependent, not explained by
+hold pressure clipping. Mechanics/stiffness/coupling, pressure-force mapping,
+trim bias and orientation geometry remain candidate causes; no unique stiffness
+identification from these tests. Keep 200/20 provisional baseline; formulate
+adaptation in both length coordinates. Distinguish additive force offset from
+stiffness/coupling mismatch using repeats/multiple amplitudes before selecting
+adaptive parameters. No adaptation implementation authorized by this discussion.
+
+Prior gain discussion: lambda converts length error to reference velocity (1/s),
+Ks converts sliding velocity error to force (N s/m); direct feedback has
+position coefficient Ks*lambda and velocity coefficient Ks. Exposing gains as
+2x1 block inputs is possible but was discussed only, not implemented by Codex.
+Constant gains per run preferred initially; abrupt lambda changes alter
+reference dynamics and constant-gain stability arguments do not automatically
+apply. Physical params.D remains distinct from controller Ks.
+
+
+## 2026-10-11 - Combined PAC static sweep implementation
+
+Added PAC_circle/pacStaticSweepReferenceBlock.m: 9 direction/amplitude trials
+plus theta=0/.2 repeat, start25 s, 5/30/5/10 s rise/hold/fall/zero-rest, end525 s,
+Stop Time535 s. Readiness must reach status3 before start. Zero-reference rest
+does not vent pressure or recapture trim. User pastes block; no SLX edits.
+Added analyzePacStaticSweep.m: detects >=10 s logged constant nonzero holds,
+reuses per-hold static analyzer without intermediate artifact overwrite, prints
+compact tracking/gains/force/pressure/quality reports and saves summary CSV, TXT,
+MAT. Exploratory unconstrained affine residual fit is not physical stiffness
+identification. analyzePacStatic adds optional fourth writeArtifacts flag.
+Validated analyzer on existing single-hold recording and all ten reference
+plateau IDs/amplitudes in MATLAB offline. Full multi-hold physical validation
+is pending; no hardware or Simulink run performed.
+
+
+## 2026-10-11 - Ten-hold PAC sweep: repeat changes and affine fit limits
+
+Evidence: user-pasted static_phi_lambda_200_damp_20_sweep.mat sweep report and
+summary screenshot; raw MAT not reloaded. All settled holds valid/engaged, no
+limiting, above activation; lambda200/Ks20. Theta0 phiActual .07259/.14517/.22800
+for desired .1/.2/.3; pi/2 .09539/.18283/.27894; pi .04626/.12473/.21352.
+Same theta0/.2 repeated at hold10 gives .10945 vs .14517 at hold2 (24.6%
+decrease); feedback [2.2642 2.4454] vs [1.0893 1.7723] N, despite fixed
+forceBias [-.69562 -2.9912] N. Changes demonstrate time/history dependence
+or another changing condition; cannot isolate hysteresis, creep, air supply,
+orientation drift or temperature from report. Direction and trial order confound.
+pi/2 theta MAE .54541/.27384/.20097 rad at increasing phi, so phi magnitude
+alone overstates accuracy. pi/.1 theta omitted by observable-angle threshold.
+
+Affine fit deltaK=[1159.7 -22.415;1241 987.44] N/m, b=[-.045984;-.45184] N,
+training RMSE [.68587 .65032] N, predictor condition2.338. Full rank does not
+remove history confounding; strongly nonsymmetric fit is not a conservative
+stiffness correction. Do not insert into EoM. Next repeat same theta0/.2
+several times with unchanged anchor and track zero-reference baselines; separate
+repeatability/history from fixed configuration dependence before selecting
+stiffness versus adaptive bias parameters. No code/model changes.
+
+
+## 2026-10-11 - Adaptive PAC force/pressure path implemented
+
+User authorized implementation in passivity_adaptive_control only. Added
+pacAdaptiveConfig/InitialState/History/Force/Update/CommonPressureBlock,
+validatePacAdaptive, validatePacAdaptiveTracking, replayPacAdaptive,
+analyzePacAdaptive and ADAPTIVE_INTEGRATION.md. Existing nominal sources/SLX
+files preserved. New wrapper has previous 8 inputs plus 2x1 lambda, 2x1 Ks,
+boolean enableAdaptation; previous17 outputs plus Khat,Dhat,hysteresis force,
+bias,10parameter estimates,3history states,active/bound flags,adaptive force.
+
+Khat is spring-structured SPD: [k1+k3 k3;k3 k2+k3], positive independent
+springs/nonnegative shared coupling; Dhat diagonal positive. Parameter bounds,
+rate caps/deadband and scale-adjusted gradient in config. Three normalized
+Bouc-Wen feature states use physical muscle velocities T*dq, with fixed internal
+coefficients. Their nonnegative force weights and two signed bias coefficients
+adapt. Does NOT adapt alpha/beta/gamma internally, nor M/C/G. Paper online
+adaptation is K/D, not inertia/hysteresis-internal coefficients.
+
+Adaptive controller uses Dhat*v instead of old D*dq, giving a changed nominal
+error response (initial (Dhat+Ks)*lambda=12000 N/m at lambda200/Ks20).
+Adaptive on/off comparison must use same new wrapper. Updates apply NEXT
+sample, once per fresh timestamp, only valid status3/no limiting/residual
+<=.02 N; dt gaps>.075 s skip updates. Freeze retains estimates/history;
+restart simulation resets. Physical Kill and pressure supervisor unchanged.
+Projection bounds parameters, not physical closed-loop stability. Fixed-feature
+history, saturation, sampling/rate caps/deadband mean ideal asymptotic proof
+cannot be claimed for hardware. Static damping/bias/pressure mapping confound.
+
+Verification: algebra/regressor/force sums, SPD projections, descent sign,
+ideal unprojected energy identity, history reversal, startup/fresh-only update,
+invalid hold/fault checks pass in MATLAB. Ideal continuous force mismatch
+simulation at lambda200/Ks20 (30s) improves final10s RMSE from
+[.10960 .12827] mm to [.05988 .07452] mm. This is a chosen representable
+plant, not physical validation. Replay of existing 10701-sample sweep finite,
+7633 update samples, zero fault samples, pressure maxima [3 2.1240 2.3221]
+bar; record-fixed replay is not closed-loop prediction. C source generation
+passed with fixed dimensions/logical flags; no binary/SLX build or hardware
+run. Initial generation commands failed due literal temporary output path;
+corrected functional codegen call passed and generated workspace dirs removed.
+Parameter estimates are bounded effective coefficients, not unique physical
+identification. Integration/model wiring and experiment checks remain pending.
+
+
+## 2026-10-11 - First adaptive-wrapper physical tests: oscillatory baseline
+
+Read three saved PAC_phi_0.2 recordings offline (statis, enable_inMiddle,
+enable_fromBegining). During45-60s desired.2, measured phi means
+.4226/.4300/.4298 rad, ranges .058-.694/.033-.696/.052-.696. Limited
+fractions .897/.934/.910. Dhat*v force peaks near60N, feedback near30N,
+request peaks near85N; allocation residual peaks near90N. Learning disabled
+already oscillates, so adaptive gain tuning cannot explain baseline behavior.
+Middle enable yields zero updates; beginning enable yields112 updates mostly
+20-26s and tiny changes, then frozen. Gates intentionally inhibit learning
+when limited. Limiting includes correction clipping/slew; pressure below3bar
+does not mean force request realizable.
+
+Important implementation/tuning correction: Dhat*v adds Dhat*lambda position
+feedback, giving initial12000N/m at lambda200/Ks20, vs old direct4000N/m.
+Offline continuous-force simulation did not validate this setting against
+50ms sensor/filter/pressure delays. Nominal gain carryover unsuitable.
+Proposed next new-wrapper fixed-gain baseline lambda50/Ks40 gives initial
+(Dhat+Ks)*lambda=4000N/m and less lambda acceleration amplification.
+Check learning-disabled response before adaptation; do not remove freeze gate
+or increase adaptation rates/pressure limits to address oscillatory baseline.
+No code/SLX edits made for this diagnosis.
+
+
+## 2026-10-12 - Reduced-gain adaptive comparison
+
+Offline read PAC_phi_0.2_static_reducedGains_engagedMiddle.mat and engagedFalse.mat.
+Gains lambda50/Ks40. During45-60s, desired phi.2, adaptive/fixed actual
+.16658/.15206 rad; MAE .03342/.04794 (~30.3% reduction). Mean length errors
+[.14369 .29258]/[.22465 .40123] mm (~36%/~27% reduction). Feedback means
+[.28708 .58477]/[.44933 .80235] N. No hold limiting in either; full run16
+limited samples each, zero faults. Adaptive phi range .15499-.17547 versus
+fixed .14910-.15659; learning continues, not fully converged. User reports751
+updates; final spring coefficients [677.45 699.57 810.52], damping40.012/40.024,
+small history weights, bias[-.00927 .12572] after return. Final values after
+return differ from hold values; not physical parameter identification.
+Keep gains/rates unchanged initially; longer hold or full sweep now useful
+for directional/history tracking evaluation. No code/SLX changes.
+
+
+## 2026-10-12 - Adaptive 10-hold sweep: good .3 rad, limited transfer
+
+User supplied PAC_sweep.mat reports/screenshots, 10701 samples0-535s,
+lambda50/Ks40,9601 adaptive updates,20 limited samples total,no faults.
+All reported hold latter halves valid/engaged/no limiting/above activation.
+At desiredphi.3 theta0/pi2/pi actual .30369/.29674/.29744; phiMAE
+.00445/.00326/.00497 rad; thetaMAE .01817/.02628/.01833 rad. At .2 first
+theta0/pi2/pi actual .18019/.19137/.18679. Finaltheta0/.2 actual .13643
+vs initial .18019 (24.3% decrease), error .06357 vs .01980. This is
+limited transfer/readaptation/history performance, not global convergence.
+At pi2/.1 thetaMAE .46708rad despite good phi. Effective spring/history/bias
+estimates bounded; D estimates only40.232/40.336 versus initial40, so no
+evidence of uniquely identified physical damping. Final parameters are
+compensation estimates; all nominal-baseline comparisons across gain/form
+changes are confounded. Proposed application-relevant next amplitude .5rad
+with unchanged gains/rates,10s ramp,60s hold,include return to earlier .3/.2
+to evaluate transfer. Keep constraints and observe direction/length errors.
+No controller/SLX/source changes.
+
+## 2026-10-12 - High-phi adaptive sweep: unloading onset and slew-limited oscillation
+
+Offline raw-data review of passivity_adaptive_control/PAC_sweep_high_phis_unstable.mat,
+10701 samples, 0-535 s. Reference amplitudes .5/.8/1.5 rad. The onset at110 s
+is the theta0/.8 unloading ramp110-115, not the 1.5 command (starts125).
+During95-109 phi .804-.812 (mean.808), all orientations valid, no limiting,
+force allocation residual roundoff. During110-115 adaptation active94%;
+spring estimates [568.1 804.9 824.8] at110 become [467.7 682.6 397.9] at115;
+k3 falls52%. K remains positive definite (eigenvalues678/2344 to561/1385 N/m).
+First limited113.950 s, first invalid orientation115.700 s, first below
+activation128.500 s. During115-125 desiredphi0, actual .0186-.462 rad,
+SD.1008 rad, approximate dominant frequency1.9 Hz; limited and 2bar/s slew
+hit86.5%, valid92%, adaptation active5.5%. Pressures minima[1.637 1.037 .9104]
+bar: above .8 activation during this first oscillatory zero interval.
+Feedback force swings about -12.7..11.9 N; requests -20.2..19 N and allocation
+residual about +/-20 N. Before onset feedback magnitude was below.311 N.
+Later pi2/.5 hold195-210 meanphi.515 conceals range.114-.889, limited94%.
+Estimates remain bounded, damping changes small, zero latched faults. Later
+activation residual can freeze learning even limited=false; these flags are
+not equivalent. User-reported1537 updates/7232 limited samples.
+Leading hypothesis: unloading triggers delayed force-feedback/pressure dynamics
+interacting with slew limiting; rapid transient adaptation may contribute.
+Timing excludes invalid orientation or activation crossing as initial trigger,
+but does not prove adaptation causal or distinguish pneumatic/sensor delays.
+Next diagnostic priority is transient plots/time-window metrics and a matched
+frozen-estimate unloading comparison; consider slower10-20 s returns and learning
+gating during return/recovery after review. Do not increase slew or remove gates
+on this evidence alone. No controller or SLX changes, no hardware run.
+
+## 2026-10-12 - High-phi repeat trial confirms unloading failure
+
+Offline comparison PAC_sweep_high_phis_unstable_trial2.mat (0-193.7 s)
+with trial1. Before110, trial2 phi .80527-.81167, SD.00102, no limiting.
+Return starts110 s; first limited113.800 versus113.950 trial1; first
+invalid orientation114.700 versus115.700; below activation128.300 versus128.500.
+Oscillation grows approximately113.6-115 s; no mathematically unique onset
+sample is asserted. During115-125 phi .01599-.45883, SD.09137, limited88%,
+valid90.5%, residual peak20.347 N; trial1 corresponding phi .01865-.46166,
+SD.10079, limited86.5%. Strong repeatability ties failure to .8 unloading,
+not random startup or initial deadzone crossing. Slew limiting remains a
+constraint/possible amplifier, not proven original cause. Adaptation-versus
+sampled feedback/pneumatic delay causality remains unresolved. Hold4 meanphi
+.5248 conceals MAE.2455. No controller/SLX changes or hardware execution.
+
+## 2026-10-12 - Freeze-adaptation recordings
+Offline changing_enabling_adaptive_tr1/tr2.mat reviewed. Both adapt: last active
+104.75/102.90 s, last parameter change104.76/102.91 s. Trial1 is NOT an
+adaptation-off-from-start baseline (1106 updates and changed parameters).
+Trial2 quiet105-110 phi .8077-.8099, no limiting; frozen parameters then
+unloading110-115 followed115-125 phi .0606-.4638, SD.0848, limited87%.
+Thus continued parameter updates during unloading are not necessary for failure.
+This does not exclude learned model/history dynamics as contributors.
+Both logs .01 s vs earlier .05, measurement timestamp unique increments.05 s.
+Possible multirate supervisor/slew effect: initial .5 hold limited~62-65% but
+residual only~.005 N, so raw limited counts are not comparable across rates.
+Need verify controller execution/sample holds before retuning. Trial1 already
+oscillates95-105 phi .8324-1.045, whereas trial2 quiet. Trial2 1.5 hold mean
+near desired conceals135-150 range1.438-1.625 and88% limiting. No source/SLX edits.
+
+## 2026-10-12 - Next isolation experiment and verified constraints
+Source review: pressure rails .2-3 bar, s/a correction +/-2.5 bar, slew2bar/s,
+nominal activation .8 bar (minimum below activation), fixed mean1.6. No timeout.
+Invalid grace.10s, max sample age.075s. Allocation assumes linear force above
+activation; crossing activation yields residual without necessarily limited=true.
+At static target tau includes Dhat*v-Ks*s = (Dhat+Ks)*lambda*error-Ks*dq.
+Current D40/Ks40/lambda50 gives4000N/m restoring and40Ns/m explicit measured
+velocity coefficient, plus M*a/C*v. Frozen adaptation does not freeze history z.
+Hysteresis is plausible but not established. Next verify controller sample time
+.05s consistent with fresh sensor data; then short identical .8 ramp/hold/return,
+frozen estimates before return, compare Ks40 versus20 with lambda50 unchanged.
+This reduces both feedback stiffness and velocity authority; cannot isolate pure
+velocity causality. Retain limits; log rate/rail/correction reasons separately
+when implementing diagnostics. No code changes in this discussion.
+
+## 2026-10-13 - PAC .05s execution confirmed; severe wall-time slowdown
+User sample-time overlay confirms PAC outputs .05s, NI path .01s. Pacing off;
+user reports .05 simulation seconds per wall second. Profile attempt aborts in
+AuroraReader_s2_BaseRotation.setupImpl preflight:100/100 valid paired,88 overruns,
+median interval1.3434s, reason polling slower than configured period. Screenshot
+PAC call count0: profiler cannot assess PAC runtime from this run. Reader source
+preflight occurs before stepImpl; physical polling paced via tic/toc in stepImpl.
+Thus this failure establishes slow acquisition/setup under profiling, not PAC
+computation cost. Profiler overhead versus serial/host delay unresolved. Next
+check preflight without profiler, preferably standalone zero-pressure acquisition;
+retain .05 period/thresholds and do not bypass preflight. No code/model edits.
+
+## 2026-10-13 - Restart resolves NDI slowdown; new frozen high-phi onset
+User restarted MATLAB and acquisition now works; PAC inherited rate retained.
+Offline static_phi_test1_unstable.mat: last parameter change102.710s, despite
+reported disable110s (updates may naturally gate earlier).105-110 phi.8088-.8108
+quiet no limiting.115-125 desiredzero actualphi.1398-.2195,SD.0185,limited2.5%,
+valid100%: residual bend rather than previous large return oscillation.
+Next1.5 ramp125-130: first limiting127.600, invalid128.000, activation crossing
+128.150.128-130 limited77.5%, residualpeak20.48N;130-140 phi1.3395-1.5985,
+limited85.5%,allAboveActivation0. New onset tied to larger loading ramp, not
+continued parameter updates. Deadzone-map/allocation interaction plausible,
+not proven initial cause (limiting/invalid precede crossing). Theta nearphi0
+ill-conditioned; length/component tracking required to establish true lateral
+oscillation. Prior pure unloading mechanism not universal across runs. Next
+isolate amplitude at .8 vs1.0 with identical frozen setup and rates, avoiding
+simultaneous gain/ramp changes; exact source limits remain .2-3bar/slew2.
+No code/model changes.
+
+## 2026-10-13 - Commit preparation and offline validation
+User requested committing pending updates on codex/passivity-adaptive-controller.
+Included PAC implementation/models, experiment recordings/reports, plotting updates
+and project documentation. validatePacFixed, validatePacPressure, validatePacAdaptive
+and validatePacAdaptiveTracking passed offline. No hardware models executed; these
+checks do not establish physical sampled-loop stability. No remote push requested.

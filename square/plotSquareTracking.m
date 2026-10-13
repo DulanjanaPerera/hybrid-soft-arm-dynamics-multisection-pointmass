@@ -1,14 +1,24 @@
-function figures = plotSquareTracking(source)
+function figures = plotSquareTracking(source, rotationAngle_rad)
 %PLOTSQUARETRACKING Plot a square-tracking run using logged XYZ positions.
 %   figures = plotSquareTracking(out)
 %   figures = plotSquareTracking(out.logsout)
 %   figures = plotSquareTracking('square/initial_test.mat')
 %   figures = plotSquareTracking() uses out in the base workspace.
+%   figures = plotSquareTracking(source, 0.2903) rotates desired XYZ about
+%   +Z by 0.2903 rad before plotting it against measured XYZ. A positive
+%   angle rotates +X toward +Y; use a negative angle for the opposite way.
 %
 % Reuses the five angle, error, length, force, and pressure figures from
 % plotCommonPressureTracking. Figure 6 uses logged des_position and
 % meas_position directly; it does not reconstruct desired XYZ from angles.
 % No files are written, and no model or hardware is run.
+
+if nargin < 2 || isempty(rotationAngle_rad)
+    rotationAngle_rad = 0;
+end
+assert(isnumeric(rotationAngle_rad) && isreal(rotationAngle_rad) && ...
+    isscalar(rotationAngle_rad) && isfinite(rotationAngle_rad), ...
+    'rotationAngle_rad must be a finite, real scalar in radians.');
 
 if nargin < 1 || isempty(source)
     assert(evalin('base', 'exist(''out'',''var'')') == 1, ...
@@ -37,6 +47,11 @@ assert(isa(ds, 'Simulink.SimulationData.Dataset'), ...
 
 [~, desiredXYZ] = readXYZ(ds, 'des_position');
 [measuredTime, measuredXYZ] = readXYZ(ds, 'meas_position');
+desiredXY = desiredXYZ(:,1:2);
+cosAngle = cos(rotationAngle_rad);
+sinAngle = sin(rotationAngle_rad);
+desiredXYZ(:,1) = cosAngle*desiredXY(:,1) - sinAngle*desiredXY(:,2);
+desiredXYZ(:,2) = sinAngle*desiredXY(:,1) + cosAngle*desiredXY(:,2);
 validTime = ds.getElement('configurationValid').Values.Time;
 validData = double(ds.getElement('configurationValid').Values.Data(:));
 valid = interp1(validTime(:), validData, measuredTime, 'previous', 0) > 0.5;
@@ -52,8 +67,15 @@ figures = plotCommonPressureTracking(ds);
 
 clf(figures(6));
 figure(figures(6));
+desiredLabel = 'Desired';
+plotTitle = 'Logged desired and measured tip XYZ';
+if rotationAngle_rad ~= 0
+    desiredLabel = 'Desired (rotated)';
+    plotTitle = sprintf('%s (desired yaw %+0.4f rad)', ...
+        plotTitle, rotationAngle_rad);
+end
 plot3(desiredXYZ(:,1), desiredXYZ(:,2), desiredXYZ(:,3), ...
-    'k--', 'LineWidth', 1.4, 'DisplayName', 'Desired');
+    'k--', 'LineWidth', 1.4, 'DisplayName', desiredLabel);
 hold on;
 plot3(measuredXYZ(:,1), measuredXYZ(:,2), measuredXYZ(:,3), ...
     'Color', [0.08 0.38 0.76], 'LineWidth', 1.2, ...
@@ -62,7 +84,7 @@ plot3(desiredXYZ(1,1), desiredXYZ(1,2), desiredXYZ(1,3), ...
     'ko', 'MarkerFaceColor', 'k', 'DisplayName', 'Desired start');
 hold off;
 xlabel('X (m)'); ylabel('Y (m)'); zlabel('Z (m, down)');
-title('Logged desired and measured tip XYZ');
+title(plotTitle);
 legend('Location', 'best');
 axis equal; grid on; view(3); set(gca, 'ZDir', 'reverse');
 rotate3d(figures(6), 'on');

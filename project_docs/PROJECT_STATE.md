@@ -1,5 +1,5 @@
-Last Updated: 2026-10-08
-Current Milestone: Evaluate integral feedback against pressure limits and angle/length tracking
+Last Updated: 2026-10-12
+Current Milestone: Adaptive K/D/history-force/bias path implemented and checked offline; new Simulink integration and physical validation pending
 
 # Current project state
 
@@ -34,6 +34,17 @@ orientation/position measurements and three pressure-regulator commands.
 See [MODEL_ARCHITECTURE.md](MODEL_ARCHITECTURE.md) for interfaces and data flow.
 
 ## Current implementation status
+
+On branch `codex/passivity-adaptive-controller`, isolated stage-1 force code is
+in `passivity_adaptive_control/`. `pacFixedBlock` accepts q/dq, desired q/dq/ddq,
+arm-frame gravity, and validity flags. It implements fixed-parameter passivity
+control with no integral, adaptation or payload. Numerical model-identity and
+matched-model ODE checks passed. `pacCommonPressureBlock` now adds fixed-mean
+allocation, a constant calibrated trim-force bias, slew/rails and a freshness/
+fault supervisor. Command-path tests and MATLAB Coder C source generation
+passed; duplicated-SLX wiring, closed-loop sampled pressure behavior and
+hardware behavior remain unvalidated. Existing Simulink models are unchanged.
+See that folder's README before use; the force output is not a valve command.
 
 The earlier small-step experiment is `FBL_commonP.slx` with paste-ready source
 files in `common_pressure_testing/`. Its 240 s test ramps to trial-4 trim
@@ -227,6 +238,15 @@ Details, attempted approaches, and next actions: [OPEN_ISSUES.md](OPEN_ISSUES.md
 
 ## Next steps
 
+For PAC, wire `pacCommonPressureBlock` in a user-created duplicate only after
+checking the last-successful-measurement timestamp, discrete 0.05 s rate,
+gravity convention and downstream Kill/NI path. Keep the reference held until
+status=3; calibration can be delayed by motion. Preserve the 0.2-3 bar saved
+rails for now, while logging nominal activation crossing and force residual.
+The current command floor does not guarantee all-active force mapping.
+There is no payload, adaptation or integral in this new path. See
+`passivity_adaptive_control/README.md` for the full interface and timing.
+
 For the current integral controller, compare repeated matched circle or
 fixed-pose trials at lower and higher Ki, log the integral state, and separate
 the cause of `pressureLimited` before increasing gain. Check reversal and
@@ -255,3 +275,49 @@ For routine work read this state plus the relevant specialized file. Search
 history by date, function, experiment or term instead of routinely loading the
 entire log. Local experiment READMEs retain operational instructions and source
 result artifacts retain detailed provenance.
+
+First PAC circle recording reviewed: engagement and NI-path commands worked,
+with no circle pressure limiting; bending remained near zero. Nominal offline
+feedback gains provide only 20 N/m restoring authority and require experimental
+tuning. See VALIDATION_RESULTS.md (first PAC circle recording).
+
+Static PAC test confirms weak feedback with gains Ks=10, lambda=2; reusable
+report/plots are in PAC_circle/analyzePacStatic.m (see local README).
+
+PAC experimental baseline now lambda=200 /s, Ks=20 N s/m (reported trials).
+Static offsets depend on direction: phi MAE .04786/.00935/.03287 rad at
+theta=0/pi/2/pi; pi/2 theta MAE .16734 rad despite good phi. No hold limiting.
+Adaptation remains pending; offset versus stiffness/coupling is not identified.
+
+Ten-hold sweep shows repeat theta0/.2 actual phi drops .14517 to .10945
+with same gains/trim bias. History/time effects confound static stiffness fit;
+repeatability and zero-reference baselines are next before parameter selection.
+
+Adaptive implementation in passivity_adaptive_control/ADAPTIVE_INTEGRATION.md.
+Structured stiffness, damping, history force weights and bias adapt; mass/gravity
+and Bouc-Wen internal coefficients stay fixed. Existing nominal files and SLX
+unchanged. New Dhat*v compensation changes baseline; compare learning on/off
+using same wrapper. No sampled physical stability/performance guarantee.
+
+First adaptive-wrapper physical baseline oscillates even learning disabled:
+45-60s phi ~.43rad for desired.2, ~90% limiting. lambda200/Ks20 carryover
+is unsuitable for new Dhat*v path. Retune fixed baseline before learning;
+proposed lambda50/Ks40 starting comparison is not yet experimentally validated.
+
+Reduced-gain lambda50/Ks40 adaptive wrapper now shows no static-hold limiting.
+Learning reduces phi MAE .04794 to .03342 rad in separate45-60s runs;
+not fully converged and repeatability/other directions remain unvalidated.
+
+Adaptive sweep .3rad accurate across three directions (phiMAE .0033-.0050),
+but final repeatedtheta0/.2 degrades .1802 to .1364 actual. Transfer/readaptation
+remains open. .5rad application test proposed with unchanged gains/rates.
+
+High-phi sweep (.5/.8/1.5) oscillation begins on .8 unloading110-115 s.
+Slew limiting starts113.95 before invalid orientation115.70 and activation
+crossing128.50. Zero-reference115-125 phi .0186-.462, slew86.5%; k3 drops52%
+during unloading but K stays SPD. Delayed force/pressure loop plus rapid transient
+learning is leading hypothesis, not proven cause. Mean-hold reports conceal
+oscillation. See VALIDATION_RESULTS.md high-phi onset analysis. No code changed.
+Repeat high-phi trial2 confirms .8 unloading failure: first limiting113.80s vs113.95s; zero-hold phi .016-.459,88% limited. See validation repeat entry; causal mechanism still unresolved.
+Freeze comparison: trial2 parameters stop changing102.91s yet unload oscillation persists; ongoing updates not necessary. Trial1 also adapted, not off-baseline. New .01 logs with .05 measurement timestamps warrant multirate execution check before tuning.
+Latest MATLAB restart clears NDI slowdown. Frozen trial now quiet after .8 unloading, residualphi~.14-.22; major limiting/oscillation starts larger loading ramp~128s near activation crossing128.15. See latest validation; mechanism not uniformly unloading.
