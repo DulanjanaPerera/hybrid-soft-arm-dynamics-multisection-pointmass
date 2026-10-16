@@ -172,3 +172,22 @@ Nominal activationthreshold.8 remains assumption; doesnot identifyphysicalpressu
 validatePacPressure includes feasibleinactiveexactforceand infeasibleflag checks;
 validatePacAdaptive passes. No SLX edited byagent. Repeat1rad30s baseline,
 lambda40/Ks20 andrecordallocationresidual/limits/updates beforehighergainorspeed.
+
+## 2026-10-16 - Switchable variable-common allocation and external PAC tuning
+User authorized commonpressure adjustment andexternal tuning ports. New
+pacAdaptiveTunableBlock keepsfirst11inputs/26outputs andaddsBoolean commonenable,
+10fixedsize tuningvectors plusmeancommand/meanshift outputs. pacTunableDefaults
+andTUNABLE_BLOCK.md providewiring anddefaults. Oldwrapper remainsunchanged.
+pacAllocateVariableCommon projects2Dnominalforce ontoallactivepressure/correction
+polygon usingboundededge/vertexenumeration; exactfeasibleforces,closestEuclidean
+infeasibleforces,meannearestnominal. Keepsrails/slew/correctioncaps; no gradient
+commonstate, noidentificationofphysicalpreload. OFF usescurrentfixedmeanallocator;
+ON avoidsnominaldeadzone, canchangephysicalstiffness. Supervisortrim/anchor/fault
+behaviorunchanged; switchedtargets passsamecommandslew. Update/historyaccept
+optionalcfgdefaultingoldsettings. Externalgamma/scales/ratecaps/bounds/initial,
+error/residualgates/historylaw/pressuremap/supervisortiming; mechanicalmodelfixed.
+Structural/calibration settingsbefore-runonly;initialreadonfreshpersistentstate.
+OfflinevalidatePacPressure/Adaptivepassed;validatePacTunable testsprojectionforce
+bounds/feasiblevertices,OFFequivalence,custominitialvalue,actualmeanchangeunder
+nonzerorequestand commandslew. No SLX/hardware runs. Oldfixedmeanexperimental
+failurepreservedindocs. Provisionalcomparisonlambda40/Ks20,30scircles,sameinit.

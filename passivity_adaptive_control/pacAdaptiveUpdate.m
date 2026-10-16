@@ -1,8 +1,9 @@
-function [state,active,atBound]=pacAdaptiveUpdate(state,Y,s,dt,allow)
+function [state,active,atBound]=pacAdaptiveUpdate(state,Y,s,dt,allow,cfg)
 %PACADAPTIVEUPDATE Box-projected, rate-bounded gradient. No hidden I/O.
 % Outputs are estimates for the NEXT controller sample.
 %#codegen
-cfg=pacAdaptiveConfig();active=false;
+if nargin<6,cfg=pacAdaptiveConfig();end
+active=false;
 atBound=any(state.theta<=cfg.lower | state.theta>=cfg.upper);
 if ~allow || dt<=0 || dt>cfg.maxUpdateInterval_s || ...
  ~all(isfinite(Y(:))) || ~all(isfinite(s)) || norm(s)<=cfg.deadband_mPerS,return;end

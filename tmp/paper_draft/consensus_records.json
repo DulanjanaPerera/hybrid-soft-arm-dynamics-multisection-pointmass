@@ -1,0 +1,213 @@
+{
+  "retrieved": "2026-10-16",
+  "scope": "Fetched Consensus records; abstracts/metadata, not full-text reviews. Publication years require journal-version normalization.",
+  "papers": [
+    {
+      "id": "582a87e391495bb7a262a8f215ddf2cf",
+      "title": "Dynamic Control of Soft Robotic Arm: An Experimental Study",
+      "text": "The objective of this letter is to investigate the dynamic control of a soft robotic arm. First, a modular soft robotic hardware and an affordable actuator-space encoder were presented. We then discussed the soft robot modeling, and adaptive passivity control strategy with stability proof. The proposed controller was tested in different operation scenarios, and compared to the standard PD feedback linearization control and passivity control. In all experimental settings, the adaptive passivity control scheme was able to achieve superior performance, even with significant modeling uncertainties and disturbances. The theoretical analysis and experimental validations of the proposed controller will pave the way toward the practical implementations of the soft robotic system in the dynamic scenarios.\n\nKey takeaway: The adaptive passivity control scheme for soft robotic arms provides superior performance in dynamic scenarios, even with modeling uncertainties and disturbances.",
+      "url": "https://consensus.app/papers/dynamic-control-of-soft-robotic-arm-an-experimental-study-azizkhani-gunderman/582a87e391495bb7a262a8f215ddf2cf/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "Milad Azizkhani, Anthony L. Gunderman, I. Godage, Yue Chen",
+        "publish_year": "2022",
+        "journal": "IEEE Robotics and Automation Letters",
+        "volume": "8",
+        "pages": "1897-1904",
+        "citation_count": "16",
+        "doi": "10.1109/lra.2023.3243802"
+      }
+    },
+    {
+      "id": "b979bacdff53567b8bc3128287031f5f",
+      "title": "Control-Oriented Models for Hyperelastic Soft Robots Through Differential Geometry of Curves",
+      "text": "The motion complexity and use of exotic materials in soft robotics call for accurate and computationally efficient models intended for control. To reduce the gap between material and control-oriented research, we build upon the existing piece-wise constant curvature framework by incorporating hyperelastic and viscoelastic material behavior. In this work, the continuum dynamics of the soft robot are derived through the differential geometry of spatial curves, which are then related to finite-element data to capture the intrinsic geometric and material nonlinearities. To enable fast simulations, a reduced-order integration scheme is introduced to compute the dynamic Lagrangian matrices efficiently, which in turn allows for real-time (multilink) models with sufficient numerical precision. By exploring the passivity and using the parameterization of the hyperelastic model, we propose a passivity-based adaptive controller that enhances robustness toward material uncertainty and unmodeled dynamics-slowly improving their estimates online. As a study-case, a soft robot manipulator is developed through additive manufacturing, which shows good correspondence with the dynamic model under various conditions, for example, natural oscillations, forced inputs, and under tip-loads. The solidity of the approach is demonstrated through extensive simulations, numerical benchmarks, and experimental validations.\n\nKey takeaway: This study develops a passivity-based adaptive controller for hyperelastic soft robots, enhancing robustness against material uncertainty and unmodeled dynamics.",
+      "url": "https://consensus.app/papers/controloriented-models-for-hyperelastic-soft-robots-caasenbrood-pogromsky/b979bacdff53567b8bc3128287031f5f/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "B. Caasenbrood, A. Pogromsky, H. Nijmeijer",
+        "publish_year": "2022",
+        "journal": "Soft Robotics",
+        "volume": "10",
+        "pages": "129 - 148",
+        "citation_count": "30",
+        "doi": "10.1089/soro.2021.0035"
+      }
+    },
+    {
+      "id": "242f1eaa0e7a5ac18260f3ff271697b0",
+      "title": "On an Improved State Parametrization for Soft Robots With Piecewise Constant Curvature and Its Use in Model Based Control",
+      "text": "Piecewise constant curvature models have proven to be an useful tool for describing kinematics and dynamics of soft robots. However, in their three dimensional formulation they suffer from many issues limiting their range of applicability - as discontinuities and singularities - mainly concerning the straight configuration of the robot. In this work we analyze these flaws, and we show that they are not due to the piecewise constant curvature assumption itself, but that instead they are a byproduct of the commonly employed direction/angle of bending parametrization of the state. We therefore consider an alternative state representation which solves all the discussed issues, and we derive a model based controller based on it. Examples in simulation are provided to support and describe the theoretical results. When using the novel parametrization, the system is able to perform more complex tasks, with a strongly reduced computational burden, and without incurring in spikes and discontinuous behaviors.\n\nKey takeaway: The novel state representation for soft robots with piecewise constant curvature improves performance, reduces computational burden, and avoids discontinuous behaviors.",
+      "url": "https://consensus.app/papers/on-an-improved-state-parametrization-for-soft-robots-with-santina-bicchi/242f1eaa0e7a5ac18260f3ff271697b0/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "C. della Santina, A. Bicchi, D. Rus",
+        "publish_year": "2020",
+        "journal": "IEEE Robotics and Automation Letters",
+        "volume": "5",
+        "pages": "1001-1008",
+        "citation_count": "224",
+        "doi": "10.1109/lra.2020.2967269"
+      }
+    },
+    {
+      "id": "ede5c27f9cd15a78aad4327c1cf07b57",
+      "title": "Design and Kinematic Modeling of Constant Curvature Continuum Robots: A Review",
+      "text": "Continuum robotics has rapidly become a rich and diverse area of research, with many designs and applications demonstrated. Despite this diversity in form and purpose, there exists remarkable similarity in the fundamental simplified kinematic models that have been applied to continuum robots. However, this can easily be obscured, especially to a newcomer to the field, by the different applications, coordinate frame choices, and analytical formalisms employed. In this paper we review several modeling approaches in a common frame and notational convention, illustrating that for piecewise constant curvature, they produce identical results. This discussion elucidates what has been articulated in different ways by a number of researchers in the past several years, namely that constant-curvature kinematics can be considered as consisting of two separate submappings: one that is general and applies to all continuum robots, and another that is robot-specific. These mappings are then developed both for the single-section and for the multi-section case. Similarly, we discuss the decomposition of differential kinematics (the robot’s Jacobian) into robot-specific and robot-independent portions. The paper concludes with a perspective on several of the themes of current research that are shaping the future of continuum robotics.\n\nKey takeaway: This paper demonstrates that for piecewise constant curvature, various continuum robot models produce identical results, and suggests two separate submappings for general and robot-specific constant-curvature kinematics.",
+      "url": "https://consensus.app/papers/design-and-kinematic-modeling-of-constant-curvature-webster-jones/ede5c27f9cd15a78aad4327c1cf07b57/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "R. Webster, Bryan A. Jones",
+        "publish_year": "2010",
+        "journal": "The International Journal of Robotics Research",
+        "volume": "29",
+        "pages": "1661 - 1683",
+        "citation_count": "2192",
+        "doi": "10.1177/0278364910368147"
+      }
+    },
+    {
+      "id": "66510a75b0715ccaae651e6d136c0e1d",
+      "title": "Discrete Cosserat Approach for Multisection Soft Manipulator Dynamics",
+      "text": "Nowadays, the most adopted model for the design and control of soft robots is the piecewise constant curvature model, with its consolidated benefits and drawbacks. In this work, an alternative model for multisection soft manipulator dynamics is presented based on a discrete Cosserat approach, in which the continuous Cosserat model is discretized by assuming a piecewise constant strain along the soft arm. As a consequence, the soft manipulator state is described by a finite set of constant strains. This approach has several advantages with respect to the existing models. First, it takes into account shear and torsional deformations, which are both essential to cope with out-of-plane external loads. Furthermore, it inherits desirable geometrical and mechanical properties of the continuous Cosserat model, such as intrinsic parameterization and greater generality. Finally, this approach allows to extend to soft manipulators, the recursive composite-rigid-body and articulated-body algorithms, whose performances are compared through a cantilever beam simulation. The soundness of the model is demonstrated through extensive simulation and experimental results.\n\nKey takeaway: The discrete Cosserat approach offers a more comprehensive model for multisection soft manipulator dynamics, considering shear and torsional deformations, and extending recursive composite-rigid-body and articulated-body algorithms to soft manipulators.",
+      "url": "https://consensus.app/papers/discrete-cosserat-approach-for-multisection-soft-renda-boyer/66510a75b0715ccaae651e6d136c0e1d/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "F. Renda, F. Boyer, J. Dias, L. Seneviratne",
+        "publish_year": "2017",
+        "journal": "IEEE Transactions on Robotics",
+        "volume": "34",
+        "pages": "1518-1533",
+        "citation_count": "297",
+        "doi": "10.1109/tro.2018.2868815"
+      }
+    },
+    {
+      "id": "e6dfed6d97765de996a50ccbaac25458",
+      "title": "Control of soft robots with inertial dynamics",
+      "text": "Soft robots promise improved safety and capability over rigid robots when deployed near humans or in complex, delicate, and dynamic environments. However, infinite degrees of freedom and the potential for highly nonlinear dynamics severely complicate their modeling and control. Analytical and machine learning methodologies have been applied to model soft robots but with constraints: quasi-static motions, quasi-linear deflections, or both. Here, we advance the modeling and control of soft robots into the inertial, nonlinear regime. We controlled motions of a soft, continuum arm with velocities 10 times larger and accelerations 40 times larger than those of previous work and did so for high-deflection shapes with more than 110° of curvature. We leveraged a data-driven learning approach for modeling, based on Koopman operator theory, and we introduce the concept of the static Koopman operator as a pregain term in optimal control. Our approach is rapid, requiring less than 5 min of training; is computationally low cost, requiring as little as 0.5 s to build the model; and is design agnostic, learning and accurately controlling two morphologically different soft robots. This work advances rapid modeling and control for soft robots from the realm of quasi-static to inertial, laying the groundwork for the next generation of compliant and highly dynamic robots.\n\nKey takeaway: Our data-driven learning approach enables rapid modeling and control of inertial, nonlinear soft robots, paving the way for the next generation of compliant and highly dynamic robots.",
+      "url": "https://consensus.app/papers/control-of-soft-robots-with-inertial-dynamics-haggerty-banks/e6dfed6d97765de996a50ccbaac25458/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "David A. Haggerty, M. Banks, E. Kamenar, Alan B. Cao, Patrick C. Curtis, I. Mezić, E. Hawkes",
+        "publish_year": "2023",
+        "journal": "Science Robotics",
+        "volume": "8",
+        "citation_count": "169",
+        "doi": "10.1126/scirobotics.add6864"
+      }
+    },
+    {
+      "id": "aee9f27a09995037a908876287a8da1b",
+      "title": "Dynamic Task Space Control of Redundant Pneumatically Actuated Soft Robot",
+      "text": "Soft robotic manipulators promise manipulation dexterity and compliance, but these properties make them hard to control due to the uncertainties and nonlinearitiesin their dynamics. Towards solving these challenges, this letter proposes a real-time dynamic control approach for a pneumatically actuated redundant soft robotic arm. We first present a computationally-efficient dynamic model designed for real-time control. Next, we introduce a robust adaptive passivity-based control approach that complements the dynamic model to enhance the system's tracking performance under uncertainty. System uncertainties are categorized based on the bounds and behavior of dynamic terms in the model, with dominant stiffness and damping effects compensated by adaptive terms and unmodeled dynamics handled through the robust term. We first develop a control strategy in actuator space, then extend it to task space to encompass position control, orientation control, and simultaneous position and orientation control. To improve tracking performance in task space, we employ a redundancy resolution algorithm, addressing secondary tasks such as maintaining actuators within feasible limits and promoting homogeneous deformations in the robot. We comprehensively assess the performance of the proposed robust adaptive passivity control under various operation speeds, loading conditions, and trajectories. A comparison with recent baselines from the literature highlights how our method achieves both superior tracking performance and robot operation speed.\n\nKey takeaway: Our real-time dynamic control approach for a pneumatically actuated redundant soft robotic arm improves tracking performance and robot operation speed compared to recent baselines.",
+      "url": "https://consensus.app/papers/dynamic-task-space-control-of-redundant-pneumatically-azizkhani-kousik/aee9f27a09995037a908876287a8da1b/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "Milad Azizkhani, Shreyas Kousik, Yue Chen",
+        "publish_year": "2025",
+        "journal": "IEEE Robotics and Automation Letters",
+        "volume": "10",
+        "pages": "6408-6415",
+        "citation_count": "12",
+        "doi": "10.1109/lra.2025.3568316"
+      }
+    },
+    {
+      "id": "783273805eb45b7e9b4debc813c40757",
+      "title": "Dynamic modelling and inverse compensation for coupled hysteresis in pneumatic artificial muscle-actuated soft manipulator with variable stiffness.",
+      "text": "Key takeaway: The proposed dynamic model and inverse compensation effectively mitigate coupled hysteresis in pneumatic artificial muscle-actuated soft manipulators, improving positioning performance.",
+      "url": "https://consensus.app/papers/dynamic-modelling-and-inverse-compensation-for-coupled-zhang-cheng/783273805eb45b7e9b4debc813c40757/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "Ying Zhang, Qiang Cheng, Wenlin Chen, Jichun Xiao, Lina Hao, Zhi Li",
+        "publish_year": "2023",
+        "journal": "ISA transactions",
+        "citation_count": "17",
+        "doi": "10.1016/j.isatra.2023.11.035"
+      }
+    },
+    {
+      "id": "2331b9c251c25c28a28e332dedcaa4d1",
+      "title": "Trajectory Tracking Control of Dual-PAM Soft Actuator With Hysteresis Compensator",
+      "text": "Soft robotics is a swiftly evolving field. Pneumatic actuators are suitable for driving soft robots because of their superior performance. However, their control is challenging due to the hysteresis characteristics. In response to this challenge, we propose an adaptive control method to compensate for the hysteresis of soft actuators. Employing a novel dual pneumatic artificial muscle (PAM) bending actuator, the innovative control approach abates hysteresis effects by dynamically modulating gains within a traditional PID controller corresponding to the predicted variation of the reference trajectory. Through experimental evaluation, we found that the proposed control method outperforms its conventional counterparts regarding tracking accuracy and response speed. Our work reveals a new direction for advancing model-free control in soft actuators.\n\nKey takeaway: The adaptive control method for dual-PAM soft actuators compensates for hysteresis, improving tracking accuracy and response speed in soft robotics.",
+      "url": "https://consensus.app/papers/trajectory-tracking-control-of-dualpam-soft-actuator-with-shen-miyazaki/2331b9c251c25c28a28e332dedcaa4d1/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "Junyi Shen, Tetsuro Miyazaki, Shingo Ohno, Maina Sogabe, Kenji Kawashima",
+        "publish_year": "2023",
+        "journal": "IEEE Robotics and Automation Letters",
+        "volume": "9",
+        "pages": "335-342",
+        "citation_count": "13",
+        "doi": "10.1109/lra.2023.3334098"
+      }
+    },
+    {
+      "id": "db0a240c92ef540ab89fbe1f1629fdd5",
+      "title": "Control allocation - A survey",
+      "text": "Key takeaway: Control allocation algorithms can effectively coordinate mechanical systems, meeting various constraints and objectives in various industries.",
+      "url": "https://consensus.app/papers/control-allocation-a-survey-johansen-fossen/db0a240c92ef540ab89fbe1f1629fdd5/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "T. Johansen, T. Fossen",
+        "publish_year": "2013",
+        "journal": "Autom.",
+        "volume": "49",
+        "pages": "1087-1103",
+        "citation_count": "1167",
+        "doi": "10.1016/j.automatica.2013.01.035"
+      }
+    },
+    {
+      "id": "bd161d1d12575ae5a0ad0eeb2e64f692",
+      "title": "On the Adaptive Control of Robot Manipulators",
+      "text": "A new adaptive robot control algorithm is derived, which consists of a PD feedback part and a full dynamics feedfor ward compensation part, with the unknown manipulator and payload parameters being estimated online. The algorithm is computationally simple, because of an effective exploitation of the structure of manipulator dynamics. In particular, it requires neither feedback of joint accelerations nor inversion of the estimated inertia matrix. The algorithm can also be applied directly in Cartesian space.\n\nKey takeaway: The new adaptive robot control algorithm is computationally simple and can be applied directly in Cartesian space, without needing joint acceleration feedback or inversion of the estimated inertia matrix.",
+      "url": "https://consensus.app/papers/on-the-adaptive-control-of-robot-manipulators-slotine-li/bd161d1d12575ae5a0ad0eeb2e64f692/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "J. Slotine, Weiping Li",
+        "publish_year": "1987",
+        "journal": "The International Journal of Robotics Research",
+        "volume": "6",
+        "pages": "49 - 59",
+        "citation_count": "1620",
+        "doi": "10.1177/027836498700600303"
+      }
+    },
+    {
+      "id": "4be4b851c3725ef2b7114e493a123bea",
+      "title": "Piston-Driven Pneumatically-Actuated Soft Robots: Modeling and Backstepping Control",
+      "text": "Actuators’ dynamics have been so far mostly neglected when devising feedback controllers for continuum soft robots since the problem under the direct actuation hypothesis is already quite hard to solve. Directly considering actuation would have made the challenge too complex. However, these effects are, in practice, far from being negligible. The present work focuses on model-based control of piston-driven pneumatically-actuated soft robots. We propose a model of the relationship between the robot’s state, the acting fluidic pressure, and the piston dynamics, which is agnostic to the chosen model for the soft system dynamics. We show that backstepping is applicable even if the feedback coupling of the outer on the inner subsystem is not linear. Thus, we introduce a general model-based control strategy based on backstepping for soft robots actuated by fluidic drive. As an example, we derive a specialized version for a robot with piecewise constant curvature.\n\nKey takeaway: Model-based control using backstepping is effective for piston-driven pneumatically-actuated soft robots, even when feedback coupling is not linear.",
+      "url": "https://consensus.app/papers/pistondriven-pneumaticallyactuated-soft-robots-stölzle-santina/4be4b851c3725ef2b7114e493a123bea/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "Maximilian Stölzle, Cosimo Della Santina",
+        "publish_year": "2021",
+        "journal": "IEEE Control Systems Letters",
+        "volume": "6",
+        "pages": "1837-1842",
+        "citation_count": "30",
+        "doi": "10.1109/lcsys.2021.3134165"
+      }
+    },
+    {
+      "id": "a16708d2b8c55554a209ea26cb72946a",
+      "title": "Model-Based Control of Soft Robots: A Survey of the State of the Art and Open Challenges",
+      "text": "From a functional standpoint, classic robots are not at all similar to biological systems. If compared with rigid robots, animals’ bodies look overly redundant, imprecise, and weak. Nevertheless, animals can still perform a vast range of activities with unmatched effectiveness. Many studies in biomechanics have pointed to the elastic and compliant nature of the musculoskeletal system as a fundamental ingredient explaining this gap. Thus, to reach performance comparable to nature, elastic elements have been introduced in rigid-bodied robots, leading to articulated soft robotics [1] (see “Summary”). In continuum soft robotics, this concept is brought to an extreme. Here, softness is not concentrated at the joint level but instead distributed across the whole structure. As a result, soft robots (henceforth, omitting the adjective continuum) are entirely made of continuously deformable elements. This design solution aims to bring robots closer to invertebrate animals and the soft appendices of vertebrate animals (for example, an elephant’s trunk and the tail of a monkey). Several soft robotic hardware platforms have been proposed with increasingly higher reliability and functionalities. In this process, considerable attention has been devoted to the technological side of the problem, leading to a large assortment of hardware solutions. In turn, this abundance opened up the challenge of developing effective control strategies that can manage the soft body and exploit its embodied intelligence.\n\nKey takeaway: Soft robots, made of continuously deformable elements, aim to achieve performance similar to nature, but require effective control strategies to manage their soft body and exploit their embodied intelligence.",
+      "url": "https://consensus.app/papers/modelbased-control-of-soft-robots-a-survey-of-the-state-of-santina-duriez/a16708d2b8c55554a209ea26cb72946a/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "C. della Santina, Christian Duriez, D. Rus",
+        "publish_year": "2021",
+        "journal": "IEEE Control Systems",
+        "volume": "43",
+        "pages": "30-65",
+        "citation_count": "411",
+        "doi": "10.1109/mcs.2023.3253419"
+      }
+    },
+    {
+      "id": "6f02b42e928850379cdf83f228454a04",
+      "title": "Model-Based Control for Soft Robots With System Uncertainties and Input Saturation",
+      "text": "Model-based strategies are a promising solution to the grand challenge of equipping continuum soft robots with motor intelligence. However, finite-dimensional models of these systems are inherently inaccurate, thus posing pressing robustness concerns. Moreover, the actuation space of soft robots is usually limited. This article aims at solving both these challenges by proposing a robust model-based strategy for the shape control of soft robots with system uncertainty and input saturation. The proposed architecture is composed of two key components. First, we propose an observer that estimates deviations between the theoretical model and the soft robot, ensuring that the estimation error converges to zero within finite time. Second, we introduce a sliding mode controller to regulate the soft robot shape while fulfilling saturation constraints. This controller uses the observer's output to compensate for the deviations between the real system and the established model. We prove the convergence of the closed-loop with theoretical analysis and the method's effectiveness with simulations and experiments.\n\nKey takeaway: This paper proposes a robust model-based strategy for shape control of soft robots with system uncertainties and input saturation, using an observer and sliding mode controller to compensate for deviations between the real system and the established model.",
+      "url": "https://consensus.app/papers/modelbased-control-for-soft-robots-with-system-shao-pustina/6f02b42e928850379cdf83f228454a04/?utm_source=chatgpt",
+      "metadata": {
+        "authors": "Xiang-Yu Shao, Pietro Pustina, Maximilian Stölzle, Guang-Hui Sun, Alessandro De Luca, Li-Gang Wu, Cosimo Della Santina",
+        "publish_year": "2024",
+        "journal": "IEEE Transactions on Industrial Electronics",
+        "volume": "71",
+        "pages": "7435-7444",
+        "citation_count": "48",
+        "doi": "10.1109/tie.2023.3303636"
+      }
+    }
+  ]
+}

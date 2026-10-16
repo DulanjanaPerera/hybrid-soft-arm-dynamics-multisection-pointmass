@@ -149,3 +149,6 @@ Audit alignment/sample period (default Ts=1 s is unsafe to assume), centered
 Savitzky–Golay labels and normalization before block splitting for leakage.
 Separate pressure/valve memory from passive mechanical hysteresis to avoid double
 counting. A successful current one-step plot is insufficient for control rollout.
+
+## 2026-10-16 - Residual uncertainty (discussion only)
+Keep two mechanical coordinates and three pressure inputs. Pneumatic dynamics could add pressure states, not mechanical degrees of freedom. Existing parameter adaptation covers structured compensation; actuator lag and force-map/preload mismatch remain. Consider actuator dynamics then bounded residual compensation with a new sampled/allocated stability analysis. No such extension implemented. Nominal allocation residual is not measured physical uncertainty.

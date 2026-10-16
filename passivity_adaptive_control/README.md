@@ -168,3 +168,5 @@ for all inputs/outputs, settings, scope, tests and limitations. K/D/history-forc
 weights/bias adapt; no mass or internal Bouc-Wen coefficient adaptation.
 
 Workspace use: analyzePacAdaptive() or analyzePacAdaptive(out). Workspace calls print/plot without writing report files; MAT-path input retains report saving.
+
+For switchable common-pressure allocation and external tuning inputs, see TUNABLE_BLOCK.md and pacAdaptiveTunableBlock.m. Run pacTunableDefaults to populate Constant-block values; validatePacTunable is offline only.

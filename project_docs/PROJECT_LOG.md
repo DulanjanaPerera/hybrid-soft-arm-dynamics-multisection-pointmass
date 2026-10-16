@@ -2593,3 +2593,64 @@ User requests allpendingupdates committed. Includesworkspaceanalyzers,PACplottin
 activationallocator,models,setup scripts,recordings/reportsandlogs. Offline
 validatePacPressure/validatePacAdaptive passed; no hardwaremodel executed.
 Allocator circle limitation retained/documented,not presented asperformancefix.
+
+## 2026-10-16 - Switchable variable-common allocation and external PAC tuning
+User authorized commonpressure adjustment andexternal tuning ports. New
+pacAdaptiveTunableBlock keepsfirst11inputs/26outputs andaddsBoolean commonenable,
+10fixedsize tuningvectors plusmeancommand/meanshift outputs. pacTunableDefaults
+andTUNABLE_BLOCK.md providewiring anddefaults. Oldwrapper remainsunchanged.
+pacAllocateVariableCommon projects2Dnominalforce ontoallactivepressure/correction
+polygon usingboundededge/vertexenumeration; exactfeasibleforces,closestEuclidean
+infeasibleforces,meannearestnominal. Keepsrails/slew/correctioncaps; no gradient
+commonstate, noidentificationofphysicalpreload. OFF usescurrentfixedmeanallocator;
+ON avoidsnominaldeadzone, canchangephysicalstiffness. Supervisortrim/anchor/fault
+behaviorunchanged; switchedtargets passsamecommandslew. Update/historyaccept
+optionalcfgdefaultingoldsettings. Externalgamma/scales/ratecaps/bounds/initial,
+error/residualgates/historylaw/pressuremap/supervisortiming; mechanicalmodelfixed.
+Structural/calibration settingsbefore-runonly;initialreadonfreshpersistentstate.
+OfflinevalidatePacPressure/Adaptivepassed;validatePacTunable testsprojectionforce
+bounds/feasiblevertices,OFFequivalence,custominitialvalue,actualmeanchangeunder
+nonzerorequestand commandslew. No SLX/hardware runs. Oldfixedmeanexperimental
+failurepreservedindocs. Provisionalcomparisonlambda40/Ks20,30scircles,sameinit.
+
+## 2026-10-16 - Single tuning source block
+Added pacTuningBlock.m: no-input codegen MATLAB Function with10named tuningvector
+outputs matchingpacAdaptiveTunableBlock;explicit editabledefaults replace10
+Constantblocks. Booleanenables/lambda/Ks remainexistingexternalconnections.
+Editsbefore-run;structuralsettingsandinitializationunchanged. No SLX edited.
+
+## 2026-10-16 - Variable-common circle1rad20s verified
+Rawexperimentations/adaptCommonP/1rad_20s_tr1.mat0-240 reviewed,10circles20-220,
+period20s. Actual loggedlambda[28 28],Ks[5 5] constant,not prior40/20.
+EnableAdaptation/commonenable loggedtrue at0/.02only(constants); no later sampled
+coverage,butobservedadaptation/commonmotionconfirmsbehavior. Meancommandmatches
+commonPressure exactly;range1.5971-1.9109bar;pressuresmin[.8 .802 .8],
+max[2.5246 2.8033 2.3981]bar. Nearlyall validcircle samplesforce residualroundoff,
+exceptlap7(140-160)peak4.344/.3663N,2.2%limited;restlaplimiting0.
+Adaptiveactive97-99.5% eachlap. Lap1phiMAE.1117 theta.4230(lengthRMS3.048/4.249mm),
+lap2theta.4359,lap6.3459,lap8.2813,lap10.2884;lap10phiMAE.0642,
+lengthRMS2.536/2.717mm. Allthetasignedmeans=MAE:directionlags. Lap10equivalent
+lag.918s at.31416rad/s,notpuretransportdelayproof. Lap7disturbancerecovers.
+Allocator achievesnominalforceconsistency/avoidsthreshold betterthanfixedmean,
+notactualforcevalidation;changedgains/speedprecludecontrolledtrackingcomparison.
+Next matchedON/OFF withsame28/5,20s orreviewlaterbettergainrecording.
+No controller/model edits.
+
+## 2026-10-16 - Uncertainty discussion and documentation audit
+Recent common-pressure implementation/results were already logged. Audit found
+PROJECT_STATE staleheader/historicalaccumulation; replaced with concise current
+architecture, actual latest gains28/5, validationlimits, analysisworkflow and
+nextsteps. User-mentioned laterbettergains remainunreviewed. Uncertainty discussion
+nowrecorded: structuredparameteradaptationalreadyexists; actuatorlag/force-map/
+pressure-dependentmechanics remainresidualuncertainty. Favor simpleactuatordynamics
+beforeboundedresidualcompensation; noadditionaluncertaintymodel implemented.
+Nominalallocationresidualcannotidentifyactualphysicalforceerror. No code/model
+changes in this audit; logs are uncommitted since433750a.
+
+## 2026-10-16 - Remaining updates committed at user request
+Reviewed and staged variable-common/tunable PAC code, tuning source block,
+PAC_experiment_CP_adapt model, available common-pressure/payload recordings,
+reference metadata and current-state/log updates. Payload recordings included
+as available data only, not newly analyzed. validatePacPressure,
+validatePacAdaptive,validatePacTunable and tuningBlock/default equivalence
+passed offline. No hardware models run. No remote push requested.

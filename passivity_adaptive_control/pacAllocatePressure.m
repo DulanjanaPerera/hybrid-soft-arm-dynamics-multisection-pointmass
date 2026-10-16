@@ -5,6 +5,10 @@ function [target, equivalentForce, residual, limited] = ...
 % Force-equivalent delivered estimate is pressure force minus this bias.
 % Uses a nominal max(p-activation,0) map; this is an estimate, not a sensor.
 %#codegen
+if isfield(cfg,'enableCommonAdaptation') && cfg.enableCommonAdaptation
+    [target,equivalentForce,residual,limited]=pacAllocateVariableCommon(requested,forceBias,cfg);
+    return;
+end
 delta=requested-anchorForce;
 dsWanted=(delta(1)+delta(2))/(2*cfg.forcePerBar_N);
 daWanted=(delta(2)-delta(1))/(2*cfg.forcePerBar_N);

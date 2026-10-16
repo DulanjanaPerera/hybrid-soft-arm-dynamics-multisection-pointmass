@@ -173,3 +173,6 @@ decisions; remove resolved items here. Prior code edits require explicit directi
   and gate the calibrated base attitude, then feed the same arm-frame model
   gravity to all relevant dynamics paths. Do not treat recalibration in a
   rotated pose as a substitute for measuring base rotation.
+
+## 2026-10-16 - Current PAC follow-up
+Variable-common nominal force balance verified, but directional lag remains. Review later better-gain data or matched ON/OFF tests. Physical pressure/force dynamics and preload-dependent mechanics remain unverified. Uncertainty-model extension discussed only; no implementation authorized yet.
