@@ -1051,3 +1051,18 @@ Allocator achievesnominalforceconsistency/avoidsthreshold betterthanfixedmean,
 notactualforcevalidation;changedgains/speedprecludecontrolledtrackingcomparison.
 Next matchedON/OFF withsame28/5,20s orreviewlaterbettergainrecording.
 No controller/model edits.
+
+## 2026-10-16 - 100g circle comparison
+Offline adaptCommonP/1rad_20s_tr1_100g.mat userlabels100g. Same logged20s10circle
+phi1reference,lambda28/Ks5,adapt/commonenabled. Payloadattachmenttiming/typeand
+whethermodelpayloadchangednotlogged/verified; do notinfermassidentification.
+No faults;lapvalid99-99.8%,activesteps98-99.5%;almostnolimits. Common1.6-1.851bar,
+pressure.8-2.793bar. Nominalresidualmostlyroundoff;briefpeaks.1485Nlap4,.101lap6.
+Lap2thetaMAE.4375 ->lap10.3112,phiMAE.0736->.0636,lengthRMS3.527/4.070 ->
+2.842/2.872mm. Unloadedlap10theta.2884,phi.0642,length2.536/2.717:
+loadedtheta~8%worse,phiaboutsame,length~12%/6%worse,notrepeatabilitystatistics.
+Finalsprings579.45/136.85/578.8,damping43.579/44.363,history3.774/3.507/3.587,
+bias[-.67175 .77705]. Parametercompensationdoesnotidentify100g; commonpressure
+alone cannotcompensategravitybending becauseidealnullspace. Evidenceofmaintained
+boundedtrackinginonepayloadrun,notproofadaptationbenefitwithoutmatchedOFFtest.
+No code/model edits.

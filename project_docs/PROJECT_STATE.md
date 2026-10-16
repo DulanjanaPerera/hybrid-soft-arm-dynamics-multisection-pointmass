@@ -106,3 +106,4 @@ MODEL_ARCHITECTURE, VALIDATION_RESULTS, OPEN_ISSUES, DECISIONS or TECHNICAL_NOTE
 when code or important conclusions change. Root PROJECT_LOG.md is a pointer.
 Use local READMEs and TUNABLE_BLOCK.md for integration, not historical settings.
 
+100g20scircle reviewed: same28/5 gains,no faults/minimallimits,lap10thetaMAE.311 vsunloaded.288,phi.0636 vs.0642. Payloadtiming/modelchangeunverified; see validation. No payloadmass estimator.

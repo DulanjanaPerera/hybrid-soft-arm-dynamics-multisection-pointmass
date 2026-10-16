@@ -176,3 +176,6 @@ decisions; remove resolved items here. Prior code edits require explicit directi
 
 ## 2026-10-16 - Current PAC follow-up
 Variable-common nominal force balance verified, but directional lag remains. Review later better-gain data or matched ON/OFF tests. Physical pressure/force dynamics and preload-dependent mechanics remain unverified. Uncertainty-model extension discussed only; no implementation authorized yet.
+
+## 2026-10-16 - Payload comparison limits
+For the 100 g circle recording, confirm whether the load was attached before preflight/trim or during tracking, and whether model parameters changed. A matched adaptation-disabled loaded run is needed to attribute improvement to adaptation. Current comparison establishes single-run payload tolerance, not mass identification or repeatability statistics.
