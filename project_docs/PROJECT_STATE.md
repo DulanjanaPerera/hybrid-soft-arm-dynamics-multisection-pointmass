@@ -321,3 +321,14 @@ oscillation. See VALIDATION_RESULTS.md high-phi onset analysis. No code changed.
 Repeat high-phi trial2 confirms .8 unloading failure: first limiting113.80s vs113.95s; zero-hold phi .016-.459,88% limited. See validation repeat entry; causal mechanism still unresolved.
 Freeze comparison: trial2 parameters stop changing102.91s yet unload oscillation persists; ongoing updates not necessary. Trial1 also adapted, not off-baseline. New .01 logs with .05 measurement timestamps warrant multirate execution check before tuning.
 Latest MATLAB restart clears NDI slowdown. Frozen trial now quiet after .8 unloading, residualphi~.14-.22; major limiting/oscillation starts larger loading ramp~128s near activation crossing128.15. See latest validation; mechanism not uniformly unloading.
+Latest1.0 target trial oscillates already on .8 return115-125, all pressures above activation; ongoing adaptation/deadzone crossing not necessary. Next controlled timing/gain comparison; see validation entry.
+Trial3 logs .05s,lambda50/Ks40: unloading oscillation persists85% limited115-125; timing alone insufficient. Ks20 comparison still pending.
+Ks20/lambda50 trial4 suppresses unloading oscillation:115-125SD.0119,no limiting;1radMAE.04165. Provisional baseline, residual zero bend~.2 and pi2 theta error.511 remain; see validation.
+Full adaptive Ks20 sweep tracks all holds well, recovered oscillation265-280 remains. Next target starts275, so recovery not evidence of self-decay at zero. k3 hits projection0; see validation. Retainlambda50/Ks20.
+User repeat/20s zero hold remains oscillatory. k3=0 does not imply singular K; negative k3 requires coupled SPD projection and altered physical interpretation. No bounds changed.
+Lambda25/Ks20 removes observed oscillation but slow directional readaptation, final repeatphiMAE.1708. New1s ramps confound lambda-only comparison; retain conservative baseline and matched-reference tuning.
+Lambda40/Ks20 shows improved compromise vs25 and50: brief return transient, allholdsnolimits,finalrepeatMAE.0183 vs25.1708. Provisional baseline pending repeat; see validation.
+Adaptive1rad30s circles:phiMAE~.03,thetaMAE.235->.195 over7laps,lengthRMSE~2mm; k2hits50,activationresidual gateslearning. See circle validation; retain speed for phase diagnostics.
+Repeat10circles1rad30s plateaus thetaMAE~.28rad;activationresidual gates~2/3lap3 despite nolimits. Allocation consistency priority before gains; see validation.
+Activation-consistent fixedmean allocator implemented; exact feasibleforce mapping, constrainedfallbackflags residual. Pressurebounds/gainsunchanged. Repeat30scircle; see architecture/validation.
+Newfixedmeanactivationallocator didnotimprovecircleerrors; exactcandidatefrequently violateslow/highrails. Variablecommon bounded allocation nextproposal, not implemented.

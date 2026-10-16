@@ -1,0 +1,12 @@
+ADAPTIVE PAC REPORT: passivity_adaptive_control/experimentations/static_phi_test_20d_25Lmabda.mat
+Samples 10258; time 0.00..512.85 s
+Parameter order: k1 k2 k3 d2 d3 h1 h2 h3 b2 b3
+Initial [650 650 650 40 40 0 0 0 0 0]
+Final [436.44 235.54 797.56 40.814 41.134 2.8331 1.1718 1.4832 0.66671 0.1128]
+Min [263.84 84.59 0 40 40 0 0 0 -2.1231 -2.8652]
+Max [1207.7 829.06 1019.7 40.814 41.134 2.8332 1.203 1.4984 1.0858 0.37922]
+Adaptive updates 6503; bound flag 3553; limited 17; fault 0 samples
+hysteresisForce_N control mean [-0.27516 -0.25264]; peak abs [2.5979 2.7253] N
+adaptiveBias_N control mean [-0.4535 -0.88471]; peak abs [2.1231 2.8652] N
+adaptiveForce_N control mean [-1.1033 -1.1255]; peak abs [7.6325 6.3857] N
+allocationResidual_N control mean [-0.032608 -0.034316]; peak abs [0.86354 0.86354] N

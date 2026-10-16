@@ -140,3 +140,35 @@ three muscle-history features, signed bias and unchanged pressure supervisor.
 Eleven inputs/26 outputs; see ADAPTIVE_INTEGRATION.md for dimensions, types,
 logging and update gates. Nominal M/C/G retained; Dhat*v differs from nominal
 D*dq wrapper. Adaptive history weights are not internal Bouc-Wen adaptation.
+
+## 2026-10-13 - Workspace-out PAC analysis entry points
+analyzePacStaticSweep() and analyzePacAdaptive() now default to base-workspace
+out and also accept explicit out; existing MAT-path calls retained. Underlying
+analyzePacStatic accepts out to avoid temporary MAT files. Workspace analysis
+prints/plots/returns results without automatic file writes; path analysis keeps
+existing artifact output. No models or controller changed.
+
+## 2026-10-13 - Tracking plot duplicate signal names
+plotCommonPressureTracking readSignal now selects first matching logged name
+instead of requiring exactly one. Missing signals and data-shape/time checks
+remain. User requested duplicate-name tolerance; no controller/model changes.
+
+## 2026-10-13 - Tracking plot supports PAC validity/forces
+MissinginverseModelValid error corrected with PAC detection via tauRequested_N.
+PAC usesmodelValid,inertialForce_N,coriolisForce_N+dampingForce_N,staticForce_N,
+tauRequested_N and corresponding force labels; existingFBL path retained.
+Offline saved1rad_60sPACdata generatedall6figures successfully. No hardware/model
+run. Duplicate-namefirstmatch remains. No controller changes.
+
+## 2026-10-13 - Activation-consistent fixed-mean PAC allocator
+User authorized pacAllocatePressure change. Exact activation-map inverse now
+uses requested+forceBias to derive effective pressure differences. Preserves1.6
+bar mean; when effective muscle pressure iszero, its inactive commandedpressure
+can decrease below.8 to satisfyfixedmean. Candidate accepted only withinexisting
+.2-3bar rails ands/a +/-2.5trimcorrectionclamps. Infeasiblecandidate retains bounded
+legacyfallback,nowlimited=true fornonzeroallocationresidual; no hiddenmeanincrease
+or relaxedconstraints. Supervisor2bar/slew remains andmayproduce transientresidual.
+Nominal activationthreshold.8 remains assumption; doesnot identifyphysicalpressure.
+validatePacPressure includes feasibleinactiveexactforceand infeasibleflag checks;
+validatePacAdaptive passes. No SLX edited byagent. Repeat1rad30s baseline,
+lambda40/Ks20 andrecordallocationresidual/limits/updates beforehighergainorspeed.

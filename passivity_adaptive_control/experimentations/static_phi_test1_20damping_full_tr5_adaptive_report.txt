@@ -1,0 +1,12 @@
+ADAPTIVE PAC REPORT: passivity_adaptive_control/experimentations/static_phi_test1_20damping_full_tr5.mat
+Samples 10701; time 0.00..535.00 s
+Parameter order: k1 k2 k3 d2 d3 h1 h2 h3 b2 b3
+Initial [650 650 650 40 40 0 0 0 0 0]
+Final [322.59 626.14 642.86 40.773 41.154 2.8001 0.99999 1.26 0.45728 0.19453]
+Min [322.59 205.09 0 40 40 0 0 0 -2.1139 -2.817]
+Max [1139.1 890.31 982.45 40.773 41.154 2.8392 1.1056 1.2731 0.911 0.33517]
+Adaptive updates 7051; bound flag 4252; limited 288; fault 0 samples
+hysteresisForce_N control mean [-0.09117 -0.062202]; peak abs [2.5477 2.6041] N
+adaptiveBias_N control mean [-0.65475 -1.0868]; peak abs [2.1139 2.817] N
+adaptiveForce_N control mean [-0.92724 -0.90137]; peak abs [6.5254 7.632] N
+allocationResidual_N control mean [0.011173 -0.010903]; peak abs [12.997 15.583] N

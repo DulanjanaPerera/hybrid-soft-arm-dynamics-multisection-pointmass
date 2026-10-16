@@ -2380,3 +2380,216 @@ Included PAC implementation/models, experiment recordings/reports, plotting upda
 and project documentation. validatePacFixed, validatePacPressure, validatePacAdaptive
 and validatePacAdaptiveTracking passed offline. No hardware models executed; these
 checks do not establish physical sampled-loop stability. No remote push requested.
+
+## 2026-10-13 - 1.0-rad target does not prevent frozen-loop oscillation
+Offline static_phi_test1_unstable_tr2.mat reviewed. Last parameter change99.160s.
+105-110 quietphi.8054-.8078, no limiting.110-115 unload limited15%, residual
+peak10.657N;115-125 desiredzero phi.0618-.4539,SD.0892,limited88.5%,valid91%.
+All commands above nominal activation in these intervals (min .9215bar during
+115-125). Failure already present before third target1.0 starts125, so reduced
+third amplitude cannot explain onset.130-140 phi.9784-1.2321,limited86%,
+allAboveActivation100%,residual17.89N. Continued updates and nominal activation
+crossing are not required. Previous run had much quieter return despite similar
+frozen estimates; calibration bias/history/physical state differ. Leading issue
+remains sampled feedback/pressure dynamics interacting constraints, not proven
+hysteresis. Next restore verified explicit .05 PAC execution after MATLAB restart
+and confirm wall time; then compare Ks20 vs40,lambda50,identical reference/freeze.
+No source or model changes.
+
+## 2026-10-13 - Trial3 .05s recording: timing alone insufficient
+Offline static_phi_test1_unstable_tr3.mat,3668samples0-183.35 implies.05s
+logging; report lambda50/Ks40 unchanged. Last parameter change102.65s.
+105-110 quietphi.8088-.8102,no limiting.115-125 desiredzero phi.1069-.4612,
+SD.0866,limited85%,valid90.5%,aboveActivation100%,residualpeak18.30N.
+130-140 actualphi.9731-1.2578,limited90%,aboveActivation100%. Thirdtarget1.0
+holdMAE.1653 vs trial2.1603; failure persists at .05 logging, controller rate
+requires compiled verification. Quiet static micro-limiting flags disappear,
+but actual transient force deficits persist. Ks20 comparison still not done.
+Next change Ks40 to20 only with verified.05 timing and identical reference/freeze;
+not simply more adaptive updates or removing pressure constraints. No code edits.
+
+## 2026-10-13 - Ks20 removes observed oscillation, residual tracking errors remain
+Offline static_phi_test1_20damping_tr4.mat:lambda50/Ks20,.05s logs,last parameter
+change103.70s. Compared tr3Ks40,115-125 phi now.2033-.2573,SD.0119 vs.0866,
+no limiting/invalidity and residual roundoff vs85% limiting/18.30N residual.
+Return remains biased ~.2rad for desired0; suppression is not zero tracking error.
+130-140 phi.8898-.9429,SD.0103,no limiting. Report1rad holdMAE.04165 vs.16528
+tr3 (~75% reduction);thetaMAE.00186 vs.19117. Only16limited fullrun, allholds0.
+pi2/.5 holdthetaMAE.51148,lengtherrors[-1.9865 -1.5063]mm despitephiMAE.04893:
+directional compensation remains poor with frozen parameters. Source force law
+Dhat*v-Ks*s changes both velocity coefficient (40->20Ns/m) and static corrective
+coefficient (Dhat+Ks)*lambda ~4000->3000N/m; improved physical response does not
+prove pure damping or identify hysteresis. Supports excessive sampled feedback
+and slew interaction. Hold Ks20/lambda50 as provisional baseline; repeat same
+run before adaptation-on full directional sweep or faster trajectories. No code
+changes; results not a physical stability proof.
+
+## 2026-10-13 - Full adaptive Ks20 sweep: accurate holds, recovered transient
+static_phi_test1_20damping_full_tr5.mat,.05 logs0-535s,lambda50/Ks20,
+7051updates288limited,no faults. All latter-half holdvalid100%,limiting0;
+phiMAE .00208-.02109 and thetaMAE .00177-.03823. Directionpi2/.5 now
+phiMAE.00208/theta.03758 versus frozen trial4 .04893/.51148 (separate-run,
+not isolated proof). Repeattheta0/.5MAE.01139 vs.00867 initial.
+Raw260-265 pi2/.8 unloading,265-275zero,275-2801radloading.245-260quiet.
+265-275phi.0091-.3703,SD.0892,limited79.5%,valid95%,aboveactivation100%,
+residualpeak12.059N.275-280limited79%,residual15.583N.280-285limited2%,
+295-310none,phi.9774-.9900. Recovery after next nonzero target is not proof
+zero-reference oscillation self-decays; reference changed275s.
+k3 reaches0 lower projection bound during run, does not imply physical muscle
+stiffness0; K can remain SPD via k1,k2. Nominal activation residual~.045-.048N
+in1rad holds exceeds.02 adaptive gate and may freeze learning without limited.
+Hold gains/rates; next identical fullrepeat or isolated extendedzerohold at265
+before next ramp tests persistence/recovery. No faster circles or gain increase
+until transient resolved. No code/model edits.
+
+## 2026-10-13 - Persistent zero-hold oscillation and negative-k3 discussion
+User reports unchanged repeat oscillates at same point; extending zero hold20s
+still oscillates. User says rise/fall changed to1s; no new recording inspected,
+so transition settings and exact timeline remain unverified. k3=0 alone does
+not make K singular:K=[k1+k3 k3;k3 k2+k3],at0 diag(k1,k2). Allowing negative
+k3 can violate physical spring structure/passivity; SPD requires both diagonals
+positive and k1*k2+k3*(k1+k2)>0. Forpositivek1,k2 this means
+k3>-k1*k2/(k1+k2). Independent boxprojection does not enforce coupled bound.
+Do not simply lowerk3 bound. Estimate hittingbound may indicate model/pressure/
+history mismatch, not cause. Next offline establish bound-contact vsoscillation
+onset and force decomposition; controlled freezebeforebound or altered positive
+floor tests attribution butchangescompensation. Persistentzerooscillation now
+confirmed by user, not inferred recoveryafternewtarget. No code changes.
+
+## 2026-10-13 - Raw k3/velocity/force analysis of full tr5
+k3 first reaches0 at171.550s; stays0 throughout245-310 including quiet
+245-260 and recovered295-310. Thus0 is not sufficient cause or sudden260trigger.
+K eigenvalues at260 [462.25 1057.2],270 [285.48 826.74],280[225.31 809.65],
+295[418.33 1029.7] N/m remainpositive. k2 drops462->225 overtransition.
+245-260 velocityRMS[.01229 .01460]mm/s vs265-275[6.536 9.491]mm/s;
+velocitypeaks~15/21mm/s.265-275 dampingForce(Dhat*v) min[-6.66 -9.503],
+max[8.212 9.127]N; feedbackmin[-3.446 -5.069]max[4.223 4.881]; inertia
+peaks<.784N; staticpeaks<3.54N. Force requestmin[-9.027 -14.98],
+max[7.702 11.32].Large D*v is not directlyphysicalvelocity damping:
+v=dqd+lambda*(qd-q),hence zero-referenceD*v=-D*lambda*q; sensitivity to
+position error (reference velocity), feedback alsousesmeasuredvelocity.
+Dominant force swings are damping-compensation plusfeedback, not inertia or
+lossSPD. Measurements filtered/inferred cannot distinguish actual oscillatory
+motion from derivative amplification/delay alone; length/pressure phase review
+needed. Negativek3 unsupported; next isolate reference/velocityforce sensitivity
+via gains/lambda comparison or simulation, do not blindly alterterms andclaim
+passivity. No controller/model edits.
+
+## 2026-10-13 - Lambda25/Ks20: oscillation suppressed, adaptation settling slower
+Read full pasted report and raw static_phi_test_20d_25Lmabda.mat0-512.85,
+17limited6503updatesno faults; all evaluated holdsvalid100%,limiting0.
+Reference changed vslambda50:rise/fall1s,42s trialspacing vs5s/50s before,
+calibrationbias also different; cannot attribute every improvement solelylambda.
+pi2/.8 unload224-225,zero225-235 phi.1162-.2113 SD.0158,no limiting,
+compared previouszero265-275SD.0892/79.5%limiting.1radpi2 hold251-266
+phi.9503-.9626,MAE.04293; allocationresidual.0407N exceeds.02 adaptationgate.
+Theta0/1rad residualpeak.8635N,P1mean.7403bar implies nominal activationmapping
+limits force fidelity despite limitedfalse. Repeattheta0/.5 hold404-434 actual
+starts.051-.085 during404-409,419-434range.174-.508 andMAE.17078, not just
+fullysettled offset: directionalreadaptation/transfer poor. Last updates508.15.
+Lambda reduction lowers(D+Ks)*lambda approx3000->1500N/m; measuredvelocity
+coefficientKs20 unchanged. Conservative baseline25/20; next matchedreference
+comparison lambda30 or35 only, not higher adaptation gains simultaneously.
+Settling report must distinguish convergence to target vsdrift/model mismatch.
+No source/model changes.
+
+## 2026-10-13 - Lambda40/Ks20 improved tradeoff, brief return transient
+Read report/raw static_phi_test_20d_40Lambda.mat,.05logs0-484.65,same1s ramps/
+42s trialspacing aslambda25.58limited6036updatesnofaults;all evaluatedholds
+valid100%,limiting0.225-235zeroafterpi2/.8 return phi.014-.2092,SD.0213,
+limited2%,valid99%,residualpeak.465N: brief transient rather than sustained
+lambda50 returnoscillation.1radtheta0MAE.0150 vslambda25.0401;
+pi2MAE.0253 vs.0429. Repeattheta0/.5MAE.0183 vs.1708;
+419-434phi.496-.5256,SD.0059 vslambda25.174-.508,SD.108.
+Fullresidualpeak2.424N vs15.583lambda50full, .8635lambda25.
+Initialstates/calibrationdifferent;singletrialnotstabilitymargin proof.
+Provisional workingbaseline40/20 withsame.05timing;repeatbeforefastertrajectories,
+retainbounds andrates. Activationmapresidual persists1radholds(.269/.055N),
+canblockadaptationdespite nolimiting. No code/model edits.
+
+## 2026-10-13 - Workspace-out PAC analysis entry points
+analyzePacStaticSweep() and analyzePacAdaptive() now default to base-workspace
+out and also accept explicit out; existing MAT-path calls retained. Underlying
+analyzePacStatic accepts out to avoid temporary MAT files. Workspace analysis
+prints/plots/returns results without automatic file writes; path analysis keeps
+existing artifact output. No models or controller changed.
+
+## 2026-10-13 - Adaptive circle1rad30s per lap
+Raw PAC_circle/AdaptiveController/1rad_60s.mat reviewed; filename60s but logged
+reference theta speed.20944rad/s confirms30s period,7complete laps20-230 and
+partial8 through235.7. phi1rad. Lap1MAEphi.0453 theta.2348(lengthRMSE2.079/
+2.272mm) tolap7phi.0305 theta.1954(RMSE1.888/1.800mm). Meanphi~.984;
+valid>99%,laplimited~.7-2.5%,no faults perreport. Allaboveactivation only65.7-
+73.9%: nominal mapallocation errors persistwithoutpressureclamping and canfreeze
+learning. k2floor50 for1023samples (~51.15s),k3zero52samples;coefficients cycle
+withdirection andhistoryweightsdrift upward,not physicalparameter convergence.
+Ks inferred20; staticlambda inference is invalid oncircle (nonzerodesiredrates),
+do not report approximate40.8 as verifiedinput. AngleMAE.195rad~11.2deg with
+phierror~.03; direction dominates lengtherror. Effective lag estimate fromMAE
+alone not uniquelyidentified. No source/model edits. Keep30s baseline; inspect
+signedphaseerror/request-vsallocatedforcebytheta before speed increase or
+adaptationrate tuning. Need matchedPAC-vsFBL referencecomparison later.
+
+## 2026-10-13 - Tracking plot duplicate signal names
+plotCommonPressureTracking readSignal now selects first matching logged name
+instead of requiring exactly one. Missing signals and data-shape/time checks
+remain. User requested duplicate-name tolerance; no controller/model changes.
+
+## 2026-10-13 - Tracking plot supports PAC validity/forces
+MissinginverseModelValid error corrected with PAC detection via tauRequested_N.
+PAC usesmodelValid,inertialForce_N,coriolisForce_N+dampingForce_N,staticForce_N,
+tauRequested_N and corresponding force labels; existingFBL path retained.
+Offline saved1rad_60sPACdata generatedall6figures successfully. No hardware/model
+run. Duplicate-namefirstmatch remains. No controller changes.
+
+## 2026-10-13 - Repeat10circle1rad30s: persistent phase error and allocation mismatch
+Found PAC_circle/AdaptiveController/1rad_30s.mat matching6720samples0-335.95.
+10complete circles20-320,period30s. Lap2thetaMAE.2890 tolap10.2752rad;
+phiMAE.0487->.0579,lengthRMSE2.784/2.895->2.756/2.601mm; littleconvergence.
+Lap3signedtheta.28584 equalsMAE:dominantlylag;equivalent1.36s at.20944rad/s,
+not uniquelypuretransportdelay. Aboveactivationfractionlap2.355->lap10.278,
+residualpeaks up to[3.647 5.561]N withalmostnolimitedflags. Lap3residualgate
+passes~32.9% samples. k2floor50 on1555samples(~77.75s),k3zero47.
+Adaptationupdates2261whilehistoryweights/damping/biascontinuechanging;notmodel
+convergence. Allocationactive-map mismatchprioritybeforegainincrease: existing
+fixedmeanlinearallocation allowscommandsbelowactivation thenforceevaluationclips,
+nominalresidualcanblocklearning. Needpressure-vsangle/signedphaseandfeasibility
+review;activationmapassumednotchambermeasurement. Endthetaerrorwhilephifalls
+excludeasunobservable. No code changes.
+
+## 2026-10-13 - Activation-consistent fixed-mean PAC allocator
+User authorized pacAllocatePressure change. Exact activation-map inverse now
+uses requested+forceBias to derive effective pressure differences. Preserves1.6
+bar mean; when effective muscle pressure iszero, its inactive commandedpressure
+can decrease below.8 to satisfyfixedmean. Candidate accepted only withinexisting
+.2-3bar rails ands/a +/-2.5trimcorrectionclamps. Infeasiblecandidate retains bounded
+legacyfallback,nowlimited=true fornonzeroallocationresidual; no hiddenmeanincrease
+or relaxedconstraints. Supervisor2bar/slew remains andmayproduce transientresidual.
+Nominal activationthreshold.8 remains assumption; doesnot identifyphysicalpressure.
+validatePacPressure includes feasibleinactiveexactforceand infeasibleflag checks;
+validatePacAdaptive passes. No SLX edited byagent. Repeat1rad30s baseline,
+lambda40/Ks20 andrecordallocationresidual/limits/updates beforehighergainorspeed.
+
+## 2026-10-13 - Fixed-mean activation inverse circle did not improve tracking
+Raw1rad_30s_tr1.mat newallocator:lap10thetaMAE.3094 vsprior.2752,phiMAE.0888
+vs.0579,RMSE3.141/2.821 vs2.756/2.601mm. Newlimited semantics includes
+forceinfeasibility:cannotcompare3184vs25 asphysicalclampingcounts. Lap10limited
+56.2%,activationabove20.2%. Offlinecandidateconstraints50-320 valid5384samples:
+minimumviolations2244,maximum1486,scorrection496,acorrection0(overlapcounts).
+Therefore fixedmean1.6 cannot exactlydeliver manyrequestswithinallbounds;
+activation consistency improvement didnotresolvephysicaltracking. Needbounded
+variablecommonpressure allocation/closestfeasibleforce solver to avoid legacy
+fallback mismatch. Do notrelax rails or assumehighercommonalwayshelps. Proposed
+next allocator changes separateauthorization;keepgains/rates forcomparison.
+No controller edits in this review.
+
+## 2026-10-16 - Documentation clarification and commit preparation
+Pressure nullspace doesnot require3mechanicalcoordinates:retain2lengthcoordinates
+and3pressureinputs;optional pneumaticpressurestates modelvalvedynamics. Fixedmean
+allocation contributesforce mismatch;variablemeanproposal remainsunimplemented.
+Wrappedtheta error blocksnippet supplied inchat atan2(sin(des-meas),cos(des-meas));
+not added asstandalonefile;theta nearstraight poorlyobservable.
+User requests allpendingupdates committed. Includesworkspaceanalyzers,PACplotting,
+activationallocator,models,setup scripts,recordings/reportsandlogs. Offline
+validatePacPressure/validatePacAdaptive passed; no hardwaremodel executed.
+Allocator circle limitation retained/documented,not presented asperformancefix.

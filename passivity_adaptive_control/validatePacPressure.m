@@ -34,11 +34,16 @@ end
 [target,~,residual,limited]=pacAllocatePressure([100;-100],anchor,st.forceBias,cfg);
 assert(limited && all(target>=cfg.minimum_bar) && all(target<=cfg.maximum_bar));
 assert(norm(residual)>1);
-% Activation crossing is detected by force residual even without clipping.
+% Feasible activation crossing preserves mean and requested force.
 lowCfg=cfg; lowCfg.maxDeltaS_bar=100; lowCfg.maxDeltaA_bar=100;
 request=anchor+[20;20];
-[target,~,residual]=pacAllocatePressure(request,anchor,st.forceBias,lowCfg);
-assert(any(target<cfg.activation_bar) && norm(residual)>0.1);
+[target,~,residual,limited]=pacAllocatePressure(request,anchor,st.forceBias,lowCfg);
+assert(any(target<cfg.activation_bar) && norm(residual)<1e-10 && ~limited);
+assert(abs(mean(target)-cfg.common_bar)<1e-10);
+% Activation infeasibility is flagged without relaxing configured constraints.
+[target,~,residual,limited]=pacAllocatePressure(anchor+[30;30],anchor,st.forceBias,cfg);
+assert(limited && norm(residual)>0.1);
+assert(all(target>=cfg.minimum_bar) && all(target<=cfg.maximum_bar));
 % A moving trim cannot be captured prematurely.
 moving=pacPressureInitialState();
 for t=0:0.05:17

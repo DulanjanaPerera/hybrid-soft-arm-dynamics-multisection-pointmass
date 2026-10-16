@@ -6,8 +6,21 @@ function results = analyzePacStatic(filePath, holdWindow_s, makePlots, writeArti
 if nargin<2, holdWindow_s=[]; end
 if nargin<3, makePlots=true; end
 if nargin<4, writeArtifacts=true; end
-S=load(filePath); assert(isfield(S,'out'),'Recording must contain out.');
-ds=S.out.logsout;
+if nargin<1 || isempty(filePath)
+    assert(evalin('base','exist(''out'',''var'')')==1, ...
+        'Define out in the base workspace or pass out/a MAT file path.');
+    filePath=evalin('base','out');
+end
+fromFile=ischar(filePath) || (isstring(filePath) && isscalar(filePath));
+if fromFile
+    S=load(filePath); assert(isfield(S,'out'),'Recording must contain out.');
+    sourceOut=S.out;
+else
+    sourceOut=filePath;
+    filePath='workspace out';
+end
+ds=sourceOut.logsout;
+writeArtifacts=writeArtifacts && fromFile;
 [t,p]=readSignal(ds,{'pressureCommand_bar'});
 assert(size(p,2)==3,'Expected three pressure command channels.');
 names={'status','anchorReady','modelValid','limited','allAboveActivation', ...

@@ -1,7 +1,22 @@
 function report=analyzePacAdaptive(filePath)
 %ANALYZEPACADAPTIVE Print adaptive diagnostics from an experiment recording.
+% analyzePacAdaptive() uses base-workspace out; explicit out also accepted.
+% MAT-path input saves its report; workspace input writes no files.
 % Offline only. Also use PAC_circle/analyzePacStaticSweep for tracking metrics.
-S=load(filePath);ds=S.out.logsout;v=read('parameterEstimate');t=v.Time(:);
+if nargin<1 || isempty(filePath)
+    assert(evalin('base','exist(''out'',''var'')')==1, ...
+        'Define out in the base workspace or pass out/a MAT file path.');
+    filePath=evalin('base','out');
+end
+fromFile=ischar(filePath) || (isstring(filePath) && isscalar(filePath));
+if fromFile
+    S=load(filePath); assert(isfield(S,'out'),'Recording must contain out.');
+    sourceOut=S.out;
+else
+    sourceOut=filePath;
+    filePath='workspace out';
+end
+ds=sourceOut.logsout;v=read('parameterEstimate');t=v.Time(:);
 th=matrix(v);active=matrix(read('adaptationActive'));bound=matrix(read('parameterAtBound'));
 status=matrix(read('status'));limited=matrix(read('limited'));
 assert(size(th,2)==10 && numel(status)==numel(t),'Unexpected log dimensions.');
@@ -16,8 +31,10 @@ for name={'hysteresisForce_N','adaptiveBias_N','adaptiveForce_N','allocationResi
  mat2str(mean(x(ix,:),1,'omitnan'),5),mat2str(max(abs(x(ix,:)),[],1,'omitnan'),5))];
 end
 fprintf('%s',report);
+if fromFile
 [folder,base]=fileparts(filePath);fid=fopen(fullfile(folder,[base '_adaptive_report.txt']),'w');
 assert(fid>=0);fprintf(fid,'%s',report);fclose(fid);
+end
 figure('Name','Adaptive parameter history');tiledlayout(4,1);
 groups={1:3,4:5,6:8,9:10};labels={'spring coefficients (N/m)','damping (N s/m)','history weights (N)','bias (N)'};
 for i=1:4,nexttile;plot(t,th(:,groups{i}));ylabel(labels{i});end

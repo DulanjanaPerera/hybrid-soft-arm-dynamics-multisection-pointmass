@@ -166,3 +166,5 @@ The earlier sections describe the preserved nominal stage. The new adaptive
 path is pacAdaptiveCommonPressureBlock.m; see [ADAPTIVE_INTEGRATION.md](ADAPTIVE_INTEGRATION.md)
 for all inputs/outputs, settings, scope, tests and limitations. K/D/history-force
 weights/bias adapt; no mass or internal Bouc-Wen coefficient adaptation.
+
+Workspace use: analyzePacAdaptive() or analyzePacAdaptive(out). Workspace calls print/plot without writing report files; MAT-path input retains report saving.

@@ -46,7 +46,12 @@ xyzMeasured = alignSignal(ds, 'position', t, 'linear', 3);
 orientationValid = alignSignal(ds, 'orientationValid', t, 'previous', 1) > 0.5;
 thetaObservable = alignSignal(ds, 'thetaObservable', t, 'previous', 1) > 0.5;
 configurationValid = alignSignal(ds, 'configurationValid', t, 'previous', 1) > 0.5;
-modelValid = alignSignal(ds, 'inverseModelValid', t, 'previous', 1) > 0.5;
+isPAC = any(strcmp(ds.getElementNames, 'tauRequested_N'));
+if isPAC
+    modelValid = alignSignal(ds, 'modelValid', t, 'previous', 1) > 0.5;
+else
+    modelValid = alignSignal(ds, 'inverseModelValid', t, 'previous', 1) > 0.5;
+end
 
 % The backbone constraint gives l1 = -l2-l3.
 lengthDesired = [-sum(desired23, 2), desired23];
@@ -71,10 +76,20 @@ geometry_m = [0.055, 0.17411, 0.05]; % base, module, tip sensor offsets
 xyzDesired = desiredTipPosition(thetaDesired, phiDesired, geometry_m);
 xyzMeasured(~configurationValid, :) = NaN;
 
-massForce = alignSignal(ds, 'desired acceleration force', t, 'linear', 2);
-velocityForce = alignSignal(ds, 'Coriolist force', t, 'linear', 2);
-staticForce = alignSignal(ds, 'gravity and stiffness force', t, 'linear', 2);
-tauDesired = alignSignal(ds, 'tauDesired_N', t, 'linear', 2);
+if isPAC
+    massForce = alignSignal(ds, 'inertialForce_N', t, 'linear', 2);
+    velocityForce = alignSignal(ds, 'coriolisForce_N', t, 'linear', 2) + ...
+        alignSignal(ds, 'dampingForce_N', t, 'linear', 2);
+    staticForce = alignSignal(ds, 'staticForce_N', t, 'linear', 2);
+    tauDesired = alignSignal(ds, 'tauRequested_N', t, 'linear', 2);
+    forceLabels = {'M a', '(C+D) v', 'Static force', 'Requested total'};
+else
+    massForce = alignSignal(ds, 'desired acceleration force', t, 'linear', 2);
+    velocityForce = alignSignal(ds, 'Coriolist force', t, 'linear', 2);
+    staticForce = alignSignal(ds, 'gravity and stiffness force', t, 'linear', 2);
+    tauDesired = alignSignal(ds, 'tauDesired_N', t, 'linear', 2);
+    forceLabels = {'M v', '(C+D) dq', 'G+Kq', 'Requested total'};
+end
 massForce(~modelValid, :) = NaN;
 velocityForce(~modelValid, :) = NaN;
 staticForce(~modelValid, :) = NaN;
@@ -133,8 +148,7 @@ for k = 1:2
     plot(t, tauDesired(:,k), 'k--', 'LineWidth', 1.2);
     ylabel(sprintf('q_%d force (N)', k+1)); grid on;
     if k == 1
-        legend('M v', '(C+D) dq', 'G+Kq', 'Requested total', ...
-            'Location', 'best');
+        legend(forceLabels, 'Location', 'best');
     else
         xlabel('Time (s)');
     end
@@ -166,8 +180,8 @@ y([false; abs(diff(y)) > pi]) = NaN;
 end
 
 function [t, x] = readSignal(ds, name, channels)
-indices = find(strcmp(ds.getElementNames, name));
-assert(numel(indices) == 1, 'Need exactly one logged signal named %s.', name);
+indices = find(strcmp(ds.getElementNames, name), 1, 'first');
+assert(~isempty(indices), 'Need a logged signal named %s.', name);
 values = ds.getElement(indices).Values;
 assert(isa(values, 'timeseries'), 'Signal %s must contain a timeseries.', name);
 t = double(values.Time(:));

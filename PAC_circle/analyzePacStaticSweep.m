@@ -1,9 +1,23 @@
 function results=analyzePacStaticSweep(filePath,makePlots)
 %ANALYZEPACSTATICS WEEP Detect all static holds from logged references.
+% analyzePacStaticSweep() uses base-workspace out; explicit out also accepted.
 % Offline only. Uses logsout, not the assumed reference-block schedule.
-% Saves *_sweep_report.txt, *_sweep_analysis.mat and *_sweep_summary.csv.
+% MAT-path input saves report/analysis/CSV; workspace input writes no files.
 if nargin<2,makePlots=true;end
-S=load(filePath);ds=S.out.logsout;
+if nargin<1 || isempty(filePath)
+    assert(evalin('base','exist(''out'',''var'')')==1, ...
+        'Define out in the base workspace or pass out/a MAT file path.');
+    filePath=evalin('base','out');
+end
+fromFile=ischar(filePath) || (isstring(filePath) && isscalar(filePath));
+if fromFile
+    S=load(filePath); assert(isfield(S,'out'),'Recording must contain out.');
+    sourceOut=S.out;
+else
+    sourceOut=filePath;
+    filePath='workspace out';
+end
+ds=sourceOut.logsout;
 v=signal(ds,'des_phi');t=v.Time(:);phi=double(v.Data(:));
 v=signal(ds,'des_theta');theta=interp1(v.Time,double(v.Data(:)),t,'previous',NaN);
 constant=[false;abs(diff(phi))<1e-7 & abs(atan2(sin(diff(theta)),cos(diff(theta))))<1e-7];
@@ -16,7 +30,7 @@ report=sprintf('PAC STATIC SWEEP REPORT: %s\nDetected %d holds from logged refer
 for i=1:n
     window=[t(beg(i)),t(fin(i))];
     try
-        captured=evalc('r=analyzePacStatic(filePath,window,false,false);'); %#ok<NASGU>
+        captured=evalc('r=analyzePacStatic(sourceOut,window,false,false);'); %#ok<NASGU>
         runs{i}=r;a=r.signals;
         ix=r.time>=r.settledStart_s & r.time<=window(2);
         good=ix & a.modelValid==1 & a.orientationValid==1 & a.status==3;
@@ -54,11 +68,13 @@ end
 report=[report sprintf('\nUse repeated theta=0/phi=.2 holds to assess drift. Compare their bias, errors and feedback.\nPlateau is defined by the reference; physical settling is not guaranteed. Inspect plots for drift/oscillation.\n')];
 fprintf('%s',report);disp(summary);
 results=struct('file',filePath,'summary',summary,'holds',{runs},'fit',fit,'report',report);
+if fromFile
 [folder,base]=fileparts(filePath);
 fid=fopen(fullfile(folder,[base '_sweep_report.txt']),'w');assert(fid>=0);
 fprintf(fid,'%s\n%s',report,evalc('disp(summary)'));fclose(fid);
 save(fullfile(folder,[base '_sweep_analysis.mat']),'results');
 writetable(summary,fullfile(folder,[base '_sweep_summary.csv']));
+end
 if makePlots
     figure('Name','PAC static sweep summary');tiledlayout(2,2);
     nexttile;plot(rows(:,1),rows(:,3:4),'o-');legend('desired phi','actual phi');ylabel('rad');

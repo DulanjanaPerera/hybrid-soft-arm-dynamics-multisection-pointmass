@@ -137,3 +137,16 @@ responsible for length/configuration accuracy. No script runs NI/NDI hardware.
 parameterAtBound includes zero history weights at their lower bound initially;
 this flag alone is not a fault. Inspect which coefficients remain at bounds.
 The adaptive report/plots were verified with synthetic wrapper signal logs.
+
+## 2026-10-13 - Activation-consistent fixed-mean PAC allocator
+User authorized pacAllocatePressure change. Exact activation-map inverse now
+uses requested+forceBias to derive effective pressure differences. Preserves1.6
+bar mean; when effective muscle pressure iszero, its inactive commandedpressure
+can decrease below.8 to satisfyfixedmean. Candidate accepted only withinexisting
+.2-3bar rails ands/a +/-2.5trimcorrectionclamps. Infeasiblecandidate retains bounded
+legacyfallback,nowlimited=true fornonzeroallocationresidual; no hiddenmeanincrease
+or relaxedconstraints. Supervisor2bar/slew remains andmayproduce transientresidual.
+Nominal activationthreshold.8 remains assumption; doesnot identifyphysicalpressure.
+validatePacPressure includes feasibleinactiveexactforceand infeasibleflag checks;
+validatePacAdaptive passes. No SLX edited byagent. Repeat1rad30s baseline,
+lambda40/Ks20 andrecordallocationresidual/limits/updates beforehighergainorspeed.

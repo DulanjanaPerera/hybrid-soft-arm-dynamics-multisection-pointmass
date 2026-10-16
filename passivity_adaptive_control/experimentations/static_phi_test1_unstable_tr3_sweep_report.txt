@@ -1,0 +1,28 @@
+PAC STATIC SWEEP REPORT: passivity_adaptive_control/experimentations/static_phi_test1_unstable_tr3.mat
+Detected 3 holds from logged reference.
+
+Hold 1 30.01..60.00 s: theta/phiDesired 0.0000/0.5000; phiActual/MAE 0.5061/0.0061; thetaMAE 0.0146 rad
+  length error [-0.12256 0.043385] mm; feedback [-0.245 0.086703] N; bias [-0.64263 -3.2893] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.265 1.8144 1.7206] bar; engaged 300/300; max |allocationResidual| [4.4409e-15 5.3291e-15] N
+
+Hold 2 80.01..110.00 s: theta/phiDesired 0.0000/0.8000; phiActual/MAE 0.8086/0.0086; thetaMAE 0.0026 rad
+  length error [-0.079231 -0.0324] mm; feedback [-0.15841 -0.064857] N; bias [-0.64263 -3.2893] N
+  lambda [50 50]; Ks [40 40]; valid 1.000; limited 0.000; aboveActivation 1.000
+  pressures [1.0363 1.9081 1.8557] bar; engaged 300/300; max |allocationResidual| [5.3291e-15 5.3291e-15] N
+
+Hold 3 130.01..160.00 s: theta/phiDesired 0.0000/1.0000; phiActual/MAE 1.1653/0.1653; thetaMAE 0.1912 rad
+  length error [-0.73806 -1.096] mm; feedback [-1.4871 -2.1785] N; bias [-0.64263 -3.2893] N
+  lambda [50 50]; Ks [40 40]; valid 0.910; limited 0.880; aboveActivation 1.000
+  pressures [0.94647 1.9692 1.8784] bar; engaged 273/300; max |allocationResidual| [15.865 15.924] N
+
+Use repeated theta=0/phi=.2 holds to assess drift. Compare their bias, errors and feedback.
+Plateau is defined by the reference; physical settling is not guaranteed. Inspect plots for drift/oscillation.
+
+    <strong>holdId</strong>    <strong>theta_rad</strong>    <strong>phiDesired_rad</strong>    <strong>phiActual_rad</strong>    <strong>phiMAE_rad</strong>    <strong>thetaMAE_rad</strong>    <strong>q2_mm</strong>     <strong>q3_mm</strong>       <strong>e2_mm</strong>       <strong>e3_mm</strong>      <strong>feedback2_N</strong>    <strong>feedback3_N</strong>    <strong>bias2_N</strong>     <strong>bias3_N</strong>    <strong>limitedFraction</strong>    <strong>validFraction</strong>    <strong>lambda2</strong>    <strong>lambda3</strong>    <strong>Ks2</strong>    <strong>Ks3</strong>    <strong>aboveActivationFraction</strong>
+    <strong>______</strong>    <strong>_________</strong>    <strong>______________</strong>    <strong>_____________</strong>    <strong>__________</strong>    <strong>____________</strong>    <strong>______</strong>    <strong>______</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>___________</strong>    <strong>___________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_______________</strong>    <strong>_____________</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>___</strong>    <strong>___</strong>    <strong>_______________________</strong>
+
+      1           0             0.5             0.50615       0.0061461       0.014555      3.3726    3.2066     -0.12256    0.043385       -0.245        0.086703     -0.64263    -3.2893            0                 1           50         50       40     40                1           
+      2           0             0.8             0.80859       0.0085904       0.002572      5.2792    5.2324    -0.079231     -0.0324     -0.15841       -0.064857     -0.64263    -3.2893            0                 1           50         50       40     40                1           
+      3           0               1              1.1653         0.16528        0.19117      7.2381     7.596     -0.73806      -1.096      -1.4871         -2.1785     -0.64263    -3.2893         0.88              0.91           50         50       40     40                1           
+

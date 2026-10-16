@@ -54,3 +54,5 @@ Uses logged constant-reference plateaus, not fixed times. Detailed per-hold
 reports remain in results.holds. Exploratory feedback=deltaK*q+b fit describes
 aggregate static mismatch, not uniquely physical stiffness. Fit requires at
 least four usable holds with independent length-coordinate variation.
+
+Workspace use: analyzePacStaticSweep() or analyzePacStaticSweep(out). Workspace calls do not save artifacts; MAT-path input retains report/analysis/CSV saving.
