@@ -2671,3 +2671,166 @@ boundedtrackinginonepayloadrun,notproofadaptationbenefitwithoutmatchedOFFtest.
 No code/model edits.
 
 Payload documentation checkpoint: user requested log update and commit. Included the 100 g/unloaded comparison, actual gains and pressure ranges, and unresolved attachment/calibration timing. Paper-draft files are unrelated to this experiment-log commit and remain untouched.
+
+## 2026-10-19 - Open-loop RL data model logging inspection
+User requests read-only inspection Dynamic_model_Val_FWDnINV_v2.slx, manual/openloop
+collection,notcontrollerdata. Archive+MATLABloadonlyconfirmed activeportlogging,
+no decimation/pointlimits, sensororientation/validity/frame/hosttimes/basegravity,
+pressurepostkill/saturationcommands andrawXYZ/errors. Criticalduplicate
+pressureCommand_bar(manualMux vsinverseprediction),desanglesareforwardprediction,
+notdesiredtarget. Nochamberpressuresensors;NDI20Hznot50Hz,NI100Hz;rawquaternions
+notexposed/logged,trialmetadata absent. Savedstop30s,workspaceout/logsoutnotautoMAT.
+Detailedmapping/gaps in RL_DATA_LOGGING_INSPECTION.md. No SLX/source edits,
+no modelupdate/compile/simulation/hardware. Shorttrialneededbeforebulkcollection.
+
+## 2026-10-19 - XYZ offset semantics confirmed
+User renamedinversepredictionpressuretodesired; desanglesnotedcomputed. Pressure
+commandswillserveasproxyforunavailablechamberpressure,notbe mislabeledmeasured.
+Read-onlyXYZtrace: sensorXYZ=Rx90*(tipXYZ-baseXYZ)*.001;meas_positionholdslastfinite.
+No .055base/.05tipoffsetsubtractioninloggedXYZ. IKconfigurationusesgeometry
+[.055,.17411,.05] andmodels sensorpositions withoffsets; thisdoesnotcorrectlogged
+XYZto physicalmoduleendpoint. Needseparatesensor-relativeXYZandcorrectedmodule-tip
+XYZusingcalibratedbaseframe andtiporientation;tipoffsetrotateswithbend. FixedRx90
+isnotdynamicbaseframecompensation. No code/model edits.
+
+## 2026-10-19 - Physical module-tip XYZ helper
+User requested computingmoduleTipXYZ_m. AddedmoduleTipXYZBlock.m,6inputs:
+legacySensor/positionXYZ_m(afterRx90),R_NDI_from_arm,orientationtheta/phi,
+orientationValid,baseOrientationValid. Undofixedrotation,transformusingcurrent
+baseorientation,subtract.055ez and.05measuredtangent. Outputphysicalendpoint
+relative modulebaseincurrentbaseframe; NaN/false invalid; noheldlastvalidoutput.
+Axialmountingassumed;unknownlateraloffsetsnotidentified. Tangentreconstructed
+frommeasuredangles;nearstraightthetaheldmeanssmalllateralcorrectionapproximation.
+Syntheticrotation/offset/invalidtests passed. No SLX or reader edits. Wirefrom
+Sensor/positionbeforepositionhold,usingmeasuredthetaOrientation/phiOrientation
+andcurrentvalidity. LogcorrectedXYZ/validalongsideoriginalsensorXYZ.
+
+## 2026-10-19 - First RL open-loop30s trial validated
+forward_test_RL_30s.mat read offline. Requested/NI-pathP1identical,exactwaveform
+1.5*(1-cos(.2*t))bar(range0-3),P2=P3=0. Period31.416simulationseconds,
+30scontains.955cycle. pressureDesired_bar nowdistinctinverseprediction;
+pressureUsed_bar max2.2 ismodelmax(p-.8,0),NOTphysicalcommandclip.
+601NDIsamples20Hz,600valid,invalid8.30s;pairedframes601,norepeats,basevalidall.
+10overruns;hostelapsed31.484536vs30simulationseconds,hostdtmedian.05629,
+min.021985max.347293. Needhost/simulationmappingandrecordedcommandtimes;
+NIwritewalltimestampsnotpresent. Do notassumeuniformphysical50msormarkall
+signalswithsamewallclock. Onlyphysicallograte20Hzdespite100Hzrepeatedlogs.
+moduleTipXYZValid600;recomputedhelpermatchesloggedXYZexactlyonvalidsamples,
+invalidXYZNaN. moduleendpointbounds[-.12238,-.001387,.09710]to
+[-.002866,.014492,.17554]m;phiOrientationmax1.88401rad. Rawpositions/errors,
+Rbase,gravity,flags,host/poll/frame,commands/volts present. Rawquaternionsabsent.
+ConstantP2/P3/killlogonly2points0..18.86;notmissingacquisitionpersebutexportmust
+handleconstantlifetimesexplicitlyorpersistmetadata. Othermodel/sensorname
+collisionsandunnamedsignalsremain;exportbyprovenance. Datasetcontainsoutonly,
+noembeddedtrialmanifest. Goodplumbingtrial,notcompleteRLtrainingbatch. No model
+orsourcechanges, nohardwareexecution.
+
+## 2026-10-19 - Open-loop RL pressure source blocks
+User requests pressureexcitationblocks forreal-arm complete-dynamicslearning.
+Created RL_data_collection/ standalone steppedramp,singlemusclesine,andcombined
+common/s/a/rotatingpressureblocks. One sampledt input,internaleditableparameters,
+outputsrequest3barvector/trial/phase/channel/cycle/done/endtime; nofeedbackor
+activation subtraction. SineP1default0..3bar,.2rad/s,3cyclesx2trials,initial5/rest10,
+total213.496s. StepP1levels1/2/3x2,rise5/hold10/fall5/rest10,total185s.
+Combined4modes,.2rad/s2cycles,bias1.5,diff.5/commonpeak2,total336.327s.
+KeepdownstreamKill/saturation,logfinalNIcommands andsensorhosttimestamps.
+Datasetactionrawcommands,notpressureUsed ormodelpredictions. Existingtrialusable;
+nochange tosimulatedforwarddeadzone withoutseparaterequest. READMEcoverswiring,
+phaseids,metadata,stopdurationandconstantholdsemantics. Offlinebounds/slew/end/
+invalidtime/sineequivalence checks passed. No SLX/hardware run.
+
+## 2026-10-19 - Sequential pressure defaults and circle/helix references
+User requests sequentialP1/P2/P3 andnew circlephi.2/.8/1/1.2/1.5,20speriod,
+wait3s,fivecyclesandreturnzero;helix0->1.5loading/unloading3-4trials.
+PressureSteps/Sine defaultsnowchannelSelection0(allseparately),durations545/
+630.487s. AddedrlCircleSweepReferenceBlock620s(defaultphiRise/fall5s,zero10),
+rlHelixReferenceBlock525s(4trials,3turnsload+3unload,zero10,alternateCWCCW).
+Outputsdesiredtheta/phi+labels;NOTpressurecommands/actualpaths. Openlooprealization
+requiresfeedforwardinversepath,notcontroller,notjustcomparisonportrewiring.
+No per-laptheta pauses;phismooth,theta speedswitchesatphaseboundaries.
+READMEwiringandscheduleexplicit. Offlinepressure/referencecontinuitybounds/speed/
+endtests passed; no SLX edits orhardware execution.
+
+## 2026-10-19 - RL CSV/report export and first full sine package
+User requests reports,experimentinformation andCSVexportsfornewrecordingsin
+RL_data_collection. AddedexportRlTrainingData.m:individualMATorfolderbatch,
+per-signalnativeCSVwithtime/provenance,NDIsensoralignedobservations,NIcommands,
+separatemodelpredictions,trial/phaseintervalsandtrialsummary,dictionary/inventory,
+JSONmanifest,qualityreportandhostgapCSV. Ambiguousnameserrorunlessphysicalpath
+resolves;constanttailsonlyexplicitlynoted;nonconstantnopastextrapolation.
+OriginalMATunchanged. Optionalmetadata suppliedbyuser;missingmetadata flagged.
+Physicaltransitiongapdefault.10s,invalid/gaptransitionsflagged;noautomatictrain/test
+splitsorfakechamberpressure. DATASET_HANDOFF.md describessemanticsandlimits.
+ActualSineWave.mat636simseconds:12721sensorrows12710valid,allpairedframesfresh,
+17overruns12hostgaps>.10s,max4.499s;hostelapsed648.3145s. Sixlabelledtrials
+P1/P1/P2/P2/P3/P3,threecycleseach,rawcommand0..3bar. Measuredphi maximaP1~1.95,
+P2~1.96,P3~2.51rad:notnewsaferanges. Reviewedpackageexports/SineWave_reviewed,
+ZIPexports/SineWave_RL_export.zip. Earlierinterimexportsalsopreserved.
+CSV/JSONroundtrip,masks/transitiongaps,dimensionsandinitial30strialsparseconstant
+checks passed. No SLX/hardware executed. NewdatareportsdonotcertifyRLcoverage.
+
+## 2026-10-19 - Circle/helix pressure realization clarification
+User expects runnablepressureexcitationforcircle/helix. Existingreferenceblocks
+onlyangles,notcompletepressuregenerator. Confirmed savedinverseModel accepts
+[l2;l3;dl2;dl3;ddl2;ddl3],orientationValid,stiff. Feedforwarddesiredkinematics/rates
+mustreplaceexistingforwardmodelstateinput;pressureoutputthroughKill/saturation
+todrivers. Do notfeedactualmeasuredstatesifpureopenlooprequested. Currentinverse
+hardcodesdownwardgravity,K650,D40 andignorestiffinput;addsnominal.8deadzone,
+scalesforceifmax3bar. Retaininginversecompensationasinputdesign doesnotpreprocess
+rawRLactions. Requestedpathnotguaranteedactual. Needvalidderivatives/smoothangular
+starts/stopsbeforehardware;noSLX/sourcechangesinthisclarification.
+
+## 2026-10-19 - RL_dataCollection circle feedforward wiring audit
+Read-only archiveinspection RL_dataCollection.slx saved14:46. circlesweepout1/2
+->Mux3theta/phi->MATLABFunction config2length(reduced2coords)->DesiredlengthsZOH.05
+->MATLABFunction2lengthDerivatives(withsampledclock.05)->Mux6[l;dl;ddl]
+->MATLABFunction3inverse->pressureDesired_bar->PneumaticValves; correctfeedforward
+statepath,notmeasuredlengthfeedback. Inversedeadzone0,max3,K650,D40,gravityfixed
+[0;0;-9.81],stiffinputunused. CRITICAL From3 tagA1 feedsinverseorientationValid;
+GotoA1 carriesmeas_theta,notorientationValid. ReconnectexistingNDIout4(current
+orientationValid_control)orproperdesiredvalidgate; theta0wouldfalsegatepressure.
+StopTime342truncatescircles620;set625forcircleor530forhelix. Helixblockpresent
+butnotconnected;circlecurrentlyactive. Forwardpredictionstill subtracts.8,so
+notanexactinverse-forwardvalidationpair;doesnotalteractualinversecommand.
+DesiredratesfilteredtauV.10/tauA.15,notanalytic,anglevelocityswitchesatcircle
+start/endcanproduceboundedderivativetransients. Desiredreferenceangles logged
+as theta_from_block/phi_from_block; des_theta/des_phi remainforwardpredictions.
+Reusedlength/d_length/dd_lengthnamescollideforwardanddesired. Requestrename
+inverseoutputpressureRequest_barforclearactionprovenanceifuserchooses;NIcommands
+remaindatasetaction. No SLX/sourceedited,compileorhardware execution.
+
+## 2026-10-19 - Saved RL tag wiring correction verified
+RL_dataCollection.slx nowGotoA1fedbyNDIout4orientationValid_control;From3A1feeds
+inversevalidity. MeasuredthetaNDIout1usesnewGoto/Frommeastheta. Correct separation.
+Savedlogginginstrumentationretainsmeasuredtheta/phi/inferredlengths,sensorXYZ,
+moduleTipXYZandvalid,finalNIpressures,timestamps/frame/validity. StopTimestill342;
+completecircle625orhelix530required. No model/sourceedits duringinspection.
+Userfocusphysicaltheta/phi/lengths/XYZ/pressure;retainingvalidity/timestampsneeded
+tointerpretsamples,notadditionalcontrollertrainingfeatures.
+
+## 2026-10-19 - Export mappings verified for all five experiment types
+SavedcircleSweep/helix/combinePressure/StepWave/SineWave.mat inspectedoffline.
+PhysicalthetaOrientation/phiOrientation fromNDIMATLABSystem andfinalNIpressure
+signals commonacrossall. Exporterenhanced: requestedtheta_from_block/phi_from_block
+becometheta_reference_rad/phi_reference_rad separatefrommodeldesangles. Whenno
+rawpressure-sourcevector andanglereferencespresent,pressureDesired_bar supplies
+pre-valvefeedforwardrequest,whileNIcommandsalwaysauthoritativeaction. Model
+predictiontable retainsinversecalculationprovenance. All5summaryexports produced;
+verifiedmandatorypressure/measuredcolumns andcircle/helixreferencecolumns.
+Sensorrows/valid:Sine12721/12710,Step11001/10992,circle12501/12474,
+combined6841/6832,helix10601/10575. No MAT orSLXmodified,nohardware executed.
+
+## 2026-10-20 - Pressure-coordinate project Codex handoff
+
+Created `PRESSURE_COORDINATE_CODEX_GUIDE.md` after reviewing the sibling
+Dyn_Pressure project's current documentation, single-section pressure RHS,
+logging/paper plans, and this project's embedded RL_dataCollection forward,
+inverse and derivative code plus fixed/adaptive controller sources. The guide
+separates Pa-valued shape coordinates from J/Pa generalized effort and physical
+regulator commands; specifies shared-core blocks, actuation/allocation interfaces,
+chirp and bounded forward-output fitting, PID/PAC units and gates, logging,
+validation and manuscript evidence. It flags the unresolved pressure-chart K
+units, chart dependence during fitting/adaptation, and historical gravity sign.
+It does not claim chirp fitting or pressure-controller validation was performed.
+No external-project files, SLX models or controller code modified; no hardware,
+MATLAB tests, commits or pushes performed for this documentation task.

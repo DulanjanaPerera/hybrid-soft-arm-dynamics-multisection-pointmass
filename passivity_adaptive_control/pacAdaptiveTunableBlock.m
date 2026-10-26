@@ -9,14 +9,22 @@ function [pressureCommand_bar,tauRequested_N,tauEquivalent_N, ...
  t,enablePressure,lambda,dampingGain,enableAdaptation, ...
  enableCommonPressureAdaptation,adaptationGamma,parameterScale,parameterMaxRate, ...
  parameterLower,parameterUpper,parameterInitial,adaptationOptions, ...
- historyOptions,pressureOptions,supervisorOptions)
+ historyOptions,pressureOptions,supervisorOptions,freezeHysteresisWeights)
 %#codegen
 % Paste into a separate controller block; Discrete .05 s. Existing first 11 inputs
 % and first 26 outputs preserved. Tuning port sizes: see TUNABLE_BLOCK.md.
 % Estimates correspond to force evaluation; updates take effect NEXT sample.
+% Append Boolean freezeHysteresisWeights: true holds h1/h2/h3 only.
+% History states keep evolving; false resumes normal gated adaptation.
+if nargin<23
+ freezeHysteresisWeights=false;
+end
 [cfg,pc]=pacTuningConfig(adaptationGamma,parameterScale,parameterMaxRate, ...
  parameterLower,parameterUpper,parameterInitial,adaptationOptions, ...
  historyOptions,pressureOptions,supervisorOptions);
+if freezeHysteresisWeights
+ cfg.gamma(6:8)=0;
+end
 pc.enableCommonAdaptation=logical(enableCommonPressureAdaptation);
 persistent ps as
 if isempty(ps)

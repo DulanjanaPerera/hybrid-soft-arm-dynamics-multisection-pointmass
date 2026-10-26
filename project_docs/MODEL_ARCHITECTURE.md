@@ -191,3 +191,70 @@ OfflinevalidatePacPressure/Adaptivepassed;validatePacTunable testsprojectionforc
 bounds/feasiblevertices,OFFequivalence,custominitialvalue,actualmeanchangeunder
 nonzerorequestand commandslew. No SLX/hardware runs. Oldfixedmeanexperimental
 failurepreservedindocs. Provisionalcomparisonlambda40/Ks20,30scircles,sameinit.
+
+## 2026-10-19 - Open-loop RL data model logging inspection
+User requests read-only inspection Dynamic_model_Val_FWDnINV_v2.slx, manual/openloop
+collection,notcontrollerdata. Archive+MATLABloadonlyconfirmed activeportlogging,
+no decimation/pointlimits, sensororientation/validity/frame/hosttimes/basegravity,
+pressurepostkill/saturationcommands andrawXYZ/errors. Criticalduplicate
+pressureCommand_bar(manualMux vsinverseprediction),desanglesareforwardprediction,
+notdesiredtarget. Nochamberpressuresensors;NDI20Hznot50Hz,NI100Hz;rawquaternions
+notexposed/logged,trialmetadata absent. Savedstop30s,workspaceout/logsoutnotautoMAT.
+Detailedmapping/gaps in RL_DATA_LOGGING_INSPECTION.md. No SLX/source edits,
+no modelupdate/compile/simulation/hardware. Shorttrialneededbeforebulkcollection.
+
+## 2026-10-19 - Physical module-tip XYZ helper
+User requested computingmoduleTipXYZ_m. AddedmoduleTipXYZBlock.m,6inputs:
+legacySensor/positionXYZ_m(afterRx90),R_NDI_from_arm,orientationtheta/phi,
+orientationValid,baseOrientationValid. Undofixedrotation,transformusingcurrent
+baseorientation,subtract.055ez and.05measuredtangent. Outputphysicalendpoint
+relative modulebaseincurrentbaseframe; NaN/false invalid; noheldlastvalidoutput.
+Axialmountingassumed;unknownlateraloffsetsnotidentified. Tangentreconstructed
+frommeasuredangles;nearstraightthetaheldmeanssmalllateralcorrectionapproximation.
+Syntheticrotation/offset/invalidtests passed. No SLX or reader edits. Wirefrom
+Sensor/positionbeforepositionhold,usingmeasuredthetaOrientation/phiOrientation
+andcurrentvalidity. LogcorrectedXYZ/validalongsideoriginalsensorXYZ.
+
+## 2026-10-19 - Open-loop RL pressure source blocks
+User requests pressureexcitationblocks forreal-arm complete-dynamicslearning.
+Created RL_data_collection/ standalone steppedramp,singlemusclesine,andcombined
+common/s/a/rotatingpressureblocks. One sampledt input,internaleditableparameters,
+outputsrequest3barvector/trial/phase/channel/cycle/done/endtime; nofeedbackor
+activation subtraction. SineP1default0..3bar,.2rad/s,3cyclesx2trials,initial5/rest10,
+total213.496s. StepP1levels1/2/3x2,rise5/hold10/fall5/rest10,total185s.
+Combined4modes,.2rad/s2cycles,bias1.5,diff.5/commonpeak2,total336.327s.
+KeepdownstreamKill/saturation,logfinalNIcommands andsensorhosttimestamps.
+Datasetactionrawcommands,notpressureUsed ormodelpredictions. Existingtrialusable;
+nochange tosimulatedforwarddeadzone withoutseparaterequest. READMEcoverswiring,
+phaseids,metadata,stopdurationandconstantholdsemantics. Offlinebounds/slew/end/
+invalidtime/sineequivalence checks passed. No SLX/hardware run.
+
+## 2026-10-19 - Sequential pressure defaults and circle/helix references
+User requests sequentialP1/P2/P3 andnew circlephi.2/.8/1/1.2/1.5,20speriod,
+wait3s,fivecyclesandreturnzero;helix0->1.5loading/unloading3-4trials.
+PressureSteps/Sine defaultsnowchannelSelection0(allseparately),durations545/
+630.487s. AddedrlCircleSweepReferenceBlock620s(defaultphiRise/fall5s,zero10),
+rlHelixReferenceBlock525s(4trials,3turnsload+3unload,zero10,alternateCWCCW).
+Outputsdesiredtheta/phi+labels;NOTpressurecommands/actualpaths. Openlooprealization
+requiresfeedforwardinversepath,notcontroller,notjustcomparisonportrewiring.
+No per-laptheta pauses;phismooth,theta speedswitchesatphaseboundaries.
+READMEwiringandscheduleexplicit. Offlinepressure/referencecontinuitybounds/speed/
+endtests passed; no SLX edits orhardware execution.
+
+## 2026-10-19 - RL CSV/report export and first full sine package
+User requests reports,experimentinformation andCSVexportsfornewrecordingsin
+RL_data_collection. AddedexportRlTrainingData.m:individualMATorfolderbatch,
+per-signalnativeCSVwithtime/provenance,NDIsensoralignedobservations,NIcommands,
+separatemodelpredictions,trial/phaseintervalsandtrialsummary,dictionary/inventory,
+JSONmanifest,qualityreportandhostgapCSV. Ambiguousnameserrorunlessphysicalpath
+resolves;constanttailsonlyexplicitlynoted;nonconstantnopastextrapolation.
+OriginalMATunchanged. Optionalmetadata suppliedbyuser;missingmetadata flagged.
+Physicaltransitiongapdefault.10s,invalid/gaptransitionsflagged;noautomatictrain/test
+splitsorfakechamberpressure. DATASET_HANDOFF.md describessemanticsandlimits.
+ActualSineWave.mat636simseconds:12721sensorrows12710valid,allpairedframesfresh,
+17overruns12hostgaps>.10s,max4.499s;hostelapsed648.3145s. Sixlabelledtrials
+P1/P1/P2/P2/P3/P3,threecycleseach,rawcommand0..3bar. Measuredphi maximaP1~1.95,
+P2~1.96,P3~2.51rad:notnewsaferanges. Reviewedpackageexports/SineWave_reviewed,
+ZIPexports/SineWave_RL_export.zip. Earlierinterimexportsalsopreserved.
+CSV/JSONroundtrip,masks/transitiongaps,dimensionsandinitial30strialsparseconstant
+checks passed. No SLX/hardware executed. NewdatareportsdonotcertifyRLcoverage.

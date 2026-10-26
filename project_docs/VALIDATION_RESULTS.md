@@ -1,5 +1,184 @@
 # Verification and experimental results
 
+## 2026-10-23 - 100 g / 10 s circle presentation figures
+Follow-up: plotPacAdaptationPresentation.m exports allten parameterEstimate
+histories,lambda/Ks,and adaptation/common/update Boolean histories in sameformats.
+Dottedgainchange markers94.00/108.60s. Usesretainedparameters,notmatrixoutput
+dropouts. Tuninggamma/scales/ratecapsabsentfromsavedlogs,notreconstructed.
+Read-only 1rad_10s_tr2_100g.mat,0-330s,thirty10s circles,phi1rad,userreported100g.
+Added plotPacPresentation.m for PNG300dpi,vectorPDF/SVG,editableFIG exports;
+five figures per window: XYZtime,pressure,length,theta/phi,3DXYZ. Full recording
+and290-320s finalthreecircles saved in adaptCommonP/presentation_1rad_10s_tr2_100g.
+XYZ follows existing sensor coordinate convention: measured loggedposition,
+desiredCCgeometry[.055 .17411 .05]m includes base/tipsensoroffsets; no fitted
+alignment,phase shift or smoothing. Physical module endpoint is not substituted.
+Invalidsamplesmasked;wrappedtheta brokenatwraps;lengths labeledchanges,pressure
+labeledcommands. Actual Ks23/10->23/30at94s;lambda18/16.5->21/18.5at108.60s.
+Final3circleMAEtheta.373505,phi.100557rad;XYZRMSE21.925/21.729/18.501mm;
+lengthchangeRMSE3.378/3.295/3.698mm. These metrics are descriptive,not controlled
+payload/adaptation comparisons. No controller/model changes or hardware execution.
+
+## 2026-10-16 - Trial3 hysteresis-only freeze physical recording reviewed
+Offline adaptCommonP/1rad_10s_tr3.mat:0-330s,6601 samples,30x10s circles.
+lambda=[18;16.5],Ks=[23;10] constant,matching trial2; adaptation/common true.
+freezeHysteresisWeights loggedfalse->true at121.11s;first PAC sampletrue121.15s.
+Weights held exactly[1.5302619 1.3560675 1.3215875] afterward,zero range.
+History-state postfreeze ranges[1.32867 1.32974 1.33001];other parameter
+updates continue,adaptationActive98.04% overpostfreeze samples. Confirms intended
+hardware-recorded switch behavior; does not resolve prior standalone Coder error.
+Valid-sample history forceRMS lap12[1.3779 1.3461],lap30[1.3867 1.3436]N:
+history force amplitude stabilizes with weights; history dynamics remain active.
+Mean springs lap10[1042.01 126.511 660.584],lap20[1019.73 129.45 661.5],
+lap30[1030.16 129.289 661.794]N/m: earlier downward means largely plateau,
+although cycle-periodic changes persist. Damping/bias estimates still evolve.
+Trial3 lap10thetaMAE.54238,phi.15918,length4.425/5.158mm;lap30theta.51956,
+phi.14982,length4.281/4.900mm. Trial2 continuouslyadapting lap10.52496/.15411/
+4.391/4.967;lap30.41577/.10194/3.520/4.026. Improvement lap10->30 in theta
+is~.023rad frozen vs~.109rad adapting; phi~.009vs~.052rad. Frozen trial already
+has somewhat worse prefreeze tracking,so separate-run differences are not a
+perfect causal/repeatability-controlled estimate. Tuning vectors still absent
+from saved names; payload/preconditioning/trim equivalence not established.
+Evidence supports a useful contribution of continuing history adaptation under
+these conditions,not that increasing h is physical hysteresis identification.
+Joint history growth/stiffness decline is consistent with compensation tradeoffs;
+freezing limits redistribution and does not cure the remaining directional lag.
+No basis yet for permanently freezing weights or aggressive leakage/increasedgamma.
+58 separate one-sample dropouts(57duringcircles),allmodelinvalid/status4/tipinvalid;
+no faults or circle limiting. Circlecommon1.6-1.63499bar;commandpressuremin
+[.914123 .8 .8],max[2.51173 2.45825 2.39412]bar;nominalresidualpeak9.41e-15N.
+Freeze does not remove invalid-tip events; retain validity masking for forces.
+Reproduction tmp/auditPacFreezeTrial3.m,report tmp/trial3_freeze_audit.txt,
+figure tmp/trial3_freeze_comparison.png. No controller/model edits or model runs.
+
+## 2026-10-16 - Hysteresis-only freeze implemented (offline)
+User requested paste-ready code to freeze only hysteresis-weight adaptation.
+pacAdaptiveTunableBlock appends Boolean input23 freezeHysteresisWeights;
+true masks effective cfg.gamma(6:8) tozero before update,without changing the
+configured input gamma. False/default for older MATLAB calls retains behavior.
+No state resets; z history still evolves; h*z force still evaluated; remaining
+parameter adaptation retains original validity/allocation/supervisor gates.
+enableAdaptation=false still disables all estimate updates. No output changes.
+validatePacHysteresisFreeze passed synthetic wrapper checks: learned nonzero
+weights held exactly,history/force evolving,other adaptation active,resumption,
+global disable. validatePacTunable/Adaptive/Pressure also passed. These checks
+do not establish physical sampled-loop stability/passivity. No SLX edits,
+hardware execution,commit or push. TUNABLE_BLOCK.md documents Boolean Step120s
+for freeze afterten circles starting20s; log freeze input and tuning values.
+Existing invalid-sample adaptiveForce diagnostic issue intentionally unchanged.
+Additional standalone MATLAB Coder checks (GenCodeOnly and explicit -c) emitted
+C sources but failed at reported build stage with 'Index exceeds array bounds'
+and 'C compiler produced errors'. Cause not isolated; code-generation/build
+success is NOT established by the passing MATLAB behavioral checks. No Simulink
+model was compiled or executed. Retained diagnostics under tmp/pacFreeze_codegen
+and tmp/pacFreeze_source for follow-up if integration encounters the same issue.
+
+## 2026-10-16 - Trial2 constant-gain 30-cycle audit
+Read-only adaptCommonP/1rad_10s_tr2.mat: 6601 samples,0-330 s,30 circles
+20-320 s at10 s/circle. Actual constant lambda=[18;16.5],Ks=[23;10];
+adaptation/common switches true. User reports logging tuning block outputs,
+but adaptationGamma/parameterScale/parameterMaxRate and other tuning vectors
+are absent from logsout; out contains NDI,dynamic_NDI_meas_len,
+kin_NDI_meas_angles,kin_NDI_meas_len,logsout,simout,tout. simout is an unnamed
+27-channel force/diagnostic timeseries, not a named ten-vector tuning dataset.
+Do not substitute current source defaults: observed k2/k3 rates reach250,
+whereas current pacTuningBlock.m source caps are200.
+
+Exactly48 separate one-sample (.05 s grid) all-zero damping/force-evaluation
+events;47 during circles,one at11.05 s. All48 match modelValid=false,status4,
+configurationValid=false,orientationValid=false and sensorValid=[true false].
+Base orientation valid throughout. Both logged frame pairs remain finite,
+advancing and matched at these events: not repeated/mismatched-frame rejection.
+First six events raw1-4 finite/raw5-8 NaN; invalid tip channel established by
+sensorValid at all48. Measurement age=.05 s at drops vs~0 at good samples;
+this is below current source .075 s threshold,not evidence of stale-age failure.
+Inertia/Coriolis/damping/static/feedback/history/bias/request outputs all zero
+at48/48 events because pacAdaptiveForce returns initialized outputs on invalid
+input. Pressure commands exactly unchanged from preceding sample at all48.
+No faults; no circle limiting; valid-circle nominal residual peak9.67e-15 N.
+Stored parameter/history changes from each invalid sample to next sample are
+exactly zero: no reset/update on those evaluations. Physical origin of missing
+tip data (visibility/device/driver etc.) not determined by these logs.
+
+IMPORTANT diagnostic defect: adaptiveForce_N is computed unconditionally in
+the tunable wrapper after force evaluation. At invalid samples Kh=Dh=0 and
+fh=fb=0, so it evaluates -Knom*q-Dnom*v,not valid adaptive compensation.
+It is nonzero at48/48 drops (peak abs[11.2 15.55] N). These spikes must be
+masked by modelValid; equivalent force/pressure is held,not zero. No fix applied.
+
+Lap2/10/20/30 mean k coefficients:
+[1123.1 144.9 700.18]/[1011.9 138.16 697.23]/[923.65 125.26 630.63]/
+[846.78 122.15 567.26]. k2 touches50; final after return589.122/84.815/480.498.
+Same laps mean h=[.23555 .17851 .19261]/[1.2415 1.1499 1.1183]/
+[2.3935 2.2634 2.1867]/[3.4565 3.2953 3.1896] N; zRMS stays~.51-.55.
+History forceRMS[.20277 .18676] ->[3.2046 3.0601] N. Thus increasing history
+force comes from increasing weights,not unbounded history states.
+Mean negative history-feature/error products remain positive in20-120,
+120-220,220-320 s: [.02635 .02440 .02321], [.02331 .02251 .02179],
+[.02149 .02085 .02033]. Current gradient law therefore keeps raising weights;
+no leakage or convergence demonstrated. Late spring-feature mean gradients
+are negative,consistent with declining mean k. This shows the update mechanism,
+not physical parameter identification. History features correlate with measured
+muscle velocities(~.64-.66); missing dynamics and compensation tradeoffs remain
+plausible explanations,not established sources. Raw state feature scaling and
+different units preclude directly comparing gradient magnitudes across groups.
+No inference that all stiffness FORCE components decrease: adaptive stiffness
+correction RMS lap2[4.458 3.308] vs lap30[1.877 4.257] N because configuration
+and nominal subtraction matter. Hysteresis and stiffness channels jointly change.
+Lap2thetaMAE .55129,phi .20651,lengthRMSE4.283/5.626mm;lap30 .41577/.10194/
+3.520/4.026mm. Gradual improvement coexists with continued parameter drift.
+Recommend valid-masked diagnostics, verified tuning logging, then a matched
+history-weight freeze comparison; leakage/residual dynamics need separate design.
+Offline reproduction tmp/auditPacTrial2.m; report tmp/trial2_audit.txt;
+figure tmp/trial2_diagnostics.png. No controller/model changes or hardware runs.
+
+## 2026-10-16 - Hysteresis-force growth in 10 s circles
+Read-only 1rad_10s_tr1.mat separates history-state amplitude from weight drift.
+History z is already approximately periodic by lap2 and remains within about
++/- .666; lap2 RMS [.5428 .5642 .5602], lap30 [.5754 .5677 .5650].
+Mean adaptive history weights h1/h2/h3: lap2 [.2181 .1945 .1670], lap10
+[1.2098 1.2487 1.1281], lap20 [2.2759 2.3718 2.1736], lap30
+[3.2669 3.3975 3.1322] N. Hysteresis-force RMS grows from [.2096 .1676] N
+on lap2 to [3.2423 2.9769] N on lap30; final-lap extrema approximately
+[-4.4165 -4.2385] to [4.4578 4.1915] N. Growth comes predominantly from
+adaptive weights, not hidden history-state accumulation. Current update uses
+projected/rate-capped -scale.^2.*gamma.*Y'*s with no leakage; persistent
+cycle-averaged gradient drives weights upward. Missing lag/force-map dynamics
+or parameter tradeoffs are possible explanations, not identified causes.
+No evidence of weight convergence within this recording; not proof of physical
+hysteresis growth. Live gain changes confound interpretation. Increasing history
+gamma may accelerate this drift; leakage/regularization/freeze comparisons are
+future design options requiring controller analysis, not implemented fixes.
+
+## 2026-10-16 - 10 s circle run with live feedback tuning
+Offline 1rad_10s_tr1.mat: 0-330 s, 6601 PAC samples at .05 s; reference
+phi=1, thirty 10 s circles over 20-320 s. Both adaptation/common switches
+record true. Payload condition not established by filename/logs.
+Actual lambda: [21;15] initially; second component changes to 21 at81.60,
+18 at97.45,10 at172.10,17 at188.50,16 at211.75 s. Actual Ks: [25;20]
+initially; second component 30 at105.75,28 at198.30,25 at238.20,20 at249.05,
+18 at268.05,30 at298.75 s. Thus lap improvement is confounded by live tuning.
+Lap2 thetaMAE .47249, phiMAE .18991, reduced lengthRMSE3.487/5.408 mm;
+lap10 .40913/.11003/3.491/3.971; lap15 .37870/.09886/3.238/3.756;
+lap28 .35557/.09903/2.903/3.750; lap30 .32598/.08923/2.693/3.474.
+Metrics use valid model/orientation and observable theta; theta wrapped.
+Theta signed mean equals MAE in every lap: persistent directional lag.
+Lap30 equivalent lag .519 s at .62832 rad/s is not identified transport delay.
+No latched faults; 55 zero damping-output samples all match modelValid=false
+and status4; retained damping estimates stay >=40. Consistent with screenshot
+duration/dropouts, not parameter resets. Circle valid98-100%, adaptation96-100%.
+Only lap17 has limiting (.5%, residual peak .29728 N); other circle residuals
+roundoff. Common1.5925-1.6903 bar; pressure min[.86471 .8 .8],
+max[2.5416 2.4994 2.3901] bar.
+Peak parameter rates [194.002 200 200 .037625 .040522 .050174 .040396
+.042859 .13539 .139149]; k2/k3 reach current source caps, others below.
+Gamma/rate-cap inputs absent, so exact experimental tuning not established.
+Final parameters [690.71 97.702 460.83 42.999 43.015 3.3349 3.4664 3.1965
+-.48048 .034948]; k2 reaches50 during run. Estimates are compensation values.
+Compared with 20 s run final lap: theta .326 vs .288, phi .089 vs .064,
+length2.693/3.474 vs2.536/2.717 mm. Different gains, speed and number of laps
+preclude attribution to speed or adaptation alone. No hardware/model executed.
+Reproduction: tmp/auditPac10s.m reads MAT only and prints metrics/gain changes.
+
 Results below summarize existing recorded evidence; migration did not rerun
 MATLAB tests or operate hardware. Distinguish calculation checks, model smoke
 tests and measured behavior. Full settings/provenance remain in linked local
@@ -1066,3 +1245,96 @@ bias[-.67175 .77705]. Parametercompensationdoesnotidentify100g; commonpressure
 alone cannotcompensategravitybending becauseidealnullspace. Evidenceofmaintained
 boundedtrackinginonepayloadrun,notproofadaptationbenefitwithoutmatchedOFFtest.
 No code/model edits.
+
+## 2026-10-16 - Estimate-output dropout and adaptation-rate audit
+Read-only MATLAB inspection of adaptCommonP/1rad_20s_tr1.mat: 4801 samples,
+0-240 s at 0.05 s. All 31 all-zero damping-matrix samples coincide with
+modelValid=false and status=4 (invalid-data hold). Stored parameterEstimate
+damping remains >=40; these are force-evaluation output zeros, not estimate
+resets. pacAdaptiveForce initializes its diagnostic matrices/forces to zero
+and returns early on invalid inputs. Underlying invalidity cause not isolated.
+User screenshot extends to ~330 s and cannot be assumed to be this recording.
+Observed peak absolute parameter rates in standard order:
+[200 200 200 .0995549 .0849612 .060864 .0680641 .0639981 .2 .2].
+Spring and bias rates reach current source maxRate values; damping/history
+rates remain below current caps. Gamma/maxRate tuning inputs are not logged,
+so exact run-specific values and clipping fractions are not established.
+To judge gamma, inspect gates, bounds, unclipped gradients versus rate caps,
+then use matched repeated gamma comparisons; residual tracking error alone
+does not establish insufficient gamma. No code/model/hardware execution.
+
+## 2026-10-19 - First RL open-loop30s trial validated
+forward_test_RL_30s.mat read offline. Requested/NI-pathP1identical,exactwaveform
+1.5*(1-cos(.2*t))bar(range0-3),P2=P3=0. Period31.416simulationseconds,
+30scontains.955cycle. pressureDesired_bar nowdistinctinverseprediction;
+pressureUsed_bar max2.2 ismodelmax(p-.8,0),NOTphysicalcommandclip.
+601NDIsamples20Hz,600valid,invalid8.30s;pairedframes601,norepeats,basevalidall.
+10overruns;hostelapsed31.484536vs30simulationseconds,hostdtmedian.05629,
+min.021985max.347293. Needhost/simulationmappingandrecordedcommandtimes;
+NIwritewalltimestampsnotpresent. Do notassumeuniformphysical50msormarkall
+signalswithsamewallclock. Onlyphysicallograte20Hzdespite100Hzrepeatedlogs.
+moduleTipXYZValid600;recomputedhelpermatchesloggedXYZexactlyonvalidsamples,
+invalidXYZNaN. moduleendpointbounds[-.12238,-.001387,.09710]to
+[-.002866,.014492,.17554]m;phiOrientationmax1.88401rad. Rawpositions/errors,
+Rbase,gravity,flags,host/poll/frame,commands/volts present. Rawquaternionsabsent.
+ConstantP2/P3/killlogonly2points0..18.86;notmissingacquisitionpersebutexportmust
+handleconstantlifetimesexplicitlyorpersistmetadata. Othermodel/sensorname
+collisionsandunnamedsignalsremain;exportbyprovenance. Datasetcontainsoutonly,
+noembeddedtrialmanifest. Goodplumbingtrial,notcompleteRLtrainingbatch. No model
+orsourcechanges, nohardwareexecution.
+
+## 2026-10-19 - Open-loop RL pressure source blocks
+User requests pressureexcitationblocks forreal-arm complete-dynamicslearning.
+Created RL_data_collection/ standalone steppedramp,singlemusclesine,andcombined
+common/s/a/rotatingpressureblocks. One sampledt input,internaleditableparameters,
+outputsrequest3barvector/trial/phase/channel/cycle/done/endtime; nofeedbackor
+activation subtraction. SineP1default0..3bar,.2rad/s,3cyclesx2trials,initial5/rest10,
+total213.496s. StepP1levels1/2/3x2,rise5/hold10/fall5/rest10,total185s.
+Combined4modes,.2rad/s2cycles,bias1.5,diff.5/commonpeak2,total336.327s.
+KeepdownstreamKill/saturation,logfinalNIcommands andsensorhosttimestamps.
+Datasetactionrawcommands,notpressureUsed ormodelpredictions. Existingtrialusable;
+nochange tosimulatedforwarddeadzone withoutseparaterequest. READMEcoverswiring,
+phaseids,metadata,stopdurationandconstantholdsemantics. Offlinebounds/slew/end/
+invalidtime/sineequivalence checks passed. No SLX/hardware run.
+
+## 2026-10-19 - Sequential pressure defaults and circle/helix references
+User requests sequentialP1/P2/P3 andnew circlephi.2/.8/1/1.2/1.5,20speriod,
+wait3s,fivecyclesandreturnzero;helix0->1.5loading/unloading3-4trials.
+PressureSteps/Sine defaultsnowchannelSelection0(allseparately),durations545/
+630.487s. AddedrlCircleSweepReferenceBlock620s(defaultphiRise/fall5s,zero10),
+rlHelixReferenceBlock525s(4trials,3turnsload+3unload,zero10,alternateCWCCW).
+Outputsdesiredtheta/phi+labels;NOTpressurecommands/actualpaths. Openlooprealization
+requiresfeedforwardinversepath,notcontroller,notjustcomparisonportrewiring.
+No per-laptheta pauses;phismooth,theta speedswitchesatphaseboundaries.
+READMEwiringandscheduleexplicit. Offlinepressure/referencecontinuitybounds/speed/
+endtests passed; no SLX edits orhardware execution.
+
+## 2026-10-19 - RL CSV/report export and first full sine package
+User requests reports,experimentinformation andCSVexportsfornewrecordingsin
+RL_data_collection. AddedexportRlTrainingData.m:individualMATorfolderbatch,
+per-signalnativeCSVwithtime/provenance,NDIsensoralignedobservations,NIcommands,
+separatemodelpredictions,trial/phaseintervalsandtrialsummary,dictionary/inventory,
+JSONmanifest,qualityreportandhostgapCSV. Ambiguousnameserrorunlessphysicalpath
+resolves;constanttailsonlyexplicitlynoted;nonconstantnopastextrapolation.
+OriginalMATunchanged. Optionalmetadata suppliedbyuser;missingmetadata flagged.
+Physicaltransitiongapdefault.10s,invalid/gaptransitionsflagged;noautomatictrain/test
+splitsorfakechamberpressure. DATASET_HANDOFF.md describessemanticsandlimits.
+ActualSineWave.mat636simseconds:12721sensorrows12710valid,allpairedframesfresh,
+17overruns12hostgaps>.10s,max4.499s;hostelapsed648.3145s. Sixlabelledtrials
+P1/P1/P2/P2/P3/P3,threecycleseach,rawcommand0..3bar. Measuredphi maximaP1~1.95,
+P2~1.96,P3~2.51rad:notnewsaferanges. Reviewedpackageexports/SineWave_reviewed,
+ZIPexports/SineWave_RL_export.zip. Earlierinterimexportsalsopreserved.
+CSV/JSONroundtrip,masks/transitiongaps,dimensionsandinitial30strialsparseconstant
+checks passed. No SLX/hardware executed. NewdatareportsdonotcertifyRLcoverage.
+
+## 2026-10-19 - Export mappings verified for all five experiment types
+SavedcircleSweep/helix/combinePressure/StepWave/SineWave.mat inspectedoffline.
+PhysicalthetaOrientation/phiOrientation fromNDIMATLABSystem andfinalNIpressure
+signals commonacrossall. Exporterenhanced: requestedtheta_from_block/phi_from_block
+becometheta_reference_rad/phi_reference_rad separatefrommodeldesangles. Whenno
+rawpressure-sourcevector andanglereferencespresent,pressureDesired_bar supplies
+pre-valvefeedforwardrequest,whileNIcommandsalwaysauthoritativeaction. Model
+predictiontable retainsinversecalculationprovenance. All5summaryexports produced;
+verifiedmandatorypressure/measuredcolumns andcircle/helixreferencecolumns.
+Sensorrows/valid:Sine12721/12710,Step11001/10992,circle12501/12474,
+combined6841/6832,helix10601/10575. No MAT orSLXmodified,nohardware executed.

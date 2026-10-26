@@ -5,10 +5,10 @@
 params.N=1;
 params.L=.17411;               % Confirmed module length (m)
 params.r=.013;                  % PMA radial offset from backbone (m)
-params.mi=.1;                     % One distributed-section mass (kg)
-params.gWorld=[0;0;-9.81];      % World +Z is up; gravity points down
-params.K=650*[2 1;1 2];       % Nominal coupled stiffness (N/m)
-params.D=20*eye(2);
+params.mi=10;                     % One distributed-section mass (kg)
+params.gWorld=[0;0;9.81];      % World +Z is up; gravity points down
+params.K=65*[2 1;1 2];       % Nominal coupled stiffness (N/m)
+params.D=10*eye(2);
 params.mu=2000;
 params.lKbounds=[-.035;.035;1e6];
 
@@ -21,7 +21,7 @@ area=pi*pressureRadius_m^2;
 params.tau=area*pressureBar*1e5;
 
 baseOrientationMode='rpy';        % 'rpy' or 'matrix'
-baseRPYDeg=[0 180 0];           % Arm +Z points down; Rz*Ry*Rx
+baseRPYDeg=[0 0 0];           % Arm +Z points down; Rz*Ry*Rx
 R_world_from_arm_input=eye(3);   % Used only for 'matrix' mode
 switch lower(baseOrientationMode)
     case 'rpy'

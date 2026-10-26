@@ -152,3 +152,40 @@ counting. A successful current one-step plot is insufficient for control rollout
 
 ## 2026-10-16 - Residual uncertainty (discussion only)
 Keep two mechanical coordinates and three pressure inputs. Pneumatic dynamics could add pressure states, not mechanical degrees of freedom. Existing parameter adaptation covers structured compensation; actuator lag and force-map/preload mismatch remain. Consider actuator dynamics then bounded residual compensation with a new sampled/allocated stability analysis. No such extension implemented. Nominal allocation residual is not measured physical uncertainty.
+
+## 2026-10-16 - Integral PAC extension (proposal only)
+Integral action is possible, but existing adaptive bias estimates already have
+integral-like behavior: with e=q-qd and s=edot+Lambda*e, the identity bias
+regressor gives bias_dot=-diag(scale_bias.^2.*gamma_bias)*s, subject to
+projection, rate caps, deadband and supervisor/allocation gates.
+An additional bounded integral force eta_dot=e, tau_I=-Ki*eta would require
+anti-windup, valid-feedback gating, initialization/reset rules and coordination
+with bias adaptation to avoid redundant compensation. Alternatively, include
+integral error in v=qd_dot-Lambda*e-Ki*eta and consistently revise its derivative,
+the regressor and stability analysis. Neither extension inherits a demonstrated
+sampled/allocated passivity guarantee from the current controller.
+Target persistent static offsets separately from circular directional lag;
+integral action is not established as an actuator-delay remedy. The earlier FBL
+Ki-switch experiment reduced underbend but barely changed theta tracking and
+increased limiting; it is not a PAC integral validation. Actuator dynamics
+remain the preferred first investigation for lag. No integral code, model,
+gain change or hardware test was authorized or performed in this discussion.
+
+Adaptation-speed tuning: pacTuningBlock adaptationGamma sets gradient gains;
+effective unconstrained rate is -(parameterScale.^2.*adaptationGamma).*(Y.'*s).
+parameterMaxRate caps each estimate's change per second. Increasing gamma has
+no further effect while that component is rate-clipped. The intended controller
+period is 0.05 s; adaptationOptions(3)=0.075 s rejects oversized update intervals
+and does not schedule execution. Fresh measurements and adaptation gates also
+determine whether an update occurs. Keep structural normalization scales fixed
+when comparing adaptation gains.
+
+## 2026-10-19 - XYZ offset semantics confirmed
+User renamedinversepredictionpressuretodesired; desanglesnotedcomputed. Pressure
+commandswillserveasproxyforunavailablechamberpressure,notbe mislabeledmeasured.
+Read-onlyXYZtrace: sensorXYZ=Rx90*(tipXYZ-baseXYZ)*.001;meas_positionholdslastfinite.
+No .055base/.05tipoffsetsubtractioninloggedXYZ. IKconfigurationusesgeometry
+[.055,.17411,.05] andmodels sensorpositions withoffsets; thisdoesnotcorrectlogged
+XYZto physicalmoduleendpoint. Needseparatesensor-relativeXYZandcorrectedmodule-tip
+XYZusingcalibratedbaseframe andtiporientation;tipoffsetrotateswithbend. FixedRx90
+isnotdynamicbaseframecompensation. No code/model edits.

@@ -54,6 +54,33 @@ force jumps; the existing pressure slew limiter remains the final command cap.
 
 ## Outputs and logging
 
+### Freeze only the hysteresis weights
+
+The wrapper now appends input 23, `freezeHysteresisWeights` (Boolean scalar).
+All previous inputs and outputs keep their order; `pacTuningBlock` is unchanged.
+Paste the full updated `pacAdaptiveTunableBlock.m` into the MATLAB Function.
+Connect the new input to a Boolean source and log it with the tuning vectors.
+
+- false: normal adaptation of all ten estimates, subject to existing gates.
+- true: hold parameterEstimate(6:8), the h1/h2/h3 force weights, at their
+  current values. History states still evolve with valid measured velocity;
+  hysteresis force remains active and can vary with motion. Stiffness, damping
+  and bias estimates retain their normal adaptation. No state or trim reset.
+- `enableAdaptation=false` continues to disable all parameter updates, whatever
+  this new switch is set to. Invalid-data/supervisor gates remain unchanged.
+
+For thirty 10 s circles starting at t=20 s, a Boolean Step at t=120 s (initial
+false, final true) freezes after ten circles. Baseline: keep false throughout.
+Use identical fixed feedback/tuning settings and initial values in both runs.
+Freezing from startup holds the default zero weights and suppresses hysteresis
+force; that is a different experiment from freezing after learning. Returning
+the switch to false resumes updates from the held values without reinitializing.
+
+Implementation masks only effective gamma entries 6:8, leaving the configured
+gamma input unchanged. `adaptationActive` still means any parameter updated;
+it can remain true while hysteresis weights are frozen. Log the new input and
+parameterEstimate to verify the freeze. No SLX model was edited.
+
 First **26 outputs are unchanged**. New outputs:
 
 27. `commonPressure_bar`: actual mean of the three command pressures.
