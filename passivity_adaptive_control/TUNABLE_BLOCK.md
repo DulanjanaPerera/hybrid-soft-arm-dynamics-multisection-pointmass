@@ -38,6 +38,22 @@ they can later be replaced with tunable sources. Vectors are double columns.
 | supervisorOptions | 7x1 | [pressure start; feedback start; blend duration; invalid grace; maximum sample age; anchor speed (m/s); stop time] (other entries seconds) |
 
 Parameter order throughout: **k1 k2 k3 d2 d3 h1 h2 h3 b2 b3**.
+2026-10-26 experimental exception: `pacTuningBlock` sets the k2 lower bound
+to -100 N/m at the user's request; `pacTuningConfig` accepts k2 lower bounds
+>= -500 after the user's subsequent experiment. The source block default
+remains -100; recorded experiments may supply -500. Other sign constraints
+stay unchanged. Legacy `pacAdaptiveConfig`
+and `pacTunableDefaults` retain positive bounds. For workspace tuning, set
+`parameterLower(2)=-100` before a fresh run. Paste the updated tuning block
+and ensure the updated helper is on the MATLAB path; no wrapper port changes.
+Signed k2 is a compensation coefficient, not proof of negative physical spring
+stiffness. K=[k1+k3,k3;k3,k2+k3] is SPD only if k1+k3>0 and
+k1*k2+k1*k3+k2*k3>0. The relaxed box can violate this; the existing update
+does not enforce that coupled condition and the force function does not reject
+indefinite K. Log all spring estimates and check the determinant/minimum
+eigenvalue. The former box-based SPD guarantee no longer applies to this
+experimental configuration; no new stability/passivity guarantee is claimed.
+
 Defaults reproduce the current configuration. Gamma acts together with scale
 as `scale.^2 .* gamma`; changing both multiplies their effects.
 The history alpha remains fixed at 1 in the normalized state law; the three

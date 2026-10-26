@@ -9,7 +9,8 @@ function [adaptationGamma,parameterScale,parameterMaxRate, ...
 adaptationGamma = [0.2;0.2;0.2;0.0002;0.0002;0.5;0.5;0.5;1;1];
 parameterScale = [1000;1000;1000;100;100;1;1;1;1;1];
 parameterMaxRate = [200;200;200;10;10;0.2;0.2;0.2;0.2;0.2];
-parameterLower = [50;50;0;1;1;0;0;0;-8;-8];
+% Experimental k2 lower bound; does not guarantee positive-definite stiffness.
+parameterLower = [50;-100;0;1;1;0;0;0;-8;-8];
 parameterUpper = [6000;6000;6000;250;250;10;10;10;8;8];
 parameterInitial = [650;650;650;40;40;0;0;0;0;0];
 
