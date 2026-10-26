@@ -1,0 +1,11 @@
+Source: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v9.mat
+Parameter order: k1 k2 k3 d2 d3 h1 h2 h3 b2 b3
+Plots use retained parameterEstimate, not force-evaluation matrix outputs that can zero on invalid data. Estimates are compensation parameters, not unique physical identification.
+Dotted lines mark feedback gain changes at zeros(1,0) s.
+lambda [time l2 l3]:
+0.000 18 16.5
+Ks [time Ks2 Ks3]:
+0.000 15 10
+Initial parameters [650 650 650 40 40 0 0 0 0 0]
+Final parameters [1360.576 36.08565 4.32574 59.63987 49.57451 0.01400935 0.9336336 0.0162265 -0.5773984 0.441111]
+Not logged: historyOptions

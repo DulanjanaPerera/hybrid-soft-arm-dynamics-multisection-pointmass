@@ -1,0 +1,18 @@
+Stored PREUPDATE estimates: circleN6000 lateN600
+k1 lower1 upper6000 circleMin92.012 circleMax1431.55 lowerCount0 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount91
+k2 lower-500 upper6000 circleMin-500 circleMax863.183 lowerCount24 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount0
+k3 lower1 upper6000 circleMin1 circleMax930.904 lowerCount93 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount135
+d2 lower1 upper250 circleMin40 circleMax50.8649 lowerCount0 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount0
+d3 lower1 upper250 circleMin40 circleMax54.6492 lowerCount0 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount0
+h1 lower0 upper20 circleMin0 circleMax12.1775 lowerCount16 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount0
+h2 lower0 upper20 circleMin0 circleMax11.44 lowerCount5 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount0
+h3 lower0 upper20 circleMin0 circleMax11.6523 lowerCount17 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount0
+b2 lower-8 upper8 circleMin-1.18529 circleMax0.135773 lowerCount0 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount0
+b3 lower-8 upper8 circleMin-0.452402 circleMax0.505801 lowerCount0 upperCount0 lateLowerCount0 lateUpperCount0 returnLowerCount0
+RATEWIN20.00-221.65 Nactive3924 capCounts[0 0 25 0 0 0 0 0 0 0] peak[618.664 625.587 650 0.426726 0.486323 0.53396 0.481938 0.569943 0.144165 0.153534]
+RATEWIN221.65-271.45 Nactive943 capCounts[0 0 0 0 0 0 0 0 0 0] peak[224.406 367.491 274.002 0.054755 0.0945258 0.277675 0.140237 0.207498 0.0501899 0.0669458]
+RATEWIN271.45-320.00 Nactive902 capCounts[0 0 0 0 0 0 0 0 0 0] peak[221.023 333.504 267.684 0.485917 0.781467 0.249499 0.145091 0.173888 0.0470983 0.0611314]
+RATEWIN290.00-320.00 Nactive553 capCounts[0 0 0 0 0 0 0 0 0 0] peak[203.188 333.504 267.684 0.485917 0.781467 0.249499 0.123092 0.173258 0.0470983 0.0611314]
+PRESSUREWIN20-319.95 ranges[0.8 0.8 0.8] [2.67315 2.62012 2.48632] peakRate[1.52329 1.91353 1.36078] fraction5xCompressedExceeds2barPerSec[40.4901 42.2404 39.6399]
+PRESSUREWIN290-319.95 ranges[0.8 0.8 0.8] [2.63303 2.55883 2.41918] peakRate[1.52329 1.91353 1.36078] fraction5xCompressedExceeds2barPerSec[34.5576 42.571 39.2321]
+2s reference:40 samples/circle at .05s; q amplitude13mm -> velocityPeak40.8407 mm/s accelerationPeak128.305 mm/s^2

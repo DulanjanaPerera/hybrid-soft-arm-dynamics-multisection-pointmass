@@ -1,5 +1,332 @@
 # Verification and experimental results
 
+## 2026-10-26 - User-requested repository checkpoint
+User authorized staging/committing important project files,without push. PAC
+SignedK2,HysteresisFreeze,Tunable,Adaptive and Pressure offline validations
+passed. SignedK2 now also checks helper acceptance of user lower bound-500;
+source block remains at-100. RL pressure/reference waveform validations also
+passed offline. No model/hardware execution or fresh standalone codegen claimed.
+Checkpoint includes saved user PAC model snapshot, raw circle recordings,
+reproducible audit scripts/reports and presentation artifacts. Saved model is
+not claimed compiled/tested by these source-only checks. Separate open-loop
+collection tools/recordings are checkpointed independently. Unrelated paper
+drafts,model .original backups,generated C build trees and duplicate presentation
+ZIP remain local. Automatic optimization remains a proposal,not implemented.
+
+## 2026-10-26 - v9 actual2s circles: slew limit blocks tracking and adaptation
+Offline1rad_10s_gainTesting_v9.mat despitefilename:0-89.55s,30x2scircles
+20-80s,phi1. Medianloggeddesiredangularratepi rad/s confirmsperiod2s.
+Fixedlambda18/16.5,Ks15/10. Gamma initiallyk.5,d.02,h5.8,bias1;
+k->.05at63.4s,h->.1at69.7s. Caps650/10/2/.2,lower1/-500/1,...,
+hupper20,pressure2bar/sslewunchanged. No controllercodechangesperformed.
+Exactgate reconstruction1200circlesamples:65active5.4167%;1071limited89.25%,
+62invalid,2dt,nomanualdisable/deadband/independentresidualgate. Whole64invalid
+54events/alltipinvalid,nofaults. Adaptactive falls12.75%first20stracking to
+1.75%middle/last20s;someentirelapsnoupdates. Bias/history compensation remains
+poorlylearned;reducinggammamidrundidnotremovelimit.
+OfflinepacAllocateVariableCommonreplayon1138validstatus3circlesamples:
+allocationinfeasible0,target-commandmismatch1071;ORmatchesloggedlimitedexactly.
+Allocatorresidualpeak8.05e-15N,butpostslewcommandresidualpeak9.385N(nominal,
+notphysicalmeasurement). Commandsmax[2.30469 2.55624 2.41175]bar,below3rails;
+min[.988246 .8 .8]. Allcommandsreach2bar/s;fractionconsecutivecircleincrements
+atabsoluteslewcap27.36/69.89/54.46%. Thus pressurecommandrate,notstaticforce
+range,dominates thisrun. No inference chamberpressurefollowstheslewcommands.
+Circlevaluebounds:k3=1on987samples82.25%,h1=0on1196(99.67%),h3=0on1178
+(98.17%),h2=0on28;no uppercontacts/no k1,k2,d,biasboundcontacts. Veryfew
+eligibleupdatesandphase-dependentprojectionlimitinterpretationoftheseweights.
+Among65activecircleupdates,k2ratecap1,k3cap7,d2cap1,b2cap1;historycaps0.
+These arenot thedominant causeofstalledlearning. Endtrackingparams
+[1506.20 64.347 1 52.340 42.346 0 .91825 0 -.00143 .03171];do notsubstitute
+afterreturnfinalvalues. EstimatedK remainsSPD:circleminEigen65.346N/m.
+Final-lapthetaMAE1.067384rad,phi.275316,length8.069/9.760mm. Lastthreecircle
+theta~1.08,phi~.28;no convincing sustained learning afterinitiallaps.
+Recommendation:donotincreasegamma/capsordisableallocationgatesasfix. To
+reachphi1/2s,characterizeactuatorbandwidthandcommandslewcap,thenreviseonly
+withphysicalevidence;otherwise reduceamplitude/speed. Progressivefixedsetting
+speedtestsorvalidatedactuatordynamicsneeded. Existinggatescorrectlyblock
+updateswhenrequestedforceisnotappliednominally. No model/hardwarerun.
+Artifacts v9_analysis:audit,lapCSV,allocation_and_bounds.txt,
+two_second_slew_diagnostics.png/fig,gain/parameter/switchplots. Reproduction
+tmp/auditPacGainTestingV9.m andtmp/auditPacV9Allocation.m. No commit/push.
+
+## 2026-10-26 - v8 saturation audit and 2s-circle headroom
+Offline1rad_10s_gainTesting_v8.mat:30x10scircles,phi1. Fixedlambda18/16.5,
+Ks15/10. Gamma initiallyk.7,d.002,h5.8,bias1;k->.5at221.65s,d->.02at271.45.
+Caps650x3/10x2/2x3/.2x2;lower1/-500/1/1/1/0x3/-8x2;hupper20. Allinputlogs
+verified. Exactgate reconstructioncircle5769active96.15%;off62invalid+62dt+
+107deadband,no pressure/slewlimitingorindependentresidualgate. Whole65invalid
+singleevents/alltipinvalid,nofaults. Fastinitiallearningtheta<.2bylap8;
+lap10theta.150591,phi.062523,length1.582/1.762mm;lap20.097513/.062452/
+.943/1.340;lap30.099420/.061626/.911/1.359. Lateerrorlargelyplateaus.
+Valuebounds onstoredpreupdatecirclesamples: k2=-500on24/6000(.4%);
+k3=1on93/6000(1.55%);k1none. hzeroon16/5/17samplesearly;no huppercontact,
+max12.178/11.440/11.652vs20. No damping/bias valueboundcontacts,no upper
+boundcontacts foranyparameter. Final3cycles290-320:noneof10atbounds.
+Returnholdisdistinct:k1lower91samples,k3lower135samples;do notmixwithcircles.
+Ratecapactualcontacts:onlyk3,25activeupdatesbefore221.65s(~.42%wholeactive);
+allotherparametercaps0;no ratecapcontactsafter221.65orinthefinal3cycles.
+Thus remaininglateerrornotvalue/ratesaturation. Deadband107samples1.78%circles
+notdominant;nominalresidualnotphysicalforcevalidation. Pressurecommandsmin.8,
+max[2.67315 2.62012 2.48632]bar;floorcontactsnotnecessarilyinfeasibleforces.
+Latevsv7:thetaRateSD.37460v.67930rad/s,nearstop3.952v27.428%,phiMax1.15769v
+1.32153,limiting0v20.167%;positionaccuracyworsebutmotionmuchlessrough.
+EstimatedKindefinite435circlesamples(431valid),7.25%,minEigen-347.062N/m;
+notSPD/passivitycertifieddespitenofaults.
+2sgoal:atfixedphi1,referenceangularrate5xandacceleration25xvs10s;nominal
+13mmlengthamplitudeimpliespeak40.84mm/sand128.30mm/s^2. .05sPACgives40samples
+percirclevs200. Simple5xcompressionofv8pressurecommands(notclosedloop2s
+prediction)requirespeak~7.62/9.57/6.80bar/s. Inlatewindow~34.6/42.6/39.2%
+commandincrementswouldexceedcurrent2bar/s. Actuator/commandbandwidthandlag
+thereforemustbeaddressedalongsidelearning;raisinggamma/capsaloneno2sguarantee.
+Recommendfixedv8candidateandprogressivespeedcomparisonwithsmoothreference
+transitions/heldconditions,characterizingpressure/velocity/limitingandSPDfirst;
+no autonomoushardwaretests,limitrelaxationorcontrollerchangeperformed.
+Artifacts v8_analysis:audit,lapCSV,bound_and_rate_audit.txt,v7_v8comparison,
+parameter/gain/switchplots;tmp/auditPacGainTestingV8.m,tmp/auditPacV8Limits.m,
+tmp/comparePacV7V8.m.
+
+## 2026-10-26 - v7 dynamic gamma sweep: fast errorlearning,large-d roughness
+Offline1rad_10s_gainTesting_v7.mat,30x10scircles,phi1;lambda18/16.5,Ks15/10
+fixed. Springcaps650(v6/v5:450),historyupper20,otherloggedbounds/historysame.
+Gamma timeline k/d/h (biasgamma1always):initial.4/.0002/1.5;
+51.35:.5/.0002/1.5;59.55:.5/.0002/1.8;81:.5/.0002/5.8;
+114.6:.5/.002/5.8;126.1:.7/.002/5.8;170.15:.7/.02/5.8;
+233.15:.7/.02/20.8;248.85:.7/.02/5.8;254.95:.7/2/5.8;
+272.6:.7/.2/5.8;281.3:.7/.05/5.8;301.1:.7/.002/5.8.
+Allchangesmidrunwithretainedstates,notindependentgaintrials. h5.8period
+coincideswithfastererrorreduction:lap7theta.490726,lap10.303962,
+lap14.154844,lap20.102254;gamma_kand_dalsochange,socausaloptimumunproven.
+Final-laptheta.063644,phi.051364,length.787/1.013mm;lowerpositionerrorbut
+latewithin-cycleroughnessworsens. Whole62invalidsingleevents/alltipinvalid,
+nofaults. Exactgate reconstruction,circle93.5%active;189limited,61invalid,
+53dt,87deadband. Deadbandnowblocks87samples,notallinactiveperiods.
+At254.95d~49.952/52.396;gamma_d.02->2(100x) and d estimates reach
+106.869/117.879by272.6,112.055/124.241by319.95. Latergammareductiondoesnot
+reset learned d. Prior180-220thetaRateSD.33735,slow4.124%,phiMax1.1033,
+limiting0;254.95-272.6SD.47959,slow13.256%,phiMax1.1861,limiting5.099%;
+301.1-320SD.66565,slow25.474%,phiMax1.3215,limiting20.370%.
+Final3290-320v7vsv6:apparentthetaRateSD.6793v.32025rad/s,slow27.428v4.103%,
+phiMax1.3215v1.0855,l3velocityPeak18.102v12.270mm/s,limiting20.167v0%.
+Thesearevalidsampleangleincrements,notindependentvelocitymeasurements.
+AdaptiveDh*v ismodelcompensation,notidenticaltoexplicitKs dampingfeedback.
+Gamma_dhugejumpandpersistenthighdstronglyassociatedwithroughness/limiting;
+notjustgatingorimprovedconvergence. h20.8spans~1.6cycles,noisolatedbenefit
+established;hmax12.559/10.995/12.086below20. k2neverhits-500;Kindefinite227
+circlesamples(225valid),minEigen-172.699;notSPDcertified.
+Suggestedfreshfixed-gaincomparison:lambda18/16.5,Ks15/10,gamma_k.5,
+gamma_h5.8,gamma_d.002,bias1,retainingother v7settings. Candidateonly,not
+validatedoptimum;nofurtherlivegammajumporcontinuingfromhigh-dstateforcomparison.
+Artifacts v7_analysis:audit,lapCSV,gamma_stage_audit,gamma_and_damping_history,
+v6_v7roughness/plots;tmp/auditPacGainTestingV7.m,tmp/auditPacV7Stages.m,
+tmp/comparePacV6V7.m. No controller/model changes orhardwareexecution.
+
+## 2026-10-26 - v6 springgamma.8: no clear benefit,more signedK excursions
+Offline1rad_10s_gainTesting_v6.mat:30x10scircles,phi1. Springgamma.8verified
+(v5.4);historygamma1.5unchanged. Fixedlambda18/16.5,Ks15/10fromstartup,
+unlikev5earlygainchanges. Historyupperbounds20(vs10);nonbindingbecausemaxh
+9.353/8.352/8.400. Otherloggedtuningmatchesv5. No sourcegainchangeperformed.
+Gate reconstructionexact:circleactive98.1667%,55invalid+55dt,no limiting,
+deadbandorindependentresidualgate. Whole57invalidsingleevents,alltipinvalid,
+nofaults. Springratecaps450reached15.80/15.45/10.10%activeupdates(v5about
+.21/.36/.53%). Thisisstrongerwithin-cycleupdateclipping,notproofbetterlearning.
+v6 thetaMAE lap10.445369,20.302774,30.192586vs v5.443142/.286515/.188067;
+phi.118820/.073161/.060439vs.131882/.072830/.064654. Finallength1.867/2.148
+v1.884/2.201mm. Earlyrunsdifferfeedbackhistory/preconditioning;notclean
+springgammaisolation. Late290-320s thetaRateSD.32025v.31694rad/s,nearstop
+fraction4.103v3.242%,max2.232v1.544rad/s. l3velocityRMS2.302v2.368mm/s,
+peak12.270v11.786mm/s;phimax1.0855v1.1069. Mixedchanges,notclearoverallgain.
+EstimatedK indefinite774circlesamples(761modelvalid),12.9%vs v5 44samples
+(.733%). CircleminEigen-288.615N/m;indefinitenessrecursuntil~239.65s,
+notonlystartup. Wholemin-419.531;finalreturnk1=k3=1,k2=-420.528.
+NoobservedfaultsdoesnotrestoreSPDguarantee. k2reaches-500early.
+Recommendedcomparison:fixedfinalfeedbackfromstartupwithspringgamma.4,
+historygamma1.5,andotherwiseexactv6settings;avoidraisingcapsorgammafurther.
+Proposalonly. CoupledSPDconstraintremainsunimplemented andwouldbeaseparate
+controllerdesignchange. Artifacts v6_analysis:audit,lapCSV,v5_v6roughness/plots;
+tmp/auditPacGainTestingV6.m,tmp/comparePacV5V6.m. No model/hardwarerun,
+controllercodechange,commit/push.
+
+## 2026-10-26 - v5 smoother feedback settings,ongoing learning
+Offline1rad_10s_gainTesting_v5.mat,30x10scircles,phi1. Actualgammaunchangedfrom
+v4(history1.5),allothertuningunchangedexceptlivefeedback:lambda28/25.5initial,
+28/16.5at40s,18/16.5at59.5s;Ks25/1initial,25/10at70.25s,15/10at88.2s.
+Thus smootherlatebehaviorcannotbeassignedtogammachange;v2v3remainsgamma
+comparison. After88.2feedbackfixedthroughend. Lap8thetaMAE.488633,phi.153605
+->lap20.286515/.072830->lap30.188067/.064654;continuinglearningconsistent
+withadaptation,notisolatedcausalproofwithoutdisabledrun. Final3meanlaptheta
+v5.195919v v4.115522,phi.064290v.052724,length1.927/2.263v1.211/1.453mm.
+Late290-320s smoothnessimproves: apparentthetaRateSD.316941v.504951rad/s,
+nearstopfraction3.242v14.576%,max1.54431v3.28536rad/s;ratesaresampledvalid
+angleincrements,notindependentvelocitymeasurements. l3velocitypeak11.786v
+15.732mm/s,velocityerrorRMS2.368v2.564mm/s. Phi max1.10689v1.19559,
+>1.05fraction7.589v11.765%. No circlelimiting(0v137samples),nominalresidual
+gateindependent0;adaptactive97.933%(5876/6000),off62invalid+62dt,no deadband.
+Whole64invalidsingleevents/alltipinvalid,nofaults. Gate reconstructionexact.
+Historyweightsmax8.927/8.435/8.595,below10butstillgrowing;capsnotreached.
+Promisingsmoothness/accuracytradeoff;livechanges/preconditioninglimitattribution.
+Nextcomparisonshouldstartfinal lambda18/16.5,Ks15/10 fromfreshfixedbaseline
+beforemoregammatuning,withsameinitialization/reference/payload. Proposalonly.
+SignedKindefinite44validcirclesamples23.55-25.7s,minEigen-219.928N/m;
+alsofinalreturn/hold. NoSPDguaranteerestored. No code/model/hardwareexecution.
+Artifacts adaptCommonP/1rad_10s_gainTesting_v5_analysis:audit,lapmetrics,
+v4_v5_roughness.txt,v4_v5_last3cycles.png/fig,parameter/gain/switchplots.
+Reproduction tmp/auditPacGainTestingV5.m andtmp/comparePacV4V5.m.
+
+## 2026-10-26 - v4 secondKs.1->1: small tracking gain,no clear smoothness cure
+Offline1rad_10s_gainTesting_v4.mat:30x10scircles,phi1. Loggedlambda28/25.5,
+Ks25/1 constant;allothertuningmatchesv3(historygamma1.5,caps2,lowerk2-500).
+Gate reconstruction exact;circleadaptactive96%(5760/6000),off137limiting,
+54invalid,42dt,7deadband. Whole58invalidsingleevents,alltipinvalid,nofaults.
+Final-lapthetaMAE.112240,phi.058125,length1.228/1.481mm vs v3.118949/.052894/
+1.200/1.543. Toavoidcherrypickinglastlap,last3mean-per-laperrorsv4theta.115522,
+phi.052724,length1.211/1.453mm vs v3.121886/.052813/1.241/1.541:
+theta~5.2%better,phiunchanged,lengthsmallimprovements,separaterunvariationunknown.
+Last3velocityRMSEl3 2.564v2.699mm/s(~5%better);peak15.732v15.917mm/s.
+ApparentthetaRateSD.50495v.51419rad/s(~1.8%better),slowfraction14.576v14.555%
+(unchanged),maximum3.285v2.591rad/s(worseisolatedpeak). Phi max1.19559v1.22038
+(lowerpeak),but>1.05fraction11.765v9.459%(longerovershoot);notuniformimprovement.
+Last3pressurelimiting3.333v3%;wholecircle2.283v1.967%. Historyweightsmax
+9.114/8.446/9.264below10;damping/historyratecapsnotreached. Gamma/capincrease
+notindicated;secondKschangehasmodesteffect,notproofdampinghypothesisfalse.
+EstimatedKindefinite71circlesamples(70valid),23.5-25.8and34-35.15s;
+circleminEigen-243.848N/m;finalreturnmin-307.089. NoSPDguaranteerestored.
+Suggestednextstep:retainfixedbaselineandinvestigatemeasured-velocityfiltering,
+pressure-command/actuatorresponseandphase-lockedburstsbeforesweepingmoregains.
+Artifacts adaptCommonP/1rad_10s_gainTesting_v4_analysis:audit,lapCSV,
+v3_v4_roughness.txt,v3_v4_last3cycles.png/fig,gate/gain/parameterplots.
+Reproduction tmp/auditPacGainTestingV4.m andtmp/comparePacV3V4.m.
+No controller/model changes or hardware/model execution,commit/push.
+
+## 2026-10-26 - v3 historygamma1.5 vs v2gamma1: faster learning,roughness persists
+Offline1rad_10s_gainTesting_v3.mat,30x10scircles,phi1. Constantlambda28/25.5,
+Ks25/.1. All logged tuning matchesv2 except historyweightgamma1->1.5; other
+gammas/ratecaps/bounds/initials/historylaw unchanged. Payload/preconditioning
+notestablished;separaterunsnotrepeatabilitystatistics. Gatedupdate reconstruction
+exact. Circleupdates96.0167%(5761/6000);off118limiting+64invalid+54dt+3deadband.
+Whole67invalidsingleevents,alltipinvalid,no faults. History/dampingratecapsnever
+reached;peak historyrates.185/.198/.202N/s vs2caps. Springcaps .436/.520/1.292%
+activeupdates. Historyweightsmax9.149/8.490/9.254,below10butapproachingbounds.
+v3 thetaMAE lap10.283318,20.171381,30.118949 vs v2.325568/.229879/.168024;
+phi.065628/.055170/.052894 vs.078437/.061870/.054390. Final lengthRMSEv3
+1.200/1.543 vs v2 1.643/1.881mm. Finaltheta~29%better;phi~3%better. Firstlap
+thetaMAE<.2 is17vslap24,~70searlier;single-runcomparison,notguaranteedspeedup.
+Late290-320s roughness: l3filteredvelocityRMSE2.699v2.764mm/s;peak15.917v
+16.067mm/s(almostunchanged). ApparentthetaRateSD.51419v.51998rad/s;
+fractionapparentthetaRate<20%desired14.555v14.726%;maximum2.591v3.337rad/s.
+Rate useswrappedangleincrements/.05s onconsecutivevalidsamples,notindependent
+mechanicalangularvelocity. Phi max1.22038v1.16837;>1.05rad9.459%v6.25%valid
+samples. Latepressurelimiting3%v2.333%;l3residualfrombestfit10sfundamental
+1.003v.864mm (diagnosticfitonly,nofittedtracking). Thus averagepositionerror
+improvesandlargestthetaburstreduces,butroughnessdoesnotclearlyresolveandphi
+overshootincreases. Raisinggammafurthernotindicatedbythistradeoff;separate
+secondKs/actuatordynamicsinvestigationwithfixedlambda/gammaisnextproposal.
+SignedKindefinite69validcirclesamples23.65-25.75and33.95-35.2s,
+circleminEigen-211.167N/m;returnholdwholemin-362.647. NoSPDguarantee restored.
+Artifacts adaptCommonP/1rad_10s_gainTesting_v3_analysis:audit,lapCSV,
+v2_v3_roughness.txt,v2_v3_last3cycles.png/fig,gain/parameter/switchfigures.
+Reproduction tmp/auditPacGainTestingV3.m and tmp/comparePacV2V3.m.
+No controller/model edits or model/hardwareexecution; no commit/push.
+
+## 2026-10-26 - v2 catch-up burst near151s,not an error-zero stop rule
+User observes phase-dependent roughlengthtracking/abrupttheta slowdown,mainlyl3.
+Read-only inspection v2 at150.8-151.35s: modelValidtrue/status3 throughout;
+one limitedsample150.95s withP2+0.1/P3-0.1bar per.05s and residual
+[-.0965;.2769]N. No pressurezero/invalidholdatthisevent. Pressurecontinues
+varying,allcommands~1.1-2.4bar,awayfromactivationthreshold. Filteredl3velocity
+peaks.0168m/sat151 vsdesired.0039;then.0002by151.35while desired.0022.
+Phi .9672at150.8 ->1.1342at151.05 ->1.0027at151.35(desired1).
+Theta .2448at150.9 ->.4593at151 ->.4848at151.05,then~.486-.504through151.35:
+burst then plateau,not evidencewholearmstops. Bothinferredlengthcoordinates
+change;theyarenotindependentlengthsensors. Controller hasnoif(error==0)stop:
+v=qd_dot-lambda*e becomesqd_dotwhen e=0 and force terms remain.
+Catch-upovershoot/braking withmodel/actuatorlag is plausible,notprovenmechanism.
+Known derivativefilter lag can delay velocityfeedback; rawposeartifactversus
+physicalstick-slip remainsunresolved. CurrentexplicitKs=[25;.1] makes -Ks*s
+secondcomponentweak:at151sfeedback~[-1.438;-.00168]N. This isnotfullclosedloop
+damping;Mlambda andothermodeltermsalsoaffectresponse. Highlambda can increase
+transientdemand;do not assumeincreasinggamma removeswithin-cycleroughness.
+Nextgamma comparison shouldretainfeedback/reference/filtersettings andassess
+velocityspikes,phiovershoot,thetavelocity,andlimitingaswellasMAE. A separate
+modestsecondKscomparisonmaytestdampinghypothesis;notimplementedorvalidated.
+No code/model changes or hardwareexecution.
+
+## 2026-10-26 - Fixed-gain gainTesting_v2: gradual error reduction
+Offline1rad_10s_gainTesting_v2.mat:0-330s,30x10scircles,phi1,payloadunverified.
+Allsettingsconstant:lambda28/25.5,Ks25/.1;gamma.4x3/.0002x2/1x5;
+caps450x3/10x2/2x3/.2x2;scales1000x3/100x2/1x5;lower1/-500/1/1/1/0x3/-8x2.
+Adapt/common true,hfreeze false;optionsdeadband.005,tol.02,maxdt.075.
+Gate reconstruction exact.6000circlesamples:5771active96.1833%;105limited,
+69invalid,55dt;no independentdeadband/residual/disable/unexplained. Whole
+70invalid69events,69tipinvalid,no faults;one modelinvalidsample not accounted
+for by tipinvalid alone. Do not attribute everyinvalidsample totipsensor.
+ThetaMAE lap2.435323,lap10.325568,lap20.229879,lap30.168024rad;
+phi.138773/.078437/.061870/.054390;lengthRMSElap2:3.989/4.191mm,
+lap30:1.643/1.881mm. Theta/phi each~61%lower lap30vslap2. Five-lapmean
+theta1-5:.413708,6-10:.351219,11-15:.293805,16-20:.247350,
+21-25:.208504,26-30:.177861. phi:.132535/.086546/.070767/.062998/.059407/
+.055848. Continuedthetaimprovement;phidecay slows;no settledfinalfloorproved.
+Springratecap fractions activeupdates.687/.285/2.044%;damping/history0%;
+biascaps.251/.184%. Peak historyrates.122/.132/.141N/s vs2N/scaps;peak
+dampingrates.095/.098 vs10. Raising caps cannot accelerate these uncapped
+updates;deadbandreductionnotindicated. Gradient gains are potential controlled
+tuning variables,not evidence of guaranteed improvement from larger gamma.
+Historyweightmeanslap10[3.216 3.004 3.167],lap20[5.628 5.240 5.572],
+lap30[7.275 6.778 7.307];stilladapting,notat10upperbound. Slowingthetaerror
+coexistswithongoingcompensation;noidentifiedphysicalparameterconvergenceclaim.
+k2cycles;min-500duringlap1,final-afterreturn-217.498;k3hits1. EstimatedK
+indefinite81circlesamples,79modelvalid,intervals23.4-25.9and33.9-35.35s,
+minEigen-257.412N/m. Observedboundedtracking/nofaultsdoesnotcertifySPD.
+No controllerchanges. Artifacts adaptCommonP/1rad_10s_gainTesting_v2_analysis:
+audit,lapCSV,gatefigure,parameter/gain/switchplots;tmp/auditPacGainTestingV2.m.
+Possible next experiment: modest historygamma1->1.5 withallotherinputsfixed,
+compareearlylapsandlimiting/bounds;proposalonly,notimplementedorhardwaretested.
+
+## 2026-10-26 - rad_10s_gainTesting gate and gain audit
+Offline0-330s,30x10scircles,phi1;payloadnotestablished. All tuning logged,
+history options namedhystoryOptions. Gamma[.4 .4 .4 .0002 .0002 1 1 1 1 1],
+scales[1000x3 100x2 1x5],caps[450x3 10x2 2x3 .2x2],lower
+[1 -500 1 1 1 0 0 0 -8 -8];these differ from earlier supplied history settings.
+Mechanical/commonenabled,hfreeze false,deadband.005,residualtol.02,maxdt.075.
+Actual lambda starts21/20.5;changes110.35:21/18.5,122.20:28/18.5,
+166.10:28/12.5,201.65:28/8.5,219.30:28/38.5,280.55:28/28.5,
+321.90:28/25.5. Ks starts25/17;changes101.85:25/15,144.65:25/1,
+176.60:25/10,243.75:25/100,250:25/.1,272.20:25/.01,298:25/.0001,
+308.85:25/.1. Gains change midcycle; adaptive states evolve throughout.
+Gate reconstruction matches all6601 adaptationActive values. Disjoint first
+failure counts for6000circle samples:5534active(92.233%),358limiting,
+67invalid/model,41updateinterval;zero independentdeadband,residual-only,
+disable or unexplained. Whole run866inactive includes399supervisornotcontrol,
+68invalid,358limited,41dt;no faults. 68invalidsamples59events,alltipinvalid.
+Kssecond100 interval243.75-250:123/125sampleslimiting,active.8%;thetaMAE.314676,
+phi.152063 vs prior219.3-243.75:.209407/.079024 and next250-272.2:
+.213122/.059409. Higherfeedback can block learning via limiting;not too-small
+gamma. Springratecap fractions amongactiveupdates.401/.140/1.622%;othercaps0.
+Final-laptheta.187799,phi.060273,lengthRMSE1.967/1.904mm. Late improved
+tracking does not establish optimal gains because adaptation/order/speedphase
+confound partial intervals. Need fixed-gain repeated comparisons.
+Signed K indefinite on29validcircle samples23.95-25.35s,minEig-87.667N/m;
+whole-runminEig-170.793 duringreturn/hold. modelValid doesnotcheckKSPD.
+No observedfaults isnotSPD/passivityproof. k2min-318.435 neverhits-500;k3hits1.
+k2 cycles,final-afterreturn-171.791;do nottreatthissinglevalueasconstantcirclefit.
+Artifacts adaptCommonP/rad_10s_gainTesting_analysis: audit,lapCSV,gatefigure,
+parameter/gain/switchfigures;reproduction tmp/auditPacGainTesting.m.
+No controller/model edits,hardware/model execution,commit/push.
+
+## 2026-10-26 - User-authorized signed k2 experiment
+User confirmed k2 reaches its bound even after manually lowering it to1 and
+requested -100 N/m. Updated pacTuningBlock lower entry2 to-100 and relaxed
+pacTuningConfig sign assert only for k2,to lower(2)>=-100. Other constraints,
+initial estimates,adaptation law/rates,wrapper ports unchanged. Legacy positive
+defaults retained. A bound hit demonstrates gradient direction,not that physical
+k2 requires negative stiffness. Combined K SPD requires k1+k3>0 and
+k1*k2+k1*k3+k2*k3>0;relaxed box can violate this. No coupledSPD projection or
+invalid-K fault added. No new passivity/stability claim for signed configuration.
+validatePacSignedK2 passed negative update/clamp,outwardhold,inwardrecovery and
+examples showing signed k2 can yield either SPD or indefinite K. Existing
+validatePacTunable/Adaptive/HysteresisFreeze passed; their positive-default SPD
+check does not certify the signed tuning box. No model/hardware execution,
+SLX edits,commit or push. TUNABLE_BLOCK documents integration and limitations.
+
 ## 2026-10-23 - 100 g / 10 s circle presentation figures
 Follow-up: plotPacAdaptationPresentation.m exports allten parameterEstimate
 histories,lambda/Ks,and adaptation/common/update Boolean histories in sameformats.

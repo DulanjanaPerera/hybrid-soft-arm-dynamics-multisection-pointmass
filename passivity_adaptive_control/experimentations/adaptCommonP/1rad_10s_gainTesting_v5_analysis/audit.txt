@@ -1,0 +1,125 @@
+SOURCE C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v5.mat N6601 TIME0-330 nominal dt0.05
+lambda_gains changes2 [time values]
+         0   28.0000   25.5000
+   40.0000   28.0000   16.5000
+   59.5000   18.0000   16.5000
+
+damping_gains changes2 [time values]
+         0   25.0000    1.0000
+   70.2500   25.0000   10.0000
+   88.2000   15.0000   10.0000
+
+adaptationGamma changes0 [time values]
+         0    0.4000    0.4000    0.4000    0.0002    0.0002    1.5000    1.5000    1.5000    1.0000    1.0000
+
+parameterMaxRate changes0 [time values]
+         0  450.0000  450.0000  450.0000   10.0000   10.0000    2.0000    2.0000    2.0000    0.2000    0.2000
+
+parameterLower changes0 [time values]
+     0     1  -500     1     1     1     0     0     0    -8    -8
+
+parameterUpper changes0 [time values]
+           0        6000        6000        6000         250         250          10          10          10           8           8
+
+parameterScale changes0 [time values]
+           0        1000        1000        1000         100         100           1           1           1           1           1
+
+adaptationOptions changes0 [time values]
+         0    0.0050    0.0200    0.0750
+
+hystoryOptions changes0 [time values]
+         0    0.0050    1.0000    0.5000    2.0000
+
+pressureOptions changes0 [time values]
+         0    1.6000   -0.0984   -0.0820    0.2000    3.0000    2.5000    2.5000    2.0000    0.8000   13.2732
+
+supervisorOptions changes0 [time values]
+         0   10.0000   15.0000    5.0000    0.1000    0.0750    0.0005       Inf
+
+freezeHysteresisWeights changes0 [time values]
+     0     0
+
+enableAdaptation changes0 [time values]
+     0     1
+
+enableCommonPressureAdaptation changes0 [time values]
+     0     1
+
+parameterInitial changes0 [time values]
+     0   650   650   650    40    40     0     0     0     0     0
+
+ACTIVE vs gates mismatches0
+GATES window0-330 N6601 inactive536 activePct91.8800
+0 enabled update 6065
+1 manual disable 0
+2 invalid/freshness/model 64
+3 supervisor not control 398
+4 allocation/slew limiting 0
+5 nominal residual tolerance 0
+6 no fresh/acceptable update interval 62
+7 s deadband 12
+8 zero projected rate/unexplained 0
+GATES window20-319.95 N6000 inactive124 activePct97.9333
+0 enabled update 5876
+1 manual disable 0
+2 invalid/freshness/model 62
+3 supervisor not control 0
+4 allocation/slew limiting 0
+5 nominal residual tolerance 0
+6 no fresh/acceptable update interval 62
+7 s deadband 0
+8 zero projected rate/unexplained 0
+INITIAL[650 650 650 40 40 0 0 0 0 0] FINAL[66.55338 -221.4682 1 42.61338 42.6018 8.369089 8.082671 8.415814 -0.338789 0.1529651] MIN[66.55338 -500 1 40 40 0 0 0 -1.032639 -0.7655626] MAX[1304.586 821.2299 1080.946 42.61338 42.6018 8.92657 8.435075 8.59548 0.03520182 0.1529651]
+K minimum eigenvalue min-220.472 nonpositiveCircle44
+K nonpositive events [start end count]
+   23.5500   25.7000   44.0000
+
+K circle minEigen-219.928 validNonpositive44
+REFERENCE phi range[0 1] theta range[0 188.495559215388]
+INVALID samples64 events64 tipInvalid64 status464 faults0 limitedCircle0
+PEAK acceptedRates[450 450 450 0.0903734 0.0838825 0.183352 0.177465 0.195741 0.2 0.2]
+RATECAP percent of active samples[0.21438 0.3628 0.5277 0 0 0 0 0 0.049472 0.016491]
+LAPS lap thetaMAE phiMAE lengthsRMSE activePct deadbandPct dtGatePct k2mean k2range hmean
+1 0.404334 0.181065 [2.9022 4.7205] 97.00 0.00 1.50 44.8450 [-500 821.23] [0.30203 0.20804 0.23941]
+2 0.428644 0.129465 [3.8326 4.099] 99.00 0.00 0.50 -87.1189 [-365.26 231.79] [0.87339 0.72105 0.83252]
+3 0.402304 0.178483 [3.398 4.8367] 98.00 0.00 1.00 -80.2295 [-329.85 161.25] [1.3723 1.2298 1.2882]
+4 0.393976 0.166368 [3.177 4.7584] 98.00 0.00 1.00 -61.7799 [-270.81 172.36] [1.7293 1.6789 1.6368]
+5 0.547275 0.179678 [4.8266 4.9381] 97.00 0.00 1.50 -46.9119 [-276.34 198.85] [2.1045 2.0989 2.0094]
+6 0.500193 0.150723 [4.5482 4.5162] 97.00 0.00 1.50 -36.7123 [-280.58 226.75] [2.5084 2.4722 2.3673]
+7 0.467971 0.148255 [4.1631 4.4302] 98.00 0.00 1.00 -15.4208 [-236.81 238.31] [2.9119 2.8157 2.7165]
+8 0.488633 0.153605 [4.355 4.5694] 98.00 0.00 1.00 8.6237 [-227.45 268.76] [3.3112 3.1577 3.0729]
+9 0.462693 0.143901 [4.0926 4.4516] 98.00 0.00 1.00 10.3891 [-202.69 262.36] [3.7132 3.4992 3.4251]
+10 0.443142 0.131882 [3.9177 4.274] 99.00 0.00 0.50 18.4208 [-203.38 270.8] [4.092 3.8287 3.7696]
+11 0.427043 0.122481 [3.7926 4.1223] 99.00 0.00 0.50 22.9991 [-191.53 266.86] [4.4532 4.1628 4.1115]
+12 0.410328 0.113498 [3.6696 3.9592] 99.00 0.00 0.50 22.5525 [-181.05 265.11] [4.795 4.4775 4.4383]
+13 0.392965 0.106290 [3.5244 3.8139] 99.00 0.00 0.50 29.7925 [-171.62 267.71] [5.1205 4.7905 4.7602]
+14 0.373320 0.098598 [3.365 3.6642] 99.00 0.00 0.50 26.0364 [-165.24 258.07] [5.4314 5.0858 5.0643]
+15 0.363062 0.092745 [3.3149 3.5656] 97.00 0.00 1.50 24.0632 [-155.66 257.03] [5.7235 5.3574 5.3509]
+16 0.346437 0.087345 [3.1888 3.4308] 97.00 0.00 1.50 29.7182 [-150.42 260.39] [6.0054 5.6204 5.6283]
+17 0.330280 0.083344 [3.0524 3.3092] 97.00 0.00 1.50 26.6409 [-141.29 253.31] [6.2713 5.8743 5.8929]
+18 0.315489 0.077959 [2.8718 3.1995] 99.00 0.00 0.50 28.5317 [-124.86 245.47] [6.5239 6.1238 6.1526]
+19 0.305661 0.075409 [2.8626 3.0965] 96.00 0.00 2.00 37.6161 [-122.4 260.4] [6.7633 6.3566 6.3972]
+20 0.286515 0.072830 [2.6344 2.9558] 99.00 0.00 0.50 40.1849 [-114.69 265.86] [6.9971 6.5804 6.6363]
+21 0.280813 0.070740 [2.6266 2.8664] 98.00 0.00 1.00 44.0686 [-113.93 267.89] [7.2194 6.8017 6.8654]
+22 0.264918 0.067511 [2.4822 2.7737] 97.50 0.00 1.00 47.8947 [-103.74 270.07] [7.4341 7.013 7.0827]
+23 0.256772 0.067077 [2.4176 2.707] 97.00 0.00 1.50 47.3703 [-104.42 265.61] [7.6374 7.2089 7.2887]
+24 0.237667 0.065737 [2.2517 2.5588] 99.00 0.00 0.50 52.0550 [-94.023 272.18] [7.8316 7.3996 7.4906]
+25 0.234953 0.065105 [2.2461 2.529] 97.00 0.00 1.50 62.9391 [-87.417 277.74] [8.0106 7.5791 7.6827]
+26 0.217792 0.064314 [2.0643 2.4123] 99.50 0.00 0.50 61.1791 [-76.067 277.76] [8.1861 7.7547 7.8648]
+27 0.213353 0.063459 [2.0524 2.382] 97.00 0.00 1.50 59.6000 [-85.901 273.03] [8.3493 7.9248 8.0404]
+28 0.206040 0.063501 [2.0129 2.3419] 97.00 0.00 1.50 54.6303 [-75.648 270.1] [8.5073 8.0838 8.2052]
+29 0.193652 0.064715 [1.8844 2.2464] 98.00 0.00 1.00 63.3989 [-68.187 277.13] [8.6563 8.2343 8.3661]
+30 0.188067 0.064654 [1.8839 2.2011] 98.00 0.00 1.00 75.0006 [-57.15 290.15] [8.7977 8.3775 8.5174]
+DEADBAND off sn range[0.001985188 0.004760811] threshold range[0.005 0.005]
+INTERVAL 20.000-40.000 theta0.416550 phi0.155135 activePct98.000 limiting0 invalid4 dtGate4 completeLaps[1 2]
+INTERVAL 40.000-59.500 theta0.395201 phi0.173939 activePct97.949 limiting0 invalid4 dtGate4 completeLaps3
+INTERVAL 59.500-70.250 theta0.546128 phi0.176808 activePct97.209 limiting0 invalid3 dtGate3 completeLaps5
+INTERVAL 70.250-88.200 theta0.471198 phi0.144963 activePct97.214 limiting0 invalid5 dtGate5 completeLapszeros(1,0)
+INTERVAL 88.200-320.000 theta0.317097 phi0.088511 activePct98.016 limiting0 invalid46 dtGate46 completeLaps[8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for better performance. <a
+href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.]
+EXPORTED C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v5_analysis\fullRun_parameter_adaptations
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for better performance. <a
+href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.]
+EXPORTED C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v5_analysis\fullRun_feedback_gains
+EXPORTED C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v5_analysis\fullRun_adaptation_switches

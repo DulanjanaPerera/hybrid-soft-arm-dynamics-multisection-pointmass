@@ -1,0 +1,20 @@
+TIME80.000 d[40.8896 41.0108] h[3.03759 2.73023 2.62374] gamma[0.5 0.5 0.5 0.0002 0.0002 1.8 1.8 1.8 1 1]
+TIME114.600 d[41.2229 41.3241] h[7.21869 6.64968 6.66365] gamma[0.5 0.5 0.5 0.002 0.002 5.8 5.8 5.8 1 1]
+TIME126.100 d[41.8236 41.9388] h[8.05823 7.43125 7.84937] gamma[0.7 0.7 0.7 0.002 0.002 5.8 5.8 5.8 1 1]
+TIME170.150 d[42.8283 43.118] h[10.7009 9.55423 10.1098] gamma[0.7 0.7 0.7 0.02 0.02 5.8 5.8 5.8 1 1]
+TIME233.150 d[48.7028 50.6234] h[11.6365 10.6865 11.3814] gamma[0.7 0.7 0.7 0.02 0.02 20.8 20.8 20.8 1 1]
+TIME248.850 d[49.6452 51.9652] h[12.5491 10.8175 11.64] gamma[0.7 0.7 0.7 0.02 0.02 5.8 5.8 5.8 1 1]
+TIME254.950 d[49.9524 52.3958] h[12.3167 10.8243 11.6933] gamma[0.7 0.7 0.7 2 2 5.8 5.8 5.8 1 1]
+TIME272.600 d[106.869 117.879] h[12.2607 10.8444 11.6262] gamma[0.7 0.7 0.7 0.2 0.2 5.8 5.8 5.8 1 1]
+TIME281.300 d[109.986 121.985] h[12.2206 10.8662 11.6022] gamma[0.7 0.7 0.7 0.05 0.05 5.8 5.8 5.8 1 1]
+TIME301.100 d[112 124.138] h[12.0819 10.8538 11.6413] gamma[0.7 0.7 0.7 0.002 0.002 5.8 5.8 5.8 1 1]
+TIME319.950 d[112.055 124.241] h[12.0167 10.8741 11.583] gamma[0.7 0.7 0.7 0.002 0.002 5.8 5.8 5.8 1 1]
+WIN180.00-220.00 dstart[44.091 44.688] dend[47.803 49.421] thetaRateSD0.33735 slowPct4.124 phiMax1.10327 l3velocityPeakmm/s13.348 limitPct0.000 activePct96.375
+WIN220.00-233.15 dstart[47.814 49.432] dend[48.698 50.622] thetaRateSD0.35586 slowPct4.598 phiMax1.09250 l3velocityPeakmm/s12.575 limitPct0.000 activePct94.297
+WIN233.15-248.85 dstart[48.703 50.623] dend[49.644 51.962] thetaRateSD0.36494 slowPct4.167 phiMax1.11160 l3velocityPeakmm/s14.037 limitPct0.000 activePct98.408
+WIN254.95-272.60 dstart[49.952 52.396] dend[106.87 117.78] thetaRateSD0.47959 slowPct13.256 phiMax1.18608 l3velocityPeakmm/s13.942 limitPct5.099 activePct89.802
+WIN272.60-281.30 dstart[106.87 117.88] dend[109.94 121.98] thetaRateSD0.62291 slowPct25.000 phiMax1.13918 l3velocityPeakmm/s15.836 limitPct13.218 activePct77.011
+WIN281.30-301.10 dstart[109.99 121.98] dend[112 124.14] thetaRateSD0.66008 slowPct26.154 phiMax1.19941 l3velocityPeakmm/s18.102 limitPct17.929 activePct76.515
+WIN301.10-320.00 dstart[112 124.14] dend[112.05 124.24] thetaRateSD0.66565 slowPct25.474 phiMax1.32153 l3velocityPeakmm/s16.909 limitPct20.370 activePct74.074
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for better performance. <a
+href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message again.]

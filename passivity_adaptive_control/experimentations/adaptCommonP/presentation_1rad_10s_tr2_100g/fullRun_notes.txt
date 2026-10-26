@@ -1,0 +1,13 @@
+Source: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_tr2_100g.mat
+Window: 0.000 to 330.000 s
+XYZ: logged position in arm frame; desired includes base .055 m, active length .17411 m, tip sensor .05 m. No fitted shift, phase alignment or smoothing.
+Lengths: orientation-inferred length CHANGES; not independent strain measurements. Pressure: commands, not measured chamber pressure. Invalid samples masked; theta wraps have gaps.
+lambda_gains changes [time values]:
+0.000 18 16.5
+108.600 21 18.5
+damping_gains changes [time values]:
+0.000 23 10
+94.000 23 30
+Theta MAE 0.521508 rad; phi MAE 0.159971 rad
+XYZ RMSE mm: [73.5664 36.0037 28.2164]
+Length RMSE mm: [4.40693 3.6614 4.47974]

@@ -1,4 +1,4 @@
-Last Updated: 2026-10-23
+Last Updated: 2026-10-26
 Current Milestone: Tunable adaptive PAC with variable common-pressure allocation implemented; initial physical circle data reviewed; directional lag remains.
 
 # Current project state
@@ -18,8 +18,16 @@ Gravity is transformed using the base orientation. Nominal sensor period .05 s.
 
 ## Code and integration
 
-Branch: codex/passivity-adaptive-controller. Verified latest commit: 4c9f930
-(100 g payload comparison documentation); no remote push was performed.
+2026-10-26 user-requested experiment: pacTuningBlock lower(2)=-100 N/m;
+pacTuningConfig now permits lower(2)>=-500 after subsequent user experiments,
+while the source block default remains -100. Other sign constraints remain.
+Legacy defaults stay positive. Negative k2 is signed compensation, not identified
+physical stiffness. Relaxed bounds no longer guarantee SPD K; current update
+does not enforce coupled SPD and modelValid does not check it. Monitor
+k1*k2+k1*k3+k2*k3>0 with k1+k3>0. No SLX edits/hardware runs; see validation.
+
+Branch: codex/passivity-adaptive-controller. Use git log for the latest checkpoint;
+the checkpoint preceding this review was bd83708. No remote push was performed.
 Do not commit/push or run hardware without the user's request.
 Do not edit SLX models unless requested; the user installs pasted block code.
 
@@ -59,6 +67,76 @@ Exact nominal force balance is not measured physical force delivery. Changing
 common pressure may change stiffness/preload outside the ideal nullspace model.
 
 ## Latest validated evidence
+
+- v9 verifiesactual2scircles20-80s(phi1),despite10sfilename. Trackingpoor
+  (finallaptheta1.067,phi.275,length8.07/9.76mm). Adaptactive5.42%;89.25%
+  sampleslimited. Exactnominalallocatorreplay:all1071limitsareslew mismatch,
+  no allocationinfeasibility;2bar/scapdominates,beforepressureupperrails.
+  k3/h1/h3spendmosttimeatlowerbounds,butfeweligibleupdatesdominateproblem.
+  Needactuator/commandslewheadroomassessmentratherthangammaincrease;
+  donotdisablegates. No faults;estimatedKSPDthisrun. Seev9allocationaudit.
+
+- v8 saturationaudit:fixedfeedback18/16.5,15/10;hgamma5.8,k.7->.5at221.65,
+  d.002->.02at271.45. Theta<.2bylap8;lateplateau~.1rad/phi.062. k2lower
+  24samples,k3lower93,k3ratecap25early;nofinal3cyclevalue/ratecaps. Active96.15%,
+  nopressurelimiting. 2sgoalrequires5xreferencevelocity/25xacceleration;simple
+  compressionofloggedpressurewaveformneeds~7-10bar/svs2limit(not2sprediction).
+  Bandwidth/lag/SPDissuesneedattention,fasteradaptationaloneinsufficient.
+  Detailedartifacts:v8_analysis/bound_and_rate_audit.txt;seeVALIDATION_RESULTS.
+
+- v7 livek/h/dgammaaudit:feedback18/16.5,15/10fixed;hgamma5.8coincideswith
+  fasterlearning,finallaptheta.064,phi.051,length.787/1.013mm. Butgamma_d
+  .02->2at254.95 drivesestimatedd~50->107/118by272.6;late~112/124.
+  ThetaSD/nearstop/phiovershoot/limitingworsen;loweringgammadoesnotresetd.
+  Do not usefinalMAEaloneasgainselection. Proposedfreshfixedcandidate
+  gamma_k.5,h5.8,d.002,bias1;notvalidatedoptimum. Springcaps650,hupper20;
+  signedKindefiniteperiodsstilloccur. SeeVALIDATION_RESULTS/v7analysis.
+
+- v6 verifies springgamma.8,fixedlambda18/16.5,Ks15/10,historygamma1.5,
+  hupper20. No cleartrackinggainvsv5;springratecapsnowhit10-16%updates,
+  estimatedKindefinite12.9%circlesamples(v5.7%). Nofaults/limiting,but
+  moreaggressivesignedstiffnessadaptationnotfavoredbydata. Recommendfixed
+  feedbackbaselinewithspringgamma.4forcleancomparison;nocodechangesmade.
+  SeeVALIDATION_RESULTS/v6auditforconfoundsandmetrics.
+
+- v5 livefeedback endsat88.2s withlambda18/16.5,Ks15/10;historygamma1.5
+  unchanged. Latevsv4:thetaRatevariability37%lower,nearstopfraction3.2v14.6%,
+  l3peakvelocity11.8v15.7mm/s,nopressurelimiting. Morelag:errorlast3theta.196v
+  .116,phi.064v.053,length1.927/2.263v1.211/1.453mm;continuesimprovingafter
+  finalgainchange. Smoothbaselinepromising,butnotgammacomparison. Nextfixed
+  finalgainrunproposedbeforemoregammaadjustment. SeeVALIDATION_RESULTS/v5audit.
+
+- v4 secondKs.1->1 verified,otherloggedtuningmatchesv3:smalllateerrorgain
+  (last3meanlaptheta.116v.122,phi~.053both),l3velocityRMSE~5%lower,but
+  theta near-stopfractionstill14.6%;roughnesspersists. Adaptactive96%;history
+  weightsnear9.26of10;no faults. No clear smoothness cure fromthisKsstep.
+  Nextinspectfilters/actuatorresponseonfixedbaselinebeforemoregainsweeps.
+  SignedKindefiniteearlycycles/return;seeVALIDATION_RESULTSandv4analysis.
+
+- v3 historygamma1->1.5,otherloggedtuningfixedversusv2:finalthetaMAE.119v.168,
+  phi.053v.054,length1.200/1.543v1.643/1.881mm;theta<.2bylap17v24.
+  Adaptactive96.02%. Historyweightsapproach9.25of10bound. Within-cycle l3
+  velocitybursts/thetaslowdownsremain;latephiovershootmax1.220v1.168.
+  Fasterlearningnotacureforroughness;nextseparatedamping/actuatordynamics
+  comparisonproposed,nocodechange. SignedKindefiniteearlycycles/return.
+  SeeVALIDATION_RESULTSandv3analysisforcomparisonandlimitations.
+
+- Fixed-gain1rad_10s_gainTesting_v2:lambda28/25.5,Ks25/.1 unchanged;thetaMAE
+  lap2.435->lap30.168,phi.139->.054,length3.989/4.191->1.643/1.881mm.
+  Adaptactive96.18%;off105limited+69invalid+55dt,zero deadbandcases.
+  History/dampingupdatesnotratecapped;furthercapincreaseunlikelytoacceleratethem.
+  Historyweightsstillgrow(~7Nlate),slowergradientlearningplausible;notproof
+  of convergenceorphysicalidentification. SignedK indefiniteearlycycles despite
+  nofaults. SeeVALIDATION_RESULTS forsettings,limitsandofflineartifacts.
+
+- 2026-10-26 rad_10s_gainTesting: all tuning inputs logged. Circleadaptation
+  active92.23%;off466samples=358limiting+67invalid+41dt,zero deadband cases;
+  gate reconstruction exact. Kssecond100 nearly blocks adaptation (0.8%active)
+  and worsens tracking. Ratecaps rarelyreached;gamma/rate increases not main
+  fix indicated. Finallaptheta.188,phi.060,length1.967/1.904mm,live gains
+  confoundcausal comparisons. SignedK indefinite23.95-25.35s and finalreturn,
+  despite nofaults;currentmodelValiddoesnotcheckSPD. SeeVALIDATION_RESULTS
+  andadaptCommonP/rad_10s_gainTesting_analysis/README.md foractualsettings.
 
 - Trial3 freeze recording verified: new switchtrue121.11s,PAC121.15s;h held
   exactly1.53026/1.35607/1.32159 while z/otheradaptationcontinue. Historyforce
@@ -135,6 +213,15 @@ first matching name. Theta plots/errors wrap to[-pi,pi]; exclude near-straight
 unobservable theta, especially final return. Missing essential signals still fail.
 
 ## Next decisions / open issues
+
+2026-10-26 automatic tuning proposal (not implemented): optimize bounded
+feedback/grouped adaptation gains between fixed-setting experiment batches.
+First build a recording evaluator and recommendation-only loop; user starts
+hardware runs. Score tracking plus roughness/limiting, use defined adaptive
+initial states, and confirm success over repeated cycles. Two circles may screen
+candidates but do not establish learned performance. Address the 2s command-slew
+bottleneck and signed-stiffness constraint before autonomous exploration.
+No optimizer, automatic hardware runner or unattended tuning is authorized here.
 
 1. Review later better-gain data or matched ON/OFF circle test at same speed,
    gains, initialization and reference. Do not increase gains/speed blindly.

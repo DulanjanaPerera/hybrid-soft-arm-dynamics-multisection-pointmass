@@ -1,0 +1,6 @@
+TRIAL6
+WIN40-70 velocityRMSEmm/s[3.39241 3.66184] velocityPeakmm/s[10.2707 11.6755] lengthFundamentalResidualmm[1.12668 0.950357] thetaRateSD0.306722 thetaRateMinMax[-0.136876 1.90583] thetaSlowPct4.195 phiMinMax[0.465193 1.2] phiAbove1.05Pct8.361 limitingPct0.000
+WIN290-320 velocityRMSEmm/s[2.22094 2.30191] velocityPeakmm/s[13.6221 12.27] lengthFundamentalResidualmm[0.746466 0.769164] thetaRateSD0.320246 thetaRateMinMax[-0.11076 2.23215] thetaSlowPct4.103 phiMinMax[0.811836 1.08549] phiAbove1.05Pct6.745 limitingPct0.000
+TRIAL7
+WIN40-70 velocityRMSEmm/s[3.22385 3.72676] velocityPeakmm/s[8.49509 9.35215] lengthFundamentalResidualmm[0.928299 0.711271] thetaRateSD0.296542 thetaRateMinMax[-0.000621181 2.16889] thetaSlowPct1.190 phiMinMax[0.378205 1.04339] phiAbove1.05Pct0.000 limitingPct0.000
+WIN290-320 velocityRMSEmm/s[2.95408 3.53766] velocityPeakmm/s[18.9055 18.1022] lengthFundamentalResidualmm[0.85139 1.10675] thetaRateSD0.679299 thetaRateMinMax[-0.614986 3.04662] thetaSlowPct27.428 phiMinMax[0.849532 1.32153] phiAbove1.05Pct21.922 limitingPct20.167

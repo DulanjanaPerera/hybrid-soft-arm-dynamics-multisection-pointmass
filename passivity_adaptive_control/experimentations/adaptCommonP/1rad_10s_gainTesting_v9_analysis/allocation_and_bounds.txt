@@ -1,0 +1,21 @@
+REFERENCE median angular speed3.14159 period2 phi[1 1]
+CIRCLE total1200 validControl1138 loggedLimited1071 replayAllocationLimited0 slewTargetMismatch1071 both0 ORmismatch0
+allocationResidual peak8.04586e-15 commandResidual peak9.38502 N
+PRESSURE min[0.988246 0.8 0.8] max[2.30469 2.55624 2.41175] targetMin[0.988246 0.8 0.8] targetMax[2.30469 2.55624 2.42006]
+Pressure peakRate[2 2 2] exact2barPerSecPct[27.3561 69.8916 54.4621]
+BOUND k1 countLower0 countUpper0 circleMin650 circleMax1506.2
+BOUND k2 countLower0 countUpper0 circleMin64.3468 circleMax650
+BOUND k3 countLower987 countUpper0 circleMin1 circleMax650
+BOUND d2 countLower0 countUpper0 circleMin40 circleMax52.3402
+BOUND d3 countLower0 countUpper0 circleMin39.9991 circleMax42.3456
+BOUND h1 countLower1196 countUpper0 circleMin0 circleMax0.00688701
+BOUND h2 countLower28 countUpper0 circleMin0 circleMax0.918252
+BOUND h3 countLower1178 countUpper0 circleMin0 circleMax0.024684
+BOUND b2 countLower0 countUpper0 circleMin-0.0840209 circleMax0.0142062
+BOUND b3 countLower0 countUpper0 circleMin-0.0163594 circleMax0.0317072
+Activecircle rateCapcounts[0 1 7 1 0 0 0 0 1 0] peaks[371.766 650 650 10 8.68585 0.13774 0.461308 0.49368 0.2 0.195783]
+AT endTracking parameters[1506.2 64.3468 1 52.3402 42.3456 0 0.918252 0 -0.00142857 0.0317072]
+WIN20-40 activePct12.75 limitedPct82 thetaMAE1.07991 phiMAE0.326493
+WIN40-60 activePct1.75 limitedPct92.25 thetaMAE1.10279 phiMAE0.293259
+WIN60-80 activePct1.75 limitedPct93.5 thetaMAE1.0873 phiMAE0.283197
+WIN74-80 activePct3.33333 limitedPct92.5 thetaMAE1.08652 phiMAE0.283409

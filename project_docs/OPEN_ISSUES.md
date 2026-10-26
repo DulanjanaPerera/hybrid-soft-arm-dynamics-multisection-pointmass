@@ -175,6 +175,18 @@ decisions; remove resolved items here. Prior code edits require explicit directi
   rotated pose as a substitute for measuring base rotation.
 
 ## 2026-10-16 - Current PAC follow-up
+
+2026-10-26 within-cycle roughness: v2 near151s shows l3velocityburst/phiovershoot
+andthetaplateau withvalidstatus3;onlyoneslewlimitedsample,nozero-commandstop.
+Isolate actuator/mechanicalresponse fromsensor/derivativefiltereffects andweak
+explicitsecondKs=.1; controller hasnoerror-zero stoplogic. Newgamma testsneed
+roughness/overshoot metrics alongside averageerror. SeeVALIDATION_RESULTS.
+
+2026-10-26 signed-stiffness follow-up: rad_10s_gainTesting logged bounds
+[1;-500;1] permit indefinite estimated K. Verified29validcircle samples
+23.95-25.35s (minEig -87.667 N/m),alsofinalreturn/hold. Current modelValid
+does not check K SPD. Coupled SPD projection or a revised analysis for signed
+compensation remains unimplemented; nofaults/observedtracking doesnotreplaceit.
 Variable-common nominal force balance verified, but directional lag remains. Review later better-gain data or matched ON/OFF tests. Physical pressure/force dynamics and preload-dependent mechanics remain unverified. Uncertainty-model extension discussed only; no implementation authorized yet.
 
 ## 2026-10-16 - Payload comparison limits

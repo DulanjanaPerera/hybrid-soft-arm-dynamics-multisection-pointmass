@@ -1,0 +1,115 @@
+SOURCE C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v9.mat N1792 TIME0-89.55 nominal dt0.05
+lambda_gains changes0 [time values]
+         0   18.0000   16.5000
+
+damping_gains changes0 [time values]
+     0    15    10
+
+adaptationGamma changes2 [time values]
+         0    0.5000    0.5000    0.5000    0.0200    0.0200    5.8000    5.8000    5.8000    1.0000    1.0000
+   63.4000    0.0500    0.0500    0.0500    0.0200    0.0200    5.8000    5.8000    5.8000    1.0000    1.0000
+   69.7000    0.0500    0.0500    0.0500    0.0200    0.0200    0.1000    0.1000    0.1000    1.0000    1.0000
+
+parameterMaxRate changes0 [time values]
+         0  650.0000  650.0000  650.0000   10.0000   10.0000    2.0000    2.0000    2.0000    0.2000    0.2000
+
+parameterLower changes0 [time values]
+     0     1  -500     1     1     1     0     0     0    -8    -8
+
+parameterUpper changes0 [time values]
+           0        6000        6000        6000         250         250          20          20          20           8           8
+
+parameterScale changes0 [time values]
+           0        1000        1000        1000         100         100           1           1           1           1           1
+
+adaptationOptions changes0 [time values]
+         0    0.0050    0.0200    0.0750
+
+hystoryOptions changes0 [time values]
+         0    0.0050    1.0000    0.5000    2.0000
+
+pressureOptions changes0 [time values]
+         0    1.6000   -0.0984   -0.0820    0.2000    3.0000    2.5000    2.5000    2.0000    0.8000   13.2732
+
+supervisorOptions changes0 [time values]
+         0   10.0000   15.0000    5.0000    0.1000    0.0750    0.0005       Inf
+
+freezeHysteresisWeights changes0 [time values]
+     0     0
+
+enableAdaptation changes0 [time values]
+     0     1
+
+enableCommonPressureAdaptation changes0 [time values]
+     0     1
+
+parameterInitial changes0 [time values]
+     0   650   650   650    40    40     0     0     0     0     0
+
+ACTIVE vs gates mismatches0
+GATES window0-89.55 N1792 inactive1536 activePct14.2857
+0 enabled update 256
+1 manual disable 0
+2 invalid/freshness/model 64
+3 supervisor not control 398
+4 allocation/slew limiting 1072
+5 nominal residual tolerance 0
+6 no fresh/acceptable update interval 2
+7 s deadband 0
+8 zero projected rate/unexplained 0
+GATES window20-79.95 N1200 inactive1135 activePct5.4167
+0 enabled update 65
+1 manual disable 0
+2 invalid/freshness/model 62
+3 supervisor not control 0
+4 allocation/slew limiting 1071
+5 nominal residual tolerance 0
+6 no fresh/acceptable update interval 2
+7 s deadband 0
+8 zero projected rate/unexplained 0
+INITIAL[650 650 650 40 40 0 0 0 0 0] FINAL[1360.576 36.08565 4.32574 59.63987 49.57451 0.01400935 0.9336336 0.0162265 -0.5773984 0.441111] MIN[650 36.08565 1 40 39.9991 0 0 0 -0.5773984 -0.01635936] MAX[1506.2 650 650 59.63987 49.57451 0.01400935 0.9336336 0.02468401 0.01420615 0.441111]
+K minimum eigenvalue min40.3973 nonpositiveCircle0
+K nonpositive events [start end count]
+K circle minEigen65.3461 validNonpositive0
+REFERENCE phi range[0 1] theta range[0 188.495559215388]
+INVALID samples64 events54 tipInvalid64 status464 faults0 limitedCircle1071
+PEAK acceptedRates[371.766 650 650 10 9.88641 0.13774 0.461308 0.49368 0.2 0.2]
+RATECAP percent of active samples[0 0.39216 2.7451 0.39216 0 0 0 0 0.39216 0.39216]
+LAPS lap thetaMAE phiMAE lengthsRMSE activePct deadbandPct dtGatePct k2mean k2range hmean
+1 1.267980 0.354211 [6.1866 10.8] 15.00 0.00 2.50 640.8255 [593.03 650] [0.0006887 0.00645 0.0034028]
+2 1.180486 0.327640 [5.4304 10.718] 17.50 0.00 2.50 554.6110 [509.64 609.88] [0 0.088947 0.0020735]
+3 1.078943 0.333208 [5.4628 10.075] 20.00 0.00 0.00 467.0383 [428.12 512.79] [0 0.17946 0.0017668]
+4 1.059442 0.313926 [5.9061 9.9449] 17.50 0.00 0.00 389.5713 [356.36 443.01] [0 0.31751 0.00077228]
+5 1.042141 0.308864 [6.2613 9.8202] 15.00 0.00 0.00 319.8965 [283.5 356.36] [0 0.40612 0]
+6 1.019191 0.316919 [6.4119 9.4843] 10.00 0.00 0.00 264.3262 [238.53 283.5] [0 0.48003 0]
+7 0.993940 0.298598 [6.784 9.6073] 15.00 0.00 0.00 227.4620 [204.42 240.63] [0 0.56765 4.3339e-05]
+8 1.020850 0.291447 [7.2256 9.69] 12.50 0.00 0.00 195.4838 [174.29 204.42] [0 0.66735 0]
+9 1.092772 0.288604 [7.6965 9.9974] 2.50 0.00 0.00 170.1264 [168.12 174.29] [0 0.73856 0]
+10 1.064792 0.294587 [7.4159 9.8341] 2.50 0.00 0.00 163.9033 [161.87 168.12] [0 0.76033 0]
+11 1.060804 0.290037 [7.4486 9.781] 5.00 0.00 0.00 158.5052 [140.54 161.87] [0 0.77258 0]
+12 1.098932 0.284613 [7.9021 9.9791] 2.50 0.00 0.00 137.8326 [118.86 140.54] [0 0.80183 0]
+13 1.086151 0.286205 [7.8086 9.8836] 0.00 0.00 0.00 118.8618 [118.86 118.86] [0 0.8146 0]
+14 1.082285 0.290777 [7.6544 9.6993] 2.50 0.00 0.00 117.1455 [107.42 118.86] [0 0.81719 0]
+15 1.089726 0.292286 [7.8395 9.6357] 2.50 0.00 0.00 105.6495 [95.618 107.42] [0 0.83442 0]
+16 1.092251 0.288864 [7.8935 9.7053] 0.00 0.00 0.00 95.6178 [95.618 95.618] [0 0.8488 0]
+17 1.084296 0.285655 [7.8922 9.8884] 0.00 0.00 0.00 95.6178 [95.618 95.618] [0 0.8488 0]
+18 1.081542 0.287448 [7.8723 9.6505] 2.50 0.00 0.00 93.8729 [83.985 95.618] [0 0.85136 0]
+19 1.084974 0.285284 [8.1275 9.5828] 2.50 0.00 0.00 82.2536 [72.441 83.985] [0 0.86847 0]
+20 1.092076 0.283465 [8.0586 9.8692] 0.00 0.00 0.00 72.4412 [72.441 72.441] [0 0.88292 0]
+21 1.062978 0.274230 [7.8527 9.8115] 0.00 0.00 0.00 72.4412 [72.441 72.441] [0 0.88292 0]
+22 1.041116 0.276156 [7.8317 9.6558] 5.00 0.00 0.00 72.1362 [70.503 72.441] [0 0.88845 0]
+23 1.095480 0.279629 [8.1443 9.9112] 0.00 0.00 0.00 70.5032 [70.503 70.503] [0 0.91688 0]
+24 1.070807 0.287244 [8.0337 9.5594] 0.00 0.00 0.00 70.5032 [70.503 70.503] [0 0.91688 0]
+25 1.096943 0.278337 [7.9579 9.8601] 0.00 0.00 0.00 70.5032 [70.503 70.503] [0 0.91688 0]
+26 1.098453 0.277151 [8.188 9.8885] 0.00 0.00 0.00 70.5032 [70.503 70.503] [0 0.91688 0]
+27 1.079302 0.282931 [8.0117 9.8095] 2.50 0.00 0.00 70.2299 [68.317 70.503] [0 0.9169 0]
+28 1.072175 0.280264 [8.086 9.5581] 0.00 0.00 0.00 68.3166 [68.317 68.317] [0 0.91709 0]
+29 1.089460 0.289204 [8.0928 9.6232] 5.00 0.00 0.00 68.0044 [66.332 68.317] [0 0.91718 0]
+30 1.067384 0.275316 [8.0686 9.7601] 5.00 0.00 0.00 66.0192 [64.347 66.332] [0 0.91777 0]
+DEADBAND off sn rangezeros(0,2) threshold range[0.005 0.005]
+INTERVAL 20.000-63.400 theta1.083922 phi0.298560 activePct6.682 limiting762 invalid46 dtGate2 completeLaps[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21]
+INTERVAL 63.400-69.700 theta1.069737 phi0.286549 activePct1.587 limiting117 invalid7 dtGate0 completeLaps[23 24]
+INTERVAL 69.700-80.000 theta1.075921 phi0.275619 activePct2.427 limiting192 invalid9 dtGate0 completeLaps[26 27 28 29 30]
+EXPORTED C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v9_analysis\fullRun_parameter_adaptations
+EXPORTED C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v9_analysis\fullRun_feedback_gains
+EXPORTED C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\adaptCommonP\1rad_10s_gainTesting_v9_analysis\fullRun_adaptation_switches
