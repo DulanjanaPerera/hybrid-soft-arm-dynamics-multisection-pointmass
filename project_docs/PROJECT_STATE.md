@@ -3,6 +3,11 @@ Current Milestone: Tunable adaptive PAC with variable common-pressure allocation
 
 # Current project state
 
+2026-10-26 planning handoff: see `PAC_AUTOTUNING_FRAMEWORK_PLAN.md` for the
+experiment-based PAC tuning framework. Design only; next proposed work is an
+offline evaluator replaying v8/v9/v10, then a manual trial loop and bounded
+optimization. No framework implementation or hardware automation has been done.
+
 Read this first, then the relevant specialized document. Use recorded inputs
 for experiment settings; do not infer them from filenames or current SLX defaults.
 
@@ -20,7 +25,8 @@ Gravity is transformed using the base orientation. Nominal sensor period .05 s.
 
 2026-10-26 user-requested experiment: pacTuningBlock lower(2)=-100 N/m;
 pacTuningConfig now permits lower(2)>=-500 after subsequent user experiments,
-while the source block default remains -100. Other sign constraints remain.
+while the source block default remains -100. The helper also accepts k1/k3
+lower bounds >=-100; source defaults remain [50;-100;0] for k1:k3.
 Legacy defaults stay positive. Negative k2 is signed compensation, not identified
 physical stiffness. Relaxed bounds no longer guarantee SPD K; current update
 does not enforce coupled SPD and modelValid does not check it. Monitor
@@ -67,6 +73,13 @@ Exact nominal force balance is not measured physical force delivery. Changing
 common pressure may change stiffness/preload outside the ideal nullspace model.
 
 ## Latest validated evidence
+
+- v10 actual4scircles,slew6,caps850/20/5/.2,initialgamma_k.5,d.02,h5.
+  Growingoscillationnear55precedesgammachanges78.7/93.5;estimatedd~86/90by55,
+  ~104/109by78.7;loweringgammadoesnotresetestimates. Kindefinitecontinuously
+  from55.2(notproofcause);k2boundfirst62s. Meanerrorfallswhileroughnessgrows.
+  Finalshutdown104.85isseparatetip-invalidgracefault;excludeafterfaultfrom
+  trackingmetrics. Seev10onsetaudit;nohardware/controller/modelchanges.
 
 - v9 verifiesactual2scircles20-80s(phi1),despite10sfilename. Trackingpoor
   (finallaptheta1.067,phi.275,length8.07/9.76mm). Adaptactive5.42%;89.25%
@@ -260,3 +273,5 @@ RL_data_collection adds desired-angle circle sweep(.2,.8,1,1.2,1.5;5x20s each) a
 RL CSV/report exporter exportRlTrainingData.m nowavailable;actualSineWave.mat exportedto RL_data_collection/exports/SineWave_reviewed and ZIP. DATASET_HANDOFF.md explainsrealactions/observations vsmodelpredictions. 12710/12721valid,hostgapsflagged;metadata stillrequirescompletion. No modelchanges.
 
 Latest RL_dataCollection.slx feedforwardaudit:angles->desiredlength/rates->inverse->valves wired,deadzone0confirmed. CriticalinversevalidityinputFrom3/A1 is measuredtheta;reconnectpropervalidity. Stop342sneedscircle625. Helixunconnected. See inspectionlog; no model edits.
+
+2026-10-26: pacTuningConfig accepts inclusive experimental stiffness lower bounds [-100;-500;-100] for k1/k2/k3. Only the assertion changed; live tuning vectors must supply the desired bounds. No Simulink edits or hardware runs. Signed coefficients do not guarantee positive-definite estimated stiffness. Offline signed-bound projection/recovery validation passed for all three coefficients.

@@ -41,8 +41,12 @@ Parameter order throughout: **k1 k2 k3 d2 d3 h1 h2 h3 b2 b3**.
 2026-10-26 experimental exception: `pacTuningBlock` sets the k2 lower bound
 to -100 N/m at the user's request; `pacTuningConfig` accepts k2 lower bounds
 >= -500 after the user's subsequent experiment. The source block default
-remains -100; recorded experiments may supply -500. Other sign constraints
-stay unchanged. Legacy `pacAdaptiveConfig`
+remains -100; recorded experiments may supply -500. The helper also accepts
+k1 and k3 lower bounds >= -100 (inclusive); their source defaults remain 50
+and 0. To test all three signed bounds, supply
+`parameterLower=[-100;-500;-100;1;1;0;0;0;-8;-8]` in the live tuning source
+before a fresh run. Damping/hysteresis sign constraints stay unchanged.
+Legacy `pacAdaptiveConfig`
 and `pacTunableDefaults` retain positive bounds. For workspace tuning, set
 `parameterLower(2)=-100` before a fresh run. Paste the updated tuning block
 and ensure the updated helper is on the MATLAB path; no wrapper port changes.

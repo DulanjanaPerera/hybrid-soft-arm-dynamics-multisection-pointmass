@@ -4,9 +4,10 @@ function [cfg,pc]=pacTuningConfig(gamma,scale,maxRate,lower,upper,initial,option
 assert(all(isfinite([gamma;scale;maxRate;lower;upper;initial;options;history;pressure;supervisor(1:6)])));
 assert(all(gamma>=0) && all(scale>0) && all(maxRate>=0));
 assert(all(lower<upper) && all(initial>=lower & initial<=upper));
-% Experimental signed k2 compensation; box bounds no longer guarantee K SPD.
-assert(lower(1)>0 && lower(2)>=-500 && lower(3)>=0 && ...
+% Experimental signed stiffness compensation; bounds do not guarantee K SPD.
+assert(lower(1)>=-100 && lower(2)>=-500 && lower(3)>=-100 && ...
  all(lower(4:5)>0) && all(lower(6:8)>=0));
+
 assert(all(options>=0) && options(3)>0);
 assert(history(1)>0 && history(2)>=abs(history(3)) && history(4)>0);
 assert(pressure(4)>=0 && pressure(5)>pressure(4) && pressure(9)>=0 && pressure(9)<pressure(5));

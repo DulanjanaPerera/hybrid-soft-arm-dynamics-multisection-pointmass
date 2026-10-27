@@ -1,5 +1,47 @@
 # Verification and experimental results
 
+## 2026-10-26 - v10 actual4s: cumulative compensation/roughness and separatefault
+Offline1rad_10s_gainTesting_v10.mat:0-109.6s,4scirclereference(pi/2rad/s),
+phi1,starts20s,recordingendsbefore30intendedcircles. Feedbacklambda18/16.5,
+Ks15/10fixed. Gamma initiallyk.5,d.02,h5,bias1;d->.002at78.7s,k->.1at93.5s.
+No gamma/feedback change atreported55sonset. Recordedcaps850/20/5/.2,
+slew6bar/s,hupper20,lowerk2-500;otheruserprovidedoptionsconfirmed.
+At55:validmodel/status3,noslewlimit/dropout. Estimatedd grows40/40at20s,
+68.806/75.519at40,85.835/90.123at55,103.93/109.12at78.7,~105/110late.
+Scale100makesgamma_d.02effective200,10x .002effective20. Loweringgammad
+slowsupdatesbutdoesnotresetd. No damping/historyratecapcontacts;springratecaps
+are rare overall. No configuredlimit-changeat55;h~3Nvs20bound.
+k2firsthits-500at62s,afterreportedonset;thusboundcontactnotinitialtrigger.
+K indefiniteintermittentlyfrom29.7s,andcontinuously55.2throughrecordingend,
+minEigen-312.628N/m. Correlateswithchangingcompensation,butindefiniteKalone
+doesNOTproveclosedloopinstability;noexactcausalidentificationfromoneclosedloop
+log. Knownunmodeledactuator/derivativefilter dynamicsandchangedcommandslew
+allowanceareplausiblecontributors. No actuatorpressuremeasurementsavailable.
+Growingwithin-cycleoscillationcoexistswithdecreasingmeanerror:36-44thetaMAE
+.44945,thetaRateSD.876rad/s,nearstop6.58%,phiMax.9998;52-60thetaMAE.34942,
+SD1.166,nearstop16.77%,phiMax1.276;60-68thetaMAE.32410,SD1.413,
+nearstop24.34%;84-92thetaMAE.27484,SD1.490,phiMax1.3787;94-102thetaMAE
+.24428,phiMax1.4012. Ratesareapparentsampledangleincrements,notindependent
+velocity. Do notusemeanerroraloneasstabilitycriterion. Forcecomponents
+52-60:dampingRMS6.460/6.535N,history3.104/2.852,explicitfeedback.981/.646,
+inertia.147/.153. Adaptive dampingforceisDh*vmodelcompensation,notKs damping.
+Offlineallocatorreplay:20-44noallocationorslewlimiting;44-52oneslewlimit;
+52-60sevenslewlimited;60-78.7allocation1,slew25;78.7-104.85allocation5,
+slew59(withoverlap). Notv9-stylepersistentearlyblocking;limitinggrowslater.
+Finalshutdownisaseparateidentifiedevent:tipinvalid104.75/.80/.85,
+status4at104.75/.80,status5from104.85,norecoveryaftertipvalid104.90.
+Enablepressureandkilllogged1,basevalid;age.05/.10/.15s;grace.10s exceeded.
+95of96faultsamplesstillmodelvalid:forcefunctioncanbeevaluatedwhilepressure
+supervisorfaulted;metricsmustrequirestatus3forcontrolledtracking. Mainaudit
+lap22(104-108)includesfault/unloadingandisnotpuretrackingperformance;use
+onset_audit.txtstatus3-onlywindows. Nohardwareorcontroller/modelchanges.
+Suggesteddiagnosticfreshcomparisongamma_d.002fromstartup,other4ssettings
+fixed,ifuserchooses;notvalidatedcure. CoupledSPDpolicyandactuatordynamics
+needdesignreviewbeforeautomaticoptimization;donotrelaxboundsorlimitinggates.
+Artifacts v10_analysis:audit,lapCSV,onset_audit,onset_timeline.png/fig,
+parameter/gain/switchplots. Scripts tmp/auditPacGainTestingV10.m,
+tmp/auditPacV10Onset.m. No commit/push.
+
 ## 2026-10-26 - User-requested repository checkpoint
 User authorized staging/committing important project files,without push. PAC
 SignedK2,HysteresisFreeze,Tunable,Adaptive and Pressure offline validations
@@ -1665,3 +1707,9 @@ predictiontable retainsinversecalculationprovenance. All5summaryexports produced
 verifiedmandatorypressure/measuredcolumns andcircle/helixreferencecolumns.
 Sensorrows/valid:Sine12721/12710,Step11001/10992,circle12501/12474,
 combined6841/6832,helix10601/10575. No MAT orSLXmodified,nohardware executed.
+
+## 2026-10-26 - Signed stiffness bound assertion
+Fixed strict k1 lower-bound check (> -100) to >= -100. Accepted minimum bounds are [-100;-500;-100]; damping and hysteresis checks remain unchanged. Extended validatePacSignedK2 to verify all three signed stiffness boundaries, outward projection and inward recovery. MATLAB offline validation passed. No tuning-vector changes, model edits or hardware execution. This validates implementation only, not closed-loop stability with signed stiffness.
+
+## 2026-10-26 - Framework and experiment checkpoint
+User requested a repository checkpoint. Includes the signed stiffness helper/test, framework handoff plan, current user-saved PAC model, v10 recording/reports/audit scripts and newly supplied 1rad_4s_gainTesting_v11.mat. v11 is preserved as unreviewed data; no performance or configuration conclusions have been established for it. Signed-bound offline validation passed earlier in this session; no hardware model was run. Generated RL exports, duplicate presentation ZIP, model backups, temporary code-generation/PDF files and unrelated paper drafts remain local. No remote push requested.

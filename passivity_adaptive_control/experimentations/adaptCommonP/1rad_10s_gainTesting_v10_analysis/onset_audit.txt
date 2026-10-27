@@ -1,0 +1,93 @@
+REFERENCE median angular rate1.5708 period4
+TIME20.00 spring[650 650 650] d[40 40] h[0 0 0] minEig650.000 status4 limit0 phi0.3463 thetaErr0.2553
+TIME30.00 spring[1226.1 -315.36 412.59] d[54.497 61.642] h[1.1431 0.9947 0.66519] minEig-6.252 status3 limit0 phi0.7351 thetaErr0.5616
+TIME40.00 spring[1056.4 -326.14 522.38] d[68.806 75.519] h[2.0939 1.7328 1.582] minEig21.066 status3 limit0 phi0.9235 thetaErr0.5825
+TIME45.00 spring[952.34 -236.29 302.89] d[75.967 80.826] h[2.3567 2.1451 2.0518] minEig-6.131 status3 limit0 phi0.8376 thetaErr0.3964
+TIME50.00 spring[1046.1 -382.79 373.28] d[80.558 85.417] h[2.8787 2.5204 2.3546] minEig-101.147 status3 limit0 phi0.8979 thetaErr0.3993
+TIME52.00 spring[981.52 -400.81 423.04] d[82.407 87.523] h[3.0512 2.6027 2.523] minEig-96.955 status3 limit0 phi0.8767 thetaErr0.2642
+TIME54.00 spring[987.77 -397.91 401.3] d[84.423 89.275] h[3.2138 2.8021 2.6815] minEig-104.435 status3 limit0 phi0.8402 thetaErr0.4124
+TIME55.00 spring[938.21 -224.71 327.29] d[85.835 90.123] h[3.1971 2.9126 2.8511] minEig16.799 status3 limit0 phi0.7927 thetaErr0.3208
+TIME55.20 spring[974.98 -245.56 315.73] d[85.974 90.153] h[3.2231 2.9423 2.839] minEig-6.661 status3 limit0 phi1.0352 thetaErr0.2673
+TIME56.00 spring[929.58 -374.12 434.75] d[86.031 90.915] h[3.3512 2.9225 2.83] minEig-71.046 status3 limit0 phi0.8798 thetaErr0.4389
+TIME60.00 spring[876.27 -455.23 380.99] d[89.685 94.551] h[3.6374 3.1709 3.1231] minEig-175.547 status4 limit0 phi0.8292 thetaErr0.2890
+TIME65.00 spring[810.66 -402.54 261.74] d[94.265 98.744] h[3.8686 3.5518 3.4941] minEig-194.863 status3 limit0 phi0.6516 thetaErr0.3076
+TIME70.00 spring[816.16 -500 337.63] d[97.837 102.93] h[4.2931 3.7627 3.8386] minEig-243.926 status3 limit0 phi0.8301 thetaErr0.5354
+TIME75.00 spring[837.2 -411.41 218.31] d[101.68 106.53] h[4.5477 4.0797 4.2077] minEig-230.166 status3 limit0 phi0.9050 thetaErr0.2011
+TIME78.70 spring[744.16 -381.66 260.77] d[103.93 109.12] h[4.7671 4.187 4.4541] minEig-178.357 status3 limit0 phi0.7828 thetaErr0.3140
+TIME85.00 spring[632.29 -402.24 178.98] d[104.34 109.54] h[5.1019 4.5012 4.8521] minEig-253.352 status3 limit0 phi0.8728 thetaErr0.1490
+TIME93.50 spring[671.9 -464.26 236.17] d[104.81 110.06] h[5.6167 4.8326 5.3259] minEig-275.225 status3 limit0 phi0.9036 thetaErr0.5211
+TIME100.00 spring[684.02 -452.81 256.25] d[105.15 110.4] h[6.0343 5.1606 5.7337] minEig-251.647 status3 limit0 phi0.9483 thetaErr0.1733
+BOUND k1 count0 firstzeros(0,1)
+BOUND k2 count59 first62
+BOUND k3 count0 firstzeros(0,1)
+WIN36.00-44.00 validControlPct97.50 thetaMAE0.44945 phiMAE0.15597 phiRange[0.69536 0.99984] lengthRMSEmm[4.2387 4.2424] velocityRMSEmm/s[8.3315 8.8655] thetaRateSD0.87627 thetaSlowPct6.58 limitPct0.00 dMean[69.29 75.232] minEigRange[-63.451 148.41]
+FORCEdampingForce_N RMS[6.133 6.2173] peak[10.889 10.412]
+FORCEhysteresisForce_N RMS[1.9118 1.682] peak[2.887 2.6807]
+FORCEstaticForce_N RMS[11.684 3.5447] peak[18.816 6.0298]
+FORCEfeedbackForce_N RMS[1.1844 0.72903] peak[2.2236 1.2618]
+FORCEinertialForce_N RMS[0.16157 0.15682] peak[0.2829 0.28573]
+WIN44.00-52.00 validControlPct97.50 thetaMAE0.39958 phiMAE0.13374 phiRange[0.72329 1.0769] lengthRMSEmm[3.7252 3.8985] velocityRMSEmm/s[8.0579 8.5775] thetaRateSD0.93407 thetaSlowPct10.53 limitPct0.62 dMean[78.669 83.616] minEigRange[-114.55 44.149]
+FORCEdampingForce_N RMS[6.2819 6.4523] peak[11.631 11.258]
+FORCEhysteresisForce_N RMS[2.5261 2.269] peak[3.7409 3.4875]
+FORCEstaticForce_N RMS[11.338 3.1426] peak[17.352 5.0023]
+FORCEfeedbackForce_N RMS[1.0496 0.67783] peak[2.1385 1.3061]
+FORCEinertialForce_N RMS[0.15403 0.14844] peak[0.28344 0.36094]
+WIN52.00-60.00 validControlPct98.12 thetaMAE0.34942 phiMAE0.12927 phiRange[0.5896 1.276] lengthRMSEmm[3.4472 3.6223] velocityRMSEmm/s[8.0501 9.3497] thetaRateSD1.16627 thetaSlowPct16.77 limitPct4.38 dMean[86.346 91.007] minEigRange[-213.2 17.572]
+FORCEdampingForce_N RMS[6.4595 6.5351] peak[13.133 12.803]
+FORCEhysteresisForce_N RMS[3.1043 2.8523] peak[4.4883 4.2912]
+FORCEstaticForce_N RMS[10.595 3.1473] peak[15.617 4.9784]
+FORCEfeedbackForce_N RMS[0.98084 0.64596] peak[2.1538 1.333]
+FORCEinertialForce_N RMS[0.14688 0.15293] peak[0.28478 0.42271]
+WIN60.00-68.00 validControlPct97.50 thetaMAE0.32410 phiMAE0.12352 phiRange[0.58226 1.2513] lengthRMSEmm[3.2692 3.5129] velocityRMSEmm/s[8.0142 9.8022] thetaRateSD1.41322 thetaSlowPct24.34 limitPct3.75 dMean[93.296 97.893] minEigRange[-281.4 -110.93]
+FORCEdampingForce_N RMS[6.6728 6.8026] peak[14.327 13.248]
+FORCEhysteresisForce_N RMS[3.656 3.4091] peak[5.1659 4.9742]
+FORCEstaticForce_N RMS[9.6881 3.0298] peak[14.61 4.6359]
+FORCEfeedbackForce_N RMS[0.93454 0.63402] peak[2.1326 1.2854]
+FORCEinertialForce_N RMS[0.14425 0.15864] peak[0.27441 0.42821]
+WIN68.00-76.00 validControlPct98.12 thetaMAE0.30117 phiMAE0.12416 phiRange[0.6265 1.1768] lengthRMSEmm[3.074 3.4161] velocityRMSEmm/s[8.0533 9.6868] thetaRateSD1.37500 thetaSlowPct25.97 limitPct9.38 dMean[99.334 104.27] minEigRange[-291.99 -110.2]
+FORCEdampingForce_N RMS[6.7546 7.0769] peak[14.086 14.365]
+FORCEhysteresisForce_N RMS[4.1437 3.9103] peak[5.8161 5.6622]
+FORCEstaticForce_N RMS[9.6205 3.1138] peak[14.398 4.8743]
+FORCEfeedbackForce_N RMS[0.89174 0.62184] peak[2.0412 1.297]
+FORCEinertialForce_N RMS[0.14878 0.16021] peak[0.30108 0.35966]
+WIN76.00-78.70 validControlPct92.59 thetaMAE0.27848 phiMAE0.12809 phiRange[0.67806 1.1927] lengthRMSEmm[3.2086 3.4954] velocityRMSEmm/s[8.1105 9.841] thetaRateSD1.66792 thetaSlowPct32.61 limitPct9.26 dMean[103.08 108.12] minEigRange[-312.25 -187.56]
+FORCEdampingForce_N RMS[7.3761 7.3833] peak[14.684 12.025]
+FORCEhysteresisForce_N RMS[4.1532 4.5492] peak[5.8801 5.9172]
+FORCEstaticForce_N RMS[8.4142 2.6163] peak[12.843 4.3428]
+FORCEfeedbackForce_N RMS[0.937 0.62998] peak[2.0493 1.1042]
+FORCEinertialForce_N RMS[0.14651 0.16026] peak[0.27407 0.30417]
+WIN84.00-92.00 validControlPct95.00 thetaMAE0.27484 phiMAE0.13760 phiRange[0.5922 1.3787] lengthRMSEmm[2.9747 3.3722] velocityRMSEmm/s[8.2959 10.548] thetaRateSD1.49011 thetaSlowPct27.40 limitPct14.37 dMean[104.49 109.72] minEigRange[-312.63 -129.74]
+FORCEdampingForce_N RMS[6.8548 7.2081] peak[14.88 15.658]
+FORCEhysteresisForce_N RMS[5.1257 4.9455] peak[6.8624 7.0549]
+FORCEstaticForce_N RMS[8.2713 2.9575] peak[12.91 5.4106]
+FORCEfeedbackForce_N RMS[0.87028 0.63219] peak[2.0389 1.3612]
+FORCEinertialForce_N RMS[0.14039 0.16133] peak[0.30801 0.47646]
+WIN94.00-102.00 validControlPct96.25 thetaMAE0.24428 phiMAE0.11926 phiRange[0.50378 1.4012] lengthRMSEmm[2.7105 2.9468] velocityRMSEmm/s[7.5241 9.1524] thetaRateSD1.22677 thetaSlowPct21.62 limitPct8.75 dMean[105.05 110.31] minEigRange[-274.5 -240.21]
+FORCEdampingForce_N RMS[6.427 6.5405] peak[13.761 12.804]
+FORCEhysteresisForce_N RMS[5.4513 5.4762] peak[7.3616 7.7844]
+FORCEstaticForce_N RMS[7.7924 3.014] peak[11.799 4.9353]
+FORCEfeedbackForce_N RMS[0.78955 0.54431] peak[1.947 1.1761]
+FORCEinertialForce_N RMS[0.13335 0.14524] peak[0.27446 0.44541]
+FIRSTFAULT104.850
+FAULT rows time status sensorValid1/2 configValid baseValid age enable kill phi
+  104.4500    3.0000    1.0000    1.0000    1.0000    1.0000         0    1.0000    1.0000    0.8394
+  104.5000    3.0000    1.0000    1.0000    1.0000    1.0000         0    1.0000    1.0000    0.8610
+  104.5500    3.0000    1.0000    1.0000    1.0000    1.0000    0.0000    1.0000    1.0000    0.8963
+  104.6000    3.0000    1.0000    1.0000    1.0000    1.0000         0    1.0000    1.0000    0.9616
+  104.6500    3.0000    1.0000    1.0000    1.0000    1.0000         0    1.0000    1.0000    1.0680
+  104.7000    3.0000    1.0000    1.0000    1.0000    1.0000         0    1.0000    1.0000    1.1722
+  104.7500    4.0000    1.0000         0         0    1.0000    0.0500    1.0000    1.0000    1.1722
+  104.8000    4.0000    1.0000         0         0    1.0000    0.1000    1.0000    1.0000    1.1722
+  104.8500    5.0000    1.0000         0         0    1.0000    0.1500    1.0000    1.0000    1.1722
+  104.9000    5.0000    1.0000    1.0000    1.0000    1.0000         0    1.0000    1.0000    0.9722
+  104.9500    5.0000    1.0000    1.0000    1.0000    1.0000         0    1.0000    1.0000    0.8558
+  105.0000    5.0000    1.0000    1.0000    1.0000    1.0000         0    1.0000    1.0000    0.7254
+  105.0500    5.0000    1.0000    1.0000    1.0000    1.0000    0.0000    1.0000    1.0000    0.6122
+
+ALLOC20.00-44.00 eligible464 allocation0 slew0 loggedLimited0
+ALLOC44.00-52.00 eligible156 allocation0 slew1 loggedLimited1
+ALLOC52.00-60.00 eligible157 allocation0 slew7 loggedLimited7
+ALLOC60.00-78.70 eligible363 allocation1 slew25 loggedLimited26
+ALLOC78.70-104.85 eligible499 allocation5 slew59 loggedLimited63
+CONTIGUOUS event50-58 invalid[50.25 56.25 56.3] limited[56.35 56.4 56.75 57.05 57.1 57.15]
+freeze/enable changes are in main audit; no pressure stop rule at zero error.
