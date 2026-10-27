@@ -1,5 +1,80 @@
 # Verification and experimental results
 
+## 2026-10-27 - Manual workflow and optimizer checkpoint
+
+User requested committing completed milestones B/C. Checkpoint includes the manual
+campaign/manifest/ledger, bounded proposal-only GP adapter, four passing offline
+test suites, labeled historical/synthetic demonstrations and handoff documentation.
+No new implementation changes since the recorded validation runs. Unrelated paper
+drafts, backups, duplicate presentation ZIP, RL exports and temporary build/PDF
+files remain local. No hardware/model execution or remote push performed.
+
+## 2026-10-27 - Proposal-only optimizer adapter (milestone C)
+
+User requested the next development step. Added bounded fixed-kernel GP search
+for grouped gammaK/gammaD/gammaH in normalized log space, with seeded baseline/
+initial design, finite-pool expected improvement, explicit feasibility frequency,
+repeat/noise handling and budget/distinct-point limits. The core invokes no
+objective callback. bayesopt and a Statistics license were detected locally, but
+the proposal-only implementation uses base MATLAB numerics/RandStream. New manual
+campaigns archive optimizer settings. Existing campaigns without that snapshot
+must be versioned before optimizer use; unconfigured historical campaigns block.
+
+pacTuneSuggestNext reconstructs evidence from ledger entries and recommends
+propose/observe/confirm/stop/blocked. pacTuneQueueSuggestion records the reviewed
+proposal and diagnostics with an event-count/config-hash stale-snapshot check
+under the existing writer lock. Confirmation is never optimizer training data.
+Valid comparable screening scores train the objective; known comparable latched
+faults supply constraint evidence without partial tracking scores. Missing data,
+early end without a verified fault and protocol mismatches remain unknown.
+Explicit checks prevent live edits hidden by a fault classification from becoming
+comparable fault labels. All imports still count against campaign budget.
+
+validatePacTuneOptimizer passes bounds/log mapping, exact baseline, pending-point
+avoidance, global RNG isolation, GP/repeat statistics, missing/fault separation,
+MAT replay and budget cases. validatePacTuneOptimizerAdapter passes baseline
+queueing/provenance, pending observation, stale ledger rejection, held-out
+confirmation, fault/protocol distinction and deterministic ledger replay.
+validatePacTuneManualCampaign and validatePacTuneEvaluator regressions pass.
+
+reports/optimizer_synthetic_v1 contains 30 synthetic observations with seeded
+noise, explicit repeats, one known simulated fault and one missing-data case,
+plus raw CSV, replicate mean/std/SE, MAT proposals and a scientific summary plot.
+This is software validation only; gamma bounds/numbers are illustrative and not
+arm recommendations. Best individual noisy score is not confirmed performance.
+Fixed-kernel latent uncertainty and weighted feasibility scores are not calibrated
+physical guarantees. No real campaign configured, model/hardware executed,
+controller/SLX/raw-data changes, commit or push in this development turn.
+
+## 2026-10-27 - Manual tuning campaign workflow (milestone B)
+
+User requested committing milestone A and executing the next development step.
+Committed evaluator/reports/docs as e6fb02c on codex/pac-autotuning-framework.
+Implemented milestone B under autotuning: manual campaign template, recorded
+baseline extraction, bounded grouped-gamma proposal/review, operator manifest,
+offline observation import, per-event append-only ledger, candidate/trial tables,
+restart/status and screening/confirmation selection. Campaign MAT SHA-256 is
+verified on each read; an exclusive writer lock and atomic event rename protect
+normal writes. This is not a signed/tamper-proof database or automatic recovery.
+
+validatePacTuneManualCampaign passes using explicitly synthetic MAT copies in a
+temporary directory: candidate bounds/IDs, matching full tuning, two confirmation
+repeats after screening, longer confirmation windows, metadata mismatch rejection,
+withdrawal after failed confirmation, live-gain rejection, duplicate IDs/raw-file
+hashes, exhausted budgets, restart, lock rejection, configuration-change detection
+and campaign report export. A scalar ledger-table issue found on first ingestion
+was corrected with explicit AsArray table conversion. validatePacTuneEvaluator
+also passes unchanged v8/v9/v10/parser/coverage/fault regressions.
+
+Saved reports/manual_demo_v1 exercises create/propose/import/status on historical
+v9. Purpose is offline_demo, actual reset/payload details are unverified and
+performance targets unset, so configurationReady=false and success=false. Its
+illustrative bounds are software demonstration values, not gain recommendations.
+No new experiment, model launch, controller/SLX edit, optimizer or hardware adapter.
+Original MAT files were not modified. New milestone B source/docs/artifacts remain
+uncommitted after the requested initial commit. Next milestone C is optimizer
+integration after defining its API and testing against synthetic objectives.
+
 ## 2026-10-26 - PAC tuning framework milestone A (offline)
 
 User authorized a new branch and framework development. Created

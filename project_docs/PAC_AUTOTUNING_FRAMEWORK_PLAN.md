@@ -1,9 +1,12 @@
 # PAC experiment-based automatic tuning: implementation and handoff plan
 
 Created: 2026-10-26. Updated after subsequent user authorization to develop the framework.
-Status: milestone A offline evaluator implemented and validated on branch
+Status: milestones A-C implemented and validated on branch
 `codex/pac-autotuning-framework`, starting from 63f679a. See
-`passivity_adaptive_control/autotuning/README.md`. Milestones B-E remain planned;
+`passivity_adaptive_control/autotuning/README.md` and `MANUAL_WORKFLOW.md`.
+Milestone A is committed as e6fb02c; milestones B/C are included in the subsequent
+user-requested framework checkpoint (see git log).
+Milestones D-E remain planned;
 no hardware automation has been implemented or authorized by this document.
 
 ## 1. Purpose and scope
@@ -227,10 +230,27 @@ gate/rate diagnostics, nominal allocation replay, reports and regression tests.
 Reviewed replay reproduces v8 per-lap errors, v9's 1071 slew mismatches and 65/1200
 active samples, and v10's pre-fault roughness increase plus the 104.85 s fault.
 Read the implementation README for current limitations (including constant-speed
-circle assumptions and no harmonic/XYZ score). No optimizer or hardware execution.
+circle assumptions and no harmonic/XYZ score). No hardware execution.
 
-Next: implement milestone B's manual candidate/manifest/ledger workflow. Campaign
-thresholds, search bounds, physical reset/preconditioning and confirmation duration
-remain unsettled. Do not treat historical exploratory trials as clean candidate
-observations or claim successful tuning. Do not run hardware or commit/push without
-the relevant user request.
+Milestone B is implemented (2026-10-27): immutable campaign snapshots, bounded
+operator-supplied gamma proposals, full tuning review artifacts, manifests,
+offline trial intake, append-only event files, immutable-config hash checks,
+duplicate ID/file checks, evaluation budgets, restart/status and repeat-based
+screening/confirmation selection. Longer confirmation windows are supported;
+failed confirmation prevents or withdraws confirmation. See MANUAL_WORKFLOW.md.
+The saved v9 demo remains unconfigured/ineligible, not a tuning result.
+
+Milestone C is implemented (2026-10-27): bounded proposal-only GP search in
+normalized log gamma space; seeded baseline/initial design; repeated/noisy scores;
+explicit usable-objective and known-constraint flags; held-out confirmation;
+ledger reconstruction and stale-suggestion rejection. See OPTIMIZER_WORKFLOW.md.
+The 30-observation demo is synthetic only. Known comparable faults contribute
+constraint evidence without partial scores; protocol/data failures stay unknown.
+Fixed-kernel GP uncertainty and kernel-weighted feasibility are model-dependent
+diagnostics, not physical safety guarantees or evidence of arm improvement.
+
+Next: milestone D, a configured operator-run experimental campaign. Thresholds,
+search bounds, physical reset/preconditioning and confirmation duration remain
+unsettled. Do not invent real-arm settings, treat exploratory historical trials as
+clean candidates, or claim successful physical tuning. Hardware execution remains
+manual. Do not run hardware or commit/push without the relevant user request.

@@ -6,6 +6,13 @@ writetable(trial.inventory,fullfile(folder,'signal_inventory.csv'));
 fid=fopen(fullfile(folder,'report.md'),'w');assert(fid>=0);cleanup=onCleanup(@()fclose(fid)); %#ok<NASGU>
 fprintf(fid,'# PAC offline evaluation\n\nSource: `%s`\n\nSHA-256: `%s`\n\n',result.file,result.sha256);
 fprintf(fid,'Classification: **%s**. Success: %d. Schema: %s.\n\n',result.classification,result.success,result.schemaVersion);
+if isfield(result,'campaignAcceptance')
+    a=result.campaignAcceptance;
+    fprintf(fid,'Campaign classification: **%s**. Eligible for candidate selection: **%d**.\n\n',a.classification,a.eligible);
+    for s=a.manifestIssues',fprintf(fid,'- Manifest: %s\n',s);end
+    for s=a.configurationIssues',fprintf(fid,'- Configuration: %s\n',s);end
+    fprintf(fid,'\nThe success flag above describes evaluator criteria only; campaign eligibility also checks metadata/configuration.\n\n');
+end
 for s=result.issues',fprintf(fid,'- %s\n',s);end
 if ~isfield(result,'tracking'),return;end
 fprintf(fid,'\nReference period: %.6g s; direction: %g. First fault: %.6g s.\n\n', ...

@@ -1,4 +1,4 @@
-Last Updated: 2026-10-26
+Last Updated: 2026-10-27
 Current Milestone: Tunable adaptive PAC with variable common-pressure allocation implemented; initial physical circle data reviewed; directional lag remains.
 
 # Current project state
@@ -8,8 +8,27 @@ Milestone A offline evaluator is implemented in `passivity_adaptive_control/auto
 see its README and `PAC_AUTOTUNING_FRAMEWORK_PLAN.md`. Offline tests reproduce
 v8 lap errors, v9 slew/gate counts and v10 pre-fault roughness/fault separation.
 Reviewed reports are in autotuning/reports/historical_reviewed_v1. No targets
-have been agreed, optimizer/manual ledger is not implemented, and no hardware
-automation exists. Next: milestone B manual candidate/manifest/ledger loop.
+have been agreed and no hardware automation exists.
+
+2026-10-27: milestone A committed as e6fb02c at user request. Milestone B is now
+implemented: immutable campaigns, bounded manual gamma proposals, reviewed tuning
+snapshots, operator manifests, offline imports, append-only event ledger, restart,
+budget/duplicate checks and separate screening/confirmation status. See
+autotuning/MANUAL_WORKFLOW.md and reports/manual_demo_v1 (historical replay only,
+not configured for success). Offline tests pass, including failed-confirmation
+withdrawal and longer confirmation windows.
+
+Milestone C is now implemented (2026-10-27): proposal-only bounded GP optimizer
+in normalized log gamma space, with seeded initial design, noisy/repeated
+observations, explicit failure/missing-data separation, held-out confirmation,
+restartable ledger-derived proposals and stale-suggestion checks when queueing.
+See autotuning/OPTIMIZER_WORKFLOW.md and reports/optimizer_synthetic_v1.
+Core/adapter/manual/evaluator offline tests pass. Local bayesopt/Statistics are
+available; this adapter uses base MATLAB numerics and invokes no trial callback.
+Milestones B/C are included in the user-requested framework checkpoint; use git
+log for its revision. Next is milestone D, an operator-run campaign;
+real baseline, bounds, targets, conditions and confirmation protocol remain
+unsettled. No hardware run, SLX edit, automatic gain write or push performed.
 
 Read this first, then the relevant specialized document. Use recorded inputs
 for experiment settings; do not infer them from filenames or current SLX defaults.
@@ -223,21 +242,22 @@ analyzePacAdaptive() and analyzePacStaticSweep() use base-workspace out; explici
 out and MAT paths also supported. Workspace calls do not automatically save.
 Static-sweep analysis is for holds, not circle tracking. Static lambda inference
 is invalid for circles with nonzero desired rates. Circle metrics so far were
-computed offline per lap; no dedicated current PAC-circle report script added.
+computed offline per lap; the autotuning evaluator now provides reusable circle
+reports and v8/v9/v10 replay checks.
 plotCommonPressureTracking() supports PAC/FBL signal names and duplicates use
 first matching name. Theta plots/errors wrap to[-pi,pi]; exclude near-straight
 unobservable theta, especially final return. Missing essential signals still fail.
 
 ## Next decisions / open issues
 
-2026-10-26 automatic tuning proposal (not implemented): optimize bounded
-feedback/grouped adaptation gains between fixed-setting experiment batches.
-First build a recording evaluator and recommendation-only loop; user starts
-hardware runs. Score tracking plus roughness/limiting, use defined adaptive
-initial states, and confirm success over repeated cycles. Two circles may screen
+2026-10-27 tuning framework: evaluator, manual ledger and bounded grouped-gamma
+proposal adapter are implemented offline. Feedback gains remain fixed campaign
+settings. The user starts hardware runs. Score tracking plus roughness/limiting,
+use defined adaptive initial states, and confirm over repeated cycles. Two circles may screen
 candidates but do not establish learned performance. Address the 2s command-slew
 bottleneck and signed-stiffness constraint before autonomous exploration.
-No optimizer, automatic hardware runner or unattended tuning is authorized here.
+No automatic hardware runner or unattended physical tuning is implemented or
+authorized here. Optimizer proposals alone do not establish stable operation.
 
 1. Review later better-gain data or matched ON/OFF circle test at same speed,
    gains, initialization and reference. Do not increase gains/speed blindly.

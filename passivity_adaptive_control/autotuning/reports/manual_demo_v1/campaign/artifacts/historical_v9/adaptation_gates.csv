@@ -1,0 +1,10 @@
+labels,counts
+eligible projected update,65
+disabled,0
+invalid freshness/model,62
+supervisor,0
+limited,1071
+nominal residual,0
+update interval,2
+deadband,0
+zero projected rate,0

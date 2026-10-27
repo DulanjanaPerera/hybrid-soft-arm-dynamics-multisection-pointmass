@@ -1,8 +1,11 @@
 # PAC offline tuning evaluator
 
-Milestone A of `project_docs/PAC_AUTOTUNING_FRAMEWORK_PLAN.md` is implemented.
-These functions read saved MAT data; they do not open/run models, operate devices,
-change gains or select the next candidate. No optimization toolbox is required.
+Milestones A-C of `project_docs/PAC_AUTOTUNING_FRAMEWORK_PLAN.md` are implemented.
+For the manual candidate/manifest/ledger loop, read `MANUAL_WORKFLOW.md`.
+For bounded proposal-only optimization, read `OPTIMIZER_WORKFLOW.md`.
+The evaluator reads saved MAT data; the optimizer only proposes candidates.
+Neither opens/runs models, operates devices or changes live gains. No optimization
+toolbox is required.
 MATLAB and the Simulink data classes are required to load these recorded logs.
 
 ## Run the historical replay
@@ -99,15 +102,18 @@ Targets are intentionally NaN. Enter agreed finite nonnegative limits for every
 target before evaluating feasibility. Unset targets produce `unconfigured_targets`
 on otherwise valid fixed-tuning data. Faults, incomplete runs, low coverage and
 live tuning edits take precedence. `cfg.expectedTuning` can supply exact expected
-vectors for mismatch checks; archived candidates/manifests are not implemented yet.
+vectors for mismatch checks. The manual workflow archives candidates/manifests
+and adds campaign-level metadata and repeated-confirmation checks.
 
 `result.success` means this one offline observation met the supplied evaluator
 criteria. It does not establish repeated confirmation, physical stability, a
 verified reset, or an approved hardware campaign. Historical data here never
 claim success. Smoothness currently includes velocity error and angular-rate
 diagnostics; cycle harmonic residual, time-to-target, uncertainty estimates,
-XYZ scoring, candidate generation, ledger, manifests and Bayesian optimization
-remain future work. There is no automatic hardware execution component.
+XYZ scoring remains future work. Bounded GP candidate generation is available
+through the proposal-only optimizer; manual proposals, manifests and the ledger
+remain the execution/intake interface.
+There is no automatic hardware execution component.
 
 ## Regression evidence
 
@@ -118,6 +124,8 @@ samples among 1200, and v10's falling MAE alongside rising pre-fault rate SD plu
 the separate 104.85 s fault. Synthetic fixtures are created only in a temporary
 directory and removed after testing. Raw experiment files are not rewritten.
 
-The reviewed report set is under `reports/historical_reviewed_v1/`. Next work is
-milestone B: a manual candidate/manifest/ledger loop, using agreed campaign
-settings. Keep optimizer integration and hardware execution separate.
+The reviewed evaluator reports are under `reports/historical_reviewed_v1/`.
+The manual replay demo is under `reports/manual_demo_v1/`; the synthetic optimizer
+demo is under `reports/optimizer_synthetic_v1/`. Next is milestone D, an explicitly
+configured operator-run campaign; real bounds/targets/baseline remain unset.
+Keep optimizer integration and hardware execution separate.
