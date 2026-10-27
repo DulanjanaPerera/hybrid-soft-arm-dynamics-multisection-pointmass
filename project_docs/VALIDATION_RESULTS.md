@@ -1,5 +1,38 @@
 # Verification and experimental results
 
+## 2026-10-26 - PAC tuning framework milestone A (offline)
+
+User authorized a new branch and framework development. Created
+`codex/pac-autotuning-framework` from checkpoint 63f679a. Implemented MATLAB
+intake/evaluation/report/replay functions under `passivity_adaptive_control/autotuning`.
+No controller, tuning vector, SLX or raw recording was changed. No hardware model
+was launched. No commit/push for this development step has been requested.
+
+`validatePacTuneEvaluator` passes: duplicate-name selector enforcement, time-last
+matrix decoding, singleton and gap alignment, constant Inf tuning comparison,
+missing-data rejection, unset-target rejection and explicit roughness constraint
+failure. Real-data checks match all v8 saved theta/q2 lap metrics within 1e-8;
+v9 actual period 2 s, 65/1200 active and 1071/1200 limited, exact replay 1071 slew
+target mismatches with zero allocation limits/flag mismatches and zero gate-active
+disagreements. v10 period 4 s, fault 104.85 s, matched 36-44/52-60 s windows show
+theta MAE .44945 -> .34942 while theta-rate SD .87627 -> 1.16627 rad/s.
+
+Sparse constant switch logging initially caused false missing values; corrected
+with an explicit constant-input lifetime policy for the three logged adaptation
+switches, only when every native value is identical. Other inputs do not extrapolate.
+Reports record which inputs were extended. Tuning changes are detected on native
+timestamps. Bound/rate flags account for stored pre-update output timing.
+
+Reviewed reports: `autotuning/reports/historical_reviewed_v1` (inventory, per-lap
+metrics, tuning events, gate counts, diagnostics, evaluation MAT and summary PNG).
+v8 is protocol_deviation (live gamma edits); v9 is invalid_data at the default
+95% coverage rule (about 94.83% valid tracking), also with live edits; v10 is
+aborted_or_faulted. These are evaluator classifications, not new conclusions
+about experimental usefulness. All have success=false; performance targets
+remain unset. Plots omit faulted/low-coverage tracking cycles and mark fault time.
+No optimizer, hardware adapter, manifest/ledger, reset verification or repeated
+confirmation is implemented yet. See the framework plan/README for next work.
+
 ## 2026-10-26 - v10 actual4s: cumulative compensation/roughness and separatefault
 Offline1rad_10s_gainTesting_v10.mat:0-109.6s,4scirclereference(pi/2rad/s),
 phi1,starts20s,recordingendsbefore30intendedcircles. Feedbacklambda18/16.5,

@@ -1,0 +1,109 @@
+index,names,paths,units,shapes,count,first,last
+1,enablePressure,PAC_experiment_CP_adapt/Constant1,,[6601 1],6601,0,330
+2,enableAdaptation,PAC_experiment_CP_adapt/Constant2,,[5 1],5,0,271.41
+3,enableCommonPressureAdaptation,PAC_experiment_CP_adapt/Constant3,,[5 1],5,0,271.41
+4,freezeHysteresisWeights,PAC_experiment_CP_adapt/Constant4,,[5 1],5,0,271.41
+5,sampled des_length,PAC_experiment_CP_adapt/Desired lengths 50 ms,,[2 1 6601],6601,0,330
+6,,PAC_experiment_CP_adapt/MATLAB Function,,[2 1 33001],33001,0,330
+7,adaptationGamma,PAC_experiment_CP_adapt/MATLAB Function1,,[10 1 6601],6601,0,330
+8,adaptationOptions,PAC_experiment_CP_adapt/MATLAB Function1,,[3 1 6601],6601,0,330
+9,hystoryOptions,PAC_experiment_CP_adapt/MATLAB Function1,,[4 1 6601],6601,0,330
+10,parameterInitial,PAC_experiment_CP_adapt/MATLAB Function1,,[10 1 6601],6601,0,330
+11,parameterLower,PAC_experiment_CP_adapt/MATLAB Function1,,[10 1 6601],6601,0,330
+12,parameterMaxRate,PAC_experiment_CP_adapt/MATLAB Function1,,[10 1 6601],6601,0,330
+13,parameterScale,PAC_experiment_CP_adapt/MATLAB Function1,,[10 1 6601],6601,0,330
+14,parameterUpper,PAC_experiment_CP_adapt/MATLAB Function1,,[10 1 6601],6601,0,330
+15,pressureOptions,PAC_experiment_CP_adapt/MATLAB Function1,,[10 1 6601],6601,0,330
+16,supervisorOptions,PAC_experiment_CP_adapt/MATLAB Function1,,[7 1 6601],6601,0,330
+17,d_length,PAC_experiment_CP_adapt/MATLAB Function2,,[2 1 6601],6601,0,330
+18,dd_length,PAC_experiment_CP_adapt/MATLAB Function2,,[2 1 6601],6601,0,330
+19,length,PAC_experiment_CP_adapt/MATLAB Function2,,[2 1 6601],6601,0,330
+20,ddlength_error,PAC_experiment_CP_adapt/MATLAB Function3,,[2 1 6601],6601,0,330
+21,dlength_error,PAC_experiment_CP_adapt/MATLAB Function3,,[2 1 6601],6601,0,330
+22,length_error,PAC_experiment_CP_adapt/MATLAB Function3,,[2 1 6601],6601,0,330
+23,filtered_d_length,PAC_experiment_CP_adapt/MATLAB Function5,,[2 1 6601],6601,0,330
+24,filtered_dd_length,PAC_experiment_CP_adapt/MATLAB Function5,,[2 1 6601],6601,0,330
+25,fitered_length,PAC_experiment_CP_adapt/MATLAB Function5,,[2 1 6601],6601,0,330
+26,meas_position,PAC_experiment_CP_adapt/NDI Sensor reading,,[3 1 6601],6601,0,330
+27,,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[33001 1],33001,0,330
+28,,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[33001 1],33001,0,330
+29,configurationValid,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[33001 1],33001,0,330
+30,fitResidual_m,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[33001 1],33001,0,330
+31,frame,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[1 2 6601],6601,0,330
+32,hostTime_s,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[1 1 6601],6601,0,330
+33,meas_length,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[3 1 6601],6601,0,330
+34,overrun,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[1 1 6601],6601,0,330
+35,phi,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[1 1 6601],6601,0,330
+36,pollStart_s,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[1 1 6601],6601,0,330
+37,position,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[6601 3],6601,0,330
+38,sensorValid,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[1 2 6601],6601,0,330
+39,theta,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor,,[1 1 6601],6601,0,330
+40,moduleTipXYZValid,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB Function1,,[6601 1],6601,0,330
+41,moduleTipXYZ_m,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB Function1,,[3 1 6601],6601,0,330
+42,R_NDI_from_arm,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[3 3 6601],6601,0,330
+43,baseOreintationValid,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+44,frame,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 2 6601],6601,0,330
+45,gravity_arm,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[3 1 6601],6601,0,330
+46,hostTime,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+47,lengthChnage_m,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[3 1 6601],6601,0,330
+48,nonBendingRotation_rad,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+49,orientationValid,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+50,overrun,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+51,phiOrientation,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+52,pollStart,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+53,raw1,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+54,raw2,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+55,raw3,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+56,raw4,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+57,raw5,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+58,raw6,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+59,raw7,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+60,raw8,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+61,thetaObservable,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+62,thetaOrientation,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 1 6601],6601,0,330
+63,valid,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/MATLAB System,,[1 2 6601],6601,0,330
+64,X,PAC_experiment_CP_adapt/NDI Sensor reading/Sensor/Subtract,,[1 1 6601],6601,0,330
+65,adaptationActive,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+66,adaptiveBias_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+67,adaptiveForce_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+68,allAboveActivation,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+69,allocationResidual_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+70,anchorReady,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+71,commonPressureShift_bar,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+72,commonPressure_bar,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+73,coriolisForce_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+74,dampingEstimate_NsPerM,PAC_experiment_CP_adapt/PAC,,[2 2 6601],6601,0,330
+75,dampingForce_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+76,feedbackForce_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+77,forceBias_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+78,historyState,PAC_experiment_CP_adapt/PAC,,[3 1 6601],6601,0,330
+79,hysteresisForce_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+80,inertialForce_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+81,limited,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+82,modelValid,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+83,parameterAtBound,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+84,parameterEstimate,PAC_experiment_CP_adapt/PAC,,[10 1 6601],6601,0,330
+85,pressureCommand_bar,PAC_experiment_CP_adapt/PAC,,[6601 3],6601,0,330
+86,s_mPerS,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+87,staticForce_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+88,status,PAC_experiment_CP_adapt/PAC,,[6601 1],6601,0,330
+89,stiffnessEstimate_NperM,PAC_experiment_CP_adapt/PAC,,[2 2 6601],6601,0,330
+90,tauBlended_N,PAC_experiment_CP_adapt/PAC,,[2 1 6601],6601,0,330
+91,tauEquivalent_N,PAC_experiment_CP_adapt/PAC,,[6601 2],6601,0,330
+92,tauRequested_N,PAC_experiment_CP_adapt/PAC,,[6601 2],6601,0,330
+93,kill_switch,PAC_experiment_CP_adapt/Pneumatic Valves/Kill,,[5 1],5,0,271.41
+94,P1_NI_DAQ,PAC_experiment_CP_adapt/Pneumatic Valves/Saturation,,[6601 1],6601,0,330
+95,P2_NI_DAQ,PAC_experiment_CP_adapt/Pneumatic Valves/Saturation1,,[6601 1],6601,0,330
+96,P#_NI_DAQ,PAC_experiment_CP_adapt/Pneumatic Valves/Saturation2,,[6601 1],6601,0,330
+97,sim time,PAC_experiment_CP_adapt/Reference clock,,[33001 1],33001,0,330
+98,sampled time,PAC_experiment_CP_adapt/Reference time 50 ms,,[6601 1],6601,0,330
+99,phi error,PAC_experiment_CP_adapt/Seperate paramter calculation/MATLAB Function1,,[6601 1],6601,0,330
+100,theta error,PAC_experiment_CP_adapt/Seperate paramter calculation/MATLAB Function1,,[6601 1],6601,0,330
+101,damping_gamma,PAC_experiment_CP_adapt/d_g,,[6601 1],6601,0,330
+102,damping_gains,PAC_experiment_CP_adapt/damping,,[6601 2],6601,0,330
+103,hysteresis_gamma,PAC_experiment_CP_adapt/h_g1,,[6601 1],6601,0,330
+104,stiffness_gamma,PAC_experiment_CP_adapt/k_g,,[6601 1],6601,0,330
+105,lambda_gains,PAC_experiment_CP_adapt/lambda,,[6601 2],6601,0,330
+106,des_phi,PAC_experiment_CP_adapt/smooth circle,,[33001 1],33001,0,330
+107,des_theta,PAC_experiment_CP_adapt/smooth circle,,[33001 1],33001,0,330
+108,measurementTime_s,PAC_experiment_CP_adapt/validMeasurementTime,,[6601 1],6601,0,330

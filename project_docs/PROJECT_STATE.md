@@ -3,10 +3,13 @@ Current Milestone: Tunable adaptive PAC with variable common-pressure allocation
 
 # Current project state
 
-2026-10-26 planning handoff: see `PAC_AUTOTUNING_FRAMEWORK_PLAN.md` for the
-experiment-based PAC tuning framework. Design only; next proposed work is an
-offline evaluator replaying v8/v9/v10, then a manual trial loop and bounded
-optimization. No framework implementation or hardware automation has been done.
+2026-10-26 framework development: branch `codex/pac-autotuning-framework`.
+Milestone A offline evaluator is implemented in `passivity_adaptive_control/autotuning`;
+see its README and `PAC_AUTOTUNING_FRAMEWORK_PLAN.md`. Offline tests reproduce
+v8 lap errors, v9 slew/gate counts and v10 pre-fault roughness/fault separation.
+Reviewed reports are in autotuning/reports/historical_reviewed_v1. No targets
+have been agreed, optimizer/manual ledger is not implemented, and no hardware
+automation exists. Next: milestone B manual candidate/manifest/ledger loop.
 
 Read this first, then the relevant specialized document. Use recorded inputs
 for experiment settings; do not infer them from filenames or current SLX defaults.
@@ -32,7 +35,7 @@ physical stiffness. Relaxed bounds no longer guarantee SPD K; current update
 does not enforce coupled SPD and modelValid does not check it. Monitor
 k1*k2+k1*k3+k2*k3>0 with k1+k3>0. No SLX edits/hardware runs; see validation.
 
-Branch: codex/passivity-adaptive-controller. Use git log for the latest checkpoint;
+Branch: codex/pac-autotuning-framework (created from 63f679a). Use git log for the latest checkpoint;
 the checkpoint preceding this review was bd83708. No remote push was performed.
 Do not commit/push or run hardware without the user's request.
 Do not edit SLX models unless requested; the user installs pasted block code.

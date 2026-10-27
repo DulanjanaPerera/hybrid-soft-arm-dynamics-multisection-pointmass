@@ -1,6 +1,10 @@
 # PAC experiment-based automatic tuning: implementation and handoff plan
 
-Created: 2026-10-26. Status: design only; no framework implementation or hardware automation is authorized by this document.
+Created: 2026-10-26. Updated after subsequent user authorization to develop the framework.
+Status: milestone A offline evaluator implemented and validated on branch
+`codex/pac-autotuning-framework`, starting from 63f679a. See
+`passivity_adaptive_control/autotuning/README.md`. Milestones B-E remain planned;
+no hardware automation has been implemented or authorized by this document.
 
 ## 1. Purpose and scope
 
@@ -217,4 +221,16 @@ These answers do not block building the offline evaluator. They do block claimin
 
 ## 15. Immediate next action
 
-Implement milestone A only: inventory v8/v9/v10 signals and report provenance, design the evaluator API, then reproduce the existing matched-window results and constraint/roughness classifications. Present the offline report and remaining configuration decisions before progressing to new experiments. The current request creates this plan only; it does not request implementation, a commit, a push or hardware execution.
+Milestone A is now implemented: native-signal inventory/provenance, bounded alignment,
+explicit constant-switch lifetime policy, metrics and classifications, adaptation
+gate/rate diagnostics, nominal allocation replay, reports and regression tests.
+Reviewed replay reproduces v8 per-lap errors, v9's 1071 slew mismatches and 65/1200
+active samples, and v10's pre-fault roughness increase plus the 104.85 s fault.
+Read the implementation README for current limitations (including constant-speed
+circle assumptions and no harmonic/XYZ score). No optimizer or hardware execution.
+
+Next: implement milestone B's manual candidate/manifest/ledger workflow. Campaign
+thresholds, search bounds, physical reset/preconditioning and confirmation duration
+remain unsettled. Do not treat historical exploratory trials as clean candidate
+observations or claim successful tuning. Do not run hardware or commit/push without
+the relevant user request.
