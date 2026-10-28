@@ -1,7 +1,18 @@
 Last Updated: 2026-10-28
-Current Milestone: Tunable adaptive PAC with variable common-pressure allocation implemented; initial physical circle data reviewed; directional lag remains.
+Current Milestone: PAC tuning checkpoint5532a5d saved; manual-run workflow retained; residual dynamics model learning branch initialized.
 
 # Current project state
+
+2026-10-28 branch transition: user requested relevant checkpoint and new branch.
+Committed PAC code, models, campaigns/raw data/reviews and documentation as
+5532a5d on codex/pac-autotuning-framework. Now codex/residual-dynamics-learning.
+Research objective: learn missing dynamics as MODEL augmentation, validate
+offline predictions, then compare original/augmented PDFB and PAC with manual
+experiments. Not a separate residual feedback controller. Continuous online
+tuning deferred. See RESIDUAL_DYNAMICS_LEARNING_PLAN.md for first audit, target
+identifiability, train/test protocol and comparison plan. No residual model
+fitted/deployed, hardware run or remote push. Unrelated RL changes (including
+staged rename), manuscript files and backups remain outside checkpoint.
 
 2026-10-28 R033: three5s circles completed29.6-44.6, no tracking limiting or
 latched PAC fault; constant gamma. Last2circle exploratory lengths[4.6818,
