@@ -1,0 +1,30 @@
+SOURCE C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\autotuning\no_payload_phi1_T10_20261027\baseline_00g_phi1_T10_12cycles_r02.mat
+SHA256 422f88a9ad89757bab0a58a21c18d5c481376154e9d4ea7dff89726785b7e326
+PERIOD 10.000000000 CLASS unconfigured_targets
+adaptationGamma [0.5 0.5 0.5 0.002 0.002 5 5 5 1 1]
+parameterLower [-100 -500 -100 1 1 0 0 0 -8 -8]
+parameterUpper [6000 6000 6000 250 250 20 20 20 8 8]
+parameterInitial [650 650 650 40 40 0 0 0 0 0]
+parameterMaxRate [850 850 850 20 20 5 5 5 0.2 0.2]
+parameterScale [1000 1000 1000 100 100 1 1 1 1 1]
+adaptationOptions [0.005 0.02 0.075]
+hystoryOptions [0.005 1 0.5 2]
+pressureOptions [1.6 -0.0983981693 -0.0819816714 0.2 3 2.5 2.5 6 0.2 13.273229]
+supervisorOptions [10 15 5 0.1 0.075 0.0005 Inf]
+lambda_gains [18 16.5]
+damping_gains [15 10]
+enableAdaptation 1
+enableCommonPressureAdaptation 1
+freezeHysteresisWeights 0
+INITIAL estimates[650 650 650 40 40 0 0 0 0 0] history[0 0 0]
+END_TRACKING estimates[398.3831 -57.21203 409.3391 47.31034 48.04778 10.05422 9.20486 9.487192 -1.11846 -0.1671416]
+bounds lowerFrac[0 0.0025 0.0083333 0 0 0.0070833 0.0041667 0.0066667 0 0] upperFrac[0 0 0 0 0 0 0 0 0 0]
+ratecap[0 0 0.0017065 0 0 0 0 0 0 0] gateMismatch0
+pressure minmax[0.73954 0.71484 0.7201;2.6367 2.6244 2.4533] residualPeak1.13742e-14 replay{"samples":2372,"allocationLimited":0,"slewTargetMismatch":0,"loggedFlagMismatch":0}
+timing maxControllerStep0.05
+WINDOW 20-40 {"start_s":20,"end_s":40,"samples":400,"coverage":0.985,"thetaCoverage":0.985,"phiCoverage":0.985,"velocityCoverage":0.985,"velocityPairCoverage":0.97,"q2Rmse_mm":4.1457372246113362,"q3Rmse_mm":5.3942781850055486,"qVectorRmse_mm":6.8033355255164993,"thetaMae_rad":0.49164580521633494,"phiMae_rad":0.23657333147969012,"phiMax_rad":1.2461351503397777,"velocityRmse_mPerS":0.0051379297322168621,"velocityErrorRateRmse_mPerS2":0.01709660267713908,"thetaRateStd_radPerS":0.34597023140829541,"nearStopFraction":0.033505154639175257,"slowOrReverseFraction":0.033505154639175257,"activeFraction":0.97,"limitedFraction":0,"faultSamples":0}
+WINDOW 40-50 {"start_s":40,"end_s":50,"samples":200,"coverage":0.985,"thetaCoverage":0.985,"phiCoverage":0.985,"velocityCoverage":0.985,"velocityPairCoverage":0.97,"q2Rmse_mm":4.2281040723122114,"q3Rmse_mm":4.3157171750182428,"qVectorRmse_mm":6.0417115771154251,"thetaMae_rad":0.46059922767964606,"phiMae_rad":0.15902711800759448,"phiMax_rad":1.0570186446085388,"velocityRmse_mPerS":0.004341776622774015,"velocityErrorRateRmse_mPerS2":0.015450226192197434,"thetaRateStd_radPerS":0.2670107853677634,"nearStopFraction":0.020618556701030927,"slowOrReverseFraction":0.020618556701030927,"activeFraction":0.97,"limitedFraction":0,"faultSamples":0}
+WINDOW 50-80 {"start_s":50,"end_s":80,"samples":600,"coverage":0.99333333333333329,"thetaCoverage":0.99333333333333329,"phiCoverage":0.99333333333333329,"velocityCoverage":0.99333333333333329,"velocityPairCoverage":0.98666666666666669,"q2Rmse_mm":3.2656997992679955,"q3Rmse_mm":3.4201899502755855,"qVectorRmse_mm":4.7288999222763364,"thetaMae_rad":0.35088431943477533,"phiMae_rad":0.0896301678667678,"phiMax_rad":1.0379794921310375,"velocityRmse_mPerS":0.0037633582883092567,"velocityErrorRateRmse_mPerS2":0.016913497397599151,"thetaRateStd_radPerS":0.28351111112232136,"nearStopFraction":0.020270270270270271,"slowOrReverseFraction":0.020270270270270271,"activeFraction":0.98666666666666669,"limitedFraction":0,"faultSamples":0}
+WINDOW 80-110 {"start_s":80,"end_s":110,"samples":600,"coverage":0.98333333333333328,"thetaCoverage":0.98333333333333328,"phiCoverage":0.98333333333333328,"velocityCoverage":0.98333333333333328,"velocityPairCoverage":0.96666666666666667,"q2Rmse_mm":2.206496693931018,"q3Rmse_mm":2.4313078551161138,"qVectorRmse_mm":3.2832736021656546,"thetaMae_rad":0.22278225143098235,"phiMae_rad":0.064475426303938654,"phiMax_rad":1.0687702737184619,"velocityRmse_mPerS":0.0032764863436356268,"velocityErrorRateRmse_mPerS2":0.02024618077115271,"thetaRateStd_radPerS":0.33933843882513576,"nearStopFraction":0.044827586206896551,"slowOrReverseFraction":0.046551724137931037,"activeFraction":0.96666666666666667,"limitedFraction":0,"faultSamples":0}
+WINDOW 110-140 {"start_s":110,"end_s":140,"samples":600,"coverage":0.9916666666666667,"thetaCoverage":0.9916666666666667,"phiCoverage":0.9916666666666667,"velocityCoverage":0.9916666666666667,"velocityPairCoverage":0.98333333333333328,"q2Rmse_mm":1.5289623056849306,"q3Rmse_mm":1.8568812882168486,"qVectorRmse_mm":2.4053552441864472,"thetaMae_rad":0.14835957837252181,"phiMae_rad":0.062341679636943162,"phiMax_rad":1.1045978056914574,"velocityRmse_mPerS":0.0029657596117076915,"velocityErrorRateRmse_mPerS2":0.019176641570014832,"thetaRateStd_radPerS":0.32687884786491767,"nearStopFraction":0.047457627118644069,"slowOrReverseFraction":0.047457627118644069,"activeFraction":0.98333333333333328,"limitedFraction":0,"faultSamples":0}
+FAULT whole run 0 first zeros(0,1)

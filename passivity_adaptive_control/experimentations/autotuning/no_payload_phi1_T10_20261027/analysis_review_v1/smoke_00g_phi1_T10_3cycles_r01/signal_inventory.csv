@@ -1,0 +1,109 @@
+index,names,paths,units,shapes,count,first,last
+1,enablePressure,PAC_autotuning_manual/Constant1,,[1201 1],1201,0,60
+2,enableAdaptation,PAC_autotuning_manual/Constant2,,[2 1],2,0,0.02
+3,enableCommonPressureAdaptation,PAC_autotuning_manual/Constant3,,[2 1],2,0,0.02
+4,freezeHysteresisWeights,PAC_autotuning_manual/Constant4,,[2 1],2,0,0.02
+5,sampled des_length,PAC_autotuning_manual/Desired lengths 50 ms,,[2 1 1201],1201,0,60
+6,,PAC_autotuning_manual/MATLAB Function,,[2 1 6001],6001,0,60
+7,adaptationGamma,PAC_autotuning_manual/MATLAB Function1,,[10 1 1201],1201,0,60
+8,adaptationOptions,PAC_autotuning_manual/MATLAB Function1,,[3 1 1201],1201,0,60
+9,hystoryOptions,PAC_autotuning_manual/MATLAB Function1,,[4 1 1201],1201,0,60
+10,parameterInitial,PAC_autotuning_manual/MATLAB Function1,,[10 1 1201],1201,0,60
+11,parameterLower,PAC_autotuning_manual/MATLAB Function1,,[10 1 1201],1201,0,60
+12,parameterMaxRate,PAC_autotuning_manual/MATLAB Function1,,[10 1 1201],1201,0,60
+13,parameterScale,PAC_autotuning_manual/MATLAB Function1,,[10 1 1201],1201,0,60
+14,parameterUpper,PAC_autotuning_manual/MATLAB Function1,,[10 1 1201],1201,0,60
+15,pressureOptions,PAC_autotuning_manual/MATLAB Function1,,[10 1 1201],1201,0,60
+16,supervisorOptions,PAC_autotuning_manual/MATLAB Function1,,[7 1 1201],1201,0,60
+17,d_length,PAC_autotuning_manual/MATLAB Function2,,[2 1 1201],1201,0,60
+18,dd_length,PAC_autotuning_manual/MATLAB Function2,,[2 1 1201],1201,0,60
+19,length,PAC_autotuning_manual/MATLAB Function2,,[2 1 1201],1201,0,60
+20,ddlength_error,PAC_autotuning_manual/MATLAB Function3,,[2 1 1201],1201,0,60
+21,dlength_error,PAC_autotuning_manual/MATLAB Function3,,[2 1 1201],1201,0,60
+22,length_error,PAC_autotuning_manual/MATLAB Function3,,[2 1 1201],1201,0,60
+23,filtered_d_length,PAC_autotuning_manual/MATLAB Function5,,[2 1 1201],1201,0,60
+24,filtered_dd_length,PAC_autotuning_manual/MATLAB Function5,,[2 1 1201],1201,0,60
+25,fitered_length,PAC_autotuning_manual/MATLAB Function5,,[2 1 1201],1201,0,60
+26,meas_position,PAC_autotuning_manual/NDI Sensor reading,,[3 1 1201],1201,0,60
+27,,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[6001 1],6001,0,60
+28,,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[6001 1],6001,0,60
+29,configurationValid,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[6001 1],6001,0,60
+30,fitResidual_m,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[6001 1],6001,0,60
+31,frame,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[1 2 1201],1201,0,60
+32,hostTime_s,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[1 1 1201],1201,0,60
+33,meas_length,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[3 1 1201],1201,0,60
+34,overrun,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[1 1 1201],1201,0,60
+35,phi,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[1 1 1201],1201,0,60
+36,pollStart_s,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[1 1 1201],1201,0,60
+37,position,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[1201 3],1201,0,60
+38,sensorValid,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[1 2 1201],1201,0,60
+39,theta,PAC_autotuning_manual/NDI Sensor reading/Sensor,,[1 1 1201],1201,0,60
+40,moduleTipXYZValid,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB Function1,,[1201 1],1201,0,60
+41,moduleTipXYZ_m,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB Function1,,[3 1 1201],1201,0,60
+42,R_NDI_from_arm,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[3 3 1201],1201,0,60
+43,baseOreintationValid,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+44,frame,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 2 1201],1201,0,60
+45,gravity_arm,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[3 1 1201],1201,0,60
+46,hostTime,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+47,lengthChnage_m,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[3 1 1201],1201,0,60
+48,nonBendingRotation_rad,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+49,orientationValid,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+50,overrun,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+51,phiOrientation,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+52,pollStart,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+53,raw1,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+54,raw2,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+55,raw3,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+56,raw4,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+57,raw5,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+58,raw6,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+59,raw7,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+60,raw8,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+61,thetaObservable,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+62,thetaOrientation,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 1 1201],1201,0,60
+63,valid,PAC_autotuning_manual/NDI Sensor reading/Sensor/MATLAB System,,[1 2 1201],1201,0,60
+64,X,PAC_autotuning_manual/NDI Sensor reading/Sensor/Subtract,,[1 1 1201],1201,0,60
+65,adaptationActive,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+66,adaptiveBias_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+67,adaptiveForce_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+68,allAboveActivation,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+69,allocationResidual_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+70,anchorReady,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+71,commonPressureShift_bar,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+72,commonPressure_bar,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+73,coriolisForce_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+74,dampingEstimate_NsPerM,PAC_autotuning_manual/PAC,,[2 2 1201],1201,0,60
+75,dampingForce_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+76,feedbackForce_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+77,forceBias_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+78,historyState,PAC_autotuning_manual/PAC,,[3 1 1201],1201,0,60
+79,hysteresisForce_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+80,inertialForce_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+81,limited,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+82,modelValid,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+83,parameterAtBound,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+84,parameterEstimate,PAC_autotuning_manual/PAC,,[10 1 1201],1201,0,60
+85,pressureCommand_bar,PAC_autotuning_manual/PAC,,[1201 3],1201,0,60
+86,s_mPerS,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+87,staticForce_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+88,status,PAC_autotuning_manual/PAC,,[1201 1],1201,0,60
+89,stiffnessEstimate_NperM,PAC_autotuning_manual/PAC,,[2 2 1201],1201,0,60
+90,tauBlended_N,PAC_autotuning_manual/PAC,,[2 1 1201],1201,0,60
+91,tauEquivalent_N,PAC_autotuning_manual/PAC,,[1201 2],1201,0,60
+92,tauRequested_N,PAC_autotuning_manual/PAC,,[1201 2],1201,0,60
+93,kill_switch,PAC_autotuning_manual/Pneumatic Valves/Kill,,[2 1],2,0,0.02
+94,P1_NI_DAQ,PAC_autotuning_manual/Pneumatic Valves/Saturation,,[1201 1],1201,0,60
+95,P2_NI_DAQ,PAC_autotuning_manual/Pneumatic Valves/Saturation1,,[1201 1],1201,0,60
+96,P#_NI_DAQ,PAC_autotuning_manual/Pneumatic Valves/Saturation2,,[1201 1],1201,0,60
+97,sim time,PAC_autotuning_manual/Reference clock,,[6001 1],6001,0,60
+98,sampled time,PAC_autotuning_manual/Reference time 50 ms,,[1201 1],1201,0,60
+99,phi error,PAC_autotuning_manual/Seperate paramter calculation/MATLAB Function1,,[1201 1],1201,0,60
+100,theta error,PAC_autotuning_manual/Seperate paramter calculation/MATLAB Function1,,[1201 1],1201,0,60
+101,damping_gamma,PAC_autotuning_manual/d_g,,[1201 1],1201,0,60
+102,damping_gains,PAC_autotuning_manual/damping,,[1201 2],1201,0,60
+103,hysteresis_gamma,PAC_autotuning_manual/h_g1,,[1201 1],1201,0,60
+104,stiffness_gamma,PAC_autotuning_manual/k_g,,[1201 1],1201,0,60
+105,lambda_gains,PAC_autotuning_manual/lambda,,[1201 2],1201,0,60
+106,des_phi,PAC_autotuning_manual/smooth circle,,[6001 1],6001,0,60
+107,des_theta,PAC_autotuning_manual/smooth circle,,[6001 1],6001,0,60
+108,measurementTime_s,PAC_autotuning_manual/validMeasurementTime,,[1201 1],1201,0,60

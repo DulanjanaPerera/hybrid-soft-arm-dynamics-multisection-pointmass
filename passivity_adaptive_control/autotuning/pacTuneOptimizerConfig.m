@@ -13,4 +13,5 @@ cfg.improvementOffset=.01; % Standardized expected-improvement offset.
 cfg.feasibilityLengthScale=.2;
 cfg.minimumDistance=.01; % Exclude seen/pending points in normalized log space.
 cfg.maxObservations=30;
+cfg.continueSearchAfterFeasible=false; % New campaigns may optimize beyond target satisfaction.
 end

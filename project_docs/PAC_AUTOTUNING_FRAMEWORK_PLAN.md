@@ -1,13 +1,102 @@
 # PAC experiment-based automatic tuning: implementation and handoff plan
 
+Research priority update2026-10-28: retain the established manual-run workflow
+to move forward with residual learning of missing dynamics and PDFB/PAC
+comparisons. Continuous tuning is checkpointed/deferred; it is not validated
+for unattended hardware use. Do not queue more tuning experiments by default.
+
 Created: 2026-10-26. Updated after subsequent user authorization to develop the framework.
 Status: milestones A-C implemented and validated on branch
 `codex/pac-autotuning-framework`, starting from 63f679a. See
 `passivity_adaptive_control/autotuning/README.md` and `MANUAL_WORKFLOW.md`.
 Milestone A is committed as e6fb02c; milestones B/C are included in the subsequent
 user-requested framework checkpoint (see git log).
-Milestones D-E remain planned;
-no hardware automation has been implemented or authorized by this document.
+The manual hardware campaign has been evaluated. On 2026-10-28 the user
+authorized continuous tuning implementation: fixed-rate trajectory/gain/scoring
+blocks, separate-process BO worker and a new wired PAC_autotuning_online.slx
+copy now exist. See autotuning/ONLINE_SIMULINK_WORKFLOW.md. Only synthetic
+runtime/library/transport and device-free wiring tests have been performed;
+operator-run hardware integration verification remains pending. No hardware
+run is authorized by this document.
+
+## 2026-10-28 extension: continuous tuning and speed scheduling (proposal)
+
+Implementation update: the between-batch tuning portion is implemented offline
+as described above. The following section records the original rationale;
+speed scheduling and contextual BO remain proposals. Preserved-state BO in the
+current worker is a stationary heuristic, not a solution to causal attribution.
+
+The user reports stable but significantly inaccurate 5 s circles with the same
+gains, and apparently slow adaptation. This is an operator observation; a new
+5 s recording has not yet been evaluated. The proposed next direction is to
+keep Simulink running while tuning gains between batches of circles. This is
+a design proposal, not implemented hardware automation.
+
+### Operating sequence
+
+1. Run a fixed batch with one gain set; ten circles is an initial concept.
+2. Ramp smoothly to a stationary hold and score the completed tracking window.
+3. Have the outer constrained Bayesian optimizer propose a complete gain set.
+4. Validate and apply that set through a supervised transition, allow settling,
+   and start the next batch.
+5. Stop at the iteration budget, confirmed targets or a safety condition.
+
+The PAC and its supervisor must continue independently while optimization
+computes. Do not block the real-time control task. Exclude ramps, holds and
+gain transitions from tracking scores. Specify both circle count and elapsed
+learning time. Define hold behavior, adaptation eligibility during holds,
+transition duration, optimizer timeout, rejected-candidate handling and fallback
+behavior before integration. Retain the independent hardware kill switch.
+
+### Adaptive state and fair comparisons
+
+For the immediate goal of improving an already operating arm, preserve adaptive
+estimates between batches. Gain application must not implicitly reset estimates,
+hysteresis history or filters. This differs from the completed manual campaign's
+fully reset trials. Resetting estimates under pressure can abruptly change force
+commands and would require a separately designed transition.
+
+Preserved learning makes performance history-dependent: the objective is not
+a stationary function of gamma alone. Log starting/ending estimates and history
+states, elapsed adaptation time, speed, update gates, bound/rate activity and
+gain transitions. Use consistent settling/scoring windows and revisit a promising
+incumbent after further learning. Later improvement cannot automatically be
+credited to the latest gains. A contextual/state-aware optimizer or a justified
+comparison strategy is needed before ordinary stationary BO rankings can be
+treated as reliable. Use a new campaign protocol; do not pool these observations
+with reset trials without accounting for their different initial conditions.
+
+### Objective, tuning scope and interpretation
+
+Initially tune gammaK, gammaD and gammaH only. Keep lambda, Ks, filters, pressure
+settings and parameter bounds fixed. Minimize existing fixed-raw roughness with
+each length RMSE <= 2 mm, vector velocity-error RMS <= 0.01 m/s, zero pressure
+limiting, no faults, and the existing coverage/protocol checks.
+
+Decreasing error across circles can indicate continuing learning. A persistent
+error floor may also reflect actuator lag, model mismatch or limited excitation.
+Gamma cannot overcome closed update gates or binding rate limits; increasing it
+is not assumed to remove a steady error floor or guarantee faster convergence.
+
+This is iterative controller tuning: PAC updates compensation estimates within
+batches and the outer optimizer updates gains between batches. Conventional
+iterative learning control (ILC) instead learns a correction waveform indexed
+by trajectory phase from repeated errors. ILC is a separate potential extension.
+
+### Speed scheduling and implementation stages
+
+Evaluate fixed-speed batches with speed recorded as context. Different periods
+may benefit from different gains, but gamma need not increase with speed. Ten
+circles at 5 s provide half the learning time of ten circles at 10 s. Test whether
+one robust gain set covers the range before constructing a period-dependent
+schedule. Validate interpolation and smooth gain transitions. Fast-circle
+actuator limitations remain relevant; 2 s feasibility is unproven.
+
+First automate batch/hold/score/propose with operator-approved application.
+Then consider automatic application after offline checks and operator-run
+hardware verification of transitions and failure handling. This proposal neither
+reopens campaign_smooth_v2's exhausted budget nor authorizes autonomous hardware
+runs. No controller or Simulink changes are made by documenting it.
 
 ## 1. Purpose and scope
 
@@ -145,7 +234,13 @@ Version metric definitions so campaign results remain comparable. Use fixed norm
 
 Initial objective proposal: minimize normalized q tracking RMSE over a fixed scoring window. Record learning-curve area and time to a sustained target as secondary metrics. This keeps the objective interpretable while the user's desired error thresholds remain undecided.
 
-Use separate acceptance constraints for theta/phi error, smoothness, coverage, pressure limiting and sustained confirmation. Specify all numeric thresholds and units in campaign configuration before optimization; unset required thresholds must prevent a campaign from claiming success. Do not invent an acceptable theta error or roughness limit from this plan.
+Current pac-tune-2 policy uses separate l2/l3 RMSE limits, length-velocity error,
+velocity-error-rate roughness, valid-data coverage, pressure limiting and sustained
+confirmation. Vector length RMSE remains the objective. Theta/phi and theta-rate
+limits are optional diagnostics/constraints; NaN disables those acceptance limits.
+Specify required numerical limits/units before optimization; unset required limits
+prevent success. Do not infer limits from baseline values. Version-1 snapshots
+retain their mandatory angular policy; migrate through a new campaign version.
 
 Classification should distinguish:
 

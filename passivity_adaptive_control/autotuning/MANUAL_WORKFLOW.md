@@ -37,7 +37,7 @@ Complete these fields before a real manually executed campaign:
 | `evaluationBudget` | Positive integer number of imported observations, including failures |
 | `confirmationRepeats` | At least two independent accepted confirmation observations |
 | `minimumConfirmationDuration_s` | Required duration of each confirmation, chosen to expose delayed deterioration |
-| `evaluator` | Fixed screening windows, period, normalization, coverage and all performance targets |
+| `evaluator` | Fixed windows, period, normalization, coverage and required length/smoothness/limiting targets; angular limits optional in pac-tune-2 |
 | `confirmationEvaluator` | Optional evaluator copy with longer tracking/scoring windows only; all other settings must match |
 | `conditions` | Payload mass/attachment timing, calibration/model IDs, reset/preconditioning procedures, phi/direction and code revision |
 
@@ -54,7 +54,10 @@ pressure, supervisor, feedback and switch inputs. Only the grouped gamma entries
 block code: a saved source function and a live block can differ.
 
 Targets default to NaN, and experimental details default to unknown. Do not fill
-them with invented values to make a campaign ready. Drafts can be archived, and
+optional theta/phi/vector-RMSE limits just to make the campaign ready: only the
+required limits in pacTuneTargetPolicy need values. Old pac-tune-1 snapshots retain
+their original policy; adopt the new length-based policy in a new campaign.
+Do not invent values for required limits or experimental conditions. Drafts can be archived, and
 bounded proposals can be reviewed when baseline/bounds/budget are present, but
 unconfigured campaigns cannot produce accepted or confirmed candidates.
 

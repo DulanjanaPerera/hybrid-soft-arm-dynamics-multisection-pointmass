@@ -1,5 +1,363 @@
 # Verification and experimental results
 
+## 2026-10-28 - Final smooth candidate10; campaign budget exhausted
+
+Imported smooth_candidate10_00g_phi1_T10_12cycles_r01.mat as smooth_candidate10_r01.
+Exact original-filter replay max error0; full tuning/software initialization match,
+no live edits/protocol mismatch; physical reset per standing user attestation.
+valid_infeasible: late110-140 l2/l3 RMSE[2.880204,3.166379]mm,vector4.280366mm,
+velocity.003572203m/s,roughness.016077616m/s^2. Both2mm limits fail; other caps
+pass. Coverage99.5%,pair99%; tracking coverage99.083%,adaptation98.167%,tracking
+faults/pressurelimits0. Lastlap length[2.6794,2.9826]mm still above targets.
+Smoothest measured,~16.7% less rough than mean baseline, but unacceptable length
+tradeoff under current criteria. No claim of isolated gamma causality/convergence.
+
+Adapter returns stop/evaluation_budget_exhausted,0remaining,success=false. No new
+candidate generated. Best qualified screened reference remains original baseline
+gamma.5/.002/5,roughness.01937096/.01922323 with length[1.5684,1.8887]/[1.5290,
+1.8569]mm. Feasible03/04/07/08 are rougher;08 has best length accuracy. Wider
+exploratory09/10 did not improve the constrained smoothness objective.
+Historical data were used in training,not held-out confirmation; future repeats
+or search require budget review. Saved final_budget_review,completed_search_review
+CSV/MAT/tradeoffplot and reproducible reviewSmoothBudget.m. No raw/model/controller
+changes,hardware execution,live gains,commit or push by assistant.
+
+## 2026-10-28 - Smooth candidate09 rejected; final search point queued
+
+User supplied smooth_candidate09_00g_phi1_T10_12cycles_r01.mat. Verified original
+measured-filter restoration by exact recorded-input replay,max error0. Import
+smooth_candidate09_r01 matches full tuning/software initial state, no live edits
+or protocol/manifest mismatch; physical reset per standing user attestation.
+valid_infeasible: last3circles lengths[2.527911,2.752004]mm fail2mm, vector3.736825mm;
+velocity.003515224m/s, fixed-raw roughness.022076340m/s^2 pass caps. Coverage99%,
+pair98%; tracking coverage99%,adaptation98%,faults/pressurelimits0. Lastlap
+length[2.3255,2.5333]mm still fails; not smoother than baseline~.0193 and not
+an improvement in accuracy. No causal claim about any individual gamma.
+
+Queued smooth_candidate10 from feasibility-weighted EI: k.25306817650802854,
+d.00069737816290234929,h2.6573766973344188. Normalized prediction mean.8121412,
+std.1511505 corresponds to roughness~.02030/.00378m/s^2; mean not better than
+baseline, acquisition includes uncertainty. Nine observations/one slot left;
+after next import stop/review budget and constraint-margin modeling. No automatic
+extra runs or formal confirmation from historical screenings. Artifacts and
+status_after_smooth09/status_after_queue_smooth10 saved. No controller/model
+edits, live gain write, hardware execution, commit or push by assistant.
+
+## 2026-10-28 - Broader smoothness-primary campaign prepared
+
+User requested increasing the proposed search ranges and testing performance.
+prepareSmoothRangeCampaign creates new immutable campaign_smooth_v2 with
+gammaK[.1,1],gammaD[.0005,.008],gammaH[1,10],original measured filter.20/.30s,
+2mm coordinate ceilings and fixed-raw-length roughness objective (normalizer.025).
+Velocity.01m/s,roughness.025m/s^2,zero limiting and95% coverage retained. Eight
+prior old-filter runs verified by exact measured-velocity replay before reuse;
+changed-filter trial excluded. All are historical training,not held-out validation.
+Source snapshots archived; old campaign/records untouched. Standing user reset
+attestation preserved, no independent physical calibration verification claimed.
+
+New config optimizer.continueSearchAfterFeasible=true explicitly continues
+objective improvement after a feasible screening; default false preserves prior
+confirmation-first behavior. Unit/integration tests cover continued search,
+queueing and pending-observation status. Manual/evaluator/optimizer/adapter
+regressions pass. This scheduling flag does not change GP fitting equations.
+
+Rescoring makes baseline repeats feasible with best mean roughness (~.0193);
+candidate03/04/07/08 also feasible,05/06 infeasible. New GP suggestion uses
+feasibility-weighted EI with a feasible incumbent: smooth_candidate09 gammaK
+.90453500157774203,gammaD .0022428161211506688,gammaH2.8192356276278843.
+Predicted normalized mean.7256975/std.1169877 (~.0181424/.0029247m/s^2), heuristic
+feasibility.584496 is not a calibrated probability or physical guarantee.
+Budget retained at10total observations:8reused+2new search slots, confirmation
+requires review beyond that. Original filter must be restored before the next
+user-run trial. Saved initial_status and RUN_NEXT.md. No controller/model edit,
+live gain write, hardware execution, commit or push by assistant.
+
+## 2026-10-28 - Actual-arm replacement filter worsens roughness; restore original
+
+User submitted filter_smoke_00g_phi1_T10_12cycles_r01.mat. It is a12circle run
+with candidate08 gamma(.75,.008,7.5),not suggested baseline. Compared against
+candidate08 using identical fixed raw-length analysis over110-140s. Exact new
+filter velocity replay error0; old-source replay max difference.008204m/s,
+confirming the tested implementation. No live tuning changes, tracking faults
+or pressure limits; new tracking coverage99.083%,scoring99.5%,pair99%.
+
+Old/new qRMSEmm [1.172517,1.302891]/[1.189358,1.416503], vector1.752804/1.849609;
+velocity RMS.00300670/.00357242m/s; roughness.02396971/.03408892m/s^2 (+42.2%,
+new exceeds.025). Secondary theta-rate SD.39579/.52262rad/s,near-stop8.08/10.10%,
+phiPeak1.1673/1.2111. Supports reverting to original measured.20/.30s; added lag
+is plausible but one run does not establish causation. Raw inputs filtered offline
+had appeared smoother; that did not predict improved closed-loop physical motion.
+
+Prepared same-port pacMeasuredDerivativesOriginal.m from saved original source,
+updated smoothness-first draft to select it, and marked experimental source as
+not selected. Desired filter remains.10/.15s. Saved actual_arm_comparison reports;
+changed-filter data excluded from old optimizer campaign, ledger remains8/10.
+No new active campaign/candidate, SLX edit, hardware execution, commit or push.
+
+## 2026-10-28 - Filter replay and smoothness-first preparation
+
+User requests smoother velocity/acceleration filtering, wider search and higher
+priority for smoothness, then explicitly approves2mm RMSE ceilings for each
+length. Read saved PAC_autotuning_manual.slx XML only: measured filter backward
+differences with velocity tau.20s/acceleration.30s; desired.10/.15s. PAC force
+uses measured q/dq, not measured ddq. No SLX load/run/edit. Saved measured source
+replays baseline1 and candidate08 logged dq exactly with pollStart_s timestamps;
+controller-time substitution differs, so clock provenance is material.
+
+Prepared same-port standalone pacSmoothMeasuredDerivatives: two-pole velocity
+tau.15s/stage with exact ZOH propagation and acceleration tau.35s, frame/gap
+handling, raw length passthrough. Earlier.10/.20s prototype worsened replay
+non-fundamental content and was not selected; its summary retained. Selected
+candidate replay reduces velocity non-fundamental RMS about7.6/11.0% and
+acceleration19.5/23.5% on baseline1/candidate08 respectively, but adds roughly
+.07-.08s velocity-estimate harmonic lag. These are same-input filter effects,
+not measured reductions in physical jerk or proof filters caused the roughness.
+Artifacts under filter_review_v1: saved source, comparison.csv, replayMAT/PNG,
+reproduction function and detailed smoke instructions. No raw data changed.
+
+Added configurable objective (old configs remain vector length RMSE) and fixed
+raw-length analysis velocity for the new draft. Fixed analysis taus measured.20,
+reference.10 stay constant regardless of live filter settings. Regression verifies
+that changing only logged velocity/reference-velocity channels cannot game the
+fixed-analysis score. Draft minimizes velocity-error-rate RMS, with2mm coordinate
+constraints, existing velocity/limiting settings and provisional roughness.025.
+Proposed gamma bounds k[.1,1],d[.0005,.008],h[1,10]; damping upper not increased.
+No active new campaign, old immutable config/ledger altered or gain applied.
+
+validatePacSmoothMeasuredDerivatives passes ramp/invalid/repeated/gap/synthetic
+high-frequency checks. Evaluator/manual/optimizer/adapter regressions pass after
+objective/scoring changes. Next physical step is user-run filter-only smoke at
+baseline gamma.5/.002/5 then12circle assessment if acceptable. Physical filtering
+performance and2s-speed behavior remain unvalidated. No hardware execution,
+controller/SLX edit, commit or push by assistant.
+
+## 2026-10-28 - Candidate08 best observed; acquisition/budget review
+
+Imported candidate08_00g_phi1_T10_12cycles_r01.mat as candidate08_r01: exact
+tuning/software initialization, no live edits or protocol/manifest mismatch,
+physical reset per standing user attestation. Valid_infeasible on both1mm length
+limits. Late110-140 qRMSE[1.172517,1.302891]mm/vector1.752804mm, velocity
+.002993780m/s, roughness.023912515m/s^2, coverage99.5%, pair99%. Velocity/
+pooled smoothness/zero-limiting pass. Tracking coverage99%, adaptation97.333%,
+faults/limits0. Early k2/k3 lower occupancy .958/4.083%; k3ratecap .942% active
+transitions. No upper bounds. Vector15.4% below07 and27.9% below mean baseline,
+but still not an accepted/confirmed result. Lap12 roughness.026547 exceeds .025
+individually while the agreed pooled3lap score passes; lastlap length[1.1433,
+1.2684]mm still above1mm. No retrospective acceptance-rule change.
+
+Eight observations/two budget slots remain, no candidate qualifies for2fresh
+confirmations yet. Raw adapter suggestion seek_feasible_region saved without
+queueing candidate09: k.26075453527454223,d.0010338149762252346,h3.9294515860178212,
+predicted objective2.69475mm/std.63161mm, heuristic feasibility.49796. Prediction
+does not indicate improvement over08. Identified current acquisition limitation:
+all observed labels infeasible, so it favors uncertain feasible-region exploration
+without learning individual constraint margins. Recommend reviewing margin-aware
+selection and budget before further hardware trials, using a new version if the
+algorithm changes. No algorithm or immutable configuration changed in this turn.
+Saved REVIEW_AFTER_CANDIDATE08.md/status_after_candidate08 and trial artifacts.
+No new proposal event, live gain write, model/hardware execution, commit/push.
+
+## 2026-10-28 - Candidate07 best observed; first fitted-surrogate proposal
+
+Imported candidate07_00g_phi1_T10_12cycles_r01.mat as candidate07_r01, exact
+tuning/software initialization, no live edits or protocol/manifest mismatch;
+physical reset per user attestation. Valid_infeasible: late110-140s qRMSE
+[1.236682,1.662630]mm/vector2.072130mm, velocity.002995711m/s, roughness
+.022585094m/s^2. Length targets fail; other configured limits pass. Coverage98.5%,
+pair97%; tracking coverage98.625%, active97.042%, tracking faults/limits0 and
+rate caps0, no upper bounds/stiffness lower contacts. Final-lap qRMSE[1.2090,
+1.5526]mm. Best observed vector score6.3% below03; not repeated confirmation.
+
+Seven objective observations/6 unique points complete initial design. Adapter
+queued candidate08 reason seek_feasible_region: gammaK .75,gammaD
+.0079999999999999967,gammaH7.4999999999999991. This is upper-bound exploration,
+not a predicted improvement: GP mean2.56631mm/std.60053mm and heuristic weighted
+feasibility.49866. No feasible incumbent exists; acquisition favors uncertain
+regions, and binary labels do not measure individual constraint margins. High
+gammaD near this box edge previously coincided with05 roughness violation; multiple
+gain changes prohibit isolated causal conclusions. Caveat recorded in run guide.
+Three observations remain including two confirmations. Saved status_after_candidate07
+and RUN_CANDIDATE08.md. No live gain write, hardware/model execution, controller
+edit, commit or push. No performance/stability guarantee for this exploratory point.
+
+## 2026-10-28 - Candidate06 reviewed, candidate07 queued
+
+Imported candidate06_00g_phi1_T10_12cycles_r01.mat as candidate06_r01 with
+exact tuning/software reset, no live edits or protocol/manifest mismatch;
+physical reset/calibration per standing user attestation. Valid_infeasible:
+late110-140 qRMSE[2.633751,2.903274]mm/vector3.919903mm, velocity.003443642m/s,
+roughness.019350617m/s^2. Both1mm limits fail; velocity/smoothness/zero-limiting
+pass. Coverage98.833%, pair97.667%; tracking coverage98.958%, active97.917%,
+tracking faults/pressure limits0, no rate caps or upper bound contacts. Small
+early k3 lower occupancy.417%. Lap12 length[2.4442,2.7215]mm continues learning
+but does not meet fixed-duration objective. Smoother than05, less accurate than03;
+no isolated causal conclusion about one gamma. Candidate03 remains best observed.
+
+Queued final initial-design candidate07 gammaK .35438912779204967,
+gammaD .0030892129738313034,gammaH6.8259366991000565. Six observations/four
+remaining including confirmations. Saved status_after_candidate06 and
+RUN_CANDIDATE07.md. No live gain write, hardware/model execution, controller
+edit, commit or push. Next acquisition may fit the GP after all6 design locations.
+
+## 2026-10-28 - Candidate05 perceived response-speed follow-up
+
+User felt05 reached the target faster. First-lap l2 RMSE05 3.2578 vs03 3.9665mm
+supports a coordinate-specific initial improvement; l3 worsens6.2193 vs5.6682mm,
+combined7.0209 vs6.9182mm. A descriptive10s-frequency sin/cos/DC least-squares
+fit of desired/measured lengths over valid samples gives early20-50s lag03
+[.67360,.84411]s vs05 [.66912,.93106]s; late110-140s03 [.18533,.22565]s vs05
+[.29203,.32149]s. Early fits include changing adaptation and are approximations,
+not actuator identification or proof of transient crossing time. Data do not
+establish overall faster response for05 despite initial l2 improvement. Current
+last3circle objective measures sustained tracking, not first arrival/crossing.
+No controller/campaign mutation, hardware run or new proposal in this follow-up.
+
+## 2026-10-28 - Candidate05 rejected on roughness and length; candidate06 queued
+
+User supplied candidate05_00g_phi1_T10_12cycles_r01.mat. Exact proposed/full
+tuning, software initial states and10s/phi1 reference match; no live edits or
+protocol/manifest mismatch. Physical reset/calibration per standing attestation.
+Imported candidate05_r01 valid_infeasible. Late110-140 qRMSE[1.836021,2.068622]mm,
+vector2.765894mm, velocity.003724713m/s, roughness.033585356m/s^2. Both length
+limits and .025roughness limit fail; velocity/zero pressure-limiting limits pass.
+Scoring coverage99.333%, pair98.667%; tracking coverage99.167%, active98.333%,
+tracking faults/limits0, no stiffness/damping bounds and no parameter rate caps.
+Roughness lap7 .027405,lap10 .033727,lap12 .037364; learning-length error falls
+while roughness worsens. Near-stop10.30%,phiPeak1.196 are secondary diagnostics.
+Candidate03 remains best measured; candidate05 vector error25.1% higher. Three
+gamma changes and different-day run prohibit isolated causal claims about gammaD.
+
+Queued candidate06 initial_log_space_design: gammaK .42192531104075343,
+gammaD .0020323562614174683, gammaH2.5725609289380671. All other settings fixed;
+five observations/five remaining including confirmations; success=false. Saved
+status_after_candidate05, per-trial report/artifacts and RUN_CANDIDATE06.md.
+No live gain application, hardware/model execution, controller edits, commit/push.
+
+## 2026-10-27 - Candidate04 reviewed, candidate05 queued
+
+User supplied candidate04_00g_phi1_T10_12cycles_r01.mat; imported candidate04_r01
+with exact candidate tuning, matching software initialization, no live edits or
+protocol/manifest mismatch (physical reset per standing user attestation).
+Last3circles110-140s qRMSE[1.692167,1.940342]mm/vector2.574559mm, velocityRMS
+.003027893m/s, roughness.020728518m/s^2. Coverage98.833%, pair97.667%, limiting0.
+Both1mm length limits fail; velocity/smoothness/limiting pass. Tracking coverage
+99.125%, adaptation98.25%, no tracking faults/limits or upper bound contacts.
+Rare early k2/k3 lower contacts .708/ .958%, k3 ratecap .594% active transitions.
+Late length error16.4% above candidate03: best observed remains candidate03;
+simultaneous gamma changes and one run do not isolate individual gain causality.
+
+Next proposal is initial_log_space_design, candidate05 gammaK .28570361215890433,
+gammaD .0077863906974842481, gammaH3.5952162270591348. Bounds unchanged and all
+other settings fixed. Four observations/six remaining; success=false. Archived
+status_after_candidate04 and RUN_CANDIDATE05.md. No live gain application,
+hardware/model execution, controller edits, commit or push by assistant.
+
+## 2026-10-27 - Actual candidate03 imported; candidate04 queued
+
+User supplied candidate03_00g_phi1_T10_12cycles_r01.mat (SHA256
+93f1c6298709cde0f694639628e975b01b75a3a98d42d2797daa30e27ac9ff71).
+Campaign intake verifies exact full tuning, software initial estimates/history,
+reference10s/phi1 and no live edits; physical reset/calibration follows standing
+user attestation. Imported screening trial candidate03_r01, valid_infeasible.
+Last3circles110-140s qRMSE[1.425487,1.690009]mm/vector2.210915mm, velocityRMS
+.00314726m/s, roughness.02076540m/s^2, coverage98.833%, pair97.667%. Both1mm
+coordinate targets fail; velocity/smoothness/limiting pass. Tracking coverage
+98.875%, active97.75%, pressure limiting0, latchedfault0, no upper bound contact.
+Early k2/k3 lower contacts .917/1.875%; k3 ratecap .725% active transitions.
+Lap12 length[1.3507,1.6040]mm and roughness.022242: continued learning with some
+roughness growth; no assertion of convergence or guaranteed stable future motion.
+Vector score about9% below baseline mean but one candidate run does not establish
+repeatability, adaptation causality or physical parameter identification.
+
+Proposal-only next action is initial_log_space_design. Queued candidate04 with
+gammaK .58034718095284454, gammaD .0037139224909066579, gammaH4.4053683649622428.
+All other settings fixed. Ledger now3 observations/7 remaining, success=false,
+pending candidate04. Saved status_after_candidate03 and RUN_CANDIDATE04.md.
+No live tuning write, model/controller edits, hardware execution, commit or push.
+
+## 2026-10-27 - Agreed manual campaign prepared, first proposal queued
+
+User approved k gamma[.25,.75], d[.001,.008], h[2.5,7.5], 12-circle runs scoring
+last3, zero limiting, two fresh confirmations and full reset. Trial schedule is
+20s startup+120s circles+5s ramp-down+5s pressurized hold, manual pressure kill.
+agreedEvaluationConfig now records limitedFraction=0 in addition to approved
+length1mm/velocity.01m/s/roughness.025m/s^2 limits. No angular acceptance limits.
+
+prepareLengthCampaign.m created immutable campaign_length_v1, source/model
+snapshot and baseline candidate, then imported both existing baseline recordings
+with user-attested reset metadata. Software initial states and logged settings
+already verified; model snapshot not claimed embedded historical provenance.
+Both baselines classify valid_infeasible, not successful, because q RMSE>1mm.
+Budget explicitly chosen conservatively as10 total observations including these2
+and confirmations, leaving8 new observations; extension requires review.
+
+Proposal-only adapter queued candidate03 from seeded initial log-space design:
+gammaK .645028694505006, gammaD .0010090123623767366, gammaH 5.8362570107825071.
+Bias gains and every other input remain fixed. Status configurationReady=true,
+awaiting_observation, success=false. Exact tuning/provenance saved in candidate
+artifact and RUN_NEXT.md. No controller/SLX edit, live gain write, physical run,
+commit or push. Single-run batching is not implemented or advised without verified
+controller/history/supervisor reset plus consistent physical preconditioning.
+
+## 2026-10-27 - Length-based threshold policy
+
+User requested implementing length-primary acceptance with optional angular
+limits. New pac-tune-2 config requires q2Rmse_mm/q3Rmse_mm, vector velocity RMS,
+velocityErrorRateRmse_mPerS2 and limitedFraction (0..1); vector length RMSE remains
+the objective and its limit is optional, as are theta/phi/theta-rate limits.
+pacTuneTargetPolicy centralizes required/active limits in evaluator and manual
+campaign readiness. Optional NaN angular measurements/observability do not veto
+valid length acceptance unless the angular limit is enabled. Length velocity
+valid-pair coverage remains required. Version-1 snapshots keep original angular
+requirements; campaign files are not rewritten. Numerical limits are still unset.
+
+Added tests for accepted length-only targets with unavailable angles, active
+angular coverage rejection, either-coordinate failure, missing required length
+limit, roughness rejection and version-1 policy compatibility. Evaluator/manual/
+optimizer/adapter offline regression suites pass. Roughness is RMS of consecutive
+velocity-error slopes on valid ungapped samples, not independent acceleration;
+filter/sample-period changes require rebaselining. Report tables identify required,
+optional disabled/unset and exceeded limits.
+
+Existing actual-arm recordings reevaluated under analysis_length_policy_v2 without
+changing raw files: tracking/length results unchanged; late vector velocity RMS
+.0030014/.0029658 m/s and velocity-error-rate RMS .019338/.019177 m/s^2, pair
+coverage97.33/98.33%. These diagnostics are not chosen acceptance bounds. No
+controller/SLX/hardware changes, real optimization run, commit or push performed.
+
+## 2026-10-27 - First actual-arm framework smoke/baseline review
+
+User supplied smoke_00g_phi1_T10_3cycles_r01.mat and two
+baseline_00g_phi1_T10_12cycles repeats under experimentations/autotuning/
+no_payload_phi1_T10_20261027. Offline reader/evaluator succeeds with all required
+signals, verified 3/12 reference turns, 10 s period, phi1, tracking starts20s,
+ends50/140s and recorded smooth-return interval to60/150s. Logged configuration
+identical and constant: lambda18/16.5, Ks15/10, gamma k.5/d.002/h5/bias1;
+mechanical/common enabled, hysteresis freeze false. Pressure activation/min .2,
+max3, slew6. This verifies nominal activation configuration, not physical deadzone.
+Software initial parameter/history states match; physical reset/trim metadata
+remain unverified beyond user statements. No payload per user.
+
+Smoke coverage98.67%, active97.33%, no faults/limits. Baselines coverage99.17/
+98.83%, active98.33/97.67%, no faults or logged/replayed pressure limits. Late
+110-140 thetaMAE .15202/.14836, phiMAE .06248/.06234, qRMSEmm [1.568,1.889]/
+[1.529,1.857]. Final-lap theta .13558/.13221; continued learning on laps10-12
+means repeatability at a fixed duration, not convergence. Gate mismatch0;
+no final-three-lap parameter bound contacts. Early k2/k3 bounds and k3 rate cap
+contacts rare. Pressure roughly .698-2.638/.715-2.637bar, peak rate~1.11bar/s.
+Nominal residual~1e-14N is not physical force error. H weights~9-10 by140s,
+d~47-48; no late bound bottleneck. Late sampled theta-rate SD .334/.327rad/s,
+near-stop5.31/4.75%, phiPeak1.111/1.105: residual roughness/overshoot remains,
+without v10-like sustained escalation. K signed/temporarily indefinite does not
+identify cause or prove stability; final minimum eigen101.62/111.47N/m.
+
+Reproducible reviewFirstTrials.m and analysis_review_v1 reports save settings,
+provenance/hash, windows, gates, lap metrics, evaluation MAT and comparison plot.
+All three classify unconfigured_targets, success=false; operational smoke check
+passes but no formal optimizer confirmation or real campaign is certified.
+Next: define fixed-duration objective, thresholds/bounds and operator metadata.
+No raw/model/controller edits, hardware execution, commit or push by assistant.
+
 ## 2026-10-27 - Manual workflow and optimizer checkpoint
 
 User requested committing completed milestones B/C. Checkpoint includes the manual
@@ -1821,3 +2179,186 @@ Fixed strict k1 lower-bound check (> -100) to >= -100. Accepted minimum bounds a
 
 ## 2026-10-26 - Framework and experiment checkpoint
 User requested a repository checkpoint. Includes the signed stiffness helper/test, framework handoff plan, current user-saved PAC model, v10 recording/reports/audit scripts and newly supplied 1rad_4s_gainTesting_v11.mat. v11 is preserved as unreviewed data; no performance or configuration conclusions have been established for it. Signed-bound offline validation passed earlier in this session; no hardware model was run. Generated RL exports, duplicate presentation ZIP, model backups, temporary code-generation/PDF files and unrelated paper drafts remain local. No remote push requested.
+## 2026-10-28 - Offline continuous-tuning supervisor prototype
+
+User requested unattended between-batch tuning. Added host-only
+pacTuneOnlineConfig/pacTuneOnlineStep and ONLINE_WORKFLOW.md. Synthetic
+validatePacTuneOnline passed in MATLAB R2025a: exact candidate acknowledgement,
+hold/settle/run/score progression, identical-gain repeat-to-target, stale-score
+rejection, invalid coverage, limiting/fault stop, bounded local BO proposal,
+global budget and apply timeout. No model was loaded or run, gains applied,
+or SLX edited. Sandbox MATLAB startup failed with filesystem inconsistency;
+the same offline test succeeded outside the sandbox.
+
+This does not validate hardware integration, trajectory synchronization,
+independent watchdog behavior, transport, score collection or hardware safety.
+The prototype has no such adapters yet. Preserved-state comparisons
+remain history-dependent, and repeat passes are operational checks rather than
+independent reset confirmations. Scale-5 tuning requires a new campaign with
+explicit current gamma and bounds; no historical scale-1 campaign was reopened.
+
+## 2026-10-28 - Continuous tuning blocks, worker and new model copy
+
+User authorized implementing the Simulink gain/trajectory integration and
+provided baseline gammaK/D/H=.0515/.0005999/1.49999. Created
+PAC_autotuning_online.slx from saved PAC_autotuning_manual_v2.slx without editing
+the source. Saved source inspected from ZIP and model loaded/saved only; it was
+not updated, compiled or run. No hardware model was executed.
+
+Added fixed-size pacOnlineRuntimeStep, standalone generated block library,
+separate-process pacOnlineWorker/WorkerStep, nonblocking localhost bridge,
+configuration/snapshot creation, settings packer, zero-command stop confirmation
+and reproducible new-copy installer. Runtime handles actual reference phases,
+gain acknowledgement, independent metric accumulation, terminal ramps, heartbeat,
+settings/gamma mismatch, faults, coverage and tracking limits. See
+autotuning/ONLINE_SIMULINK_WORKFLOW.md for detailed contract and launch.
+
+Offline verification:
+
+- validatePacOnlineRuntime passed synthetic cycles, repeated-target finish,
+  bounded local BO, duplicates, heartbeat, bounds/configuration/limit/clock stop.
+  Online score matched independent pacTuneFixedVelocity offline reconstruction
+  to <1e-10 in the synthetic fixture. Toy convergence fixture uses relaxed
+  targets; real session retains 2mm/.01m/s/.025m/s^2 targets.
+- Standalone library compiled/ran in new synthetic Simulink harnesses, both
+  network disabled and localhost-enabled, without device blocks.
+- Two real separate MATLAB processes exchanged synthetic UDP data and completed
+  two batches with target-stop handshake; worker persisted aligned 121-column
+  packet audit and checkpoints. Latest fixture under tmp/pac_online_transport_20261028_v2.
+- A separate full-model test clone had BOTH complete NDI and valve subsystems
+  removed and replaced by mock sources/terminators before compilation/run.
+  This exposed and fixed measured vector width (four, not six), numerical
+  enable-port types, library links and settings-feedback delay. The device-free
+  full wiring compiled and ran. Actual arm model remains uncompiled/unrun.
+- Test warning identified the saved dashboard pressure control's obsolete
+  Kill:Value binding. The new copy explicitly binds to its actual pressure-enable
+  constant, defaults Off and requires operator On before Run. Original untouched.
+
+Scope limitations: no hardware timing/safety validation, deployable real-time
+target, contextual GP, speed schedule or automatic rollback. Normal simulation
+extrinsic transport only. Runtime watchdog is independent of worker, not of a
+stalled Simulink/PC. UDP packet audit is not a substitute for normal logsout.
+Adaptive state is preserved, so target repeats are operational rather than
+independent reset confirmations. New session uses scale-5 settings, not old
+campaign observations. No commit/push performed.
+
+## 2026-10-28 - Dedicated baseline-only smoke configuration
+
+Prepared PAC_autotuning_online_smoke.slx and separate
+autotuning/online_sessions/smoke_phi1_T5_scale5_r01 from the implemented session.
+Three circles at 5 s, phi1, final two scored. GammaK/D/H fixed to user baseline
+.0515/.0005999/1.49999 with equal lower/upper bounds, budget one, no gain search.
+Model created/saved only, not compiled/run. The same integration functions have
+already passed device-free clone tests. Worker pure-state check verifies one
+completed observation leads to budget stop without an optimizer proposal or
+gain change. Operator-run monitored smoke and saved-log review remain pending.
+Expected normal runtime reason23; missing tracking target alone is not a smoke
+failure or proof of instability. Preserve raw logs including aborted trials.
+
+## 2026-10-28 - Desktop Real-Time pacing incompatibility and fresh smoke retry
+
+User screenshot: NDI preflight passed, then simulation refused to start because
+Simulink pacing cannot be combined with Desktop Real-Time. This was an installer
+mistake: device-free tests intentionally disabled pacing, so did not exercise
+that hardware-specific compatibility check. Installer changed to pacing off;
+generated initial/r01 model files corrected without running/compiling hardware.
+
+Separate worker screenshot showed zero packets/zero completed batches, followed
+by expected overwrite rejection on restart. Old log preserved. Prepared new
+smoke r02 model/session with the same fixed gains/three circles, new identity
+and worker initial connection timeout thirty minutes rather than five. Active
+runtime watchdog and post-connection telemetry timeout remain unchanged.
+R02 startup and physical behavior still require operator verification.
+
+## 2026-10-28 - Windows build filename limit on r02
+
+User screenshot identified generated C source path >260 characters under nested
+session cwd/slprj. Added model-process pacOnlineConfigureBuild using
+Simulink.fileGenControl cache/code folders under short local TEMP/pac_bld/PID.
+All generated model-open scripts call it. Process isolation avoids shared-build
+collisions; project, old generated files and logs preserved. No hardware model
+run or Windows registry/policy change. User can retry same live r02 session
+after calling helper in model MATLAB if worker is still listening.
+
+## 2026-10-28 - Physical r02 smoke: false validity abort, shutdown verified
+
+Read saved out and worker MAT only. Startup status0/1/2/3 at0/10/15/20s,
+hold20.55, gamma acknowledgement20.60, approach22.60, spin-up27.60,
+constant-speed run29.60. Supervisor abort at34.00 reason4, only4.4s/0.88
+circles; zero completed batches, no final scoring window or optimizer trial.
+All gamma values constant .0515/.0005999/1.49999; scale/rate/upper for H5/10/50.
+Tracking limiting0, latched PAC status5 faults0. Isolated50ms status4 samples
+recovered individually. Pressure peaks[2.13823,2.42442,2.60675]bar; final command
+and threeDAQ outputszero. Terminal phase10 at39.00, commands<.01 at39.30,
+simulation stop40.30 after1s dwell. Command shutdown verified, physical pressure
+not sensed. Partial early RMSE[5.2206,8.9064]mm is not settled/target score.
+
+Root cause: current raw validity false33.90, true33.95, false34.00; delayed
+PAC status/modelValid remained invalid33.95 from prior frame. Old grace used
+controlled (mixed current and delayed signals), bridging isolated dropouts.
+Floating-point 34-33.9 also exceeds.10 slightly. Changed runtime grace to raw
+current measurement validity, retained delayed flags for conservative score/
+hold checks and PAC's own fault logic, added1e-9 tolerance. Hold stage no longer
+calls one invalid frame movement; fresh measured movement still aborts.
+
+validatePacOnlineValidity passes recorded-prefix replay through34.20s without
+false abort, sustained-invalid stop beyond exact grace boundary, invalid hold
+frame and actual-movement cases. validatePacOnlineRuntime synthetic suite
+passes. Recorded replay beyond old desired-trajectory divergence cannot prove
+later tracking; no such claim made. Reports MAT/CSV/README saved under
+smoke_phi1_T5_scale5_r02/review_v1. Fresh r03 model/session with identical fixed
+gains and no search prepared; runtime/worker source snapshot archived there.
+No hardware model run by assistant. R02 is not a completed smoke pass; repeat
+monitored fixed-gain smoke before optimizing.
+
+## 2026-10-28 - R03 no-motion startup: worker handshake missing
+
+Verified out metadata is actual R03 model. Online phase0 ->9 at50.05 reason9
+->10 at55.05; end56.30. Actual online phi/theta0, candidate0. Status3 from20s,
+all measurement/base/model flags valid, post20 velocity peaks[.000187003,
+.000134689]m/s below.0005. Reconstructed non-heartbeat readiness from20.55s
+for590 phase0 samples. Therefore startup's heartbeat gate was missing, not
+insufficient learning or stationarity. Final pressure commandszero. Existing
+unused old reference logs can show circles despite actual online targetzero.
+
+Read-only netstat: both localhost32151/32152 on MATLAB backend28480, R03 cache
+under60752. This supports stale model socket retained in instance now running
+worker, blocking the other model process. Worker lock present, no final log.
+Previously bridge initialization catch silently returnedzeros, hiding bind
+error. Added explicit warning/transport flag and runtime reason13; worker
+startup clears old bridge only with local models stopped. No user's sockets
+or processes terminated by assistant.
+
+New pressure-free connection probe validates matching session/baseline and
+port ownership before model Run. Worker probes do not activate telemetry timeout
+or enter observations. Alternate-port32251/32252 synthetic regression deliberately
+seeded leftover model socket in worker, verified startup cleanup, probes11s
+apart, subsequent two-batch completion and persisted audit. Existing R02
+validity regression still passes. Reports under R03/startup_review_v1; old
+raw recording preserved. No hardware runs/gain changes performed.
+
+## 2026-10-28 - R033 completed motion, insufficient coverage, rejection handshake fix
+
+Read saved R033 out and1733worker packets only. Three5s circles29.6-44.6s,
+gamma .0515/.0005999/1.49999 constant, H scale/rate/upper5/10/50. No tracking
+limiting or latched PAC fault. Last2circle exploratory scores independently
+recomputed to<1e-8: lengths[4.681777,6.780124]mm, velocity error.01210224m/s,
+roughness.03081964m/s^2. Coverage.884422 excludes GP training acceptance.
+
+Score200samples:192rawvalid,184controlled after delayed flags,176/199pairs.
+Eight tip-validity dropouts withbase valid/overrun0. Raw-only pairs183/199 also
+below95%; exact missing/stale/tracking cause unresolved, policy/sensor code
+unchanged. Per-lap length errors[5.3172,8.3457],[4.4699,7.1445],[4.8845,6.3950]
+mm; not settled-performance proof. One motion batch, zero accepted observations.
+
+Worker rejected usingoldrequest1 while runtime requested2, causing30s extra
+hold. Reason11 at81.6, phase10 at86.6, zero commands86.9, stop87.9, finalDAQzero.
+Pressure peaks[2.6315,2.6191,2.6050]bar. Fixed rejection reply ID, explicit
+reasons, terminal immutability and stop withoutstationary wait. Invalid motion
+attempts now retained/checkpointed separately from accepted observations.
+validatePacOnlineRejection verifies recorded failed score ->reply2, retained
+attempt/no accepted observation, stable repeats, immediate reason24 transition.
+Runtime and R02 validity regression suites pass. No hardware/model execution
+during review. Detailed artifacts under R03/review_r033_v1. Existing session
+cannot be reused; no new hardware trial queued or gains changed.
+

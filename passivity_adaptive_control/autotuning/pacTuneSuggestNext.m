@@ -15,7 +15,8 @@ if ~state.configurationReady,suggestion.configurationIssues=state.configurationI
 if ~isempty(state.pendingCandidateIds)
     suggestion.action='observe';suggestion.candidateId=char(state.pendingCandidateIds(1));return
 end
-if ~isempty(state.bestScreenedCandidate)
+continueSearch=isfield(C,'optimizer')&&isfield(C.optimizer,'continueSearchAfterFeasible')&&C.optimizer.continueSearchAfterFeasible;
+if ~isempty(state.bestScreenedCandidate)&&~continueSearch
     suggestion.action='confirm';suggestion.candidateId=state.bestScreenedCandidate;return
 end
 assert(isfield(C,'optimizer'),'pacTune:OptimizerConfig', ...

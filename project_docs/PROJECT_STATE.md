@@ -1,7 +1,165 @@
-Last Updated: 2026-10-27
+Last Updated: 2026-10-28
 Current Milestone: Tunable adaptive PAC with variable common-pressure allocation implemented; initial physical circle data reviewed; directional lag remains.
 
 # Current project state
+
+2026-10-28 R033: three5s circles completed29.6-44.6, no tracking limiting or
+latched PAC fault; constant gamma. Last2circle exploratory lengths[4.6818,
+6.7801]mm, velocity.012102m/s, roughness.030820m/s^2. Coverage.884422<.95,
+zero accepted GP observations despite one completed-motion batch. Score200
+samples:192rawvalid,184controlled,176/199pairs; eight tip-validity dropouts,
+base valid/overrun0. Raw-only pairs183/199 still<95%; do not loosen posthoc.
+Need inspect tip tracking/frame quality before gain search. Rejection-ID bug
+fixed: reply1 while runtime waited2 caused30s hold thenreason11. Now errors
+reply2, don't waitstationary, retain invalid attempt/checkpoint separately.
+Recorded regression and runtime/validity suites pass. Actual commandszero86.9,
+stop87.9, allDAQzero. Detailed R03/review_r033_v1. No gains/policy/sensor changes
+or hardware runs during review; existing session logs preserved.
+
+2026-10-28 R03 reviewed: no circle commanded. Phase0 until startup timeout
+50.05s reason9; all non-heartbeat gates ready20.55s, actual phi/theta0,
+PAC status3, velocities <.0005m/s. Zero commands at shutdown, end56.30s.
+No accepted worker heartbeat. Current netstat showed model32151 and worker32152
+on same MATLAB backend, while model cache PID differed: stale bridge in worker
+instance is supported conflict explanation. Worker now clears its model bridge
+with models stopped; UDP bind failure explicit reason13/warning. Added
+pacOnlineConnectionCheck and r03/check_connection.m pressure-free preflight;
+must PASS in model MATLAB before retry. Alternate-port regression seeded stale
+socket, tested cleanup/probes11s apart and synthetic completion. R03 recording
+preserved; same fixed-gain smoke can retry after worker restart and preflight,
+using new recording filename. No gain tuning or hardware run by assistant.
+
+2026-10-28 r02 physical smoke reviewed: startup/worker/baseline acknowledgement
+worked, constant-speed run29.6s, abort34.0s reason4 after0.88circles; zero
+completed batches. No tracking limiting or latched PAC faults. Shutdown worked:
+phase10 at39.0s, zero commands39.3s, finalDAQzero, stop40.3s. False-positive
+dropout grace joined raw invalid33.90/valid33.95/invalid34.00 via delayed PAC
+diagnostics, with strict floating-point >.10 boundary. Corrected raw-current
+validity grace and 1e-9 tolerance, preserving PAC fault/limit/heartbeat handling;
+invalid hold frames wait, fresh movement still aborts. Recorded-prefix and
+synthetic sustained-invalid tests pass; not a counterfactual completion claim.
+Review artifacts under smoke_phi1_T5_scale5_r02/review_v1. Fresh r03 fixed-gain
+three-circle model/session prepared; no gain search or extra hardware run by
+assistant. Repeat monitored smoke with same gains before optimization.
+
+2026-10-28 smoke build-path correction: r02 compilation hit Windows 260-character
+limit because cwd was the nested session folder. Added pacOnlineConfigureBuild
+and called it from all generated open_model scripts: model-process cache/code
+folders now go to short, PID-isolated local TEMP/pac_bld directories. No model
+execution, project relocation or cache/log deletion. Existing listening r02
+worker can remain; retry requires setting this in model MATLAB, not worker.
+
+2026-10-28 smoke startup correction: user reported Desktop Real-Time rejects
+simulation pacing, then worker zero packets/batches and overwrite refusal.
+Installer now sets EnablePacing=off; generated initial/r01 model files corrected.
+Fresh PAC_autotuning_online_smoke_r02.slx and smoke_phi1_T5_scale5_r02 session
+prepared; use matching r02 worker, not an old loaded model. Worker initial
+connection wait increased from five to thirty minutes; live heartbeat watchdog
+unchanged. Old attempt/log preserved. No hardware run performed by assistant.
+
+2026-10-28 next hardware step: prepared separate fixed-gain smoke session
+autotuning/online_sessions/smoke_phi1_T5_scale5_r01 and new
+PAC_autotuning_online_smoke.slx. Three 5 s circles, score last two, gamma fixed
+at [.0515;.0005999;1.49999] by equal lower/upper bounds, budget one, no gain
+search. Operator monitored only; save full out log and worker audit. Expected
+normal terminal reason23 is budget exhausted, not target confirmation. No
+hardware execution performed; inspect smoke logs before multi-candidate runs.
+
+2026-10-28 continuous tuning implementation: created PAC_autotuning_online.slx
+as a NEW wired copy of saved PAC_autotuning_manual_v2.slx, standalone block
+library and session MAT under autotuning/online_sessions/phi1_T5_scale5_initial.
+Starting gamma [.0515;.0005999;1.49999], 5 s circles, ten circles/batch, score
+last three, budget ten completed candidates, two identical-gain operational
+passes to finish. Fixed hysteresis scale/rate/upper = 5/10/50; lambda/Ks remain
+[18;16.5]/[15;10], verified in saved model. Initial global search bounds half
+to twice baseline; local multiplicative change <=1.5. These are engineering
+limits, not proven stable bounds. Preserve adaptive estimates/history, gate
+mechanical updates during straight holds, independently retain common-pressure
+allocation. Worker runs in a separate MATLAB process over localhost UDP.
+Runtime controls C2 reference ramps, actual batch timing, independent fixed-raw
+scores, candidate acknowledgement, settings/gamma checks and worker heartbeat.
+Terminal sequence withdraws reference, disables PAC pressure with its existing
+slew, then stops after command pressures <.01 bar for one second. New copy's
+dashboard pressure switch is rebound to the actual enable constant and defaults
+Off; saved source dashboard referred to missing Kill. Original models preserved.
+No arm model compiled/run. Synthetic library/runtime/transport and device-free
+clone wiring tests performed; real hardware integration remains unverified.
+See ONLINE_SIMULINK_WORKFLOW.md for launch, wiring, reasons and limitations.
+Normal desktop simulation only; watchdog cannot protect against Simulink/PC
+stall. No commit/push, hardware execution or automatic old-campaign reopening.
+
+2026-10-28: user requested unattended between-batch tuning. Added an offline
+host supervisor (pacTuneOnlineStep/Config) with hold/apply acknowledgement,
+settle/run/score sequencing, local bounded BO, repeated operational targets,
+budget and terminal failure handling. See autotuning/ONLINE_WORKFLOW.md.
+Not arm-ready: model/transport/watchdog/evaluator adapters and hardware checks
+remain; no SLX edited or hardware run. Gamma values and new scale-5 search
+bounds are unconfigured. Preserved-state BO remains a history-dependent heuristic.
+
+2026-10-28 proposal: continuous operation with constrained Bayesian gain tuning
+between circle batches, preserving adaptive estimates for operational improvement,
+then potentially scheduling validated gains by speed. User reports stable but
+inaccurate 5 s circles; this new observation has not been independently evaluated.
+The detailed extension in PAC_AUTOTUNING_FRAMEWORK_PLAN.md records the sequence,
+history-dependent comparison problem, objectives and staged integration.
+Proposal only: no controller/SLX changes, hardware execution or new campaign budget.
+
+Latest2026-10-28: smooth_candidate10 evaluated; current campaign_smooth_v2
+budget exhausted(10/10),no candidate11 generated. Original filter verified by
+exact replay,settings match,no tracking faults/limits. Late l2/l3 RMSE[2.88020,
+3.16638]mm fail2mm; roughness.0160776m/s^2 is smoothest measured but infeasible.
+Best qualified smoothness reference remains original gamma.5/.002/5: length
+~1.55/1.87mm,roughness~.0193 with old filters. Historical screenings are not fresh
+confirmations. Review objective/constraint-margin modeling and budget before
+more experiments. See campaign_smooth_v2/completed_search_review/README.md and
+tradeoff plot/CSV. Old campaign history and raw data remain unchanged.
+
+Latest2026-10-28: user approved broader-range performance search. Prepared NEW
+campaign_smooth_v2 in unloaded T10 experiment folder: old measured.20/.30s filter,
+smoothness-primary fixed-raw scoring,2mm ceilings, gamma k[.1,1],d[.0005,.008],
+h[1,10]. Exact replay verified all8 reused old-filter recordings; changed-filter
+trial excluded. Baseline is now best screened by roughness, not candidate08.
+New immutable optimizer.continueSearchAfterFeasible=true permits search beyond
+feasible historical baseline; old confirmation-first behavior unchanged. Eight
+seeded observations leave2new evaluations under10total budget; confirmations
+need review/extension afterward. Queued smooth_candidate09 gamma k=.90453500157774203,
+d=.0022428161211506688,h=2.8192356276278843. New RUN_NEXT.md has exact instructions;
+restore original filter before running. No live gains or hardware/model execution.
+
+Smooth candidate09 now imported: original filter verified by exact replay0,
+matching tuning/no edits/faults/pressure limits. Late lengths[2.52791,2.75200]mm
+fail2mm; velocity.00351522m/s, fixed roughness.02207634m/s^2 pass caps but do not
+improve qualified baseline smoothness. valid_infeasible. Nine observations/one
+slot remain. Queued final smooth_candidate10 k=.25306817650802854,
+d=.00069737816290234929,h=2.6573766973344188. See RUN_SMOOTH_CANDIDATE10.md.
+Predicted meanroughness~.02030/std.00378 does not by itself predict improvement;
+uncertainty influences EI. Stop/review budget after this trial; no extra runs
+or confirmation authorized automatically. Original baseline still best screened.
+
+Latest filter outcome2026-10-28: user ran filter_smoke_...12cycles at actual
+candidate08 gamma(.75,.008,7.5). New filter verified by exact velocity replay.
+Matched-gain fixed-analysis roughness worsens .0239697->.0340889m/s^2; qRMSE
+[1.1725,1.3029]->[1.1894,1.4165]mm. User prefers restoring old filters; recommend
+original measured.20/.30s,desired.10/.15s. Prepared paste-ready
+pacMeasuredDerivativesOriginal.m; no SLX edits by assistant. Smoothness-first
+draft now specifies old filter, still2mm coordinate ceilings and fixed raw-length
+scoring. Changed-filter run is not mixed into old optimizer ledger. See
+filter_review_v1/actual_arm_comparison/README.md. Historical prototype notes below
+are superseded by this actual-arm outcome; do not install the experimental filter.
+
+Latest direction2026-10-28: user prioritizes smoothness and approved2mm RMSE each
+coordinate for a NEW campaign. Current1mm campaign remains immutable; no next
+hardware candidate queued. Measured-filter replacement pacSmoothMeasuredDerivatives.m
+is paste-ready/offline-tested only (.15s two-pole velocity,.35s acceleration).
+Saved model measured filter .20/.30s replayed exactly; desired filter .10/.15s.
+Measured acceleration is not used by PAC force. Proposed replacement reduces
+non-fundamental content but adds ~.07-.08s velocity-estimate lag at10s period.
+See experiment folder filter_review_v1/README.md. Next manual action: measured
+filter-only3circle smoke with baseline gamma .5/.002/5; no SLX changes by assistant.
+New objective/source policy supports roughness minimization from raw lengths
+through a fixed offline filter, preventing changed live filters gaming the score.
+pacTuneSmoothCampaignDraft proposes k[.1,1],d[.0005,.008],h[1,10], not an active
+or physically validated search. New physical filter baseline required first.
 
 2026-10-26 framework development: branch `codex/pac-autotuning-framework`.
 Milestone A offline evaluator is implemented in `passivity_adaptive_control/autotuning`;
@@ -29,6 +187,121 @@ Milestones B/C are included in the user-requested framework checkpoint; use git
 log for its revision. Next is milestone D, an operator-run campaign;
 real baseline, bounds, targets, conditions and confirmation protocol remain
 unsettled. No hardware run, SLX edit, automatic gain write or push performed.
+
+First physical workflow protocol prepared: user saved PAC_autotuning_manual.slx
+and selected no payload, phi=1 rad, T=10 s. Proposed sequence is 3-cycle smoke,
+then two fresh 12-cycle baseline repeats after log review. Save originals under
+passivity_adaptive_control/experimentations/autotuning/no_payload_phi1_T10_20261027;
+see its README for names, timing assumptions and notes. Actual stable tuning
+and reset/trim details still need verification from the first log. No trial has
+been executed by the assistant; these are not yet formal confirmation runs.
+
+First user-acquired smoke + two baseline recordings now reviewed offline; see
+that folder's analysis_review_v1/README.md. Verified .2 bar activation, slew6,
+lambda18/16.5, Ks15/10, gamma k.5/d.002/h5; all fixed across runs. Initial
+estimates/history match. Baselines: no latched faults or pressure limiting,
+99.17/98.83% valid coverage; last-three-lap thetaMAE .15202/.14836, phiMAE
+.06248/.06234, lengthRMSE [1.568,1.889]/[1.529,1.857] mm. Learning continues
+through lap12, with residual roughness; no steady-state convergence claim.
+No final-three-lap parameter bound contacts. Raw-log/evaluator smoke check passes;
+formal optimizer success remains unset pending targets/bounds/operator metadata.
+
+Length-based acceptance implemented at user request: new evaluator schema
+pac-tune-2 requires per-coordinate q2/q3 RMSE, vector velocity-error RMS,
+velocity-error-rate roughness RMS and pressure-limiting limits; vector q RMSE
+remains the objective. Angular/vector-RMSE acceptance limits are optional (NaN
+disables); optional angular observability does not veto valid length acceptance.
+Old pac-tune-1 snapshots retain their angular policy. Numerical limits remain
+unset, not inferred from baseline. New baseline diagnostics are saved under
+analysis_length_policy_v2: late velocity error ~.00300/.00297 m/s, error-rate
+roughness ~.01934/.01918 m/s^2. These are observations, not target recommendations.
+
+User subsequently agreed l2/l3 RMSE <=1 mm each, vector velocity-error RMS <=.01
+m/s and velocity-error-rate roughness <=.025 m/s^2. Campaign-specific
+agreedEvaluationConfig.m in the unloaded T10 experiment folder records these;
+generic defaults stay unset. Pressure-limiting target, gamma search bounds,
+budget and reset/trim/preconditioning details remain to be finalized before
+optimizer-selected physical trials. No configured campaign or trial was launched.
+
+User then approved gamma ranges k[.25,.75], d[.001,.008], h[2.5,7.5], 12 circles
+scoring last3, zero limiting and two fresh confirmations, and attested full reset.
+Prepared experiment-folder campaign_length_v1 from agreedEvaluationConfig and
+both existing baselines; both are valid_infeasible on length RMSE. Explicit budget
+is conservatively10 total observations including2 baselines/confirmations (8 left).
+Archived model/current evaluator source snapshots; model history and physical
+reset/calibration provenance are labeled as snapshot/user attestation, not measured.
+Queued candidate03 gamma k=.645028694505006,d=.0010090123623767366,
+h=5.8362570107825071. Full tuning and RUN_NEXT.md saved; no live gains applied.
+150s schedule:startup20,tracking120,ramp-down5,pressurized hold5,then manual kill.
+Do not batch without explicit controller/history/supervisor and physical reset work.
+
+Candidate03 user-run log now imported as candidate03_r01: exact tuning, no live
+edits/faults/limits, late qRMSE[1.42549,1.69001]mm/vector2.21092mm (~9% below mean
+baseline), velocity.00314726m/s, roughness.0207654m/s^2. Both1mm length limits
+still fail; other configured limits pass. Single-run comparison, not confirmation.
+Queued candidate04 initial-design gamma k=.58034718095284454,
+d=.0037139224909066579,h=4.4053683649622428; RUN_CANDIDATE04.md has instructions.
+Three observations counted,7 remaining including confirmations. No gains applied
+or hardware execution by assistant. Late roughness rising but below agreed bound.
+
+Candidate04 imported as valid_infeasible: exact tuning, no edits or tracking
+faults/pressure limits. Late qRMSE[1.69217,1.94034]mm/vector2.57456mm (16.4%
+above candidate03), velocity.00302789m/s, roughness.02072852m/s^2. Only length
+limits fail. Candidate03 remains best observed, not confirmed. Queued candidate05
+initial-design k=.28570361215890433,d=.0077863906974842481,h=3.5952162270591348.
+RUN_CANDIDATE05.md saved; four observations counted/six remaining. No gains applied.
+
+2026-10-28 candidate05 imported valid_infeasible: exact tuning/no edits,
+tracking faults/pressure limits0. Late qRMSE[1.83602,2.06862]mm/vector2.76589mm,
+velocity.00372471m/s, roughness.03358536m/s^2 >.025. Reject on smoothness and
+both length limits; roughness elevated fromlap7 throughlap12(.037364). No ratecap
+contacts. Candidate03 still best observed. Initial-design candidate06 queued:
+k=.42192531104075343,d=.0020323562614174683,h=2.5725609289380671.
+Five observations/five remaining inclconfirmations. See RUN_CANDIDATE06.md.
+
+Candidate06 imported valid_infeasible on2026-10-28: exact tuning/no edits,
+no tracking faults/pressure limits/ratecap contacts. Late qRMSE[2.63375,2.90327]mm,
+vector3.91990mm; velocity.00344364m/s and roughness.01935062m/s^2 pass their
+limits. Smoother than05 but less accurate; candidate03 still best observed.
+Queued candidate07 final initial-design k=.35438912779204967,
+d=.0030892129738313034,h=6.8259366991000565. Six observations/four remaining
+including confirmation. RUN_CANDIDATE07.md saved. No live gains applied.
+
+Candidate07 imported valid_infeasible: exact tuning/no edits, no tracking
+faults/limits/rate caps. Late qRMSE[1.23668,1.66263]mm/vector2.07213mm (best
+observed,6.3% below03), velocity.00299571m/s, roughness.02258509m/s^2. Both
+length limits still fail. Seven observations/6 unique locations complete initial
+design. Candidate08 queued seek_feasible_region at upper box edge:
+k=.75,d=.0079999999999999967,h=7.4999999999999991. GP mean2.56631/std.60053mm
+does not predict improvement; weighted binary feasibility is not a physical
+probability. Explicit boundary exploration, with05 roughness caveat recorded in
+RUN_CANDIDATE08.md. Three observations remain including confirmations. No gains applied.
+
+Candidate08 imported valid_infeasible: exact tuning/no changes, tracking faults/
+pressure limits0. Late qRMSE[1.17252,1.30289]mm/vector1.75280mm (best observed,
+15.4% below07), velocity.00299378m/s, roughness.02391251m/s^2. Both length limits
+fail. Pooled smoothness passes butlap12 .026547 exceeds .025 individually; retain
+caveat without changing agreed scoring. Eight observations/two slots left, no
+accepted candidate; additional search plus2confirmations cannot fit remaining
+budget. Raw next seek_feasible_region suggestion saved, NOT queued: predicted
+2.69475mm/std.63161mm favors uncertainty, not closeness to the1mm constraints.
+Review component-margin acquisition before more trials; current binary-label
+algorithm treats all observed infeasibility alike. No algorithm/config change
+made. REVIEW_AFTER_CANDIDATE08.md records findings and next-step recommendation.
+No causal attribution to one gamma; multiple changed, plus different-day trial.
+
+2026-10-28 research discussion: PAC_CONVERGENCE_RATE_RESEARCH_NOTE.md compares
+Milad's paper Eq11/19/TableI to code. Paper Gamma is inverted (1e-5/1e-2 ->
+update multipliers1e5/100), while our G=diag(scale^2*gamma). Nominal scalar poles
+are -lambda and -(actual d+Ks)/m under exact matching/force delivery; these do
+not assign adaptation convergence in the actual gated/sampled arm. Conditional
+practical error/time-envelope derivation and prior art documented; no new theorem
+proved, novelty established, controller change or campaign mutation.
+
+User perceived05 quicker: follow-up shows first-lap l2 error lower than03
+(3.258 vs3.967mm) but l3 higher(6.219 vs5.668mm). Approximate10s harmonic
+lag late03 [.185,.226]s vs05 [.292,.321]s; no overall faster phase response
+established. Current acceptance scores sustained last3circles, not first crossing.
 
 Read this first, then the relevant specialized document. Use recorded inputs
 for experiment settings; do not infer them from filenames or current SLX defaults.

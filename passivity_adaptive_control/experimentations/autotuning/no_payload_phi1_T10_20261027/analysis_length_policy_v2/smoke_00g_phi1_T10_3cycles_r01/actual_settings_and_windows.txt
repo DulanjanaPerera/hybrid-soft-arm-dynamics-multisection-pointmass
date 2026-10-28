@@ -1,0 +1,27 @@
+SOURCE C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\passivity_adaptive_control\experimentations\autotuning\no_payload_phi1_T10_20261027\smoke_00g_phi1_T10_3cycles_r01.mat
+SHA256 f24964411fd146d0ad8ebddd535458e8d60c8952d50ff7eb7e73369a5e369b5e
+PERIOD 10.000000000 CLASS unconfigured_targets
+adaptationGamma [0.5 0.5 0.5 0.002 0.002 5 5 5 1 1]
+parameterLower [-100 -500 -100 1 1 0 0 0 -8 -8]
+parameterUpper [6000 6000 6000 250 250 20 20 20 8 8]
+parameterInitial [650 650 650 40 40 0 0 0 0 0]
+parameterMaxRate [850 850 850 20 20 5 5 5 0.2 0.2]
+parameterScale [1000 1000 1000 100 100 1 1 1 1 1]
+adaptationOptions [0.005 0.02 0.075]
+hystoryOptions [0.005 1 0.5 2]
+pressureOptions [1.6 -0.0983981693 -0.0819816714 0.2 3 2.5 2.5 6 0.2 13.273229]
+supervisorOptions [10 15 5 0.1 0.075 0.0005 Inf]
+lambda_gains [18 16.5]
+damping_gains [15 10]
+enableAdaptation 1
+enableCommonPressureAdaptation 1
+freezeHysteresisWeights 0
+INITIAL estimates[650 650 650 40 40 0 0 0 0 0] history[0 0 0]
+END_TRACKING estimates[767.6188 -259.6016 696.3822 43.52913 44.31943 4.395359 3.606202 3.794065 -0.6218998 -0.4374849]
+bounds lowerFrac[0 0.016667 0.036667 0 0 0.021667 0.013333 0.016667 0 0] upperFrac[0 0 0 0 0 0 0 0 0 0]
+ratecap[0 0 0.013699 0 0 0 0 0 0 0] gateMismatch0
+pressure minmax[0.76734 0.87568 0.76066;2.4083 2.6064 2.4676] residualPeak1.00486e-14 replay{"samples":592,"allocationLimited":0,"slewTargetMismatch":0,"loggedFlagMismatch":0}
+timing maxControllerStep0.05
+WINDOW 20-40 {"start_s":20,"end_s":40,"samples":400,"coverage":0.9875,"thetaCoverage":0.9875,"phiCoverage":0.9875,"velocityCoverage":0.9875,"velocityPairCoverage":0.9725,"q2Rmse_mm":4.1596229253969392,"q3Rmse_mm":5.4061164175965333,"qVectorRmse_mm":6.8211844720762835,"thetaMae_rad":0.49532627403812646,"phiMae_rad":0.2323374082482034,"phiMax_rad":1.2651270258034188,"velocityRmse_mPerS":0.0052009587126857085,"velocityErrorRateRmse_mPerS2":0.017466643495773142,"thetaRateStd_radPerS":0.36315026167256226,"nearStopFraction":0.033419023136246784,"slowOrReverseFraction":0.033419023136246784,"activeFraction":0.975,"limitedFraction":0,"faultSamples":0}
+WINDOW 40-50 {"start_s":40,"end_s":50,"samples":200,"coverage":0.985,"thetaCoverage":0.985,"phiCoverage":0.985,"velocityCoverage":0.985,"velocityPairCoverage":0.97,"q2Rmse_mm":4.252805286760398,"q3Rmse_mm":4.3375537658327215,"qVectorRmse_mm":6.0745967338241309,"thetaMae_rad":0.46683963012377017,"phiMae_rad":0.15048333149683407,"phiMax_rad":1.035593734700373,"velocityRmse_mPerS":0.0044206344361111356,"velocityErrorRateRmse_mPerS2":0.017448662842598706,"thetaRateStd_radPerS":0.29386829011077675,"nearStopFraction":0.067010309278350513,"slowOrReverseFraction":0.067010309278350513,"activeFraction":0.97,"limitedFraction":0,"faultSamples":0}
+FAULT whole run 0 first zeros(0,1)

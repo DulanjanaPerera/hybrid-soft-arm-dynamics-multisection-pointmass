@@ -9,6 +9,7 @@ C.gammaBounds=[g/2 g*2];C.evaluationBudget=6;C.confirmationRepeats=2;
 C.minimumConfirmationDuration_s=20;
 C.evaluator.trackingWindow_s=[20 40];C.evaluator.scoringWindow_s=[30 40];C.evaluator.expectedPeriod_s=10;
 for f=fieldnames(C.evaluator.targets)',C.evaluator.targets.(f{1})=1e6;end
+C.evaluator.targets.limitedFraction=1;
 C.evaluator.targets.qVectorRmse_mm=.01; % Test-only infeasibility, not a real target.
 C.conditions=struct('payloadMass_kg',0,'payloadAttachedBeforeTrim','yes', ...
     'calibrationId','synthetic','modelId','synthetic','resetProcedure','synthetic', ...

@@ -1,5 +1,14 @@
 # PAC offline tuning evaluator
 
+For the implemented continuous Simulink tuning blocks, separate-process BO
+worker and new online model copy, see `ONLINE_SIMULINK_WORKFLOW.md`. Only
+synthetic runtime/library/transport tests have been run; hardware integration
+verification is pending. The original offline/manual workflow remains available.
+
+The earlier host-only prototype (`pacTuneOnlineStep`, `ONLINE_WORKFLOW.md`)
+is retained for history; the new runtime integration does not use its host timer.
+The descriptions below cover the offline evaluator/proposal APIs.
+
 Milestones A-C of `project_docs/PAC_AUTOTUNING_FRAMEWORK_PLAN.md` are implemented.
 For the manual candidate/manifest/ledger loop, read `MANUAL_WORKFLOW.md`.
 For bounded proposal-only optimization, read `OPTIMIZER_WORKFLOW.md`.
@@ -98,10 +107,24 @@ This is command/nominal-model evidence, not measured pressure or force delivery.
 
 ## Acceptance and limitations
 
-Targets are intentionally NaN. Enter agreed finite nonnegative limits for every
-target before evaluating feasibility. Unset targets produce `unconfigured_targets`
+New configs use `pac-tune-2`. Required finite nonnegative limits are:
+`q2Rmse_mm`, `q3Rmse_mm`, `velocityRmse_mPerS`,
+`velocityErrorRateRmse_mPerS2`, and `limitedFraction` (0..1).
+Vector length RMSE remains the optimization objective. Its acceptance limit and
+theta/phi/theta-rate limits are optional: leave NaN to disable them. Numeric
+values are intentionally unset; baseline measurements are not agreed targets.
+Unset required limits produce `unconfigured_targets`
 on otherwise valid fixed-tuning data. Faults, incomplete runs, low coverage and
-live tuning edits take precedence. `cfg.expectedTuning` can supply exact expected
+live tuning edits take precedence. Angular observability/coverage gates acceptance
+only when the corresponding angular limit is enabled; angles remain diagnostics.
+Required length/velocity valid-pair coverage still gates length-based acceptance.
+`velocityErrorRateRmse_mPerS2` is the vector RMS of consecutive velocity-error
+differences divided by sample dt on valid pairs with no gaps. It is a filtered
+length-based roughness proxy, not independently measured physical acceleration.
+Keep filtering/sample period fixed when selecting/comparing that limit.
+Existing `pac-tune-1` campaigns keep their original mandatory angular policy;
+create a new immutable campaign to adopt version 2.
+`cfg.expectedTuning` can supply exact expected
 vectors for mismatch checks. The manual workflow archives candidates/manifests
 and adds campaign-level metadata and repeated-confirmation checks.
 
@@ -129,3 +152,11 @@ The manual replay demo is under `reports/manual_demo_v1/`; the synthetic optimiz
 demo is under `reports/optimizer_synthetic_v1/`. Next is milestone D, an explicitly
 configured operator-run campaign; real bounds/targets/baseline remain unset.
 Keep optimizer integration and hardware execution separate.
+
+2026-10-28 smoothness-first extension: `pacTuneSmoothCampaignDraft` prepares a
+new, non-active configuration with user-approved2mm coordinate ceilings and
+roughness as the objective. `pacTuneObjectivePolicy` keeps old length objectives
+unchanged when the new field is absent. Optional fixedRawLength motion scoring
+uses the same offline differentiator across runs, so changing live filters cannot
+artificially improve the optimization score. See the first unloaded experiment
+folder's filter_review_v1/README.md for filter replay and manual smoke instructions.

@@ -3,7 +3,7 @@
 Implemented 2026-10-27 (milestone C). This adapter proposes grouped gammaK,
 gammaD and gammaH from a manual campaign's observations. It never applies gains,
 runs models, acquires experiments or resets the arm. Read MANUAL_WORKFLOW.md
-first. Actual arm campaign settings and targets remain unsettled.
+first. Each physical campaign must define its actual conditions, bounds and targets.
 
 ## Use with a manual campaign
 
@@ -26,7 +26,11 @@ Queueing archives settings, training counts, predictions, reason and ledger/conf
 identity in the candidate artifact. It uses the existing writer lock/bound checks
 and does not write live gains. If the ledger changes between suggestion and queue,
 the write is rejected; recompute rather than editing identity fields. Pending
-observations and confirmation take priority over further search. There is no
+observations take priority. Confirmation is the default after a feasible screen;
+a NEW immutable optimizer snapshot may set `continueSearchAfterFeasible=true`
+to improve the objective further instead. Confirmed success and budget exhaustion
+still stop search. Screened points remain unconfirmed; budget review may be
+needed for later confirmation repeats. There is no
 automatic experiment loop or automatic recovery after a fault.
 
 ## Immutable configuration and restart

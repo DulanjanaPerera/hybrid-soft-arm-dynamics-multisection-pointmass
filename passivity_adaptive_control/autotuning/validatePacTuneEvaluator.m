@@ -37,7 +37,41 @@ fixed=trial;fixed.signals.adaptationGamma.x(:,:)=repmat(trial.signals.adaptation
     size(trial.signals.adaptationGamma.x,1),1);
 r=pacTuneEvaluateTrial(fixed,cfg);assert(strcmp(r.classification,'unconfigured_targets')&&~r.success);
 for f=fieldnames(cfg.targets)',cfg.targets.(f{1})=1e6;end
+cfg.targets.limitedFraction=1;
 r=pacTuneEvaluateTrial(fixed,cfg);assert(r.success);
+% Length-only acceptance: optional angular/vector limits may remain NaN.
+lengthCfg=cfg;[~,required]=pacTuneTargetPolicy(lengthCfg);
+for f=fieldnames(lengthCfg.targets)'
+    if ~ismember(f{1},required),lengthCfg.targets.(f{1})=NaN;end
+end
+assert(pacTuneTargetPolicy(lengthCfg));
+smoothCfg=lengthCfg;smoothCfg.objectiveMetric='velocityErrorRateRmse_mPerS2';
+smoothCfg.smoothnessNormalizer_mPerS2=.025;smoothCfg.motionMetricSource='fixedRawLength';
+smoothCfg.analysisDerivativeTau_s=[.20 .10];
+sr=pacTuneEvaluateTrial(fixed,smoothCfg);
+assert(abs(sr.objective-sr.scoring.velocityErrorRateRmse_mPerS2/.025)<1e-12);
+assert(strcmp(sr.objectiveMetric,'velocityErrorRateRmse_mPerS2'));
+% Logged feedback filtering cannot make the fixed raw-length score look better.
+differentFilter=fixed;differentFilter.signals.filtered_d_length.x(:)=100;
+differentFilter.signals.d_length.x(:)=-100;
+dr=pacTuneEvaluateTrial(differentFilter,smoothCfg);
+assert(isequaln(sr.objective,dr.objective)&&isequaln(sr.scoring.qVectorRmse_mm,dr.scoring.qVectorRmse_mm));
+angularMissing=fixed;angularMissing.signals.theta.x(:)=NaN;
+angularMissing.signals.phi.x(:)=NaN;angularMissing.signals.thetaObservable.x(:)=0;
+r=pacTuneEvaluateTrial(angularMissing,lengthCfg);assert(r.success&&r.scoring.thetaCoverage==0);
+angularCfg=lengthCfg;angularCfg.targets.thetaMae_rad=1;
+r=pacTuneEvaluateTrial(angularMissing,angularCfg);assert(~r.success&&strcmp(r.classification,'invalid_data'));
+oneBad=lengthCfg;oneBad.targets.q3Rmse_mm=0;
+r=pacTuneEvaluateTrial(fixed,oneBad);assert(~r.success&&ismember("q3Rmse_mm",r.violations));
+oneUnset=lengthCfg;oneUnset.targets.q2Rmse_mm=NaN;
+r=pacTuneEvaluateTrial(fixed,oneUnset);assert(~r.targetsConfigured&&~r.success);
+rough=lengthCfg;rough.targets.velocityErrorRateRmse_mPerS2=0;
+r=pacTuneEvaluateTrial(fixed,rough);assert(~r.success&&ismember("velocityErrorRateRmse_mPerS2",r.violations));
+% Existing immutable v1 campaigns retain their original angular requirements.
+legacy=cfg;legacy.schemaVersion='pac-tune-1';
+legacy.targets=struct('qVectorRmse_mm',1e6,'thetaMae_rad',NaN,'phiMae_rad',NaN, ...
+    'velocityRmse_mPerS',1e6,'limitedFraction',1);
+assert(~pacTuneTargetPolicy(legacy));
 cfg.targets.velocityRmse_mPerS=0;
 r=pacTuneEvaluateTrial(fixed,cfg);assert(strcmp(r.classification,'valid_infeasible')&&~r.success);
 % Missing/censored measurements cannot improve acceptance by masking errors.
@@ -63,5 +97,5 @@ assert(abs(early.scoring.thetaRateStd_radPerS-.87627)<1e-5);
 assert(abs(late.scoring.thetaRateStd_radPerS-1.16627)<1e-5);
 assert(late.scoring.thetaMae_rad<early.scoring.thetaMae_rad&& ...
     late.scoring.thetaRateStd_radPerS>early.scoring.thetaRateStd_radPerS);
-fprintf('PASS: parser, provenance, gaps, targets, masking, v8 laps, v9 slew/gates, v10 roughness/fault.\n');
+fprintf('PASS: parser/gaps, length and optional-angle targets, smoothness, v1 compatibility, masking, v8/v9/v10.\n');
 end

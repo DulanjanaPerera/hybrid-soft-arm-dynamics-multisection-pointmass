@@ -15,11 +15,24 @@ if isfield(result,'campaignAcceptance')
 end
 for s=result.issues',fprintf(fid,'- %s\n',s);end
 if ~isfield(result,'tracking'),return;end
+if isfield(result,'objectiveMetric')
+    fprintf(fid,'\nObjective: %s / %.7g = %.7g.\n\n',result.objectiveMetric,result.objectiveNormalizer,result.objective);
+end
+if isfield(result,'motionMetricSource'),fprintf(fid,'Motion metric source: %s.\n\n',result.motionMetricSource);end
 fprintf(fid,'\nReference period: %.6g s; direction: %g. First fault: %.6g s.\n\n', ...
     result.period_s,result.direction,result.firstFault_s);
 fprintf(fid,'Metric | Tracking | Scoring\n--- | ---: | ---:\n');
 for f=fieldnames(result.tracking)'
     fprintf(fid,'%s | %.7g | %.7g\n',f{1},result.tracking.(f{1}),result.scoring.(f{1}));
+end
+[~,required]=pacTuneTargetPolicy(result.config);
+fprintf(fid,'\nAcceptance limits (scoring window)\n\nMetric | Required | Limit | Observed | Status\n--- | --- | ---: | ---: | ---\n');
+for f=fieldnames(result.config.targets)'
+    limit=result.config.targets.(f{1});value=result.scoring.(f{1});mandatory=ismember(f{1},required);
+    if isnan(limit)
+        if mandatory,label='unset';else,label='disabled';end
+    elseif isfinite(value)&&value<=limit,label='within limit';else,label='exceeded/unavailable';end
+    fprintf(fid,'%s | %d | %.7g | %.7g | %s\n',f{1},mandatory,limit,value,label);
 end
 fprintf(fid,'\nTuning changes: %d. Replay: %d samples, %d allocation limits, %d target/command mismatches, %d logged flag disagreements.\n', ...
     height(result.tuningEvents),result.allocationReplay.samples,result.allocationReplay.allocationLimited, ...

@@ -119,11 +119,8 @@ assert(isequal(size(C.gammaBounds),[3 2]),'pacTune:Bounds','Gamma bounds must be
 assert(isnan(C.evaluationBudget)||(isfinite(C.evaluationBudget)&&C.evaluationBudget>=1&&fix(C.evaluationBudget)==C.evaluationBudget));
 assert(isnan(C.confirmationRepeats)||(isfinite(C.confirmationRepeats)&&C.confirmationRepeats>=2&&fix(C.confirmationRepeats)==C.confirmationRepeats));
 assert(isnan(C.minimumConfirmationDuration_s)||(isfinite(C.minimumConfirmationDuration_s)&&C.minimumConfirmationDuration_s>0));
-defaults=pacTuneCampaignConfig();
-for f=fieldnames(defaults.targets)'
-    assert(isfield(C.evaluator.targets,f{1})&&isnumeric(C.evaluator.targets.(f{1}))&& ...
-        isscalar(C.evaluator.targets.(f{1})),'pacTune:Targets','Missing/non-scalar required target %s.',f{1});
-end
+pacTuneTargetPolicy(C.evaluator);
+pacTuneObjectivePolicy(C.evaluator);
 if ~isempty(C.confirmationEvaluator)
     a=C.evaluator;b=C.confirmationEvaluator;
     a=rmfield(a,{'trackingWindow_s','scoringWindow_s'});b=rmfield(b,{'trackingWindow_s','scoringWindow_s'});
@@ -165,7 +162,7 @@ if ~isempty(C.confirmationEvaluator),confirmation=C.confirmationEvaluator;end
 if isfinite(C.minimumConfirmationDuration_s)&&diff(confirmation.trackingWindow_s)<C.minimumConfirmationDuration_s
     issues(end+1,1)="Confirmation tracking window is shorter than the minimum duration.";
 end
-if ~all(structfun(@(x)isfinite(x)&&x>=0,C.evaluator.targets)),issues(end+1,1)="Performance targets are unset.";end
+if ~pacTuneTargetPolicy(C.evaluator),issues(end+1,1)="Required performance targets are unset.";end
 if ~isfinite(C.evaluator.expectedPeriod_s)||C.evaluator.expectedPeriod_s<=0,issues(end+1,1)="Expected period is unset.";end
 c=C.conditions;
 if ~isfinite(c.payloadMass_kg)||c.payloadMass_kg<0,issues(end+1,1)="Payload mass is unset.";end
@@ -249,7 +246,15 @@ elseif output.remainingEvaluations<=0
 elseif ~output.configurationReady
     output.stopReason='configuration_incomplete';output.nextAction='Resolve configuration issues in a new immutable campaign; offline diagnostics may continue.';
 elseif ~isempty(output.bestScreenedCandidate)
-    output.stopReason='awaiting_confirmation';output.nextAction='Acquire repeated operator-run confirmation for the screened candidate.';
+    if isfield(C,'optimizer')&&isfield(C.optimizer,'continueSearchAfterFeasible')&&C.optimizer.continueSearchAfterFeasible
+        if ~isempty(output.pendingCandidateIds)
+            output.stopReason='awaiting_observation';output.nextAction='Import the pending objective-search trial; screened candidates remain unconfirmed.';
+        else
+            output.stopReason='awaiting_candidate';output.nextAction='Continue bounded objective search; screened candidates remain unconfirmed.';
+        end
+    else
+        output.stopReason='awaiting_confirmation';output.nextAction='Acquire repeated operator-run confirmation for the screened candidate.';
+    end
 elseif ~isempty(output.pendingCandidateIds)
     output.stopReason='awaiting_observation';output.nextAction='Import an operator-run trial for a proposed candidate.';
 elseif ~isempty(output.trialIds)

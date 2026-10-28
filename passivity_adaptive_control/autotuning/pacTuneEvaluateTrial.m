@@ -1,6 +1,9 @@
 function result=pacTuneEvaluateTrial(trial,cfg)
 %PACTUNEEVALUATETRIAL Offline tracking, smoothness and constraint evaluation.
 if nargin<2,cfg=pacTuneCampaignConfig();end
+[configured,requiredTargets,activeTargets]=pacTuneTargetPolicy(cfg);
+[objectiveMetric,objectiveNormalizer]=pacTuneObjectivePolicy(cfg);
+lengthPolicy=strcmp(cfg.schemaVersion,'pac-tune-2');
 assert(all(diff(cfg.trackingWindow_s)>0)&&all(diff(cfg.scoringWindow_s)>0));
 assert(cfg.lengthNormalizer_mm>0&&cfg.minimumCoverage>0&&cfg.minimumCoverage<=1);
 assert(cfg.scoringWindow_s(1)>=cfg.trackingWindow_s(1)&& ...
@@ -8,6 +11,7 @@ assert(cfg.scoringWindow_s(1)>=cfg.trackingWindow_s(1)&& ...
 result=struct('schemaVersion',cfg.schemaVersion,'file',trial.file,'sha256',trial.sha256, ...
     'classification','invalid_data','success',false,'issues',strings(0,1));
 result.config=cfg;
+result.requiredTargets=requiredTargets;result.activeTargets=activeTargets;
 if ~isempty(trial.missing)
     result.issues="Missing required signals: "+strjoin(trial.missing,', ');return
 end
@@ -28,6 +32,7 @@ assert(any(circle),'pacTune:Window','No data in tracking window.');
 alignedGood=true(N,1);
 for f=fieldnames(D)'
     if ismember(f{1},trial.requiredFields)
+        if lengthPolicy&&ismember(f{1},{'theta','phi','thetaObservable'}),continue;end
         x=D.(f{1});
         if strcmp(f{1},'supervisorOptions'),x=x(:,1:6);end
         alignedGood=alignedGood&all(isfinite(x),2);
@@ -40,9 +45,25 @@ valid=alignedGood&D.modelValid==1&D.orientationValid==1&D.configurationValid==1&
     D.baseOreintationValid==1&fresh&D.status==3;
 q=D.meas_length(:,2:3);qd=D.sampledDes_length;
 qerr=qd-q;verr=D.d_length-D.filtered_d_length;
+result.motionMetricSource='loggedVelocity';
+if isfield(cfg,'motionMetricSource')
+    assert(ismember(cfg.motionMetricSource,{'loggedVelocity','fixedRawLength'}),'pacTune:MetricSource','Unknown motion metric source.');
+    result.motionMetricSource=cfg.motionMetricSource;
+    if strcmp(cfg.motionMetricSource,'fixedRawLength')
+        assert(numel(cfg.analysisDerivativeTau_s)==2&&all(isfinite(cfg.analysisDerivativeTau_s))&&all(cfg.analysisDerivativeTau_s>0));
+        metricValid=D.orientationValid==1&D.configurationValid==1&D.baseOreintationValid==1&fresh;
+        measuredV=pacTuneFixedVelocity(q,t,metricValid,cfg.analysisDerivativeTau_s(1),cfg.maxAlignmentAge_s*2);
+        referenceV=pacTuneFixedVelocity(qd,t,all(isfinite(qd),2),cfg.analysisDerivativeTau_s(2),cfg.maxAlignmentAge_s*2);
+        verr=referenceV-measuredV;
+    end
+end
 thetaerr=atan2(sin(D.des_theta-D.theta),cos(D.des_theta-D.theta));
 phierr=D.des_phi-D.phi;
 qvalid=valid&all(isfinite(qerr),2);phivalid=valid&isfinite(phierr);
+velocityValid=qvalid&all(isfinite(verr),2);
+velocityPair=velocityValid&[false;velocityValid(1:end-1)]& ...
+    [false;diff(t)<=cfg.maxAlignmentAge_s+1e-9];
+velocityErrorRate=[NaN(1,2);diff(verr)./diff(t)];
 thvalid=valid&D.thetaObservable==1&isfinite(thetaerr);
 pair=[false;thvalid(1:end-1)]&thvalid&[false;diff(t)<=cfg.maxAlignmentAge_s+1e-9];
 omega=[NaN;atan2(sin(diff(D.theta)),cos(diff(D.theta)))./diff(t)];omega(~pair)=NaN;
@@ -53,7 +74,8 @@ assert(isfinite(result.period_s)&&result.period_s>0,'pacTune:Reference','No circ
 result.direction=sign(median(refRate(motion)));
 result.tracking=windowMetrics(cfg.trackingWindow_s);
 result.scoring=windowMetrics(cfg.scoringWindow_s);
-result.objective=result.scoring.qVectorRmse_mm/cfg.lengthNormalizer_mm;
+result.objectiveMetric=objectiveMetric;result.objectiveNormalizer=objectiveNormalizer;
+result.objective=result.scoring.(objectiveMetric)/objectiveNormalizer;
 result.firstFault_s=NaN;i=find(circle&D.status==5,1);
 if ~isempty(i),result.firstFault_s=t(i);end
 % Logged changes include Inf equality; structural NaNs are never silently equal.
@@ -166,7 +188,7 @@ for k=1:nLaps
 end
 result.laps=struct2table(rows);
 % Hard outcomes precede protocol/performance labels. No configured targets = no success.
-targetNames=fieldnames(cfg.targets);configured=all(structfun(@(x)isfinite(x)&&x>=0,cfg.targets));
+targetNames=fieldnames(cfg.targets);
 result.targetsConfigured=configured;result.violations=strings(0,1);
 for f=targetNames'
     value=result.scoring.(f{1});limit=cfg.targets.(f{1});
@@ -175,11 +197,21 @@ for f=targetNames'
     end
 end
 complete=t(1)<=cfg.trackingWindow_s(1)+dt/2&&t(end)+dt>=cfg.trackingWindow_s(2)-1e-8;
+coverageBad=result.alignedCoverage<cfg.minimumCoverage|| ...
+    result.tracking.coverage<cfg.minimumCoverage||result.scoring.coverage<cfg.minimumCoverage;
+if lengthPolicy
+    coverageBad=coverageBad||result.scoring.velocityCoverage<cfg.minimumCoverage|| ...
+        result.scoring.velocityPairCoverage<cfg.minimumCoverage;
+    if any(ismember(activeTargets,{'thetaMae_rad','thetaRateStd_radPerS'}))
+        coverageBad=coverageBad||result.scoring.thetaCoverage<cfg.minimumCoverage;
+    end
+    if ismember('phiMae_rad',activeTargets),coverageBad=coverageBad||result.scoring.phiCoverage<cfg.minimumCoverage;end
+else
+    coverageBad=coverageBad||result.scoring.thetaCoverage<cfg.minimumCoverage;
+end
 if isfinite(result.firstFault_s)||~complete
     result.classification='aborted_or_faulted';
-elseif result.alignedCoverage<cfg.minimumCoverage|| ...
-        result.tracking.coverage<cfg.minimumCoverage|| ...
-        result.scoring.coverage<cfg.minimumCoverage||result.scoring.thetaCoverage<cfg.minimumCoverage
+elseif coverageBad
     result.classification='invalid_data';
 elseif ~isempty(eventTime)||~isempty(result.protocolMismatch)
     result.classification='protocol_deviation';
@@ -192,8 +224,7 @@ else
 end
 if ~configured,result.issues(end+1,1)="Targets are unset; historical diagnostics cannot certify success.";end
 if ~complete,result.issues(end+1,1)="Recording ends before planned tracking completes.";end
-if result.tracking.coverage<cfg.minimumCoverage||result.scoring.coverage<cfg.minimumCoverage|| ...
-        result.scoring.thetaCoverage<cfg.minimumCoverage||result.alignedCoverage<cfg.minimumCoverage
+if coverageBad
     result.issues(end+1,1)="Coverage below configured minimum of "+string(cfg.minimumCoverage)+".";
 end
 if ~isempty(eventTime),result.issues(end+1,1)="Live tuning changes detected; exploratory trial.";end
@@ -202,15 +233,18 @@ result.diagnostics=table(t,valid,thvalid,omega,refRate,eigmin,allocation,slew,re
 
     function m=windowMetrics(w)
         ix=t>=w(1)-1e-8&t<w(2)-1e-8;expected=max(1,round(diff(w)/dt));
-        iq=ix&qvalid;it=ix&thvalid;ip=ix&phivalid;iv=iq&all(isfinite(verr),2);
+        iq=ix&qvalid;it=ix&thvalid;ip=ix&phivalid;iv=ix&velocityValid;ir=ix&velocityPair;
         m=struct('start_s',w(1),'end_s',w(2),'samples',nnz(ix), ...
             'coverage',nnz(iq)/expected,'thetaCoverage',nnz(it)/expected, ...
+            'phiCoverage',nnz(ip)/expected,'velocityCoverage',nnz(iv)/expected, ...
+            'velocityPairCoverage',nnz(ir)/expected, ...
             'q2Rmse_mm',1000*sqrt(mean(qerr(iq,1).^2)), ...
             'q3Rmse_mm',1000*sqrt(mean(qerr(iq,2).^2)), ...
             'qVectorRmse_mm',1000*sqrt(mean(sum(qerr(iq,:).^2,2))), ...
             'thetaMae_rad',mean(abs(thetaerr(it))),'phiMae_rad',mean(abs(phierr(ip))), ...
             'phiMax_rad',maxOrNaN(D.phi(ip)), ...
             'velocityRmse_mPerS',sqrt(mean(sum(verr(iv,:).^2,2))), ...
+            'velocityErrorRateRmse_mPerS2',sqrt(mean(sum(velocityErrorRate(ir,:).^2,2))), ...
             'thetaRateStd_radPerS',std(omega(ix&pair),'omitnan'), ...
             'nearStopFraction',mean(abs(omega(ix&pair))<.2*abs(refRate(ix&pair))), ...
             'slowOrReverseFraction',mean(sign(refRate(ix&pair)).*omega(ix&pair)<.2*abs(refRate(ix&pair))), ...

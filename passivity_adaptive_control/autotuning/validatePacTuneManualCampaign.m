@@ -13,6 +13,7 @@ C.conditions=struct('payloadMass_kg',0,'payloadAttachedBeforeTrim','yes', ...
     'preconditioning','synthetic','phi_rad',1,'direction',1,'codeRevision','synthetic');
 C.evaluator.expectedPeriod_s=10;
 for f=fieldnames(C.evaluator.targets)',C.evaluator.targets.(f{1})=1e6;end
+C.evaluator.targets.limitedFraction=1;
 C.evaluator.trackingWindow_s=[20 40];C.evaluator.scoringWindow_s=[30 40];
 C.confirmationEvaluator=C.evaluator;
 C.confirmationEvaluator.trackingWindow_s=[20 320];C.confirmationEvaluator.scoringWindow_s=[290 320];
@@ -67,6 +68,16 @@ state=pacTuneManualCampaign('status',root);
 assert(strcmp(state.stopReason,'evaluation_budget_exhausted')&&~state.success);
 expectError(@()pacTuneManualCampaign('propose',root,'after_budget',g),'pacTune:Budget');
 pacTuneReportCampaign(root,fullfile(folder,'snapshot'));
+% Objective search can continue after a feasible screen in a NEW config only.
+searchC=C;searchC.id='continue_search_test';searchC.optimizer.continueSearchAfterFeasible=true;
+searchRoot=fullfile(folder,'search_campaign');pacTuneManualCampaign('create',searchRoot,searchC);
+pacTuneManualCampaign('propose',searchRoot,'baseline',g);
+sm=pacTuneTrialManifest();sm.conditions=searchC.conditions;sm.operator='synthetic';sm.resetVerified=true;
+pacTuneManualCampaign('import',searchRoot,'screen','baseline',fixture,sm);
+ss=pacTuneManualCampaign('status',searchRoot);assert(~isempty(ss.bestScreenedCandidate));
+proposal=pacTuneSuggestNext(searchRoot);assert(strcmp(proposal.action,'propose'));
+pacTuneQueueSuggestion(searchRoot,'next',proposal);
+ss=pacTuneManualCampaign('status',searchRoot);assert(strcmp(ss.stopReason,'awaiting_observation'));
 C.conditions.payloadMass_kg=.5;save(fullfile(root,'campaign.mat'),'C');
 expectError(@()pacTuneManualCampaign('status',root),'pacTune:ChangedConfig');
 fprintf('PASS: manual create/propose/import/status, bounds, duplicates, repeats, metadata, restart, locks, immutable config.\n');

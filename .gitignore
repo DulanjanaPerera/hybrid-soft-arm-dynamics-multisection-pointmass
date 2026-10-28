@@ -26,6 +26,9 @@ slprj/
 sccprj/
 codegen/
 
+# Runtime ownership markers; preserve experiment/configuration MAT files.
+**/worker.lock
+
 # Cache files
 *.slxc
 
