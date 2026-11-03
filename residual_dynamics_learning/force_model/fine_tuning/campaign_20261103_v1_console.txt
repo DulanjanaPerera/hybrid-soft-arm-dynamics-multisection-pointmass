@@ -1,0 +1,111 @@
+                 runId                  channel    trial     partition     rows    matureRows
+    ________________________________    _______    _____    ___________    ____    __________
+
+    "day4_20261103__circleSweep"           0         3      "selection"    1460       1448   
+    "day4_20261103__SineWave"              1         1      "selection"     954        942   
+    "day4_20261103__SineWave"              2         3      "selection"     954        942   
+    "day4_20261103__SineWave"              3         5      "selection"     954        914   
+    "day4_20261103__helix"                 0         2      "selection"    1400       1336   
+    "day4_20261103__StepWave"              1         3      "selection"     520        508   
+    "day4_20261103__StepWave"              2         9      "selection"     520        508   
+    "day4_20261103__StepWave"              3        15      "selection"     520        481   
+    "day4_20261103__combinePressure"       0         2      "selection"     903        891   
+
+                 runId                  group     partition     segments    chunks
+    ________________________________    _____    ___________    ________    ______
+
+    "day4_20261103__circleSweep"          2      "train"           15        565  
+    "day4_20261103__circleSweep"          2      "selection"        1        157  
+    "day4_20261103__SineWave"             2      "train"            7        280  
+    "day4_20261103__SineWave"             2      "selection"        5        291  
+    "day4_20261103__helix"                2      "train"           11        406  
+    "day4_20261103__helix"                2      "selection"        5        129  
+    "day4_20261103__StepWave"             2      "train"           16        766  
+    "day4_20261103__StepWave"             2      "selection"        4        147  
+    "day4_20261103__combinePressure"      2      "train"            8        247  
+    "day4_20261103__combinePressure"      2      "selection"        1         95  
+
+FINE-TUNE DATA: old sequences/splits/normalizer preserved; 128 old + 80 Nov3 selection anchors.
+                      passed: 1
+         normalizerPreserved: 1
+              noTrialLeakage: 1
+               noGapCrossing: 1
+         exactInitialWeights: 1
+    finiteWarmStartGradients: 1
+       adamStateSerializable: 1
+                    testLoss: 0.1325
+               testLossParts: [0.0754 0.1896 0.0214 0.0064]
+
+INITIAL old 0.544113, Nov3 0.878404, composite 0.711259 mm.
+old_only update 50/1200, loss 0.0025434, 4.6s.
+old_only update 100/1200, loss 0.0026099, 8.9s.
+old_only update 150/1200, loss 0.003717, 13.1s.
+VALIDATION old_only 150: old 0.49362, Nov3 0.83458, composite 0.66410 mm, eligible1, best 0.66410.
+old_only update 200/1200, loss 0.0019741, 17.8s.
+old_only update 250/1200, loss 0.0026324, 22.1s.
+old_only update 300/1200, loss 0.0030486, 26.3s.
+VALIDATION old_only 300: old 0.49783, Nov3 0.85016, composite 0.67399 mm, eligible1, best 0.66410.
+old_only update 350/1200, loss 0.0016713, 31.0s.
+old_only update 400/1200, loss 0.0022711, 35.2s.
+old_only update 450/1200, loss 0.0026898, 39.4s.
+VALIDATION old_only 450: old 0.48841, Nov3 0.83528, composite 0.66185 mm, eligible1, best 0.66185.
+old_only update 500/1200, loss 0.0017715, 44.1s.
+old_only update 550/1200, loss 0.0021847, 48.3s.
+old_only update 600/1200, loss 0.0019863, 52.5s.
+VALIDATION old_only 600: old 0.47401, Nov3 0.80937, composite 0.64169 mm, eligible1, best 0.64169.
+old_only update 650/1200, loss 0.0016658, 57.2s.
+old_only update 700/1200, loss 0.0034355, 61.4s.
+old_only update 750/1200, loss 0.0022504, 65.6s.
+VALIDATION old_only 750: old 0.45143, Nov3 0.77790, composite 0.61467 mm, eligible1, best 0.61467.
+old_only update 800/1200, loss 0.003613, 70.3s.
+old_only update 850/1200, loss 0.0013444, 74.5s.
+old_only update 900/1200, loss 0.0010465, 78.7s.
+VALIDATION old_only 900: old 0.44704, Nov3 0.79679, composite 0.62192 mm, eligible1, best 0.61467.
+old_only update 950/1200, loss 0.0012269, 83.4s.
+old_only update 1000/1200, loss 0.001244, 87.6s.
+old_only update 1050/1200, loss 0.0017081, 91.8s.
+VALIDATION old_only 1050: old 0.45759, Nov3 0.80967, composite 0.63363 mm, eligible1, best 0.61467.
+old_only update 1100/1200, loss 0.0025398, 96.5s.
+old_only update 1150/1200, loss 0.00087926, 100.7s.
+old_only update 1200/1200, loss 0.0012609, 104.9s.
+VALIDATION old_only 1200: old 0.41699, Nov3 0.75734, composite 0.58716 mm, eligible1, best 0.58716.
+mixed_replay update 50/1200, loss 0.017658, 4.3s.
+mixed_replay update 100/1200, loss 0.022948, 8.5s.
+mixed_replay update 150/1200, loss 0.003779, 12.7s.
+VALIDATION mixed_replay 150: old 0.52028, Nov3 0.87303, composite 0.69665 mm, eligible1, best 0.69665.
+mixed_replay update 200/1200, loss 0.005598, 17.3s.
+mixed_replay update 250/1200, loss 0.01658, 21.5s.
+mixed_replay update 300/1200, loss 0.010154, 25.8s.
+VALIDATION mixed_replay 300: old 0.55784, Nov3 0.82188, composite 0.68986 mm, eligible1, best 0.68986.
+mixed_replay update 350/1200, loss 0.0099539, 30.5s.
+mixed_replay update 400/1200, loss 0.0026011, 34.7s.
+mixed_replay update 450/1200, loss 0.010113, 39.0s.
+VALIDATION mixed_replay 450: old 0.55673, Nov3 0.79052, composite 0.67362 mm, eligible1, best 0.67362.
+mixed_replay update 500/1200, loss 0.0056096, 43.7s.
+mixed_replay update 550/1200, loss 0.025863, 47.9s.
+mixed_replay update 600/1200, loss 0.0089063, 52.2s.
+VALIDATION mixed_replay 600: old 0.54240, Nov3 0.79473, composite 0.66857 mm, eligible1, best 0.66857.
+mixed_replay update 650/1200, loss 0.024898, 56.8s.
+mixed_replay update 700/1200, loss 0.0038414, 61.0s.
+mixed_replay update 750/1200, loss 0.013392, 65.2s.
+VALIDATION mixed_replay 750: old 0.53644, Nov3 0.79367, composite 0.66506 mm, eligible1, best 0.66506.
+mixed_replay update 800/1200, loss 0.0093847, 69.9s.
+mixed_replay update 850/1200, loss 0.008017, 74.2s.
+mixed_replay update 900/1200, loss 0.0030798, 78.4s.
+VALIDATION mixed_replay 900: old 0.57422, Nov3 0.75038, composite 0.66230 mm, eligible1, best 0.66230.
+mixed_replay update 950/1200, loss 0.0049658, 83.0s.
+mixed_replay update 1000/1200, loss 0.014643, 87.2s.
+mixed_replay update 1050/1200, loss 0.0025709, 91.4s.
+VALIDATION mixed_replay 1050: old 0.51547, Nov3 0.69476, composite 0.60511 mm, eligible1, best 0.60511.
+mixed_replay update 1100/1200, loss 0.012368, 96.1s.
+mixed_replay update 1150/1200, loss 0.0030126, 100.3s.
+mixed_replay update 1200/1200, loss 0.0038331, 104.5s.
+VALIDATION mixed_replay 1200: old 0.51044, Nov3 0.68348, composite 0.59696 mm, eligible1, best 0.59696.
+         arm          extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    ______________    ____________________    ___________    ____________    _________________
+
+    "frozen"                     0              0.54411         0.8784            0.71126     
+    "old_only"                1200              0.41699        0.75734            0.58716     
+    "mixed_replay"            1200              0.51044        0.68348            0.59696     
+
+FINE-TUNE COMPLETE. Selected old_only. All source/data/model checks pass. Nov2 not loaded.

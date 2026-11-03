@@ -1,0 +1,8 @@
+archiveData,originalSource
+calibration_rollouts.csv,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\calibration\greybox_20261102_v2\validation_rollouts.csv
+calibration_baselines.csv,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\calibration\greybox_20261102_v2\sanity_baselines.csv
+static_validation.csv,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\calibration\greybox_20261102_v2\static_validation.csv
+damping_training_profile.csv,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\calibration\greybox_20261102_v2\damping_training_profile.csv
+screen_forward_validation.csv,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\forward\validation_summary.csv
+screen_forward_external.csv,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\forward\external_summary.csv
+screen_forward_ablation.csv,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\ablations\forward_summary.csv

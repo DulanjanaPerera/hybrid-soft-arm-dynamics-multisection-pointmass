@@ -1,0 +1,39 @@
+Exported circleSweep
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\figures\motion_predictions_20261103_v1\exports\circleSweep
+  7501 sensor rows, 7486 valid orientation rows.
+PREPARED circleSweep: 7501 rows, 7066 mature, 5 native NDI gap episodes.
+Exported SineWave
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\figures\motion_predictions_20261103_v1\exports\SineWave
+  5941 sensor rows, 5931 valid orientation rows.
+PREPARED SineWave: 5941 rows, 5566 mature, 3 native NDI gap episodes.
+Exported helix
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\figures\motion_predictions_20261103_v1\exports\helix
+  5801 sensor rows, 5786 valid orientation rows.
+PREPARED helix: 5801 rows, 5390 mature, 6 native NDI gap episodes.
+Exported StepWave
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\figures\motion_predictions_20261103_v1\exports\StepWave
+  9561 sensor rows, 9554 valid orientation rows.
+PREPARED StepWave: 9561 rows, 9075 mature, 0 native NDI gap episodes.
+Exported combinePressure
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\figures\motion_predictions_20261103_v1\exports\combinePressure
+  3821 sensor rows, 3811 valid orientation rows.
+PREPARED combinePressure: 3821 rows, 3445 mature, 2 native NDI gap episodes.
+         historyFrames: 10
+         previewFrames: 5
+      maxPhysicalGap_s: 0.1000
+    maxSimulationGap_s: 0.0750
+       maxCommandAge_s: 0.0750
+         velocityTau_s: 0.2000
+     accelerationTau_s: 0.3000
+              warmup_s: 0.6000
+                schema: 'residual-data-1'
+
+          runId          samples    orientationValidFraction    freshFrameFraction    validTrainingConventionRows    matureRows    segments    medianPhysicalDt_s    longPhysicalIntervals    staleCommandRows
+    _________________    _______    ________________________    __________________    ___________________________    __________    ________    __________________    _____________________    ________________
+
+    "circleSweep"         7501                0.998                     1                        7285                   7066          20            0.050772                   2                     0        
+    "SineWave"            5941              0.99832                     1                        5714                   5566          15            0.050775                   1                     0        
+    "helix"               5801              0.99741                     1                        5585                   5390          19            0.050796                   2                     0        
+    "StepWave"            9561              0.99927                     1                        9353                   9075          24            0.050822                   2                     0        
+    "combinePressure"     3821              0.99738                     1                        3601                   3445          14            0.050799                   2                     0        
+

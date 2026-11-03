@@ -1,0 +1,5 @@
+PASS: first rollout step matches frozen one-step predictions for all 15 model/channel pairs.
+Max position difference: 2.518689259977183e-10 m (<1e-7 m tolerance).
+PASS: independent CSV recomputation of all path length RMSE values.
+PASS: 15 complete same-segment one-period predictions, 630 samples each.
+PASS: raw/export/normalizer/weight/source hashes unchanged.

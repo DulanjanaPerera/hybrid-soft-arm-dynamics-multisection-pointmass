@@ -1,0 +1,3 @@
+model,macroRMSE,pooledRMSE,maximumBoundViolation_bar,violationAbovePoint01Fraction,partition
+kinematic_ridge,0.0580716168235229,0.0682763985399729,NaN,NaN,validation
+kinematic_ridge,0.0488702646684552,0.053020797435513,NaN,NaN,external_test

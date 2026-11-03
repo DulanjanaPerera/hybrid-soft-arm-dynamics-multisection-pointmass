@@ -1,7 +1,523 @@
-Last Updated: 2026-10-28
-Current Milestone: PAC tuning checkpoint5532a5d saved; manual-run workflow retained; residual dynamics model learning branch initialized.
+Last Updated: 2026-11-03
+Current Milestone: Residual-learning checkpoint prepared; next workstream is PDFB/PAC residual-controller integration before HIL model-update automation.
 
 # Current project state
+
+## 2026-11-03 - Residual controller branch handoff
+
+User requested committing the completed residual-learning work and creating
+codex/residual-controller-integration. Handoff: RESIDUAL_CONTROLLER_HANDOFF.md.
+Start PDFB integration, then PAC after resolving adaptive compensation overlap;
+perform offline checks before preparing operator-run matched comparisons.
+Defer HIL learning automation until after the initial controller comparison.
+GRU128is the short-horizon candidate; GRU64retained for stronger circle free runs.
+Source/results commits preserve operator SLX files/staged rename, local raw
+recordings/derived datasets/checkpoints and unrelated paper-draft files.
+Versioned/local artifact inventory: residual_dynamics_learning/VERSION_CONTROL.md.
+No controller implementation, hardware, SLX edit, artifact migration or push
+is included in this checkpoint/branch operation.
+
+
+
+## 2026-11-03 - HIL paper reviewed: proposed supervised residual-model loop
+
+Reviewed Marquez et al2023 local HIL/TD3 paper. It learns a locomotion POLICY,
+not residual dynamics; its reported gains do not establish model accuracy.
+Proposal: reuse hardware-data/replay/batch-update structure for supervised GRU
+model learning, contiguous recurrent sequences and held-out prediction tests,
+with PAC/PDFB retained. Start between trials; neural weights frozen within each
+comparison. No actor-critic or ROS rewrite required for this proposed version.
+Detailed source/limitations/sequence: project_docs/HIL_RESIDUAL_MODEL_LEARNING_NOTE.md.
+Primary next step remains consistent PAC/PDFB model integration/comparison;
+no implementation, hardware run, new fit or automatic deployment authorized.
+
+
+
+## 2026-11-03 - Three-seed GRU capacity comparison completed
+
+User authorized quick offline1x64/1x128/2x64 comparison. Three seeds113/211/307, matched original1200-update stage plus1200 old-only continuation updates; unchanged physics/loss/masks/normalizer.
+Six new stage1 and eight new continuation fits; exact existing64-unit fits reused by hash. Old TRAIN gradients only; old/Nov3 holdouts select checkpoints and architecture; Nov2 evaluation excluded from selection.
+
+| Architecture | Parameters | Mean score (mm) | Sample SD | Seed113 | Seed211 | Seed307 |
+|---|---:|---:|---:|---:|---:|---:|
+| 1x64 | 14162 | 0.58531 | 0.02495 | 0.58716 | 0.55949 | 0.60928 |
+| 1x128 | 52882 | 0.48684 | 0.02226 | 0.46154 | 0.49553 | 0.50344 |
+| 2x64 | 38930 | 0.53814 | 0.05209 | 0.50814 | 0.50799 | 0.59828 |
+
+Predeclared winner: **gru128**. Frozen representative candidate: candidate_force_model.mat.
+SHA256 `8f2e0bb55ea9399b62abd5abe0b8f6dd15ab0470a400ad3e593e1edcd8f9f545`.
+The existing fine-tuned GRU64 research release remains unchanged. This candidate is an offline result, not deployed or controller-qualified.
+
+Representative seed113 fixed in advance, not chosen by best seed. Current fine-tuned GRU64 release retained; separate frozen candidate archived.
+GRU128 improves 4/10 fixed long examples relative to GRU64, while others worsen; these correlated examples are not independent statistical trials. Circle free RMSE worsens on Nov2 0.623->0.930mm and Nov3 1.005->1.366mm. It improves several sine/helix examples. The short-horizon winner is therefore a candidate for measured-state model augmentation, with mixed long-horizon accuracy. Retain the current GRU64 reference; do not infer improved physical tracking from short prediction scores.
+All nine cases have common-anchor evaluation; three representatives have whole-record one-step, fixed long motion predictions, and208-case bounded numerical inverse checks.
+Report: residual_dynamics_learning/force_model/capacity_comparison/campaign_20261103_v1/REPORT.md.
+Figures FIG/PDF/PNG, predictions/checkpoints/source/hashes and verification retained. No physical force/closed-loop qualification; fresh confirmation and PAC/PID FB integration pending. No hardware/SLX/migration/Git changes.
+
+
+## 2026-11-03 - Force GRU64 fine-tuning completed
+
+User authorized fine-tuning. Two matched1200-extra-update arms from exact frozen
+GRU64/B seed113: old October TRAIN only;16old/16Nov3 stream replay. LR1e-4,
+fresh Adam, unchanged architecture/.5s horizon/burn-in/loss/filters/normalizer.
+Nov3 whole-trial split:28train/9selection,2264new train chunks,80new holdout
+anchors; original128old selection anchors/splits/59,630-row normalizer unchanged.
+No interpolation. Both candidates improve old and new internal scores.
+Predeclared .5old+.5Nov3 score (each .7oneStep+.3halfSecond), old regression
+guard10%, chose old_only BEFORE Nov2 evaluation: composite.71126->.58716 versus
+mixed.59696. Old internal.54411->.41699; Nov3.87840->.75734. Mixed improves
+new score more (.68348), but old score less (.51044). Keep both candidates;
+this is one optimization seed, not evidence of universal old-only superiority.
+
+Selected research model: residual_dynamics_learning/force_model/fine_tuning/
+campaign_20261103_v1/release/force_model.mat, SHA256 1c38edc36ba6ff4a41da8f974a88ca1c5ea775655426da91124a35b255a9c870.
+Full report: same campaign/REPORT.md. Selected gradients use older TRAIN data;
+Nov3 holdouts were used for checkpoint selection, not gradients in that arm.
+Nov2 external one-step macro vector RMSE .53588->.36143mm; mixed.44580mm.
+Nov3 heldout one-step .93307->.75485mm; mixed.69078mm. Values use fixed original
+seed113, not earlier three-seed mean. CV remains better one-step.
+Full circle q-vector RMSE: Nov2 .9440->.6229mm; Nov3 1.2636->1.0047mm.
+Selected model improves allfive Nov2 motion examples, but some Nov3 long
+windows regress slightly; mixed replay has larger long-window regressions,
+despite better new one-step scores. Allnegative results retained. Nov3 helix
+comparison uses HELDOUT trial2 (4.0294mm original), not prior TRAIN trial1
+(2.8787mm); do not mix those comparisons.30 complete long model/window paths.
+
+75one-step and30long-window table rows independently recomputed<5e-15mm;
+source/model/data/splits/normalizer and original releases preserved. Selected
+inverse self-consistency208/208, max equation error3.57e-5N, state-commit and
+bounds pass; no physical force/control qualification. Seven FIG/PDF/PNG bundles,
+full CSV/MAT/checkpoints/optimizer states/source hashes archived. Current
+controller/PAC adaptation integration plan still pending; no SLX/hardware,
+migration, commit or push performed. No fitting or checkpoint selection on Nov2.
+
+## 2026-11-03 - Primary goal clarified: model augmentation for PAC and PID FB
+
+User explicitly intends to use the improved dynamics MODEL with existing PAC
+and PID feedback controllers and test whether tracking improves because the
+model is more accurate. This is the primary integration target. Detailed plan:
+project_docs/RESIDUAL_CONTROLLER_COMPARISON_PLAN.md. Four primary conditions:
+PAC nominal / PAC augmented; PID FB nominal / PID FB augmented. Compare model
+off/on within each controller with matched gains, references, filters, pressure/
+common-pressure allocation, load, calibration, initialization and duration.
+Freeze neural weights; recurrent state evolves. Match PAC adaptation settings
+and reset policy. Report tracking/convergence/smoothness/limiting and independent
+model accuracy, not just one-step prediction error. A separate retuned-controller
+study can follow but cannot isolate model benefit by itself.
+
+Before integrating, reconcile the residual's fixed nominal K0/D0/B*p definition
+with each actual controller. PAC already estimates K/D/hysteresis/bias; derive
+consistent compensation/adaptation before stacking the neural force term.
+Pressure-dependent residual requires bounded inverse calculation with fixed
+pre-current hidden state during candidate search and one selected-state commit.
+Verify actual PID/integral path (repository also uses PDFB/PDI/FB names), actual
+pressure/common-pressure operating coverage and runtime settings. Original
+passivity is not automatically inherited. This is a recorded design/test plan,
+not a completed controller derivation, SLX change or hardware authorization.
+No continuation training, controller edits, hardware, commit or push this turn.
+
+## 2026-11-03 - November3 frozen-model plots and continued-training recommendation
+
+User requested same circle/sine/helix plots for November3 and asked which newer
+day to use for continued training. Complete seven FIG/PDF/300dpiPNG bundles,
+MAT/CSV/source/hashes: residual_dynamics_learning/figures/
+motion_predictions_20261103_v1/frozen_model_predictions_v1/REPORT.md.
+Same frozen FORCE GRU64/B seed113, no fitting, changed normalizer or imputation.
+Separate measured-state one-step and free recorded-input predictions, nominal
+shown separately. New helper reproduces ALL saved November2 circle one-step
+anchors/outputs<1e-12m; all15 initial free steps match measured replay<1e-10m.
+All15 model/window free paths complete, four helix labels stay NaN/unscored.
+
+Free q-vector RMSE mm, GRU/CV/nominal: circle1.264/1.948/11.625;
+sineP1 1.718/9.767/6.742; P2 1.379/15.735/9.700;
+P3 1.688/19.562/7.670; helix2.879/13.169/11.808. Correction to an intermediate
+commentary range: sineP2 is1.38mm, not1.69mm. Selected source intervals:
+circle phi_reference1,159-169s; sine[6.6-19.2,102-114.6,197.4-210]s;
+helix6.6-64.95s (59.047physical seconds). These are chronological examples,
+not independent repeated trials. One-step CV still better; reconstructed PCC
+XYZ is not sensor XYZ. No controller tracking or unique physical deadzone claim.
+
+Logged Nov3 circles10s versus Nov2 20s; sine~12.575s versus~31.4s; helix10s/turn
+and peak requested phi2.5 versus20s/turn,phi1.5. Speed, amplitude and date all
+change, so larger circle/helix errors cannot be attributed to speed alone.
+Actual59,630 old TRAIN feature rows audited: some new circle/helix q/v extend
+beyond old observed extrema (~2-3.5% per affected feature); q2 minimum old
+-14.98mm versus newcircle-22.18mm/helix-20.73mm, positivev2 old.01322m/s versus
+new~.0209m/s. Large training z-scores alone do not prove outside-range input.
+
+Recommended NEXT offline experiment, not executed: fine-tune frozen GRU64 on
+old October19/27 TRAIN plus November3 TRAIN, retaining older data replay and
+whole-trial/condition internal holdouts. Keep November2 evaluation-only for
+frozen before/after comparison, acknowledging it is previously inspected, not
+blind confirmation. Lower learning rate, same architecture/loss/history and
+original normalizer initially; declare fresh optimizer state (release weights
+are not a full Adam resume). Compare extra-old-only updates against old+Nov3
+at matched budgets, to separate new data benefit from just optimizing longer.
+Do not combine imputation/filter/capacity changes in the first continuation
+experiment. If Nov2 enters training it loses held-out status; use another
+cohort/fresh day for independent evaluation. A future fresh repeat/day is needed
+for final confirmation. Neither current day establishes2s-circle performance.
+Sources/model/raw/old Nov2 plotting archive unchanged; no hardware, SLX,
+training, migration, Git commit or push performed.
+
+## 2026-11-03 - Requested November2 motion plots; November3 NDI gap audit
+
+User clarified main plotting cohort is November2. Frozen FORCE GRU64/B seed113,
+not the older position-correction GRU. Seven FIG/PDF/300dpiPNG sets plus full
+MAT/CSV/source/hashes: residual_dynamics_learning/figures/
+motion_predictions_20261102_v1/REPORT.md. Circle phi_reference1,259-279s;
+one sine period/channel; helix6.6-124.95s (119.85physical seconds), loading and
+unloading after observed warmup. Separate exact saved measured-state one-step
+and free recorded-pressure predictions, nominal shown separately. Fifteen free
+model/window paths complete; first steps reproduce frozen results<1e-10m.
+Length-vector RMSE mm, GRU/CV/nominal: circle.944/2.253/11.481;
+sineP1 2.336/9.481/6.070; P2 1.778/17.480/9.656;
+P3 1.796/21.731/7.559; helix.763/4.740/8.972. Chronological examples exceed
+.5s training and prior1s evaluation; this long-window GRU advantage coexists
+with CV winning short-term. No universal or controller tracking claim. PCC XYZ
+is reconstructed from inferred q, not independent sensor XYZ. Six missing
+labels remain NaN/unscored; free model carries on known pressure/time without
+measurement injection. One-step retains original reset/recovery warmup.
+Source/model/raw/export hashes unchanged; previous release preserved.
+
+All five November3 files exported/audited separately, no fitting or new model
+score evaluation.57 invalid NDI rows/55 episodes:53 one-frame, two two-frame.
+Separate explicit preview fills53 one-frame gaps at<=.12s valid-to-valid
+physical span, keeping raw values/validity and imputed masks, q1=-q2-q3; both
+longer episodes remain missing. Artificial-mask proxy reconstruction vector
+RMSE.040-.098mm acrossfive records (max individual one-frame error.4855mm).
+Actual dropout truth remains unknown; overlapping masked blocks are correlated.
+Artifacts/source/CSV/FIG/PDF/PNG in figures/motion_predictions_20261103_v1/
+short_gap_audit/REPORT.md. Preview never entered training or frozen evaluation.
+Proposed future training experiment: bounded offline inputs, explicit imputed
+flag, measured-only targets, long-gap resets, unchanged measured-only/causal
+validation. Two-sided interpolation uses the future endpoint: masking only
+filled targets does not remove leakage through recurrent inputs/state.
+Alternative: gap-aware physics carry with loss only at real observations.
+No interpolation policy deployed, retraining, SLX/hardware, migration or commit.
+
+## 2026-11-03 - Streaming force-GRU sequence completed
+
+Explicit sequence executed: six architecture/horizon fits, one burn-in comparison,
+four additional seed fits. New observed-state TBPTT primary path and independent
+short free-prediction state; no future target inputs. Old October19/27 whole-trial
+splits and normalizer unchanged; all finalists frozen before November2 replay.
+Selected B,64-unit single layer,0.5s horizon,.5s burn-in;
+fixed representative seed113, chosen config by three-seed mean older score.
+Two-layer32+32 did not win under the common1200-update budget; not a general
+depth result. November2 macro one-step 0.5629 +/- 0.0684mm; .5/1s path
+0.3613 +/- 0.0148/0.4272 +/- 0.0183mm. Matched CV one-step
+0.0621mm. CV remains better at all tested horizons through1s. All numerical
+guard failures 0; per-phase/coordinate/
+force-rate/seed results retained. New mode differs from parent release, so do
+not attribute all changes to width. No post-test tuning or new November3 pooling.
+Offline bounded, pressure-dependent model inversion: 128/128 known
+targets feasible, max equation residual 4.743e-05N, median/p95 latency
+5.19/13.93ms excluding acquisition/control scheduling.
+Trial hidden states remain fixed; one selected-state commit passes. This is
+self-consistency, not physical force or closed-loop tracking qualification.
+Code/state/gradient/horizon/split/hash checks and independent saved-metric
+recompute pass. Prior release unchanged. Reports/weights/CSV/MAT/FIG/PDF/PNG:
+residual_dynamics_learning/force_model/streaming/REPORT.md. No SLX/hardware,
+migration, commit or push.
+
+2026-11-03 user proposes two GRU layers and <=1s training rollout for current-
+force pressure correction. Proposed test plan recorded in
+residual_dynamics_learning/force_model/NEXT_EXPERIMENT_PLAN.md; no new training
+or runtime edits here. Align measured-state streaming/recurrent-state update
+contract first; current release's warm-up+free prediction differs from live
+measurement-conditioned estimation. Six-model screen:1x32,1x64,2x32 crossed
+with .5/1.0 PHYSICAL second training horizons, explicitly weighted one-step
+and short-rollout length loss, matched data/objective/update budgets. Then
+burn-in .5vs1s and repeated seeds for finalists. Select using development data,
+retain November2 evaluation only. Pressure-dependent residual still requires
+bounded inverse/common-pressure policy and one committed state update/sample,
+not one per pressure candidate. No hardware/SLX/model replacement/migration.
+
+2026-11-03 user plans LATER migration of heavy residual-model/data artifacts
+outside OneDrive to C:\Lab\Research\Residual modeling, preferably while no
+agents/training are active (possibly at night). Deferred: no move or scheduled
+task executed now. Future migration must verify destination paths,
+copy/check hashes and preserve provenance/reproducibility before cleanup.
+User is collecting additional circle speeds/phi and step rise times for later
+model development. Files/settings not yet audited; do not assume the new runs
+are complete or pool them automatically. Retain current October19/27 training
+and November2 evaluation-only contract for the frozen release. For a later
+campaign, declare training/held-out runs/conditions before fitting; compare
+capacity/history/loss settings on development data, not November2 scores.
+
+2026-11-03 explicit user authorization executed: NEW generalized-force GRU32
+trained using October19+October27 only; November2 reserved for evaluation.
+Canonical model/report: residual_dynamics_learning/force_model/release_20261103_v1.
+It outputs two forces in N on the RHS of the corrected nonlinear mechanical
+equations; lengths result from integration, with no learned position jump.
+New old-TRAIN-only normalizer,2,883 training windows,160 whole-trial internal
+selection windows; day2 step only3 train windows and combinedzero due gaps.
+Integrated-length loss includes residual-force-rate/magnitude regularization.
+No force/derived-acceleration truth labels or new-data normalization/fitting.
+Compared two completed fits using older holdouts only; lowerlr.0003 epoch38
+selected, old macro2.1103mm. Exact release frozen before evaluation.
+November2:50,078 anchors; macro one-step nominal4.7352/CV.06235/forceGRU2.1510mm.
+At2/5s path: nominal7.0438/6.6372, CV.8927/3.4062, forceGRU1.8375/2.1267mm.
+All540 matched rollout paths avoid numerical guard. Force model improves poor
+nominal and CV at5s, but weak short-term accuracy prevents qualification for
+inverse/PAC/PDFB. Do not hide that limitation or equate new force scores with
+old position-correction GRU. OI-11 retains pending development. Current pressure
+enters the residual, so inverse allocation must solve that input dependence.
+Differentiable exact-PCC polynomial coefficients, implicit SDIRK solver and
+first-order numerical solver-Jacobian training checks pass; no claim of physical
+force identification/stability. Reports, weights, old-only split/source hashes,
+CSV/MAT/FIG/vectorPDF/PNG retained in force_model. No post-test refit, old-data
+overwrite, SLX/runtime/hardware/commit/push. November2 previously inspected:
+held-out evaluation, not blind confirmation. Earlier proposal-only status below
+is superseded for first force-model training, not controller deployment.
+
+2026-11-03 user asks to retain the spike-reduction idea for later. Record in
+RESIDUAL_DYNAMICS_LEARNING_PLAN.md: diagnose nominal versus residual origin;
+prefer multi-step integrated-length training and modest temporal smoothness
+regularization of the intended force residual. Optional causal output low-pass
+must be evaluated with its delay, not merely smooth displayed curves. No
+retraining, filter/runtime edits or new model implemented for this discussion.
+
+2026-11-03 requested SineWave4 visual comparison completed, same five existing
+predictors. CV+GRU grouped separately from nominal/ridge/kinematic-ridge.
+One-period free-running windows chosen first chronologically within mature
+uninterrupted segments: P1 trial1 40.8-72.25s, P2 trial3 214.6-246.05s,
+P3 trial6 527.35-558.8s. No measured-state resets within a window. q2/q3
+path RMSE mm, P1/P2/P3: CV9.604/16.748/20.685; GRU.951/3.899/2.401;
+nominal+ridge3.376/2.724/4.714. GRU has spikes; ridges better on P2 here.
+Full-record one-step plots explicitly separate from free-running plots.
+Four FIG/PDF/PNG sets, source/CSV/MAT/hash/verification/report retained under
+residual_dynamics_learning/figures/sine_predictors_20261103_v1. All15 complete;
+first rollout steps match existing frozen predictions, independent score
+recompute passes. No training/newpredictors/controller/hardware/commit/push.
+Current learned outputs are position corrections; force-residual work pending.
+
+2026-11-03 user requested circle visuals for the five listed predictors only.
+Retained under residual_dynamics_learning/figures/circle_phi1_predictors_20261103_v2.
+Logged phi_reference=1 selects trial3,five20s circles,259-359s; measured phi
+.052-.230rad. First complete circle259-279s (20.23physical seconds) predicted
+from one measured history, no state resets. q2/q3 path RMSE mm: nominal11.489,
+constantvelocity2.253, nominal+ridge3.825, kinematic+ridge4.750, nominal+GRU1.096.
+GRU closest length/derivedXY for this onecircle, not universal winner. XY is
+PCC reconstructed from inferred/predicted lengths, not independent sensorXYZ.
+Separate one-step plots across allfive circles are explicitly teacher-forced.
+Source/CSV/MAT/hashes and FIG/PDF/PNG retained. No fitting/newpredictors,
+controller/hardware/Simulink/commit/push. Generalized-force residual still pending.
+
+2026-11-02 fresh offline validation complete: canonical output is
+residual_dynamics_learning/validations/fresh_20261102_v2/REPORT.md.
+StepWave/SineWave4/combinePressure/circleSweep/helix supplied exports exactly
+match current raw MAT re-exports. 50,078 guarded anchors, frozen October19
+normalizer/weights unchanged; no fitting or new model selection. Mean per-run
+q2/q3 one-step vector RMSE: nominal 4.9183 mm, constant velocity .06235,
+ridge .05976, kinematic ridge .05961, GRU .34447. At 2/5 s, ridge path RMSE
+.7268/1.6204 mm versus constant velocity .8930/3.4076; GRU 1.1265/1.5112,
+kinematic ridge .6795/1.8064. Sixty deterministic windows per horizon/model,
+no measured-state resets, known recorded pressures/query times. All 1,440
+propagations stay within the inherited numerical guard; no safety guarantee.
+One-step sine ridge is slightly worse than constant velocity; phase-level
+and per-run scores retained. Physics-prior advantage remains mixed; inverse
+pressure-only AR still matches full inverse ridge, confirming shortcut concern.
+Mode0 frozen context retained; corrected mode1 nominal separately tested.
+Recorded model versions differ (1.46 step/combined, 1.47 sine/circle/helix).
+These are next-position corrections, not force residuals. Next implement
+history-conditioned generalized-force augmentation with integrated-q training
+and explicit corrected nominal version; no further calibration detour or
+controller integration justified yet. November2 is now evaluated, not untouched
+confirmation for later changes. Raw exports, diagnostics, CSV/MAT/source hashes,
+FIG/PDF/PNG retained; v1 incomplete attempt marked DO_NOT_USE. No training,
+SLX/runtime/hardware execution, commits or pushes by assistant.
+
+2026-11-02 SineWave4 reviewed: new same-BXdiagnostics logged/aligned all12721
+samples, replycounter+1each.10isolated.05s tip losses, allch3, rawtipstatus2
+(MISSING), base1; masks4098tip/4096base. Volume/partial/brokenflags0, system0,
+freshpairedframes, no overrun atloss. Replies87->55bytes, coherent32byte tip
+transform omission. CRCstillunchecked. Lastvalidphi.648-.884rad,4loading/
+6unloadingevents. Underlying field/orientation/cable/motion cause not unique.
+Sevenoverruns/five>.10s gapselsewhere;12theta-unobservablegoodorientation frames
+are separate. Keep invalid/gap guards, no threshold relaxation or whole-run
+discard required solelyfor10gaps. Forwardphi peaks2.5268all3consistentwithbounds
+fix; otherinlinecontroller installations stillnotestablished. Report/CSV/
+FIG/PDF/PNG/source: residual_dynamics_learning/audits/validity_sine4_20261102_v1.
+No hardware/model run, fitting or runtimechanges by assistant; logging status
+pending below is superseded by this actual user-recorded observation.
+
+2026-11-02 NDI diagnostics implemented after explicit user request. Driver/port
+cache retains same-reply raw status/flags and availability, no extra BX query.
+BaseRotation appendsport23, Position_only port20: ndiDiagnostics32x2 double
+(base,tip). Existing ports/pose holds/validity thresholds unchanged. Helper/
+schema/decoder and named optional CSV export added; CRC received, not verified.
+32 synthetic reader/packet cases, metadata, original-output equality (except
+host clocks), incomplete/recovery and no-extra-query pass. Actual legacy
+SineWave3 observations unchanged. No serial/DAQ open, reader setup/preflight
+or Simulink/hardware execution. Operator must refreshclass/ports with model
+stopped and log newlastport asndiDiagnostics; physical integration/timing
+unverified. See ndi_diagnostics/README.md, validation_20261102_v1 and
+project_docs/NDI_DIAGNOSTICS_RESULTS.md. Actual dropout cause awaits new log.
+No commit/push. Supersedes earlier diagnostics-proposal status below.
+
+2026-11-02 SineWave3 quality follow-up:14 isolated acquisition losses/12721sensor
+samples (13channel3,1channel1), same tip-invalid/base-valid/nonfiniteXYZ chain,
+fresh paired frames/overrun0, one.05s interval each. Neighbor poses spanphi.186-
+2.202rad; several recurring regions rather than one unique location.13ch3 losses
+versus19inSineWave2 is not a controlled generator-move effect. Detailed raw NDI
+status not logged, exact reason unresolved. User asks diagnostic-output need:
+recommend same-BX raw sensor/port status, decoded volume/broken bits, quaternion
+norm and host rejection mask, associated with existing frames/times. Proposed
+only: no runtime reader/driver/SLX changes or hardware run. Current code discards
+packet/system details; frame pairing alone does not verify packet integrity.
+Report/CSV/FIG/PDF/PNG/source under residual_dynamics_learning/audits/validity_sine3_20261102_v1.
+
+Standing user reminder2026-11-02: carry the equal three-actuator bound correction
+into future work on other PAC and PDI/FB controllers (including PDFB/feedback-
+linearization variants when they use the same q=[l2;l3],l1=-l2-l3 model).
+Before porting/comparing, audit embedded old formulas and match forward/inverse/
+controller force terms. +/-35mm is already the limit; include l1, do not just
+increase limits. External-source correction does not mean all saved models are
+migrated. D-12 in DECISIONS.md and OI-10 in OPEN_ISSUES.md retain the rule and
+pending installation/build/validation work. Preserve declared legacy model
+versions/results. This reminder authorizes documentation, not more SLX/hardware
+work or unrelated controller edits.
+
+2026-11-02 authorized correction: bound already+-35mm; now shared helper
+armS_single_boundForce maps allthree actuator forces includingl1=-l2-l3 intoq.
+Forward RHS, fixed/adaptive PAC and common-pressure inverse source use corrected
+force. Paste-ready RL_data_collection/rlInverseModelBlock.m keeps3inputs/5outputs;
+collection SLX still has old embedded inverse until operator pastes/rebuilds.
+No SLX edited or hardware/Simulink run. Bound strength/mu/gains/pressure settings
+unchanged. Offline mapping/potential/symmetry/forward-inverse/PAC tests passed.
+3bar synthetic equilibria now2.5268rad inallchannels vslegacy3.0051/2.5268/2.5268.
+Standalone Coder post-emission toolchain check failed; actual build unverified.
+Report, transcripts, CSV/FIG/PDF/PNG and source hashes under residual_dynamics_learning/
+validations/actuator_bounds_20261102_v1. Installation/version guidance in
+RL_data_collection/ACTUATOR_BOUND_CORRECTION.md. Current RHS defaultboundMode1;
+legacy datasets/frozen contexts/calibration remainmode0 explicitly; no retrain,
+relabel or old-output overwrite. New residual baseline must be versioned.
+
+2026-11-02 nominal bound asymmetry identified from fresh sine diagnostics:
+des_phi peaks3.005/2.527/2.527rad are simulated, not measuredphi. Current RHS
+penalizesl2/l3 only, omits reconstructedl1=-l2-l3. Channel1l1 reaches39.067mm
+without boundforce; channels2/3 extendingcoordinate32.849mm sees~6.02N softbound.
+No channel-specific phi clip. Possible symmetric actuator-force mapping logged,
+not implemented; any correction needs versioned baseline/revalidation. Report,
+CSV/FIG/PDF/PNG/source under audits/bound_asymmetry_20261102_v1. No new simulation,
+training/hardware/helper/SLX edits. Operator repeating after generator movedback;
+treat as setup change and recalibrate/preflight; new run not yet reviewed.
+
+2026-11-02 fresh sine quality audit: reviewed20261102/SineWave.mat andSineWave2.mat
+for configurationValid dropouts only; no fitting/prediction scoring.15/20 losses
+out of12721sensor samples each, all isolated.05s simulation intervals, all tip
+sensor invalid/base valid with nonfiniteXYZ/orientation invalid, paired fresh
+frames andoverrun0.14/15 and19/20 during channel3; one earlier channel1 loss each.
+Current XYZ-IK helper correctly rejects nonfinite input; detailed tracker status
+not logged, exact physical cause unresolved. Preserve flags/mask invalid windows;
+no validity/solver changes needed from this evidence. Report/events/nativechecks,
+hashes andFIG/PDF/PNG in audits/validity_20261102_v1 under residual_dynamics_learning;
+figures indexed in FIGURE_INDEX.md. Other20261102 recordings not reviewed here.
+
+2026-11-02 fresh-test proposal: current frozen next-position residual predictors
+can be tested offline on new operator-collected recordings. Recommend initial
+StepWave/SineWave repeat, unchanged established collection protocol, complete out
+and physical/simulation timing/validity/calibration metadata. Freeze weights,
+training transforms and baselines; evaluate one-step and longer autonomous
+physical-time rollouts before any retraining. Fresh-cohort evaluator adapter
+still needed: current preparation manifest and rollout cohort are hardcoded.
+No current-model PAC/PDFB integration or learned-pressure arm test proposed.
+This is a proposed data test, not an accepted/started hardware schedule. See
+RESIDUAL_DYNAMICS_RESULTS.md for limits and later expanded waveform coverage.
+
+2026-11-02 discussion/priority update: user correctly noted the nominal model's
+inaccuracy was already known. Calibration was a limited offline diagnostic to
+test simple parameter/lag explanations, not a prerequisite to make the nominal
+model accurate. Stop extending calibration as the main workstream. Next keep
+an explicit frozen nominal baseline and learn missing generalized-force dynamics
+from motion/pressure history, preferably fitting integrated length output error
+rather than treating differentiated acceleration as measured force. Placement,
+architecture and training method still need implementation/verification; earlier
+step3 position-transition predictors are not this force-residual model. Compare
+nominal+residual with nominal and simple/data-driven baselines on held-out longer
+rollouts/loading-unloading before PDFB/PAC integration. No new training here.
+
+User requests retained paper-useful figures. Index project_docs/FIGURE_INDEX.md;
+versioned bundle residual_dynamics_learning/figures/20261102_model_diagnostics_v1
+retains calibration/screening diagnostics, source tables/code/reports, PNG/PDF/FIG
+exports and original example PNG with provenance/captions/claim limitations.
+Future important analysis should retain plots and numerical inputs in this form.
+Local logs/artifacts are not yet committed; commit/push only when requested.
+The older calibration entry's next-step priority below is superseded by this one.
+
+2026-11-02: executed existing-data static/dynamic identification offline. Canonical
+report residual_dynamics_learning/calibration/greybox_20261102_v2/REPORT.md.
+October19 only:15 StepWave training holds fit structured positive K and bias;
+10 training windows fit D, then shared effective lag at fixed delay grid.
+30 disjoint-trial validation windows, full nonlinear ~2s propagation: original
+mean vector pathRMSE5.136mm -> mechanics3.369 -> mechanics+memory3.295.
+Matched persistence1.338 and constantvelocity1.055mm remain better. Static
+validation4holds improves7.604->5.583mm, still substantial equilibrium mismatch.
+Both fitted D reach250 upperbound; training-only profile favors even higher D,
+consistent with suppressing model motion rather than identified physical damping.
+Delay/T trade off; selected.2s grid edge/T.01066s is not identified actuator lag.
+Pressure commands only, approximate physical clock mapping; fixed force gain,
+mass and geometry. Oct27 not loaded here; prior screening already evaluated it.
+Simulator original-RHS/leakage/delay tests and disjoint-trial checks pass.
+No SLX/controller/hardware/commit/push changes. Next inspect equilibrium error
+versus common/differential pressure/loading and timing before more capacity or
+arm integration; possibly design informative operator-run loading/unloading data.
+Do not use fitted values as PAC tuning. Incomplete calibrationv1 quarantined.
+
+2026-11-01 step3: trained separate forward/inverse ridge, MLP32/16 and GRU16
+onOct19 train anchors(stride3=11,785), validation13,977; fixed small20epochCPU
+budget/seed73. Model transforms/selection frozen before external evaluation.
+Canonical results residual_dynamics_learning/benchmarks/screen_20261101_v2;
+v1 superseded numerical ridge warning, fixed double-QR refit reproduces exactly.
+Forward macro validation RMSEmm nominal4.9845,CV.06128,ridge.05802,MLP.41469,
+GRU.30156. External CV.05193,ridge.08939,MLP2.4797,GRU2.8055; kinematic ridge
+ablation.04887 -> nominal prior benefit not established. Short autonomous
+10step validation rollouts ridgefinal~.33mm versusCV~.37, not full-circle proof.
+Inverse external pressure RMSEbar ridge.000626,MLP.02779,GRU.02764, but pressure-
+history/common-pressure-only AR.000424 and no-pressure-history ridge.40082.
+Thus tiny inverse errors reflect a strong command-predictability shortcut,
+not demonstrated missing mechanics or new-motion inverse capability. Bounds
+audited unclipped. No candidate deployed, SLX/hardware/commits unchanged.
+Next investigate prior calibration/actuator-memory and motion-conditioned
+identification/excitation before arm tests. Oct27 now evaluated; not untouched
+confirmation for future iterations. Full protocol/weights/tests/report saved.
+
+2026-11-01 residual step2 completed offline: valid package is
+residual_dynamics_learning/datasets/two_day_v2. Ten raw hashes checked,
+day-separated exports, physical/simulation clocks, strict invalid/gap/trial
+segments, causal derivatives/warmup, anchor indices and train-only normalizers.
+73,406 shared forward/inverse candidate anchors:35,350train +13,977validation
+fromOct19 whole-trial split;24,079 external-test anchors fromOct27, no fit there.
+residualBatch enforces forward causality and inverse pressure-history k-1;
+inverse desired-preview/common-pressure conditional semantics documented.
+Nominal helper matches existing RHS and feasible inverse roundtrip. Candidate
+residual labels use one explicit zero-activation reference and deriveda, not
+measuredforce. Recorded maps revealOct19 step/sine/combined inverse activation
+.8 versus0 elsewhere; not evidence of physical deadzone change.
+Day2 step/combined physical dt~.0885/.0877s and many>.10s gaps leave46/26 windows,
+so not representative external tests. Hold thresholds unchanged; no architecture
+winner or trained model yet. validateResidualNominal/Data/recorded-map checks
+pass. Initialtwo_day_v1 invalid/incomplete, explicitly quarantined DO_NOT_USE
+after helper sign error caught/corrected. No raw changes, hardware, SLX edits
+or commits. Step3: baseline/memory/MLP/GRU preliminary offline benchmarking.
+
+2026-11-01 residual step1: logged user's six-step plan and completed interface/
+target specification. Audited ten raw RL recordings separately: root2026-10-19
+and20261027 subfolder2026-10-27, dates confirmed by saved acquisition metadata,
+five waveforms each. Different model names/layouts and durations; no pooling.
+Thirty final NI command channels identified with indices/paths, ten source
+hashes, current saved SLX source snapshots extracted read-only. Specification
+residual_dynamics_learning/MODEL_SPECIFICATION.md defines forward2-output
+acceleration residual and inverse3-pressure interface with explicit common
+allocation (recommended2 differential residuals + prescribed common pressure).
+Nominal inverse minimum-offset allocation differs from arbitrary recorded
+common mode. Prevent current-pressure/future-measurement feature leakage;
+inverse desired preview permitted, forward future observations are targets only.
+Shortlist memory baseline/windowedMLP/GRU, LSTM conditional; no winner selected
+without training. Step2 data alignment/quality/splits and nominal verification
+remain next. No raw changes, model training, SLX edits, hardware runs or commits.
 
 2026-10-28 branch transition: user requested relevant checkpoint and new branch.
 Committed PAC code, models, campaigns/raw data/reviews and documentation as

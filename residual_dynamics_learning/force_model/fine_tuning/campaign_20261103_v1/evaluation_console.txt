@@ -1,0 +1,32 @@
+FROZEN EVALUATION complete: frozen; Nov3 train/holdout separated, Nov2 evaluation only.
+FROZEN EVALUATION complete: old_only; Nov3 train/holdout separated, Nov2 evaluation only.
+FROZEN EVALUATION complete: mixed_replay; Nov3 train/holdout separated, Nov2 evaluation only.
+         cohort               variant          GroupCount    mean_lengthVectorRMSE_mm    mean_l2RMSE_mm    mean_l3RMSE_mm
+    ________________    ___________________    __________    ________________________    ______________    ______________
+
+    "nov2_external"     "constant_velocity"        5                 0.062082               0.041985          0.045687   
+    "nov2_external"     "frozen"                   5                  0.53588                0.39497           0.35989   
+    "nov2_external"     "mixed_replay"             5                   0.4458                0.31578           0.31295   
+    "nov2_external"     "nominal"                  5                   4.7638                 3.4738            3.2245   
+    "nov2_external"     "old_only"                 5                  0.36143                0.26516           0.24453   
+    "nov3_selection"    "constant_velocity"        5                  0.10771               0.074946          0.077179   
+    "nov3_selection"    "frozen"                   5                  0.93307                0.71823           0.58826   
+    "nov3_selection"    "mixed_replay"             5                  0.69078                0.51418           0.45863   
+    "nov3_selection"    "nominal"                  5                   4.8045                 3.5228            3.1808   
+    "nov3_selection"    "old_only"                 5                  0.75485                0.55966           0.50195   
+    "nov3_train"        "constant_velocity"        5                  0.12889               0.086415          0.095578   
+    "nov3_train"        "frozen"                   5                   1.2422                0.86491           0.88942   
+    "nov3_train"        "mixed_replay"             5                  0.70759                0.51345           0.48552   
+    "nov3_train"        "nominal"                  5                   5.0881                 3.7039            3.4571   
+    "nov3_train"        "old_only"                 5                   1.0467                0.71876           0.75836   
+
+                    cases: 208
+            knownFeasible: 208
+       forceErrorMedian_N: 9.0313e-09
+          forceErrorMax_N: 3.5724e-05
+    maxBoundViolation_bar: 2.2204e-16
+         latencyMedian_ms: 2.0440
+            latencyP95_ms: 4.9544
+         fractionOver50ms: 0.0096
+          statePurityPass: 1
+

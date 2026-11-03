@@ -1,0 +1,15 @@
+Circle prediction Nominal model: complete=1
+Circle prediction Constant velocity: complete=1
+Circle prediction Nominal + ridge: complete=1
+Circle prediction Kinematic + ridge: complete=1
+Circle prediction Nominal + GRU: complete=1
+         predictor         completedCircle    guardStopSim_s    samples    lengthVectorRMSE_mm    PccXYVectorRMSE_mm    phiMAE_rad
+    ___________________    _______________    ______________    _______    ___________________    __________________    __________
+
+    "Nominal model"             true               NaN            401            11.489                 70.727            0.85603 
+    "Constant velocity"         true               NaN            401             2.253                  15.49            0.04652 
+    "Nominal + ridge"           true               NaN            401            3.8247                 22.577             0.2423 
+    "Kinematic + ridge"         true               NaN            401              4.75                 28.185            0.30735 
+    "Nominal + GRU"             true               NaN            401            1.0957                 6.5208           0.055198 
+
+PASS: logged phi1 selection, complete contiguous first circle, angle/length roundtrip, unchanged frozen files, no fitting/hardware.

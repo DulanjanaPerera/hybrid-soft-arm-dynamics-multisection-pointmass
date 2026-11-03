@@ -1,0 +1,9 @@
+runId,windows,failures,vectorRMSE_mm,maximumResidual_N
+day1_root__SineWave,20,0,27.0331979365712,80
+day1_root__StepWave,20,0,24.9852226239102,80
+day1_root__circleSweep,20,0,25.3731034941547,80
+day1_root__combinePressure,20,0,24.7773334730935,80
+day1_root__helix,20,0,24.4838821142481,80
+day2_20261027__SineWave,20,0,26.0834389299204,80
+day2_20261027__circleSweep,20,0,26.5548860117787,80
+day2_20261027__helix,20,0,25.7219651845876,80

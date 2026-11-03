@@ -1,0 +1,7 @@
+id,widths,horizon_s,burnIn_s,parameters,oldScore_mm,selectedUpdate,folder
+A,32,0.5,0.5,4018,1.16608236528928,1200,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\A_seed113
+B,64,0.5,0.5,14162,0.544112625490055,1200,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\B_seed113
+C,[32 32],0.5,0.5,10258,0.65677063471289,1200,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\C_seed113
+D,32,1,0.5,4018,2.01051854702136,1200,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\D_seed113
+E,64,1,0.5,14162,0.618269266186218,1200,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\E_seed113
+F,[32 32],1,0.5,10258,0.785412473344086,1200,C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\F_seed113

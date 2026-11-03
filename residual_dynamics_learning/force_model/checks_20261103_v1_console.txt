@@ -1,0 +1,7 @@
+{Error using assert
+Assertion failed.
+
+Error in validateForceResidualPhysics (line 38)
+assert(all(convergence.positionErrorVsOde15s_mm(convergence.substeps==20)<.15));
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 

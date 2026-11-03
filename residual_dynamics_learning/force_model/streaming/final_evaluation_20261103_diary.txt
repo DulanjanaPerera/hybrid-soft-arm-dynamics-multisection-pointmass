@@ -1,0 +1,16 @@
+[Warning: Column headers from the file were modified to make them valid MATLAB identifiers before creating variable names for the table. The original column headers are saved in
+the VariableDescriptions property.
+Set 'VariableNamingRule' to 'preserve' to use the original column headers as table variable names.] 
+{Error using matlab.internal.math.checkDataVariables (line 55)
+Invalid grouping variables.
+
+Error in matlab.internal.math.parseGroupVars (line 17)
+    [groupVars,T] = matlab.internal.math.checkDataVariables(T,groupVars,messageIdent,flag);
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in groupsummary (line 180)
+[groupingData,groupVars] = matlab.internal.math.parseGroupVars(groupVars,tableFlag,"groupsummary:Group",T);
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in sgFreezeRelease (line 6)
+F=readtable(fullfile(camp,'finalists.csv'),'TextType','string');G=groupsummary(F,'id','mean','oldScore_mm');
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 

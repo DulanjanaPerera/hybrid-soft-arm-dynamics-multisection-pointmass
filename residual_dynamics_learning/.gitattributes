@@ -1,0 +1,2 @@
+# Preserve the bytes used by archived SHA256 provenance, including snapshots.
+* -text

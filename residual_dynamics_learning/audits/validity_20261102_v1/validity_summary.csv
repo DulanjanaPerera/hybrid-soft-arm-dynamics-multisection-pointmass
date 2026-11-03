@@ -1,0 +1,3 @@
+runId,sensorSamples,invalidSensorSamples,invalidPercent,channel3Invalid,nativeConfigSamples,nativeInvalidRows,minimumDropDuration_sim_s,maximumDropDuration_sim_s
+SineWave,12721,15,0.117915258234416,14,67649,80,0.0499999999999545,0.0500000000000682
+SineWave2,12721,20,0.157220344312554,19,67649,107,0.0499999999999545,0.0500000000000682

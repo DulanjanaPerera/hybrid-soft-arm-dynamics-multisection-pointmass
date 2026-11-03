@@ -1,0 +1,10 @@
+predictor,horizon_s,windows,failures,successfulMacroPathVectorRMSE_mm
+nominal,0.5,60,0,6.95079673071176
+constant_velocity,0.5,60,0,0.185752489292001
+force_gru,0.5,60,0,1.93734960833311
+nominal,2,60,0,7.0438157264951
+constant_velocity,2,60,0,0.892708003845094
+force_gru,2,60,0,1.83747705108507
+nominal,5,60,0,6.63717038065814
+constant_velocity,5,60,0,3.40621022729535
+force_gru,5,60,0,2.12665145537549

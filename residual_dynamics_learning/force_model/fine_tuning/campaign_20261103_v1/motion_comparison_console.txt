@@ -1,0 +1,57 @@
+LONG WINDOW Nov2 circleSweep channel0 trial3 complete [true true true].
+LONG WINDOW Nov2 SineWave4 channel1 trial1 complete [true true true].
+LONG WINDOW Nov2 SineWave4 channel2 trial3 complete [true true true].
+LONG WINDOW Nov2 SineWave4 channel3 trial5 complete [true true true].
+LONG WINDOW Nov2 helix channel0 trial1 complete [true true true].
+LONG WINDOW Nov3 circleSweep channel0 trial3 complete [true true true].
+LONG WINDOW Nov3 SineWave channel1 trial1 complete [true true true].
+LONG WINDOW Nov3 SineWave channel2 trial3 complete [true true true].
+LONG WINDOW Nov3 SineWave channel3 trial5 complete [true true true].
+LONG WINDOW Nov3 helix channel0 trial2 complete [true true true].
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for
+better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message
+again.] 
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for
+better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message
+again.] 
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for
+better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message
+again.] 
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for
+better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message
+again.] 
+    day        runId        channel    trial       variant        complete    scoredSamples    windowSamples    lengthVectorRMSE_mm    l2RMSE_mm    l3RMSE_mm
+    ___    _____________    _______    _____    ______________    ________    _____________    _____________    ___________________    _________    _________
+
+     2     "circleSweep"       0         3      "frozen"           true            401              401                 0.944           0.55488      0.76371 
+     2     "circleSweep"       0         3      "old_only"         true            401              401               0.62291           0.35831      0.50954 
+     2     "circleSweep"       0         3      "mixed_replay"     true            401              401                1.7892            1.1426       1.3769 
+     2     "SineWave4"         1         1      "frozen"           true            630              630                2.3355            1.2059       2.0001 
+     2     "SineWave4"         1         1      "old_only"         true            630              630                1.4374            1.2429      0.72197 
+     2     "SineWave4"         1         1      "mixed_replay"     true            630              630                 2.559           0.56498       2.4958 
+     2     "SineWave4"         2         3      "frozen"           true            630              630                1.7784            1.2537       1.2613 
+     2     "SineWave4"         2         3      "old_only"         true            630              630                1.3042            1.1659      0.58452 
+     2     "SineWave4"         2         3      "mixed_replay"     true            630              630                4.2909            1.6221       3.9725 
+     2     "SineWave4"         3         5      "frozen"           true            627              630                1.7958             1.152       1.3776 
+     2     "SineWave4"         3         5      "old_only"         true            627              630                1.2315           0.61309       1.0681 
+     2     "SineWave4"         3         5      "mixed_replay"     true            627              630                1.5002           0.86382       1.2265 
+     2     "helix"             0         1      "frozen"           true           2365             2368               0.76268           0.53816      0.54043 
+     2     "helix"             0         1      "old_only"         true           2365             2368               0.68036            0.4814      0.48077 
+     2     "helix"             0         1      "mixed_replay"     true           2365             2368                1.0095           0.71017      0.71752 
+     3     "circleSweep"       0         3      "frozen"           true            201              201                1.2636           0.89401        0.893 
+     3     "circleSweep"       0         3      "old_only"         true            201              201                1.0047           0.71406      0.70671 
+     3     "circleSweep"       0         3      "mixed_replay"     true            201              201                1.9239            1.4023       1.3172 
+     3     "SineWave"          1         1      "frozen"           true            253              253                1.7184             0.974       1.4158 
+     3     "SineWave"          1         1      "old_only"         true            253              253                1.2038           0.99286      0.68064 
+     3     "SineWave"          1         1      "mixed_replay"     true            253              253                2.2712            1.3883       1.7975 
+     3     "SineWave"          2         3      "frozen"           true            253              253                1.3792            1.0399      0.90591 
+     3     "SineWave"          2         3      "old_only"         true            253              253                1.4367            1.3218      0.56316 
+     3     "SineWave"          2         3      "mixed_replay"     true            253              253                2.9648            1.2471       2.6897 
+     3     "SineWave"          3         5      "frozen"           true            253              253                1.6876           0.94334       1.3993 
+     3     "SineWave"          3         5      "old_only"         true            253              253                1.7738           0.72171       1.6203 
+     3     "SineWave"          3         5      "mixed_replay"     true            253              253                1.4328           0.79131       1.1945 
+     3     "helix"             0         2      "frozen"           true           1164             1168                4.0294            2.5129       3.1498 
+     3     "helix"             0         2      "old_only"         true           1164             1168                4.1306            2.6061       3.2047 
+     3     "helix"             0         2      "mixed_replay"     true           1164             1168                 3.256            2.0798       2.5052 
+
+Fine-tune motion comparison complete; Nov3 windows all heldout.

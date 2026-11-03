@@ -1,0 +1,18 @@
+source,sha256
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\datasets\two_day_v2\normalizer.mat,0e8bb0b4f4e2c251effc4a79db5f6240b2cc834e45f37a3f6f6816191fcc2acd
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\datasets\two_day_v2\preparation.mat,77a49b3140728ec2dee5cc2b316600dba1e1de86896c429b3e5cd9c58bf16774
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\forward\frozen_selection.mat,fedad351e0b415664cabd7200238038d6e25d0bf0728fadec6a596b9b1302a77
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\inverse\frozen_selection.mat,19f0fea462fdb23d54fc6465b3446d7d0ba4e68b104ec415e746fabe1cd5ec8b
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\ablations\forward_frozen.mat,3f4e137d8ea9c7c014c037b72a8d2193adf210e03a4e52f44c2e4cc3a31c546e
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\ablations\inverse_frozen.mat,883231d44130f4b7e8bddd8716013a9ca50e3148f5a28d4b9fc176755885ea0f
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\validateFreshResidualModels.m,12b684b77e526518c0298d679a914b89cf2054d676d99953e64bfe6d7197bf5f
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\residualBatch.m,dc9d56480d8c84478809d152de6fb6b728841d57fe3aa2763efb3df9a12d6db0
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\residualPredict.m,50ccc7acecc488b49628323be3e38aaa08329fd0162467f04086087caaeff3f3
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\residualFrozenStep.m,cf63630399e2f621dc856a87da1a5069555b8b831b4f886d068e549e6b18d7bc
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\residualNominal.m,64ba677478c0410cc0a830489d75c12fa22a0794ef18e0809fa0340c646e6e03
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\armS_single_boundForce.m,6bfc1aa24ee38bfeef615fbb0b29802d01df75ca400569ab54f1ea681ec364ca
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\armS_single_core.m,868a25a98324dbd49e54a158981bf3453a20cd68e26652f1660164ce3faed40a
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\armS_single_dynamics.m,c75ba43831172c9188477037fe33a6a6d1d51bca8d7c0552cbf6f68e35e1f052
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\integratedPosition_nume.m,a0205f122fd20e60fdca5408bab45cd2258c9a02cae7425befed5db6589793b8
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\integratedJacobianProduct_compact.m,a2e1d75772ea35c56719689f3c6610be57ec2354f522e9771bc1099eb32787f9
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\christoffelSymbol.m,acb58833453a84629cb9e0f9062f8648f8b71d7b12d28019ac8ba4f689128390

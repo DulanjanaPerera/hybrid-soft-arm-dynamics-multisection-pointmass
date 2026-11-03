@@ -1,0 +1,7 @@
+PASS: zero-lag original nonlinear RHS, no future-state leakage, delayed-input causality.
+MATLAB 25.1.0.2973910 (R2025a) Update 1
+armS_single_dynamics: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\armS_single_dynamics.m
+armS_single_core: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\armS_single_core.m
+integratedPosition_nume: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\integratedPosition_nume.m
+integratedJacobianProduct_compact: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\integratedJacobianProduct_compact.m
+christoffelSymbol: C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\christoffelSymbol.m

@@ -1,0 +1,4 @@
+channel,trial,startRow,endRow,startSim_s,endSim_s,physicalDuration_s
+1,1,817,1446,40.8,72.25,31.8798517
+2,3,4293,4922,214.6,246.05,31.8595469
+3,6,10548,11177,527.35,558.8,31.853675

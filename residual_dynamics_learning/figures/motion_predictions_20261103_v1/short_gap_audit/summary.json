@@ -1,0 +1,9 @@
+{
+  "actualEpisodes": 55,
+  "actualMissingSamples": 57,
+  "oneFrameCandidates": 53,
+  "maximumBracketSpan_s": 0.12,
+  "actualMissingTruthKnown": false,
+  "usedForTrainingOrValidation": false,
+  "rawOrExporterChanged": false
+}

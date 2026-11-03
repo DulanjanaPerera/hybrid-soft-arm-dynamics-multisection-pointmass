@@ -1,0 +1,3 @@
+PASS: 10 distinct source SHA256 hashes; 5 runs per metadata-confirmed collection day; 3 final NI command candidates per run.
+PASS: A*ones=0, A*B=I2, mean(B*d)=0, proving stated nominal allocation decomposition.
+No training, SLX loading or hardware execution.

@@ -1,0 +1,11 @@
+source,sha256
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\RL_data_collection\20261102\SineWave4.mat,c4e2740893ee578a9440786800c3c15cbb95fa214d305596f5e553bb44af8c69
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\RL_data_collection\20261102\exports\SineWave4\observations.csv,238f29a2a5c04e5e08737113200a6c2c5bf5ef78f2040417a34d3b17f4852a4a
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\validations\fresh_20261102_v2\SineWave4_sequences.mat,b6fd5eaba297aa30344325f186023ae8fbd507b0749c92c89f03ccc386ac8b09
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\validations\fresh_20261102_v2\SineWave4_one_step.mat,4d96d01f8d49a42671667cf695b56ecab54cd2d4cac48677e4cd6d9268cada4f
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\datasets\two_day_v2\normalizer.mat,0e8bb0b4f4e2c251effc4a79db5f6240b2cc834e45f37a3f6f6816191fcc2acd
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\forward\frozen_selection.mat,fedad351e0b415664cabd7200238038d6e25d0bf0728fadec6a596b9b1302a77
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\benchmarks\screen_20261101_v2\ablations\forward_frozen.mat,3f4e137d8ea9c7c014c037b72a8d2193adf210e03a4e52f44c2e4cc3a31c546e
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\plotResidualSinePredictors.m,f8bc5f88da3ab37d4e618d0641aaccedb34d7d84fb769bc17817b37f7567e5d3
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\residualFrozenStep.m,cf63630399e2f621dc856a87da1a5069555b8b831b4f886d068e549e6b18d7bc
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\residualPredict.m,50ccc7acecc488b49628323be3e38aaa08329fd0162467f04086087caaeff3f3

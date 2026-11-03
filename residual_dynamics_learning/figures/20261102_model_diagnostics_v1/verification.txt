@@ -1,0 +1,7 @@
+Four FIG/PDF/PNG export sets present and nonempty.
+PDF headers verified.
+All copied input tables match canonical source bytes.
+Original example PNG preserved byte-for-byte.
+Plotting source matches archived source byte-for-byte.
+All four summary PNGs visually reviewed: labels, legends and plotted ranges readable.
+No model fitting, dynamics propagation, Simulink or hardware run.

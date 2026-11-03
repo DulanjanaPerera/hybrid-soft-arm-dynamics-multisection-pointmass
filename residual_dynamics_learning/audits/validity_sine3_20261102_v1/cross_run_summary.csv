@@ -1,0 +1,4 @@
+runId,sensorSamples,channel3Dropouts,totalDropouts,minimumPreviousPhi_rad,maximumPreviousPhi_rad,minimumNearbyValidSamples,maximumNearbyValidSamples
+SineWave,12721,14,15,0.110193559239064,2.43161376004265,34,974
+SineWave2,12721,19,20,0.10865759778107,2.33995306886742,0,1108
+SineWave3,12721,13,14,0.18597685681402,2.20186977602197,0,116

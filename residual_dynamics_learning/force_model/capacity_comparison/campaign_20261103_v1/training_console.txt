@@ -1,0 +1,501 @@
+     widths      automaticGradient    finiteDifference    statePurity
+    _________    _________________    ________________    ___________
+
+    "64"               0.62089             0.62089           true    
+    "128"            -0.026859            -0.02686           true    
+    "[64 64]"         -0.23674            -0.23674           true    
+
+      arm      seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    _______    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru64"    113       14162               1200              0.41699        0.75734            0.58716     
+
+old_only update 50/1200, loss 0.0034073, 4.6s.
+old_only update 100/1200, loss 0.0020166, 8.9s.
+old_only update 150/1200, loss 0.0028128, 13.1s.
+VALIDATION old_only 150: old 0.51859, Nov3 0.78978, composite 0.65418 mm, eligible1, best 0.65418.
+old_only update 200/1200, loss 0.0027848, 17.9s.
+old_only update 250/1200, loss 0.0015749, 22.2s.
+old_only update 300/1200, loss 0.0013958, 26.5s.
+VALIDATION old_only 300: old 0.48729, Nov3 0.75527, composite 0.62128 mm, eligible1, best 0.62128.
+old_only update 350/1200, loss 0.0018935, 31.2s.
+old_only update 400/1200, loss 0.0026133, 35.4s.
+old_only update 450/1200, loss 0.0054427, 39.7s.
+VALIDATION old_only 450: old 0.49684, Nov3 0.76715, composite 0.63199 mm, eligible1, best 0.62128.
+old_only update 500/1200, loss 0.0024148, 44.4s.
+old_only update 550/1200, loss 0.0021301, 48.6s.
+old_only update 600/1200, loss 0.0014187, 52.9s.
+VALIDATION old_only 600: old 0.46673, Nov3 0.73219, composite 0.59946 mm, eligible1, best 0.59946.
+old_only update 650/1200, loss 0.0020264, 57.6s.
+old_only update 700/1200, loss 0.0018046, 61.8s.
+old_only update 750/1200, loss 0.001691, 66.0s.
+VALIDATION old_only 750: old 0.44732, Nov3 0.70979, composite 0.57855 mm, eligible1, best 0.57855.
+old_only update 800/1200, loss 0.0044144, 70.7s.
+old_only update 850/1200, loss 0.0017436, 74.9s.
+old_only update 900/1200, loss 0.0016714, 79.1s.
+VALIDATION old_only 900: old 0.43692, Nov3 0.72438, composite 0.58065 mm, eligible1, best 0.57855.
+old_only update 950/1200, loss 0.0022661, 83.8s.
+old_only update 1000/1200, loss 0.0011474, 88.1s.
+old_only update 1050/1200, loss 0.00092967, 92.3s.
+VALIDATION old_only 1050: old 0.44231, Nov3 0.74338, composite 0.59284 mm, eligible1, best 0.57855.
+old_only update 1100/1200, loss 0.0024304, 97.0s.
+old_only update 1150/1200, loss 0.0011577, 101.2s.
+old_only update 1200/1200, loss 0.0021293, 105.5s.
+VALIDATION old_only 1200: old 0.41398, Nov3 0.70499, composite 0.55949 mm, eligible1, best 0.55949.
+      arm      seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    _______    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru64"    211       14162               1200              0.41398        0.70499            0.55949     
+
+old_only update 50/1200, loss 0.0036188, 4.3s.
+old_only update 100/1200, loss 0.0022894, 8.6s.
+old_only update 150/1200, loss 0.0024903, 12.8s.
+VALIDATION old_only 150: old 0.52046, Nov3 0.88133, composite 0.70089 mm, eligible1, best 0.70089.
+old_only update 200/1200, loss 0.0035203, 17.5s.
+old_only update 250/1200, loss 0.0037757, 21.8s.
+old_only update 300/1200, loss 0.002125, 26.0s.
+VALIDATION old_only 300: old 0.50916, Nov3 0.84614, composite 0.67765 mm, eligible1, best 0.67765.
+old_only update 350/1200, loss 0.0012166, 30.7s.
+old_only update 400/1200, loss 0.0018636, 35.0s.
+old_only update 450/1200, loss 0.0015316, 39.2s.
+VALIDATION old_only 450: old 0.47603, Nov3 0.83663, composite 0.65633 mm, eligible1, best 0.65633.
+old_only update 500/1200, loss 0.0020179, 43.9s.
+old_only update 550/1200, loss 0.0020211, 48.1s.
+old_only update 600/1200, loss 0.0018237, 52.3s.
+VALIDATION old_only 600: old 0.47974, Nov3 0.81980, composite 0.64977 mm, eligible1, best 0.64977.
+old_only update 650/1200, loss 0.0020531, 57.0s.
+old_only update 700/1200, loss 0.0031675, 61.3s.
+old_only update 750/1200, loss 0.0020373, 65.8s.
+VALIDATION old_only 750: old 0.45674, Nov3 0.83401, composite 0.64537 mm, eligible1, best 0.64537.
+old_only update 800/1200, loss 0.0014468, 70.5s.
+old_only update 850/1200, loss 0.0026366, 74.7s.
+old_only update 900/1200, loss 0.0020893, 79.0s.
+VALIDATION old_only 900: old 0.44982, Nov3 0.79821, composite 0.62402 mm, eligible1, best 0.62402.
+old_only update 950/1200, loss 0.0024569, 83.7s.
+old_only update 1000/1200, loss 0.0020497, 87.9s.
+old_only update 1050/1200, loss 0.0010932, 92.1s.
+VALIDATION old_only 1050: old 0.44951, Nov3 0.76906, composite 0.60928 mm, eligible1, best 0.60928.
+old_only update 1100/1200, loss 0.0013823, 96.8s.
+old_only update 1150/1200, loss 0.0016443, 101.0s.
+old_only update 1200/1200, loss 0.0013846, 105.3s.
+VALIDATION old_only 1200: old 0.42824, Nov3 0.80791, composite 0.61808 mm, eligible1, best 0.60928.
+      arm      seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    _______    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru64"    307       14162               1050              0.44951        0.76906            0.60928     
+
+Update 50/1200, loss 0.30003, total 4.7s.
+Update 100/1200, loss 0.078584, total 9.1s.
+Update 150/1200, loss 0.06231, total 13.6s.
+SELECTION update 150: 1.78094 mm, best 1.78094, elapsed 14.1s.
+Update 200/1200, loss 0.057133, total 18.6s.
+Update 250/1200, loss 0.016647, total 23.1s.
+Update 300/1200, loss 0.018742, total 27.6s.
+SELECTION update 300: 1.04275 mm, best 1.04275, elapsed 28.0s.
+Update 350/1200, loss 0.021953, total 32.4s.
+Update 400/1200, loss 0.0088068, total 36.9s.
+Update 450/1200, loss 0.0052748, total 41.4s.
+SELECTION update 450: 0.72084 mm, best 0.72084, elapsed 41.7s.
+Update 500/1200, loss 0.0059502, total 46.2s.
+Update 550/1200, loss 0.0077866, total 50.7s.
+Update 600/1200, loss 0.0045746, total 55.2s.
+SELECTION update 600: 0.58301 mm, best 0.58301, elapsed 55.5s.
+Update 650/1200, loss 0.0054514, total 60.0s.
+Update 700/1200, loss 0.0029269, total 64.5s.
+Update 750/1200, loss 0.0047598, total 69.0s.
+SELECTION update 750: 0.55055 mm, best 0.55055, elapsed 69.4s.
+Update 800/1200, loss 0.0023747, total 73.9s.
+Update 850/1200, loss 0.0023595, total 78.4s.
+Update 900/1200, loss 0.0032624, total 82.9s.
+SELECTION update 900: 0.49416 mm, best 0.49416, elapsed 83.2s.
+Update 950/1200, loss 0.0045086, total 87.7s.
+Update 1000/1200, loss 0.0024823, total 92.2s.
+Update 1050/1200, loss 0.0036073, total 96.7s.
+SELECTION update 1050: 0.48362 mm, best 0.48362, elapsed 97.1s.
+Update 1100/1200, loss 0.001827, total 101.6s.
+Update 1150/1200, loss 0.0026036, total 106.0s.
+Update 1200/1200, loss 0.0011576, total 110.5s.
+SELECTION update 1200: 0.42379 mm, best 0.42379, elapsed 110.8s.
+old_only update 50/1200, loss 0.001178, 4.6s.
+old_only update 100/1200, loss 0.0010965, 9.1s.
+old_only update 150/1200, loss 0.0012705, 13.6s.
+VALIDATION old_only 150: old 0.37883, Nov3 0.68624, composite 0.53253 mm, eligible1, best 0.53253.
+old_only update 200/1200, loss 0.0010121, 18.7s.
+old_only update 250/1200, loss 0.0012302, 23.3s.
+old_only update 300/1200, loss 0.00085192, 27.8s.
+VALIDATION old_only 300: old 0.38624, Nov3 0.71663, composite 0.55143 mm, eligible1, best 0.53253.
+old_only update 350/1200, loss 0.00095877, 32.8s.
+old_only update 400/1200, loss 0.00097864, 37.3s.
+old_only update 450/1200, loss 0.0010431, 41.8s.
+VALIDATION old_only 450: old 0.39093, Nov3 0.68823, composite 0.53958 mm, eligible1, best 0.53253.
+old_only update 500/1200, loss 0.00070767, 46.9s.
+old_only update 550/1200, loss 0.00071143, 51.4s.
+old_only update 600/1200, loss 0.0011398, 55.9s.
+VALIDATION old_only 600: old 0.37312, Nov3 0.69186, composite 0.53249 mm, eligible1, best 0.53249.
+old_only update 650/1200, loss 0.00089463, 60.9s.
+old_only update 700/1200, loss 0.0021788, 65.4s.
+old_only update 750/1200, loss 0.00098853, 69.9s.
+VALIDATION old_only 750: old 0.33298, Nov3 0.66540, composite 0.49919 mm, eligible1, best 0.49919.
+old_only update 800/1200, loss 0.0011827, 75.0s.
+old_only update 850/1200, loss 0.00083446, 79.5s.
+old_only update 900/1200, loss 0.00057797, 83.9s.
+VALIDATION old_only 900: old 0.33066, Nov3 0.66553, composite 0.49810 mm, eligible1, best 0.49810.
+old_only update 950/1200, loss 0.00089278, 89.0s.
+old_only update 1000/1200, loss 0.0004698, 93.6s.
+old_only update 1050/1200, loss 0.00088086, 98.1s.
+VALIDATION old_only 1050: old 0.34815, Nov3 0.64662, composite 0.49739 mm, eligible1, best 0.49739.
+old_only update 1100/1200, loss 0.00078471, 103.1s.
+old_only update 1150/1200, loss 0.0003992, 107.6s.
+old_only update 1200/1200, loss 0.00047249, 112.1s.
+VALIDATION old_only 1200: old 0.30747, Nov3 0.61561, composite 0.46154 mm, eligible1, best 0.46154.
+      arm       seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    ________    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru128"    113       52882               1200              0.30747        0.61561            0.46154     
+
+Update 50/1200, loss 0.46162, total 4.6s.
+Update 100/1200, loss 0.085314, total 9.1s.
+Update 150/1200, loss 0.04165, total 13.6s.
+SELECTION update 150: 2.02874 mm, best 2.02874, elapsed 14.0s.
+Update 200/1200, loss 0.023705, total 18.5s.
+Update 250/1200, loss 0.030392, total 23.0s.
+Update 300/1200, loss 0.011356, total 27.4s.
+SELECTION update 300: 0.95950 mm, best 0.95950, elapsed 27.8s.
+Update 350/1200, loss 0.0077634, total 32.3s.
+Update 400/1200, loss 0.0075727, total 36.7s.
+Update 450/1200, loss 0.013695, total 41.2s.
+SELECTION update 450: 0.82292 mm, best 0.82292, elapsed 41.6s.
+Update 500/1200, loss 0.0084583, total 46.0s.
+Update 550/1200, loss 0.0047836, total 50.5s.
+Update 600/1200, loss 0.0056401, total 54.9s.
+SELECTION update 600: 0.64410 mm, best 0.64410, elapsed 55.3s.
+Update 650/1200, loss 0.0038726, total 59.8s.
+Update 700/1200, loss 0.0057755, total 64.3s.
+Update 750/1200, loss 0.0039724, total 68.8s.
+SELECTION update 750: 0.60453 mm, best 0.60453, elapsed 69.1s.
+Update 800/1200, loss 0.0041851, total 73.6s.
+Update 850/1200, loss 0.0036793, total 78.1s.
+Update 900/1200, loss 0.0041, total 82.7s.
+SELECTION update 900: 0.53336 mm, best 0.53336, elapsed 83.0s.
+Update 950/1200, loss 0.0019939, total 87.5s.
+Update 1000/1200, loss 0.0022087, total 91.9s.
+Update 1050/1200, loss 0.0015296, total 96.4s.
+SELECTION update 1050: 0.46754 mm, best 0.46754, elapsed 96.8s.
+Update 1100/1200, loss 0.0022845, total 101.3s.
+Update 1150/1200, loss 0.002573, total 105.7s.
+Update 1200/1200, loss 0.0010524, total 110.2s.
+SELECTION update 1200: 0.45446 mm, best 0.45446, elapsed 110.5s.
+old_only update 50/1200, loss 0.0023903, 4.5s.
+old_only update 100/1200, loss 0.0010428, 9.0s.
+old_only update 150/1200, loss 0.0011282, 13.5s.
+VALIDATION old_only 150: old 0.41315, Nov3 0.80928, composite 0.61122 mm, eligible1, best 0.61122.
+old_only update 200/1200, loss 0.0020917, 18.5s.
+old_only update 250/1200, loss 0.0010446, 23.0s.
+old_only update 300/1200, loss 0.00076507, 27.4s.
+VALIDATION old_only 300: old 0.38321, Nov3 0.73755, composite 0.56038 mm, eligible1, best 0.56038.
+old_only update 350/1200, loss 0.0012416, 32.5s.
+old_only update 400/1200, loss 0.0014107, 36.9s.
+old_only update 450/1200, loss 0.0029077, 41.4s.
+VALIDATION old_only 450: old 0.39087, Nov3 0.77266, composite 0.58177 mm, eligible1, best 0.56038.
+old_only update 500/1200, loss 0.001865, 46.4s.
+old_only update 550/1200, loss 0.00078733, 50.9s.
+old_only update 600/1200, loss 0.00055331, 55.4s.
+VALIDATION old_only 600: old 0.36772, Nov3 0.73619, composite 0.55196 mm, eligible1, best 0.55196.
+old_only update 650/1200, loss 0.00073265, 60.4s.
+old_only update 700/1200, loss 0.0010186, 64.9s.
+old_only update 750/1200, loss 0.00076683, 69.4s.
+VALIDATION old_only 750: old 0.34068, Nov3 0.69371, composite 0.51719 mm, eligible1, best 0.51719.
+old_only update 800/1200, loss 0.0019469, 74.4s.
+old_only update 850/1200, loss 0.00083934, 78.8s.
+old_only update 900/1200, loss 0.00074858, 83.3s.
+VALIDATION old_only 900: old 0.34755, Nov3 0.69819, composite 0.52287 mm, eligible1, best 0.51719.
+old_only update 950/1200, loss 0.00093164, 88.3s.
+old_only update 1000/1200, loss 0.00067453, 92.8s.
+old_only update 1050/1200, loss 0.00065733, 97.3s.
+VALIDATION old_only 1050: old 0.32898, Nov3 0.69950, composite 0.51424 mm, eligible1, best 0.51424.
+old_only update 1100/1200, loss 0.0020021, 102.3s.
+old_only update 1150/1200, loss 0.00068445, 106.8s.
+old_only update 1200/1200, loss 0.00091714, 111.3s.
+VALIDATION old_only 1200: old 0.31539, Nov3 0.67568, composite 0.49553 mm, eligible1, best 0.49553.
+      arm       seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    ________    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru128"    211       52882               1200              0.31539        0.67568            0.49553     
+
+Update 50/1200, loss 0.27616, total 4.6s.
+Update 100/1200, loss 0.14746, total 9.1s.
+Update 150/1200, loss 0.072724, total 13.5s.
+SELECTION update 150: 2.00252 mm, best 2.00252, elapsed 13.9s.
+Update 200/1200, loss 0.042562, total 18.4s.
+Update 250/1200, loss 0.01381, total 22.9s.
+Update 300/1200, loss 0.016892, total 27.3s.
+SELECTION update 300: 1.03101 mm, best 1.03101, elapsed 27.7s.
+Update 350/1200, loss 0.010522, total 32.2s.
+Update 400/1200, loss 0.0077568, total 36.6s.
+Update 450/1200, loss 0.012007, total 41.1s.
+SELECTION update 450: 0.88111 mm, best 0.88111, elapsed 41.5s.
+Update 500/1200, loss 0.0044479, total 45.9s.
+Update 550/1200, loss 0.0050262, total 50.4s.
+Update 600/1200, loss 0.0046517, total 54.9s.
+SELECTION update 600: 0.67764 mm, best 0.67764, elapsed 55.3s.
+Update 650/1200, loss 0.0081699, total 59.9s.
+Update 700/1200, loss 0.0038257, total 64.3s.
+Update 750/1200, loss 0.0070393, total 68.8s.
+SELECTION update 750: 0.56531 mm, best 0.56531, elapsed 69.2s.
+Update 800/1200, loss 0.00357, total 73.7s.
+Update 850/1200, loss 0.0049448, total 78.3s.
+Update 900/1200, loss 0.0027098, total 82.7s.
+SELECTION update 900: 0.51378 mm, best 0.51378, elapsed 83.1s.
+Update 950/1200, loss 0.00367, total 87.5s.
+Update 1000/1200, loss 0.0044055, total 92.2s.
+Update 1050/1200, loss 0.0012149, total 96.8s.
+SELECTION update 1050: 0.50707 mm, best 0.50707, elapsed 97.2s.
+Update 1100/1200, loss 0.0029331, total 101.7s.
+Update 1150/1200, loss 0.0015028, total 106.2s.
+Update 1200/1200, loss 0.001551, total 110.7s.
+SELECTION update 1200: 0.49011 mm, best 0.49011, elapsed 111.1s.
+old_only update 50/1200, loss 0.0032069, 4.7s.
+old_only update 100/1200, loss 0.0011701, 9.3s.
+old_only update 150/1200, loss 0.0014676, 13.9s.
+VALIDATION old_only 150: old 0.42840, Nov3 0.76692, composite 0.59766 mm, eligible1, best 0.59766.
+old_only update 200/1200, loss 0.0019401, 19.0s.
+old_only update 250/1200, loss 0.0021929, 23.6s.
+old_only update 300/1200, loss 0.0015745, 28.0s.
+VALIDATION old_only 300: old 0.41426, Nov3 0.74618, composite 0.58022 mm, eligible1, best 0.58022.
+old_only update 350/1200, loss 0.00097531, 33.1s.
+old_only update 400/1200, loss 0.00082076, 37.6s.
+old_only update 450/1200, loss 0.0010566, 42.0s.
+VALIDATION old_only 450: old 0.37264, Nov3 0.71305, composite 0.54284 mm, eligible1, best 0.54284.
+old_only update 500/1200, loss 0.0012373, 47.1s.
+old_only update 550/1200, loss 0.00126, 51.6s.
+old_only update 600/1200, loss 0.0010213, 56.0s.
+VALIDATION old_only 600: old 0.37661, Nov3 0.73110, composite 0.55386 mm, eligible1, best 0.54284.
+old_only update 650/1200, loss 0.001089, 61.1s.
+old_only update 700/1200, loss 0.0017202, 65.6s.
+old_only update 750/1200, loss 0.0014488, 70.0s.
+VALIDATION old_only 750: old 0.36553, Nov3 0.69983, composite 0.53268 mm, eligible1, best 0.53268.
+old_only update 800/1200, loss 0.0015839, 75.1s.
+old_only update 850/1200, loss 0.0012602, 79.6s.
+old_only update 900/1200, loss 0.0011377, 84.1s.
+VALIDATION old_only 900: old 0.35628, Nov3 0.68889, composite 0.52259 mm, eligible1, best 0.52259.
+old_only update 950/1200, loss 0.0013112, 89.1s.
+old_only update 1000/1200, loss 0.0014323, 93.6s.
+old_only update 1050/1200, loss 0.00060448, 98.0s.
+VALIDATION old_only 1050: old 0.33614, Nov3 0.67073, composite 0.50344 mm, eligible1, best 0.50344.
+old_only update 1100/1200, loss 0.001011, 103.1s.
+old_only update 1150/1200, loss 0.00094647, 107.6s.
+old_only update 1200/1200, loss 0.00091231, 112.0s.
+VALIDATION old_only 1200: old 0.32823, Nov3 0.70409, composite 0.51616 mm, eligible1, best 0.50344.
+      arm       seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    ________    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru128"    307       52882               1050              0.33614        0.67073            0.50344     
+
+Update 50/1200, loss 0.33921, total 5.1s.
+Update 100/1200, loss 0.13977, total 10.1s.
+Update 150/1200, loss 0.080461, total 15.1s.
+SELECTION update 150: 2.06758 mm, best 2.06758, elapsed 15.6s.
+Update 200/1200, loss 0.054971, total 20.7s.
+Update 250/1200, loss 0.024536, total 25.6s.
+Update 300/1200, loss 0.022328, total 30.6s.
+SELECTION update 300: 0.99239 mm, best 0.99239, elapsed 31.1s.
+Update 350/1200, loss 0.024845, total 36.1s.
+Update 400/1200, loss 0.0092845, total 41.1s.
+Update 450/1200, loss 0.0065374, total 46.0s.
+SELECTION update 450: 0.80963 mm, best 0.80963, elapsed 46.5s.
+Update 500/1200, loss 0.0085178, total 51.5s.
+Update 550/1200, loss 0.0075415, total 56.5s.
+Update 600/1200, loss 0.0044163, total 61.4s.
+SELECTION update 600: 0.67487 mm, best 0.67487, elapsed 61.9s.
+Update 650/1200, loss 0.0060855, total 66.9s.
+Update 700/1200, loss 0.0053128, total 71.9s.
+Update 750/1200, loss 0.0052, total 76.8s.
+SELECTION update 750: 0.60206 mm, best 0.60206, elapsed 77.3s.
+Update 800/1200, loss 0.002472, total 82.3s.
+Update 850/1200, loss 0.0021281, total 87.2s.
+Update 900/1200, loss 0.0036549, total 92.2s.
+SELECTION update 900: 0.56535 mm, best 0.56535, elapsed 92.7s.
+Update 950/1200, loss 0.0048033, total 97.6s.
+Update 1000/1200, loss 0.0022338, total 102.6s.
+Update 1050/1200, loss 0.0043967, total 107.6s.
+SELECTION update 1050: 0.48181 mm, best 0.48181, elapsed 108.1s.
+Update 1100/1200, loss 0.0020909, total 113.1s.
+Update 1150/1200, loss 0.0034633, total 118.0s.
+Update 1200/1200, loss 0.0011385, total 123.0s.
+SELECTION update 1200: 0.44378 mm, best 0.44378, elapsed 123.5s.
+old_only update 50/1200, loss 0.0019866, 5.0s.
+old_only update 100/1200, loss 0.0014439, 10.0s.
+old_only update 150/1200, loss 0.0013657, 14.9s.
+VALIDATION old_only 150: old 0.42032, Nov3 0.73088, composite 0.57560 mm, eligible1, best 0.57560.
+old_only update 200/1200, loss 0.001052, 20.6s.
+old_only update 250/1200, loss 0.0019289, 25.6s.
+old_only update 300/1200, loss 0.00139, 30.6s.
+VALIDATION old_only 300: old 0.40883, Nov3 0.75040, composite 0.57962 mm, eligible1, best 0.57560.
+old_only update 350/1200, loss 0.0010766, 36.2s.
+old_only update 400/1200, loss 0.0013303, 41.2s.
+old_only update 450/1200, loss 0.0013545, 46.2s.
+VALIDATION old_only 450: old 0.40293, Nov3 0.74484, composite 0.57388 mm, eligible1, best 0.57388.
+old_only update 500/1200, loss 0.00078239, 51.8s.
+old_only update 550/1200, loss 0.0010796, 56.8s.
+old_only update 600/1200, loss 0.0014459, 61.8s.
+VALIDATION old_only 600: old 0.40659, Nov3 0.73870, composite 0.57265 mm, eligible1, best 0.57265.
+old_only update 650/1200, loss 0.0011319, 67.5s.
+old_only update 700/1200, loss 0.0026058, 72.5s.
+old_only update 750/1200, loss 0.001103, 77.6s.
+VALIDATION old_only 750: old 0.38048, Nov3 0.71069, composite 0.54559 mm, eligible1, best 0.54559.
+old_only update 800/1200, loss 0.001959, 83.3s.
+old_only update 850/1200, loss 0.00098559, 88.2s.
+old_only update 900/1200, loss 0.00051243, 93.2s.
+VALIDATION old_only 900: old 0.36675, Nov3 0.73599, composite 0.55137 mm, eligible1, best 0.54559.
+old_only update 950/1200, loss 0.00073274, 98.9s.
+old_only update 1000/1200, loss 0.00057259, 103.9s.
+old_only update 1050/1200, loss 0.0012594, 108.8s.
+VALIDATION old_only 1050: old 0.38999, Nov3 0.73298, composite 0.56149 mm, eligible1, best 0.54559.
+old_only update 1100/1200, loss 0.0017, 114.5s.
+old_only update 1150/1200, loss 0.00059536, 119.4s.
+old_only update 1200/1200, loss 0.00060574, 124.4s.
+VALIDATION old_only 1200: old 0.33964, Nov3 0.67664, composite 0.50814 mm, eligible1, best 0.50814.
+       arm       seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    _________    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru64x2"    113       38930               1200              0.33964        0.67664            0.50814     
+
+Update 50/1200, loss 0.40841, total 5.0s.
+Update 100/1200, loss 0.047309, total 10.0s.
+Update 150/1200, loss 0.030629, total 14.9s.
+SELECTION update 150: 1.56959 mm, best 1.56959, elapsed 15.4s.
+Update 200/1200, loss 0.026276, total 20.4s.
+Update 250/1200, loss 0.019747, total 25.3s.
+Update 300/1200, loss 0.011557, total 30.3s.
+SELECTION update 300: 0.94093 mm, best 0.94093, elapsed 30.7s.
+Update 350/1200, loss 0.0096504, total 35.7s.
+Update 400/1200, loss 0.011355, total 40.7s.
+Update 450/1200, loss 0.015693, total 45.6s.
+SELECTION update 450: 0.83747 mm, best 0.83747, elapsed 46.1s.
+Update 500/1200, loss 0.0076609, total 51.0s.
+Update 550/1200, loss 0.0057236, total 55.9s.
+Update 600/1200, loss 0.0051411, total 60.9s.
+SELECTION update 600: 0.70209 mm, best 0.70209, elapsed 61.4s.
+Update 650/1200, loss 0.0044255, total 66.3s.
+Update 700/1200, loss 0.0064731, total 71.3s.
+Update 750/1200, loss 0.00417, total 76.3s.
+SELECTION update 750: 0.66559 mm, best 0.66559, elapsed 76.7s.
+Update 800/1200, loss 0.0049366, total 81.7s.
+Update 850/1200, loss 0.0036952, total 86.6s.
+Update 900/1200, loss 0.0064285, total 91.6s.
+SELECTION update 900: 0.57855 mm, best 0.57855, elapsed 92.1s.
+Update 950/1200, loss 0.0032013, total 97.0s.
+Update 1000/1200, loss 0.0025888, total 102.0s.
+Update 1050/1200, loss 0.001617, total 107.0s.
+SELECTION update 1050: 0.53370 mm, best 0.53370, elapsed 107.4s.
+Update 1100/1200, loss 0.0034932, total 112.4s.
+Update 1150/1200, loss 0.0024301, total 117.3s.
+Update 1200/1200, loss 0.0014651, total 122.3s.
+SELECTION update 1200: 0.48731 mm, best 0.48731, elapsed 122.8s.
+old_only update 50/1200, loss 0.0036244, 5.0s.
+old_only update 100/1200, loss 0.0013256, 10.0s.
+old_only update 150/1200, loss 0.0015752, 14.9s.
+VALIDATION old_only 150: old 0.46231, Nov3 0.69406, composite 0.57818 mm, eligible1, best 0.57818.
+old_only update 200/1200, loss 0.0030539, 20.6s.
+old_only update 250/1200, loss 0.0017183, 25.6s.
+old_only update 300/1200, loss 0.0013347, 30.5s.
+VALIDATION old_only 300: old 0.44138, Nov3 0.67065, composite 0.55602 mm, eligible1, best 0.55602.
+old_only update 350/1200, loss 0.0022674, 36.2s.
+old_only update 400/1200, loss 0.0021025, 41.1s.
+old_only update 450/1200, loss 0.0021232, 46.2s.
+VALIDATION old_only 450: old 0.42782, Nov3 0.70397, composite 0.56590 mm, eligible1, best 0.55602.
+old_only update 500/1200, loss 0.0023336, 51.9s.
+old_only update 550/1200, loss 0.0013855, 56.8s.
+old_only update 600/1200, loss 0.0010725, 61.8s.
+VALIDATION old_only 600: old 0.43791, Nov3 0.67455, composite 0.55623 mm, eligible1, best 0.55602.
+old_only update 650/1200, loss 0.0012717, 67.5s.
+old_only update 700/1200, loss 0.0013349, 72.4s.
+old_only update 750/1200, loss 0.0011065, 77.3s.
+VALIDATION old_only 750: old 0.41366, Nov3 0.66478, composite 0.53922 mm, eligible1, best 0.53922.
+old_only update 800/1200, loss 0.0027988, 83.0s.
+old_only update 850/1200, loss 0.0011129, 87.9s.
+old_only update 900/1200, loss 0.0014276, 92.9s.
+VALIDATION old_only 900: old 0.39608, Nov3 0.66539, composite 0.53073 mm, eligible1, best 0.53073.
+old_only update 950/1200, loss 0.0014605, 98.5s.
+old_only update 1000/1200, loss 0.00086005, 103.5s.
+old_only update 1050/1200, loss 0.00089579, 108.4s.
+VALIDATION old_only 1050: old 0.40647, Nov3 0.67351, composite 0.53999 mm, eligible1, best 0.53073.
+old_only update 1100/1200, loss 0.0019301, 114.1s.
+old_only update 1150/1200, loss 0.00091787, 119.1s.
+old_only update 1200/1200, loss 0.0011144, 124.0s.
+VALIDATION old_only 1200: old 0.38167, Nov3 0.63432, composite 0.50799 mm, eligible1, best 0.50799.
+       arm       seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    _________    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru64x2"    211       38930               1200              0.38167        0.63432            0.50799     
+
+Update 50/1200, loss 0.28309, total 5.0s.
+Update 100/1200, loss 0.081792, total 10.0s.
+Update 150/1200, loss 0.053772, total 14.9s.
+SELECTION update 150: 1.54003 mm, best 1.54003, elapsed 15.4s.
+Update 200/1200, loss 0.034243, total 20.3s.
+Update 250/1200, loss 0.016886, total 25.3s.
+Update 300/1200, loss 0.016449, total 30.2s.
+SELECTION update 300: 0.95340 mm, best 0.95340, elapsed 30.7s.
+Update 350/1200, loss 0.0081754, total 35.6s.
+Update 400/1200, loss 0.0084855, total 40.6s.
+Update 450/1200, loss 0.0090643, total 45.5s.
+SELECTION update 450: 0.82615 mm, best 0.82615, elapsed 46.0s.
+Update 500/1200, loss 0.0070879, total 51.0s.
+Update 550/1200, loss 0.0062555, total 55.9s.
+Update 600/1200, loss 0.0054541, total 60.9s.
+SELECTION update 600: 0.70206 mm, best 0.70206, elapsed 61.3s.
+Update 650/1200, loss 0.0076294, total 66.3s.
+Update 700/1200, loss 0.0035298, total 71.2s.
+Update 750/1200, loss 0.0079967, total 76.2s.
+SELECTION update 750: 0.63203 mm, best 0.63203, elapsed 76.7s.
+Update 800/1200, loss 0.0049464, total 81.7s.
+Update 850/1200, loss 0.0058611, total 86.6s.
+Update 900/1200, loss 0.0026035, total 91.5s.
+SELECTION update 900: 0.58379 mm, best 0.58379, elapsed 92.0s.
+Update 950/1200, loss 0.0032202, total 97.0s.
+Update 1000/1200, loss 0.0040764, total 101.9s.
+Update 1050/1200, loss 0.0016837, total 106.8s.
+SELECTION update 1050: 0.53459 mm, best 0.53459, elapsed 107.3s.
+Update 1100/1200, loss 0.0028614, total 112.3s.
+Update 1150/1200, loss 0.001763, total 117.2s.
+Update 1200/1200, loss 0.0015645, total 122.1s.
+SELECTION update 1200: 0.54218 mm, best 0.53459, elapsed 122.6s.
+old_only update 50/1200, loss 0.0037044, 5.0s.
+old_only update 100/1200, loss 0.0018908, 9.9s.
+old_only update 150/1200, loss 0.0020496, 14.9s.
+VALIDATION old_only 150: old 0.49050, Nov3 0.87266, composite 0.68158 mm, eligible1, best 0.68158.
+old_only update 200/1200, loss 0.0026098, 20.6s.
+old_only update 250/1200, loss 0.0024568, 25.5s.
+old_only update 300/1200, loss 0.0020354, 30.5s.
+VALIDATION old_only 300: old 0.48898, Nov3 0.86259, composite 0.67579 mm, eligible1, best 0.67579.
+old_only update 350/1200, loss 0.0010581, 36.2s.
+old_only update 400/1200, loss 0.0015238, 41.1s.
+old_only update 450/1200, loss 0.0013246, 46.1s.
+VALIDATION old_only 450: old 0.44084, Nov3 0.82979, composite 0.63532 mm, eligible1, best 0.63532.
+old_only update 500/1200, loss 0.0014631, 51.9s.
+old_only update 550/1200, loss 0.001715, 56.9s.
+old_only update 600/1200, loss 0.0015056, 61.8s.
+VALIDATION old_only 600: old 0.45348, Nov3 0.82346, composite 0.63847 mm, eligible1, best 0.63532.
+old_only update 650/1200, loss 0.0017518, 67.5s.
+old_only update 700/1200, loss 0.0024699, 72.4s.
+old_only update 750/1200, loss 0.0024662, 77.4s.
+VALIDATION old_only 750: old 0.46413, Nov3 0.84878, composite 0.65645 mm, eligible1, best 0.63532.
+old_only update 800/1200, loss 0.0010403, 83.0s.
+old_only update 850/1200, loss 0.0021302, 88.0s.
+old_only update 900/1200, loss 0.0015757, 92.9s.
+VALIDATION old_only 900: old 0.41916, Nov3 0.80091, composite 0.61003 mm, eligible1, best 0.61003.
+old_only update 950/1200, loss 0.0016772, 98.6s.
+old_only update 1000/1200, loss 0.0018271, 103.5s.
+old_only update 1050/1200, loss 0.0010479, 108.5s.
+VALIDATION old_only 1050: old 0.41186, Nov3 0.78471, composite 0.59828 mm, eligible1, best 0.59828.
+old_only update 1100/1200, loss 0.001461, 114.2s.
+old_only update 1150/1200, loss 0.0012005, 119.1s.
+old_only update 1200/1200, loss 0.0011465, 124.1s.
+VALIDATION old_only 1200: old 0.39123, Nov3 0.81076, composite 0.60100 mm, eligible1, best 0.59828.
+       arm       seed    parameters    extraUpdatesSelected    oldScore_mm    nov3Score_mm    compositeScore_mm
+    _________    ____    __________    ____________________    ___________    ____________    _________________
+
+    "gru64x2"    307       38930               1050              0.41186        0.78471            0.59828     
+
+CAPACITY FITS FROZEN: winner gru128, means [0.585310507935951 0.486837126434986 0.538140101236311]. Current release unchanged.

@@ -1,0 +1,810 @@
+cohort,runId,index,name,blockPath,role,samples,channels,start_s,end_s,medianDt_sim_s,units,minimum,maximum
+day1_root,day1_root__SineWave,1,length,RL_dataCollection/Demux,unclassified,63601,2,0,636,0.00999999999999091,,[-0.014094399 -0.014094399],[0.028187723 0.028187721]
+day1_root,day1_root__SineWave,2,length,RL_dataCollection/Demux1,unclassified,63601,1,0,636,0.00999999999999091,,-0.014094364,0.028188798
+day1_root,day1_root__SineWave,3,X,RL_dataCollection/Integrator,unclassified,63601,4,0,636,0.00999999999999091,,[-0.014094399 -0.014094399 -0.004256565 -0.0042565645],[0.028187723 0.028187721 0.0042538209 0.0042538232]
+day1_root,day1_root__SineWave,4,comp_lengths,RL_dataCollection/MATLAB Function1,unclassified,63601,3,0,636,0.00999999999999091,,[-0.014094364 -0.014094399 -0.014094399],[0.028188798 0.028187723 0.028187721]
+day1_root,day1_root__SineWave,5,dX,RL_dataCollection/MATLAB Function1,unclassified,63601,4,0,636,0.00999999999999091,,[-0.004256565 -0.0042565645 -0.16395167 -0.16395167],[0.0042538209 0.0042538232 0.19060404 0.19647356]
+day1_root,day1_root__SineWave,6,des_phi,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,63601,1,0,636,0.00999999999999091,,0,2.1683691
+day1_root,day1_root__SineWave,7,des_theta,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,63601,1,0,636,0.00999999999999091,,-3.1415927,3.1415927
+day1_root,day1_root__SineWave,8,pressureUsed_bar,RL_dataCollection/MATLAB Function1,unclassified,63601,3,0,636,0.00999999999999091,,[0 0 0],[2.199999 2.1999999 2.2]
+day1_root,day1_root__SineWave,9,tau_N,RL_dataCollection/MATLAB Function1,unclassified,63601,2,0,636,0.00999999999999091,,[-29.201091 -29.201091],[29.201103 29.201103]
+day1_root,day1_root__SineWave,10,thetaObservable,RL_dataCollection/MATLAB Function1,unclassified,63601,1,0,636,0.00999999999999091,,0,1
+day1_root,day1_root__SineWave,11,inverseModelValid,RL_dataCollection/MATLAB Function3,quality_or_time,63601,1,0,636,0.00999999999999091,,1,1
+day1_root,day1_root__SineWave,12,pressureDesired_bar,RL_dataCollection/MATLAB Function3,unclassified,63601,3,0,636,0.00999999999999091,,[0 0 0],[2.999999 2.9999999 3]
+day1_root,day1_root__SineWave,13,pressureLimited,RL_dataCollection/MATLAB Function3,unclassified,63601,1,0,636,0.00999999999999091,,0,0
+day1_root,day1_root__SineWave,14,tauAvailable_N,RL_dataCollection/MATLAB Function3,unclassified,63601,2,0,636,0.00999999999999091,,[-29.201091 -29.201091],[29.201103 29.201103]
+day1_root,day1_root__SineWave,15,tauDesired_N,RL_dataCollection/MATLAB Function3,unclassified,63601,2,0,636,0.00999999999999091,,[-29.201091 -29.201091],[29.201103 29.201103]
+day1_root,day1_root__SineWave,16,filtered_d_length,RL_dataCollection/MATLAB Function5,unclassified,12721,2,0,636,0.0500000000000114,,[-0.0056521134 -0.008669854],[0.0053992394 0.0071570203]
+day1_root,day1_root__SineWave,17,filtered_dd_length,RL_dataCollection/MATLAB Function5,unclassified,12721,2,0,636,0.0500000000000114,,[-0.0058657451 -0.0063334115],[0.005466617 0.005204751]
+day1_root,day1_root__SineWave,18,fitered_length,RL_dataCollection/MATLAB Function5,unclassified,12721,2,0,636,0.0500000000000114,,[-0.014500674 -0.016251777],[0.025112665 0.032165677]
+day1_root,day1_root__SineWave,19,meas_position,RL_dataCollection/NDI Sensor reading,unclassified,12721,3,0,636,0.0500000000000114,,[-0.17087682 -0.15295384 0.067432537],[0.08529866 0.14473318 0.28045279]
+day1_root,day1_root__SineWave,20,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,63601,1,0,636,0.00999999999999091,,-3.119806,1.4726511
+day1_root,day1_root__SineWave,21,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,63601,1,0,636,0.00999999999999091,,0.019390659,2.3989369
+day1_root,day1_root__SineWave,22,configurationValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,63601,1,0,636,0.00999999999999091,,0,1
+day1_root,day1_root__SineWave,23,fitResidual_m,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,63601,1,0,636,0.00999999999999091,,1.342237e-06,0.0058669691
+day1_root,day1_root__SineWave,24,frame,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,12721,2,0,636,0.0500000000000114,,[2470 2470],[210110 210110]
+day1_root,day1_root__SineWave,25,hostTime_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,12721,1,0,636,0.0500000000000114,,0.0193446,648.33381
+day1_root,day1_root__SineWave,26,meas_length,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12721,3,0,636,0.0500000000000114,,[-0.020564844 -0.014500674 -0.016251777],[0.025261523 0.025112665 0.032165677]
+day1_root,day1_root__SineWave,27,overrun,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12721,1,0,636,0.0500000000000114,,0,1
+day1_root,day1_root__SineWave,28,phi,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12721,1,0,636,0.0500000000000114,,0.019434731,2.5056553
+day1_root,day1_root__SineWave,29,pollStart_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,12721,1,0,636,0.0500000000000114,,0.0005659,648.31608
+day1_root,day1_root__SineWave,30,position,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12721,3,0,636,0.0500000000000114,,[-0.17087682 -0.15295384 0.067432537],[0.08529866 0.14473318 0.28045279]
+day1_root,day1_root__SineWave,31,sensorValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,12721,2,0,636,0.0500000000000114,,[1 0],[1 1]
+day1_root,day1_root__SineWave,32,theta,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12721,1,0,636,0.0500000000000114,,-3.1415662,3.1415175
+day1_root,day1_root__SineWave,33,moduleTipXYZValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,12721,1,0,636,0.0500000000000114,,0,1
+day1_root,day1_root__SineWave,34,moduleTipXYZ_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,12721,3,0,636,0.0500000000000114,,[-0.12404093 -0.11991163 0.051795441],[0.083504127 0.099895071 0.17562443]
+day1_root,day1_root__SineWave,35,R_NDI_from_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,9,0,636,0.0500000000000114,,[0.98599327 -0.003205181 0.16579652 -0.16677941 -0.0047094675 0.98598538 -0.00240937 -0.99999789 -0.0051524698],[0.98615995 -0.00016617329 0.16677363 -0.16579653 -0.00047418731 0.98615546 0.00041654804 -0.99998416 -0.00081760701]
+day1_root,day1_root__SineWave,36,baseOreintationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,1,0,636,0.0500000000000114,,1,1
+day1_root,day1_root__SineWave,37,frame,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,2,0,636,0.0500000000000114,,[2470 2470],[210110 210110]
+day1_root,day1_root__SineWave,38,gravity_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,3,0,636,0.0500000000000114,,[-0.031442825 -0.046199876 -9.8099793],[-0.00163016 -0.0046517775 -9.8098446]
+day1_root,day1_root__SineWave,39,hostTime,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,1,0,636,0.0500000000000114,,0.0193446,648.33381
+day1_root,day1_root__SineWave,40,lengthChnage_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12721,3,0,636,0.0500000000000114,,[-0.020564844 -0.014500674 -0.016251777],[0.025261523 0.025112665 0.032165677]
+day1_root,day1_root__SineWave,41,nonBendingRotation_rad,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,4.5442434e-07,0.086780156
+day1_root,day1_root__SineWave,42,orientationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,1,0,636,0.0500000000000114,,0,1
+day1_root,day1_root__SineWave,43,overrun,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,0,1
+day1_root,day1_root__SineWave,44,phiOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12721,1,0,636,0.0500000000000114,,0.019434731,2.5056553
+day1_root,day1_root__SineWave,45,pollStart,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,1,0,636,0.0500000000000114,,0.0005659,648.31608
+day1_root,day1_root__SineWave,46,raw1,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-14.942545,-14.700047
+day1_root,day1_root__SineWave,47,raw2,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,123.59547,123.8262
+day1_root,day1_root__SineWave,48,raw3,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-230.54141,-230.30103
+day1_root,day1_root__SineWave,49,raw4,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,0.037230242,0.054696776
+day1_root,day1_root__SineWave,50,raw5,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-185.67616,70.430908
+day1_root,day1_root__SineWave,51,raw6,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-156.74649,56.258656
+day1_root,day1_root__SineWave,52,raw7,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-383.32843,-85.743713
+day1_root,day1_root__SineWave,53,raw8,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,0.009494327,0.51994628
+day1_root,day1_root__SineWave,54,thetaObservable,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,0,1
+day1_root,day1_root__SineWave,55,thetaOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12721,1,0,636,0.0500000000000114,,-3.1415662,3.1415175
+day1_root,day1_root__SineWave,56,valid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,2,0,636,0.0500000000000114,,[1 0],[1 1]
+day1_root,day1_root__SineWave,57,X,RL_dataCollection/NDI Sensor reading/Sensor/Subtract,unclassified,12721,1,0,636,0.0500000000000114,,-170.87682,85.29866
+day1_root,day1_root__SineWave,58,P1_voltage,RL_dataCollection/Pneumatic Valves/Gain,unclassified,12721,1,0,636,0.0500000000000114,,0,3.3333322
+day1_root,day1_root__SineWave,59,P2_voltage,RL_dataCollection/Pneumatic Valves/Gain1,unclassified,12721,1,0,636,0.0500000000000114,,0,3.3333333
+day1_root,day1_root__SineWave,60,P3_voltage,RL_dataCollection/Pneumatic Valves/Gain2,unclassified,12721,1,0,636,0.0500000000000114,,0,3.3333333
+day1_root,day1_root__SineWave,61,kill_switch,RL_dataCollection/Pneumatic Valves/Kill,unclassified,4,1,0,151.31,13.7,,1,1
+day1_root,day1_root__SineWave,62,P1_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation,final_command_candidate,12721,1,0,636,0.0500000000000114,,0,2.999999
+day1_root,day1_root__SineWave,63,P2_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation1,final_command_candidate,12721,1,0,636,0.0500000000000114,,0,2.9999999
+day1_root,day1_root__SineWave,64,P3_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation2,final_command_candidate,12721,1,0,636,0.0500000000000114,,0,3
+day1_root,day1_root__SineWave,65,sim time,RL_dataCollection/Reference clock,unclassified,63601,1,0,636,0.00999999999999091,,0,636
+day1_root,day1_root__SineWave,66,sampled time,RL_dataCollection/Reference time 50 ms,unclassified,12721,1,0,636,0.0500000000000114,,0,636
+day1_root,day1_root__SineWave,67,comp_ltheta,RL_dataCollection/Seperate paramter calculation/MATLAB Function,unclassified,63601,1,0,636,0.00999999999999091,,-3.1415918,3.1415925
+day1_root,day1_root__SineWave,68,phi error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,63601,1,0,636,0.00999999999999091,,-1.0372965,0.40792324
+day1_root,day1_root__SineWave,69,theta error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,63601,1,0,636,0.00999999999999091,,-3.1412389,3.141083
+day1_root,day1_root__SineWave,70,channelId,RL_dataCollection/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,3
+day1_root,day1_root__SineWave,71,cycleId,RL_dataCollection/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,3
+day1_root,day1_root__SineWave,72,done,RL_dataCollection/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,1
+day1_root,day1_root__SineWave,73,phaseId,RL_dataCollection/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,9
+day1_root,day1_root__SineWave,74,pressureCommand_bar,RL_dataCollection/sineWave,unclassified,12721,3,0,636,0.0500000000000114,,[0 0 0],[2.999999 2.9999999 3]
+day1_root,day1_root__SineWave,75,testEnd_s,RL_dataCollection/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,630.48668,630.48668
+day1_root,day1_root__SineWave,76,trialId,RL_dataCollection/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,6
+day1_root,day1_root__SineWave,77,measurementTime_s,RL_dataCollection/validMeasurementTime,unclassified,12721,1,0,636,0.0500000000000114,,0,636
+day1_root,day1_root__StepWave,1,length,RL_dataCollection/Demux,unclassified,55001,2,0,550,0.00999999999999091,,[-0.014096468 -0.014096468],[0.02818841 0.02818841]
+day1_root,day1_root__StepWave,2,length,RL_dataCollection/Demux1,unclassified,55001,1,0,550,0.00999999999999091,,-0.014096065,0.028192935
+day1_root,day1_root__StepWave,3,X,RL_dataCollection/Integrator,unclassified,55001,4,0,550,0.00999999999999091,,[-0.014096468 -0.014096468 -0.012776195 -0.012776195],[0.02818841 0.02818841 0.012752319 0.012752319]
+day1_root,day1_root__StepWave,4,comp_lengths,RL_dataCollection/MATLAB Function1,unclassified,55001,3,0,550,0.00999999999999091,,[-0.014096065 -0.014096468 -0.014096468],[0.028192935 0.02818841 0.02818841]
+day1_root,day1_root__StepWave,5,dX,RL_dataCollection/MATLAB Function1,unclassified,55001,4,0,550,0.00999999999999091,,[-0.012776195 -0.012776195 -0.49429221 -0.49429221],[0.012752319 0.012752319 0.59136909 0.59136909]
+day1_root,day1_root__StepWave,6,des_phi,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,55001,1,0,550,0.00999999999999091,,0,2.1686873
+day1_root,day1_root__StepWave,7,des_theta,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,55001,1,0,550,0.00999999999999091,,-3.1415927,3.1415927
+day1_root,day1_root__StepWave,8,pressureUsed_bar,RL_dataCollection/MATLAB Function1,unclassified,55001,3,0,550,0.00999999999999091,,[0 0 0],[2.2 2.2 2.2]
+day1_root,day1_root__StepWave,9,tau_N,RL_dataCollection/MATLAB Function1,unclassified,55001,2,0,550,0.00999999999999091,,[-29.201104 -29.201104],[29.201104 29.201104]
+day1_root,day1_root__StepWave,10,thetaObservable,RL_dataCollection/MATLAB Function1,unclassified,55001,1,0,550,0.00999999999999091,,0,1
+day1_root,day1_root__StepWave,11,inverseModelValid,RL_dataCollection/MATLAB Function3,quality_or_time,55001,1,0,550,0.00999999999999091,,1,1
+day1_root,day1_root__StepWave,12,pressureDesired_bar,RL_dataCollection/MATLAB Function3,unclassified,55001,3,0,550,0.00999999999999091,,[0 0 0],[3 3 3]
+day1_root,day1_root__StepWave,13,pressureLimited,RL_dataCollection/MATLAB Function3,unclassified,55001,1,0,550,0.00999999999999091,,0,1
+day1_root,day1_root__StepWave,14,tauAvailable_N,RL_dataCollection/MATLAB Function3,unclassified,55001,2,0,550,0.00999999999999091,,[-29.201104 -29.201104],[29.201104 29.201104]
+day1_root,day1_root__StepWave,15,tauDesired_N,RL_dataCollection/MATLAB Function3,unclassified,55001,2,0,550,0.00999999999999091,,[-29.201104 -29.201104],[29.201104 29.201104]
+day1_root,day1_root__StepWave,16,filtered_d_length,RL_dataCollection/MATLAB Function5,unclassified,11001,2,0,550,0.0500000000000114,,[-0.014434023 -0.020764249],[0.013223407 0.016513722]
+day1_root,day1_root__StepWave,17,filtered_dd_length,RL_dataCollection/MATLAB Function5,unclassified,11001,2,0,550,0.0500000000000114,,[-0.0095481052 -0.019773535],[0.013960565 0.022616766]
+day1_root,day1_root__StepWave,18,fitered_length,RL_dataCollection/MATLAB Function5,unclassified,11001,2,0,550,0.0500000000000114,,[-0.014980779 -0.016600509],[0.025639204 0.032748575]
+day1_root,day1_root__StepWave,19,meas_position,RL_dataCollection/NDI Sensor reading,unclassified,11001,3,0,550,0.0500000000000114,,[-0.17118313 -0.15337335 0.062896034],[0.085109857 0.14454617 0.28044341]
+day1_root,day1_root__StepWave,20,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,55001,1,0,550,0.00999999999999091,,-3.1407157,3.1413198
+day1_root,day1_root__StepWave,21,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,55001,1,0,550,0.00999999999999091,,0.01319745,2.4419265
+day1_root,day1_root__StepWave,22,configurationValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,55001,1,0,550,0.00999999999999091,,0,1
+day1_root,day1_root__StepWave,23,fitResidual_m,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,55001,1,0,550,0.00999999999999091,,1.5177154e-06,0.0053460315
+day1_root,day1_root__StepWave,24,frame,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,11001,2,0,550,0.0500000000000114,,[2398 2398],[180078 180078]
+day1_root,day1_root__StepWave,25,hostTime_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,11001,1,0,550,0.0500000000000114,,0.0186091,554.76839
+day1_root,day1_root__StepWave,26,meas_length,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,11001,3,0,550,0.0500000000000114,,[-0.020848958 -0.014980779 -0.016600509],[0.025911266 0.025639204 0.032748575]
+day1_root,day1_root__StepWave,27,overrun,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,11001,1,0,550,0.0500000000000114,,0,1
+day1_root,day1_root__StepWave,28,phi,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,11001,1,0,550,0.0500000000000114,,0.032309857,2.5496692
+day1_root,day1_root__StepWave,29,pollStart_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,11001,1,0,550,0.0500000000000114,,0.0007901,554.74542
+day1_root,day1_root__StepWave,30,position,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,11001,3,0,550,0.0500000000000114,,[-0.17118313 -0.15337335 0.062896034],[0.085109857 0.14454617 0.28044341]
+day1_root,day1_root__StepWave,31,sensorValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,11001,2,0,550,0.0500000000000114,,[1 0],[1 1]
+day1_root,day1_root__StepWave,32,theta,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,11001,1,0,550,0.0500000000000114,,-3.1264017,3.1339072
+day1_root,day1_root__StepWave,33,moduleTipXYZValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,11001,1,0,550,0.0500000000000114,,0,1
+day1_root,day1_root__StepWave,34,moduleTipXYZ_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,11001,3,0,550,0.0500000000000114,,[-0.12541561 -0.1213169 0.048629592],[0.083175119 0.10001763 0.17553429]
+day1_root,day1_root__StepWave,35,R_NDI_from_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,9,0,550,0.0500000000000114,,[0.98597983 -0.0032435968 0.16599121 -0.1668551 -0.004839659 0.98597336 -0.0024166005 -0.99999795 -0.0052820529],[0.98612708 -0.00023599894 0.16684618 -0.16599209 -0.00053367 0.98612297 0.00035011996 -0.99998347 -0.00085121059]
+day1_root,day1_root__StepWave,36,baseOreintationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,1,0,550,0.0500000000000114,,1,1
+day1_root,day1_root__StepWave,37,frame,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,2,0,550,0.0500000000000114,,[2398 2398],[180078 180078]
+day1_root,day1_root__StepWave,38,gravity_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,3,0,550,0.0500000000000114,,[-0.031819684 -0.047477055 -9.8099798],[-0.0023151496 -0.0052353027 -9.8098378]
+day1_root,day1_root__StepWave,39,hostTime,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,1,0,550,0.0500000000000114,,0.0186091,554.76839
+day1_root,day1_root__StepWave,40,lengthChnage_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,11001,3,0,550,0.0500000000000114,,[-0.020848958 -0.014980779 -0.016600509],[0.025911266 0.025639204 0.032748575]
+day1_root,day1_root__StepWave,41,nonBendingRotation_rad,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,6.3220273e-08,0.096979054
+day1_root,day1_root__StepWave,42,orientationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,1,0,550,0.0500000000000114,,0,1
+day1_root,day1_root__StepWave,43,overrun,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,0,1
+day1_root,day1_root__StepWave,44,phiOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,11001,1,0,550,0.0500000000000114,,0.032309857,2.5496692
+day1_root,day1_root__StepWave,45,pollStart,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,1,0,550,0.0500000000000114,,0.0007901,554.74542
+day1_root,day1_root__StepWave,46,raw1,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-14.944982,-14.756018
+day1_root,day1_root__StepWave,47,raw2,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,123.59235,123.76947
+day1_root,day1_root__StepWave,48,raw3,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-230.48839,-230.2863
+day1_root,day1_root__StepWave,49,raw4,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,0.039961893,0.054415923
+day1_root,day1_root__StepWave,50,raw5,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-186.04198,70.289536
+day1_root,day1_root__StepWave,51,raw6,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-156.74915,60.740364
+day1_root,day1_root__StepWave,52,raw7,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-383.72382,-85.900711
+day1_root,day1_root__StepWave,53,raw8,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,0.010667098,0.34786397
+day1_root,day1_root__StepWave,54,thetaObservable,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,0,1
+day1_root,day1_root__StepWave,55,thetaOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,11001,1,0,550,0.0500000000000114,,-3.1264017,3.1339072
+day1_root,day1_root__StepWave,56,valid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,2,0,550,0.0500000000000114,,[1 0],[1 1]
+day1_root,day1_root__StepWave,57,X,RL_dataCollection/NDI Sensor reading/Sensor/Subtract,unclassified,11001,1,0,550,0.0500000000000114,,-171.18313,85.109857
+day1_root,day1_root__StepWave,58,P1_voltage,RL_dataCollection/Pneumatic Valves/Gain,unclassified,11001,1,0,550,0.0500000000000114,,0,3.3333333
+day1_root,day1_root__StepWave,59,P2_voltage,RL_dataCollection/Pneumatic Valves/Gain1,unclassified,11001,1,0,550,0.0500000000000114,,0,3.3333333
+day1_root,day1_root__StepWave,60,P3_voltage,RL_dataCollection/Pneumatic Valves/Gain2,unclassified,11001,1,0,550,0.0500000000000114,,0,3.3333333
+day1_root,day1_root__StepWave,61,kill_switch,RL_dataCollection/Pneumatic Valves/Kill,unclassified,1,1,0,0,NaN,,1,1
+day1_root,day1_root__StepWave,62,P1_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation,final_command_candidate,11001,1,0,550,0.0500000000000114,,0,3
+day1_root,day1_root__StepWave,63,P2_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation1,final_command_candidate,11001,1,0,550,0.0500000000000114,,0,3
+day1_root,day1_root__StepWave,64,P3_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation2,final_command_candidate,11001,1,0,550,0.0500000000000114,,0,3
+day1_root,day1_root__StepWave,65,sim time,RL_dataCollection/Reference clock,unclassified,55001,1,0,550,0.00999999999999091,,0,550
+day1_root,day1_root__StepWave,66,sampled time,RL_dataCollection/Reference time 50 ms,unclassified,11001,1,0,550,0.0500000000000114,,0,550
+day1_root,day1_root__StepWave,67,comp_ltheta,RL_dataCollection/Seperate paramter calculation/MATLAB Function,unclassified,55001,1,0,550,0.00999999999999091,,-3.1415927,3.1415927
+day1_root,day1_root__StepWave,68,phi error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,55001,1,0,550,0.00999999999999091,,-1.1179598,0.46238588
+day1_root,day1_root__StepWave,69,theta error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,55001,1,0,550,0.00999999999999091,,-3.1414302,3.1402039
+day1_root,day1_root__StepWave,70,channelId,RL_dataCollection/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,3
+day1_root,day1_root__StepWave,71,cycleId,RL_dataCollection/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,2
+day1_root,day1_root__StepWave,72,done,RL_dataCollection/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,1
+day1_root,day1_root__StepWave,73,phaseId,RL_dataCollection/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,9
+day1_root,day1_root__StepWave,74,pressureCommand_bar,RL_dataCollection/stepWave,unclassified,11001,3,0,550,0.0500000000000114,,[0 0 0],[3 3 3]
+day1_root,day1_root__StepWave,75,testEnd_s,RL_dataCollection/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,545,545
+day1_root,day1_root__StepWave,76,trialId,RL_dataCollection/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,18
+day1_root,day1_root__StepWave,77,measurementTime_s,RL_dataCollection/validMeasurementTime,unclassified,11001,1,0,550,0.0500000000000114,,0,550
+day1_root,day1_root__circleSweep,1,length,RL_dataCollection/Demux,unclassified,62501,2,0,625,0.00999999999999091,,[-0.019513051 -0.01951254],[0.019513051 0.01951254]
+day1_root,day1_root__circleSweep,2,length,RL_dataCollection/Demux1,unclassified,62501,1,0,625,0.00999999999999091,,-0.024284815,0.02559845
+day1_root,day1_root__circleSweep,3,sampled des_length,RL_dataCollection/Desired lengths 50 ms,reference_or_prediction_check_provenance,12501,2,0,625,0.0500000000000114,,[-0.019499733 -0.019499733],[0.019499733 0.019499733]
+day1_root,day1_root__circleSweep,4,X,RL_dataCollection/Integrator,unclassified,62501,4,0,625,0.00999999999999091,,[-0.019513051 -0.01951254 -0.24015302 -0.27130642],[0.019513051 0.01951254 0.29621227 0.24484523]
+day1_root,day1_root__circleSweep,5,,RL_dataCollection/MATLAB Function,unclassified,12501,2,0,625,0.0500000000000114,,[-0.019499733 -0.019499733],[0.019499733 0.019499733]
+day1_root,day1_root__circleSweep,6,comp_lengths,RL_dataCollection/MATLAB Function1,unclassified,62501,3,0,625,0.00999999999999091,,[-0.024284815 -0.019513051 -0.01951254],[0.02559845 0.019513051 0.01951254]
+day1_root,day1_root__circleSweep,7,dX,RL_dataCollection/MATLAB Function1,unclassified,62501,4,0,625,0.00999999999999091,,[-0.24015302 -0.27130642 -23.488203 -21.343465],[0.29621227 0.24484523 21.750543 21.343002]
+day1_root,day1_root__circleSweep,8,des_phi,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,62501,1,0,625,0.00999999999999091,,0,1.976586
+day1_root,day1_root__circleSweep,9,des_theta,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,62501,1,0,625,0.00999999999999091,,-3.1415927,3.1415927
+day1_root,day1_root__circleSweep,10,pressureUsed_bar,RL_dataCollection/MATLAB Function1,unclassified,62501,3,0,625,0.00999999999999091,,[0 0 0],[1.7864965 1.7781317 1.7864968]
+day1_root,day1_root__circleSweep,11,tau_N,RL_dataCollection/MATLAB Function1,unclassified,62501,2,0,625,0.00999999999999091,,[-23.468128 -23.712577],[23.468128 23.712581]
+day1_root,day1_root__circleSweep,12,thetaObservable,RL_dataCollection/MATLAB Function1,unclassified,62501,1,0,625,0.00999999999999091,,0,1
+day1_root,day1_root__circleSweep,13,d_length,RL_dataCollection/MATLAB Function2,unclassified,12501,2,0,625,0.0500000000000114,,[-0.0061214919 -0.0061214925],[0.0061214919 0.0061214925]
+day1_root,day1_root__circleSweep,14,dd_length,RL_dataCollection/MATLAB Function2,unclassified,12501,2,0,625,0.0500000000000114,,[-0.013570968 -0.014547384],[0.011929807 0.013062655]
+day1_root,day1_root__circleSweep,15,length,RL_dataCollection/MATLAB Function2,unclassified,12501,2,0,625,0.0500000000000114,,[-0.019499733 -0.019499733],[0.019499733 0.019499733]
+day1_root,day1_root__circleSweep,16,inverseModelValid,RL_dataCollection/MATLAB Function3,quality_or_time,62501,1,0,625,0.00999999999999091,,0,1
+day1_root,day1_root__circleSweep,17,pressureDesired_bar,RL_dataCollection/MATLAB Function3,unclassified,62501,3,0,625,0.00999999999999091,,[0 0 0],[1.7864965 1.7781317 1.7864968]
+day1_root,day1_root__circleSweep,18,pressureLimited,RL_dataCollection/MATLAB Function3,unclassified,62501,1,0,625,0.00999999999999091,,0,0
+day1_root,day1_root__circleSweep,19,tauAvailable_N,RL_dataCollection/MATLAB Function3,unclassified,62501,2,0,625,0.00999999999999091,,[-23.468128 -23.712577],[23.468128 23.712581]
+day1_root,day1_root__circleSweep,20,tauDesired_N,RL_dataCollection/MATLAB Function3,unclassified,62501,2,0,625,0.00999999999999091,,[-23.468128 -23.712577],[23.468128 23.712581]
+day1_root,day1_root__circleSweep,21,filtered_d_length,RL_dataCollection/MATLAB Function5,unclassified,12501,2,0,625,0.0500000000000114,,[-0.012469588 -0.012581924],[0.012233555 0.016456176]
+day1_root,day1_root__circleSweep,22,filtered_dd_length,RL_dataCollection/MATLAB Function5,unclassified,12501,2,0,625,0.0500000000000114,,[-0.023313831 -0.01774087],[0.028579717 0.029976163]
+day1_root,day1_root__circleSweep,23,fitered_length,RL_dataCollection/MATLAB Function5,unclassified,12501,2,0,625,0.0500000000000114,,[-0.0080103822 -0.0075121306],[0.0096107835 0.01391975]
+day1_root,day1_root__circleSweep,24,meas_position,RL_dataCollection/NDI Sensor reading,unclassified,12501,3,0,625,0.0500000000000114,,[-0.092043 -0.0925056 0.22651184],[0.082238618 0.11126873 0.28067302]
+day1_root,day1_root__circleSweep,25,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,62501,1,0,625,0.00999999999999091,,-3.1412818,3.1415123
+day1_root,day1_root__circleSweep,26,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,62501,1,0,625,0.00999999999999091,,0.0062052116,1.0193593
+day1_root,day1_root__circleSweep,27,configurationValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,62501,1,0,625,0.00999999999999091,,0,1
+day1_root,day1_root__circleSweep,28,fitResidual_m,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,62501,1,0,625,0.00999999999999091,,9.3640142e-07,0.0049217161
+day1_root,day1_root__circleSweep,29,frame,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,12501,2,0,625,0.0500000000000114,,[2454 2454],[204390 204390]
+day1_root,day1_root__circleSweep,30,hostTime_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,12501,1,0,625,0.0500000000000114,,0.0270815,630.52487
+day1_root,day1_root__circleSweep,31,meas_length,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12501,3,0,625,0.0500000000000114,,[-0.010788711 -0.0080103822 -0.0075121306],[0.0092207205 0.0096107835 0.01391975]
+day1_root,day1_root__circleSweep,32,overrun,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day1_root,day1_root__circleSweep,33,phi,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12501,1,0,625,0.0500000000000114,,0.020057725,1.0925826
+day1_root,day1_root__circleSweep,34,pollStart_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,12501,1,0,625,0.0500000000000114,,0.0002532,630.50525
+day1_root,day1_root__circleSweep,35,position,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12501,3,0,625,0.0500000000000114,,[-0.092043 -0.0925056 0.22651184],[0.082238618 0.11126873 0.28067302]
+day1_root,day1_root__circleSweep,36,sensorValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,12501,2,0,625,0.0500000000000114,,[1 0],[1 1]
+day1_root,day1_root__circleSweep,37,theta,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,12501,1,0,625,0.0500000000000114,,-3.1397989,3.1388926
+day1_root,day1_root__circleSweep,38,moduleTipXYZValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,12501,1,0,625,0.0500000000000114,,0,1
+day1_root,day1_root__circleSweep,39,moduleTipXYZ_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,12501,3,0,625,0.0500000000000114,,[-0.057627587 -0.062504417 0.14801836],[0.060419976 0.066766924 0.17586072]
+day1_root,day1_root__circleSweep,40,R_NDI_from_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,9,0,625,0.0500000000000114,,[0.98589535 -0.0034264733 0.16600771 -0.16734317 -0.0040372112 0.98589492 -0.0028705069 -0.99999743 -0.0043793549],[0.98612324 -0.001184632 0.16733474 -0.16601164 -0.00090255074 0.98612176 -0.00075145516 -0.99998864 -0.0012881118]
+day1_root,day1_root__circleSweep,41,baseOreintationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,1,0,625,0.0500000000000114,,1,1
+day1_root,day1_root__circleSweep,42,frame,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,2,0,625,0.0500000000000114,,[2454 2454],[204390 204390]
+day1_root,day1_root__circleSweep,43,gravity_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,3,0,625,0.0500000000000114,,[-0.033613703 -0.039605042 -9.8099748],[-0.01162124 -0.0088540228 -9.8098885]
+day1_root,day1_root__circleSweep,44,hostTime,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,1,0,625,0.0500000000000114,,0.0270815,630.52487
+day1_root,day1_root__circleSweep,45,lengthChnage_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12501,3,0,625,0.0500000000000114,,[-0.010788711 -0.0080103822 -0.0075121306],[0.0092207205 0.0096107835 0.01391975]
+day1_root,day1_root__circleSweep,46,nonBendingRotation_rad,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,2.8167531e-06,0.023156655
+day1_root,day1_root__circleSweep,47,orientationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,1,0,625,0.0500000000000114,,0,1
+day1_root,day1_root__circleSweep,48,overrun,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day1_root,day1_root__circleSweep,49,phiOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12501,1,0,625,0.0500000000000114,,0.020057725,1.0925826
+day1_root,day1_root__circleSweep,50,pollStart,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,1,0,625,0.0500000000000114,,0.0002532,630.50525
+day1_root,day1_root__circleSweep,51,raw1,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-15.022376,-14.790532
+day1_root,day1_root__circleSweep,52,raw2,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,123.56398,123.76817
+day1_root,day1_root__circleSweep,53,raw3,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-230.36411,-230.21539
+day1_root,day1_root__circleSweep,54,raw4,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,0.042124286,0.054041024
+day1_root,day1_root__circleSweep,55,raw5,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-106.98897,67.26606
+day1_root,day1_root__circleSweep,56,raw6,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-157.00696,-102.84031
+day1_root,day1_root__circleSweep,57,raw7,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-322.75684,-119.00802
+day1_root,day1_root__circleSweep,58,raw8,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,0.0086744996,0.21211593
+day1_root,day1_root__circleSweep,59,thetaObservable,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day1_root,day1_root__circleSweep,60,thetaOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12501,1,0,625,0.0500000000000114,,-3.1397989,3.1388926
+day1_root,day1_root__circleSweep,61,valid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,2,0,625,0.0500000000000114,,[1 0],[1 1]
+day1_root,day1_root__circleSweep,62,X,RL_dataCollection/NDI Sensor reading/Sensor/Subtract,unclassified,12501,1,0,625,0.0500000000000114,,-92.043,82.238618
+day1_root,day1_root__circleSweep,63,P1_voltage,RL_dataCollection/Pneumatic Valves/Gain,unclassified,62501,1,0,625,0.00999999999999091,,0,1.9849961
+day1_root,day1_root__circleSweep,64,P2_voltage,RL_dataCollection/Pneumatic Valves/Gain1,unclassified,62501,1,0,625,0.00999999999999091,,0,1.9757019
+day1_root,day1_root__circleSweep,65,P3_voltage,RL_dataCollection/Pneumatic Valves/Gain2,unclassified,62501,1,0,625,0.00999999999999091,,0,1.9849964
+day1_root,day1_root__circleSweep,66,kill_switch,RL_dataCollection/Pneumatic Valves/Kill,unclassified,1,1,0,0,NaN,,1,1
+day1_root,day1_root__circleSweep,67,P1_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation,final_command_candidate,62501,1,0,625,0.00999999999999091,,0,1.7864965
+day1_root,day1_root__circleSweep,68,P2_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation1,final_command_candidate,62501,1,0,625,0.00999999999999091,,0,1.7781317
+day1_root,day1_root__circleSweep,69,P3_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation2,final_command_candidate,62501,1,0,625,0.00999999999999091,,0,1.7864968
+day1_root,day1_root__circleSweep,70,sim time,RL_dataCollection/Reference clock,unclassified,62501,1,0,625,0.00999999999999091,,0,625
+day1_root,day1_root__circleSweep,71,sampled time,RL_dataCollection/Reference time 50 ms,unclassified,12501,1,0,625,0.0500000000000114,,0,625
+day1_root,day1_root__circleSweep,72,comp_ltheta,RL_dataCollection/Seperate paramter calculation/MATLAB Function,unclassified,62501,1,0,625,0.00999999999999091,,-3.1415013,3.1390581
+day1_root,day1_root__circleSweep,73,phi error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,62501,1,0,625,0.00999999999999091,,-0.56516113,1.3955617
+day1_root,day1_root__circleSweep,74,theta error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,62501,1,0,625,0.00999999999999091,,-3.1415825,3.141476
+day1_root,day1_root__circleSweep,75,cycleId,RL_dataCollection/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,5
+day1_root,day1_root__circleSweep,76,direction,RL_dataCollection/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day1_root,day1_root__circleSweep,77,done,RL_dataCollection/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day1_root,day1_root__circleSweep,78,phaseId,RL_dataCollection/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,9
+day1_root,day1_root__circleSweep,79,phi_from_block,RL_dataCollection/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,1.5
+day1_root,day1_root__circleSweep,80,testEnd_s,RL_dataCollection/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,620,620
+day1_root,day1_root__circleSweep,81,theta_from_block,RL_dataCollection/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,157.07963
+day1_root,day1_root__circleSweep,82,trialId,RL_dataCollection/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,5
+day1_root,day1_root__circleSweep,83,measurementTime_s,RL_dataCollection/validMeasurementTime,unclassified,12501,1,0,625,0.0500000000000114,,0,625
+day1_root,day1_root__combinePressure,1,length,RL_dataCollection/Demux,unclassified,34201,2,0,342,0.00999999999999091,,[-0.0099633381 -0.0099176777],[0.0099633397 0.0099177104]
+day1_root,day1_root__combinePressure,2,length,RL_dataCollection/Demux1,unclassified,34201,1,0,342,0.00999999999999091,,-0.0062740833,0.0062734
+day1_root,day1_root__combinePressure,3,X,RL_dataCollection/Integrator,unclassified,34201,4,0,342,0.00999999999999091,,[-0.0099633381 -0.0099176777 -0.0040892982 -0.0040892982],[0.0099633397 0.0099177104 0.0043080132 0.0043080132]
+day1_root,day1_root__combinePressure,4,comp_lengths,RL_dataCollection/MATLAB Function1,unclassified,34201,3,0,342,0.00999999999999091,,[-0.0062740833 -0.0099633381 -0.0099176777],[0.0062734 0.0099633397 0.0099177104]
+day1_root,day1_root__combinePressure,5,dX,RL_dataCollection/MATLAB Function1,unclassified,34201,4,0,342,0.00999999999999091,,[-0.0040892982 -0.0040892982 -0.15142768 -0.15142768],[0.0043080132 0.0043080132 0.16721652 0.16721652]
+day1_root,day1_root__combinePressure,6,des_phi,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,34201,1,0,342,0.00999999999999091,,0,0.83783163
+day1_root,day1_root__combinePressure,7,des_theta,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,34201,1,0,342,0.00999999999999091,,-3.1415927,3.1415927
+day1_root,day1_root__combinePressure,8,pressureUsed_bar,RL_dataCollection/MATLAB Function1,unclassified,34201,3,0,342,0.00999999999999091,,[0 0 0],[1.1999987 1.2270435 1.2270458]
+day1_root,day1_root__combinePressure,9,tau_N,RL_dataCollection/MATLAB Function1,unclassified,34201,2,0,342,0.00999999999999091,,[-9.3855795 -9.3855878],[9.3855902 9.3855653]
+day1_root,day1_root__combinePressure,10,thetaObservable,RL_dataCollection/MATLAB Function1,unclassified,34201,1,0,342,0.00999999999999091,,0,1
+day1_root,day1_root__combinePressure,11,inverseModelValid,RL_dataCollection/MATLAB Function3,quality_or_time,34201,1,0,342,0.00999999999999091,,1,1
+day1_root,day1_root__combinePressure,12,pressureDesired_bar,RL_dataCollection/MATLAB Function3,unclassified,34201,3,0,342,0.00999999999999091,,[0 0 0],[1.5071066 1.7999989 1.8]
+day1_root,day1_root__combinePressure,13,pressureLimited,RL_dataCollection/MATLAB Function3,unclassified,34201,1,0,342,0.00999999999999091,,0,0
+day1_root,day1_root__combinePressure,14,tauAvailable_N,RL_dataCollection/MATLAB Function3,unclassified,34201,2,0,342,0.00999999999999091,,[-9.3855795 -9.3855878],[9.3855902 9.3855653]
+day1_root,day1_root__combinePressure,15,tauDesired_N,RL_dataCollection/MATLAB Function3,unclassified,34201,2,0,342,0.00999999999999091,,[-9.3855795 -9.3855878],[9.3855902 9.3855653]
+day1_root,day1_root__combinePressure,16,filtered_d_length,RL_dataCollection/MATLAB Function5,unclassified,6841,2,0,342,0.0500000000000043,,[-0.0021704241 -0.0024658994],[0.0022411619 0.0029449601]
+day1_root,day1_root__combinePressure,17,filtered_dd_length,RL_dataCollection/MATLAB Function5,unclassified,6841,2,0,342,0.0500000000000043,,[-0.0041372826 -0.0045483126],[0.0030393116 0.0034208622]
+day1_root,day1_root__combinePressure,18,fitered_length,RL_dataCollection/MATLAB Function5,unclassified,6841,2,0,342,0.0500000000000043,,[-0.0067141496 -0.0045340252],[0.0061168484 0.012837773]
+day1_root,day1_root__combinePressure,19,meas_position,RL_dataCollection/NDI Sensor reading,unclassified,6841,3,0,342,0.0500000000000043,,[-0.019055217 -0.061806549 0.23587346],[0.069776884 0.1070851 0.28188939]
+day1_root,day1_root__combinePressure,20,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,34201,1,0,342,0.00999999999999091,,-3.1414153,3.1377068
+day1_root,day1_root__combinePressure,21,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,34201,1,0,342,0.00999999999999091,,0,0.92854878
+day1_root,day1_root__combinePressure,22,configurationValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,34201,1,0,342,0.00999999999999091,,0,1
+day1_root,day1_root__combinePressure,23,fitResidual_m,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,34201,1,0,342,0.00999999999999091,,0.00060835159,0.0052456094
+day1_root,day1_root__combinePressure,24,frame,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,6841,2,0,342,0.0500000000000043,,[2518 2518],[113134 113134]
+day1_root,day1_root__combinePressure,25,hostTime_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,6841,1,0,342,0.0500000000000043,,0.0204679,345.41228
+day1_root,day1_root__combinePressure,26,meas_length,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,6841,3,0,342,0.0500000000000043,,[-0.0090928608 -0.0067141496 -0.0045340252],[0.0013100922 0.0061168484 0.012837773]
+day1_root,day1_root__combinePressure,27,overrun,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,6841,1,0,342,0.0500000000000043,,0,1
+day1_root,day1_root__combinePressure,28,phi,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,6841,1,0,342,0.0500000000000043,,0.008318649,0.99686516
+day1_root,day1_root__combinePressure,29,pollStart_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,6841,1,0,342,0.0500000000000043,,0.0002321,345.38614
+day1_root,day1_root__combinePressure,30,position,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,6841,3,0,342,0.0500000000000043,,[-0.019055217 -0.061806549 0.23587346],[0.069776884 0.1070851 0.28188939]
+day1_root,day1_root__combinePressure,31,sensorValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,6841,2,0,342,0.0500000000000043,,[1 0],[1 1]
+day1_root,day1_root__combinePressure,32,theta,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,6841,1,0,342,0.0500000000000043,,-3.1302663,3.1038916
+day1_root,day1_root__combinePressure,33,moduleTipXYZValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,6841,1,0,342,0.0500000000000043,,0,1
+day1_root,day1_root__combinePressure,34,moduleTipXYZ_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,6841,3,0,342,0.0500000000000043,,[-0.012470125 -0.042225125 0.15311794],[0.050246301 0.064933142 0.17746068]
+day1_root,day1_root__combinePressure,35,R_NDI_from_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,9,0,342,0.0500000000000043,,[0.98574598 -0.0032895558 0.16715398 -0.16822135 -0.0037074338 0.98574493 -0.0027405721 -0.99999686 -0.004148913],[0.98592777 -0.0020254176 0.16821244 -0.16716003 -0.0010873013 0.98592655 -0.0016041716 -0.99998842 -0.0014618701]
+day1_root,day1_root__combinePressure,36,baseOreintationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,1,0,342,0.0500000000000043,,1,1
+day1_root,day1_root__combinePressure,37,frame,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,2,0,342,0.0500000000000043,,[2518 2518],[113134 113134]
+day1_root,day1_root__combinePressure,38,gravity_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,3,0,342,0.0500000000000043,,[-0.032270542 -0.036369926 -9.8099692],[-0.019869347 -0.010666426 -9.8098864]
+day1_root,day1_root__combinePressure,39,hostTime,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,1,0,342,0.0500000000000043,,0.0204679,345.41228
+day1_root,day1_root__combinePressure,40,lengthChnage_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,6841,3,0,342,0.0500000000000043,,[-0.0090928608 -0.0067141496 -0.0045340252],[0.0013100922 0.0061168484 0.012837773]
+day1_root,day1_root__combinePressure,41,nonBendingRotation_rad,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,5.7432717e-06,0.014043042
+day1_root,day1_root__combinePressure,42,orientationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,1,0,342,0.0500000000000043,,0,1
+day1_root,day1_root__combinePressure,43,overrun,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,0,1
+day1_root,day1_root__combinePressure,44,phiOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,6841,1,0,342,0.0500000000000043,,0.008318649,0.99686516
+day1_root,day1_root__combinePressure,45,pollStart,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,1,0,342,0.0500000000000043,,0.0002321,345.38614
+day1_root,day1_root__combinePressure,46,raw1,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-15.357627,-14.860933
+day1_root,day1_root__combinePressure,47,raw2,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,123.60597,123.80413
+day1_root,day1_root__combinePressure,48,raw3,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-230.53664,-230.28784
+day1_root,day1_root__combinePressure,49,raw4,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,0.043684494,0.05474025
+day1_root,day1_root__combinePressure,50,raw5,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-34.311157,54.533619
+day1_root,day1_root__combinePressure,51,raw6,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-158.17677,-112.13139
+day1_root,day1_root__combinePressure,52,raw7,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-292.26239,-123.39587
+day1_root,day1_root__combinePressure,53,raw8,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,0.010805202,0.15399237
+day1_root,day1_root__combinePressure,54,thetaObservable,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,0,1
+day1_root,day1_root__combinePressure,55,thetaOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,6841,1,0,342,0.0500000000000043,,-3.1302663,3.1038916
+day1_root,day1_root__combinePressure,56,valid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,2,0,342,0.0500000000000043,,[1 0],[1 1]
+day1_root,day1_root__combinePressure,57,X,RL_dataCollection/NDI Sensor reading/Sensor/Subtract,unclassified,6841,1,0,342,0.0500000000000043,,-19.055217,69.776884
+day1_root,day1_root__combinePressure,58,P1_voltage,RL_dataCollection/Pneumatic Valves/Gain,unclassified,6841,1,0,342,0.0500000000000043,,0,2.2222208
+day1_root,day1_root__combinePressure,59,P2_voltage,RL_dataCollection/Pneumatic Valves/Gain1,unclassified,6841,1,0,342,0.0500000000000043,,0,2.2522705
+day1_root,day1_root__combinePressure,60,P3_voltage,RL_dataCollection/Pneumatic Valves/Gain2,unclassified,6841,1,0,342,0.0500000000000043,,0,2.2522731
+day1_root,day1_root__combinePressure,61,kill_switch,RL_dataCollection/Pneumatic Valves/Kill,unclassified,2,1,0,0.06,0.06,,1,1
+day1_root,day1_root__combinePressure,62,P1_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation,final_command_candidate,6841,1,0,342,0.0500000000000043,,0,1.9999987
+day1_root,day1_root__combinePressure,63,P2_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation1,final_command_candidate,6841,1,0,342,0.0500000000000043,,0,2.0270435
+day1_root,day1_root__combinePressure,64,P3_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation2,final_command_candidate,6841,1,0,342,0.0500000000000043,,0,2.0270458
+day1_root,day1_root__combinePressure,65,sim time,RL_dataCollection/Reference clock,unclassified,34201,1,0,342,0.00999999999999091,,0,342
+day1_root,day1_root__combinePressure,66,sampled time,RL_dataCollection/Reference time 50 ms,unclassified,6841,1,0,342,0.0500000000000043,,0,342
+day1_root,day1_root__combinePressure,67,comp_ltheta,RL_dataCollection/Seperate paramter calculation/MATLAB Function,unclassified,34201,1,0,342,0.00999999999999091,,-3.1406412,3.1412468
+day1_root,day1_root__combinePressure,68,phi error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,34201,1,0,342,0.00999999999999091,,-0.55807406,0.59004239
+day1_root,day1_root__combinePressure,69,theta error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,34201,1,0,342,0.00999999999999091,,-3.1412602,3.1413671
+day1_root,day1_root__combinePressure,70,channelId,RL_dataCollection/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,0
+day1_root,day1_root__combinePressure,71,cycleId,RL_dataCollection/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,2
+day1_root,day1_root__combinePressure,72,done,RL_dataCollection/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,1
+day1_root,day1_root__combinePressure,73,phaseId,RL_dataCollection/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,9
+day1_root,day1_root__combinePressure,74,pressureCommand_bar,RL_dataCollection/pressure combine,unclassified,6841,3,0,342,0.0500000000000043,,[0 0 0],[1.9999987 2.0270435 2.0270458]
+day1_root,day1_root__combinePressure,75,testEnd_s,RL_dataCollection/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,336.32741,336.32741
+day1_root,day1_root__combinePressure,76,trialId,RL_dataCollection/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,4
+day1_root,day1_root__combinePressure,77,measurementTime_s,RL_dataCollection/validMeasurementTime,unclassified,6841,1,0,342,0.0500000000000043,,0,342
+day1_root,day1_root__helix,1,length,RL_dataCollection/Demux,unclassified,53005,2,0,530,0.00999999999999091,,[-0.019426939 -0.018853788],[0.019341968 0.019341968]
+day1_root,day1_root__helix,2,length,RL_dataCollection/Demux1,unclassified,53005,1,0,530,0.00999999999999091,,-0.025252116,0.023611409
+day1_root,day1_root__helix,3,sampled des_length,RL_dataCollection/Desired lengths 50 ms,reference_or_prediction_check_provenance,10601,2,0,530,0.0500000000000114,,[-0.01884091 -0.01884091],[0.019328466 0.019328466]
+day1_root,day1_root__helix,4,X,RL_dataCollection/Integrator,unclassified,53005,4,0,530,0.00999999999999091,,[-0.019426939 -0.018853788 -0.29860734 -0.27109488],[0.019341968 0.019341968 0.28918731 0.24461799]
+day1_root,day1_root__helix,5,,RL_dataCollection/MATLAB Function,unclassified,10601,2,0,530,0.0500000000000114,,[-0.01884091 -0.01884091],[0.019328466 0.019328466]
+day1_root,day1_root__helix,6,comp_lengths,RL_dataCollection/MATLAB Function1,unclassified,53005,3,0,530,0.00999999999999091,,[-0.025252116 -0.019426939 -0.018853788],[0.023611409 0.019341968 0.019341968]
+day1_root,day1_root__helix,7,dX,RL_dataCollection/MATLAB Function1,unclassified,53005,4,0,530,0.00999999999999091,,[-0.29860734 -0.27109488 -26.202557 -18.66019],[0.28918731 0.24461799 24.016795 20.91784]
+day1_root,day1_root__helix,8,des_phi,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,53005,1,0,530,0.00999999999999091,,0,1.9863781
+day1_root,day1_root__helix,9,des_theta,RL_dataCollection/MATLAB Function1,reference_or_prediction_check_provenance,53005,1,0,530,0.00999999999999091,,-3.1415927,3.1415927
+day1_root,day1_root__helix,10,pressureUsed_bar,RL_dataCollection/MATLAB Function1,unclassified,53005,3,0,530,0.00999999999999091,,[0 0 0],[1.6958366 1.7825933 1.7825933]
+day1_root,day1_root__helix,11,tau_N,RL_dataCollection/MATLAB Function1,unclassified,53005,2,0,530,0.00999999999999091,,[-22.509227 -22.509227],[23.660769 23.660769]
+day1_root,day1_root__helix,12,thetaObservable,RL_dataCollection/MATLAB Function1,unclassified,53005,1,0,530,0.00999999999999091,,0,1
+day1_root,day1_root__helix,13,d_length,RL_dataCollection/MATLAB Function2,unclassified,10601,2,0,530,0.0500000000000114,,[-0.006108211 -0.006108211],[0.0061082172 0.0061082172]
+day1_root,day1_root__helix,14,dd_length,RL_dataCollection/MATLAB Function2,unclassified,10601,2,0,530,0.0500000000000114,,[-0.0019340001 -0.0019340001],[0.0018877347 0.0018877347]
+day1_root,day1_root__helix,15,length,RL_dataCollection/MATLAB Function2,unclassified,10601,2,0,530,0.0500000000000114,,[-0.01884091 -0.01884091],[0.019328466 0.019328466]
+day1_root,day1_root__helix,16,inverseModelValid,RL_dataCollection/MATLAB Function3,quality_or_time,53005,1,0,530,0.00999999999999091,,0,1
+day1_root,day1_root__helix,17,pressureDesired_bar,RL_dataCollection/MATLAB Function3,unclassified,53005,3,0,530,0.00999999999999091,,[0 0 0],[1.6958366 1.7825933 1.7825933]
+day1_root,day1_root__helix,18,pressureLimited,RL_dataCollection/MATLAB Function3,unclassified,53005,1,0,530,0.00999999999999091,,0,0
+day1_root,day1_root__helix,19,tauAvailable_N,RL_dataCollection/MATLAB Function3,unclassified,53005,2,0,530,0.00999999999999091,,[-22.509227 -22.509227],[23.660769 23.660769]
+day1_root,day1_root__helix,20,tauDesired_N,RL_dataCollection/MATLAB Function3,unclassified,53005,2,0,530,0.00999999999999091,,[-22.509227 -22.509227],[23.660769 23.660769]
+day1_root,day1_root__helix,21,filtered_d_length,RL_dataCollection/MATLAB Function5,unclassified,10601,2,0,530,0.0500000000000114,,[-0.0130524 -0.021344089],[0.010501609 0.017826221]
+day1_root,day1_root__helix,22,filtered_dd_length,RL_dataCollection/MATLAB Function5,unclassified,10601,2,0,530,0.0500000000000114,,[-0.024624237 -0.038999832],[0.02776425 0.031411582]
+day1_root,day1_root__helix,23,fitered_length,RL_dataCollection/MATLAB Function5,unclassified,10601,2,0,530,0.0500000000000114,,[-0.0072293859 -0.0069588254],[0.0095065794 0.013629377]
+day1_root,day1_root__helix,24,meas_position,RL_dataCollection/NDI Sensor reading,unclassified,10601,3,0,530,0.0500000000000114,,[-0.079035026 -0.087195831 0.22841784],[0.083230408 0.10822434 0.28076334]
+day1_root,day1_root__helix,25,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,53005,1,0,530,0.00999999999999091,,-3.1414296,3.1410383
+day1_root,day1_root__helix,26,,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,53005,1,0,530,0.00999999999999091,,0,1.0008191
+day1_root,day1_root__helix,27,configurationValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,53005,1,0,530,0.00999999999999091,,0,1
+day1_root,day1_root__helix,28,fitResidual_m,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,53005,1,0,530,0.00999999999999091,,2.760917e-07,0.0044932731
+day1_root,day1_root__helix,29,frame,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,10601,2,0,530,0.0500000000000114,,[2454 2454],[173710 173710]
+day1_root,day1_root__helix,30,hostTime_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,10601,1,0,530,0.0500000000000114,,0.0092988,534.71697
+day1_root,day1_root__helix,31,meas_length,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,10601,3,0,530,0.0500000000000114,,[-0.010695126 -0.0072293859 -0.0069588254],[0.007699065 0.0095065794 0.013629377]
+day1_root,day1_root__helix,32,overrun,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,10601,1,0,530,0.0500000000000114,,0,1
+day1_root,day1_root__helix,33,phi,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,10601,1,0,530,0.0500000000000114,,0.0026816341,1.0730601
+day1_root,day1_root__helix,34,pollStart_s,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,10601,1,0,530,0.0500000000000114,,0.0001585,534.7068
+day1_root,day1_root__helix,35,position,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,10601,3,0,530,0.0500000000000114,,[-0.079035026 -0.087195831 0.22841784],[0.083230408 0.10822434 0.28076334]
+day1_root,day1_root__helix,36,sensorValid,RL_dataCollection/NDI Sensor reading/Sensor,quality_or_time,10601,2,0,530,0.0500000000000114,,[1 0],[1 1]
+day1_root,day1_root__helix,37,theta,RL_dataCollection/NDI Sensor reading/Sensor,unclassified,10601,1,0,530,0.0500000000000114,,-3.1415292,3.1401482
+day1_root,day1_root__helix,38,moduleTipXYZValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,10601,1,0,530,0.0500000000000114,,0,1
+day1_root,day1_root__helix,39,moduleTipXYZ_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,10601,3,0,530,0.0500000000000114,,[-0.049709672 -0.059967679 0.1488344],[0.059696371 0.064539659 0.17581663]
+day1_root,day1_root__helix,40,R_NDI_from_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,9,0,530,0.0500000000000114,,[0.98590396 -0.0041971868 0.16563842 -0.1672723 -0.0043189627 0.98590651 -0.0036552767 -0.99999779 -0.0048380847],[0.98618474 -0.0012468254 0.16725958 -0.16564321 -0.00096095467 0.98618193 -0.00072256114 -0.99998463 -0.0013636247]
+day1_root,day1_root__helix,41,baseOreintationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,1,0,530,0.0500000000000114,,1,1
+day1_root,day1_root__helix,42,frame,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,2,0,530,0.0500000000000114,,[2454 2454],[173710 173710]
+day1_root,day1_root__helix,43,gravity_arm,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,3,0,530,0.0500000000000114,,[-0.041174403 -0.042369024 -9.8099783],[-0.012231357 -0.0094269653 -9.8098492]
+day1_root,day1_root__helix,44,hostTime,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,1,0,530,0.0500000000000114,,0.0092988,534.71697
+day1_root,day1_root__helix,45,lengthChnage_m,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,10601,3,0,530,0.0500000000000114,,[-0.010695126 -0.0072293859 -0.0069588254],[0.007699065 0.0095065794 0.013629377]
+day1_root,day1_root__helix,46,nonBendingRotation_rad,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,7.4797002e-06,0.029463942
+day1_root,day1_root__helix,47,orientationValid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,1,0,530,0.0500000000000114,,0,1
+day1_root,day1_root__helix,48,overrun,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,0,1
+day1_root,day1_root__helix,49,phiOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,10601,1,0,530,0.0500000000000114,,0.0026816341,1.0730601
+day1_root,day1_root__helix,50,pollStart,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,1,0,530,0.0500000000000114,,0.0001585,534.7068
+day1_root,day1_root__helix,51,raw1,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-15.007303,-14.730306
+day1_root,day1_root__helix,52,raw2,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,123.53967,123.79511
+day1_root,day1_root__helix,53,raw3,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-230.40784,-230.22279
+day1_root,day1_root__helix,54,raw4,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,0.042941488,0.05536316
+day1_root,day1_root__helix,55,raw5,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-93.988396,68.312256
+day1_root,day1_root__helix,56,raw6,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-157.03992,-104.74155
+day1_root,day1_root__helix,57,raw7,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-317.46939,-122.07174
+day1_root,day1_root__helix,58,raw8,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,0.011009729,0.19242874
+day1_root,day1_root__helix,59,thetaObservable,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,0,1
+day1_root,day1_root__helix,60,thetaOrientation,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,10601,1,0,530,0.0500000000000114,,-3.1415292,3.1401482
+day1_root,day1_root__helix,61,valid,RL_dataCollection/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,2,0,530,0.0500000000000114,,[1 0],[1 1]
+day1_root,day1_root__helix,62,X,RL_dataCollection/NDI Sensor reading/Sensor/Subtract,unclassified,10601,1,0,530,0.0500000000000114,,-79.035026,83.230408
+day1_root,day1_root__helix,63,P1_voltage,RL_dataCollection/Pneumatic Valves/Gain,unclassified,53005,1,0,530,0.00999999999999091,,0,1.8842628
+day1_root,day1_root__helix,64,P2_voltage,RL_dataCollection/Pneumatic Valves/Gain1,unclassified,53005,1,0,530,0.00999999999999091,,0,1.9806592
+day1_root,day1_root__helix,65,P3_voltage,RL_dataCollection/Pneumatic Valves/Gain2,unclassified,53005,1,0,530,0.00999999999999091,,0,1.9806592
+day1_root,day1_root__helix,66,kill_switch,RL_dataCollection/Pneumatic Valves/Kill,unclassified,2,1,0,0.03,0.03,,1,1
+day1_root,day1_root__helix,67,P1_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation,final_command_candidate,53005,1,0,530,0.00999999999999091,,0,1.6958366
+day1_root,day1_root__helix,68,P2_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation1,final_command_candidate,53005,1,0,530,0.00999999999999091,,0,1.7825933
+day1_root,day1_root__helix,69,P3_NI_DAQ,RL_dataCollection/Pneumatic Valves/Saturation2,final_command_candidate,53005,1,0,530,0.00999999999999091,,0,1.7825933
+day1_root,day1_root__helix,70,sim time,RL_dataCollection/Reference clock,unclassified,53005,1,0,530,0.00999999999999091,,0,530
+day1_root,day1_root__helix,71,sampled time,RL_dataCollection/Reference time 50 ms,unclassified,10601,1,0,530,0.0500000000000114,,0,530
+day1_root,day1_root__helix,72,comp_ltheta,RL_dataCollection/Seperate paramter calculation/MATLAB Function,unclassified,53005,1,0,530,0.00999999999999091,,-3.1414369,3.1407623
+day1_root,day1_root__helix,73,phi error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,53005,1,0,530,0.00999999999999091,,-0.62617391,1.5805473
+day1_root,day1_root__helix,74,theta error,RL_dataCollection/Seperate paramter calculation/MATLAB Function1,unclassified,53005,1,0,530,0.00999999999999091,,-3.1415371,3.1415488
+day1_root,day1_root__helix,75,cycleId,RL_dataCollection/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,6
+day1_root,day1_root__helix,76,direction,RL_dataCollection/helix,unclassified,10601,1,0,530,0.0500000000000114,,-1,1
+day1_root,day1_root__helix,77,done,RL_dataCollection/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,1
+day1_root,day1_root__helix,78,phaseId,RL_dataCollection/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,9
+day1_root,day1_root__helix,79,phi_from_block,RL_dataCollection/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,1.5
+day1_root,day1_root__helix,80,testEnd_s,RL_dataCollection/helix,unclassified,10601,1,0,530,0.0500000000000114,,525,525
+day1_root,day1_root__helix,81,theta_from_block,RL_dataCollection/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,37.699112
+day1_root,day1_root__helix,82,trialId,RL_dataCollection/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,4
+day1_root,day1_root__helix,83,measurementTime_s,RL_dataCollection/validMeasurementTime,unclassified,10601,1,0,530,0.0500000000000114,,0,530
+day2_20261027,day2_20261027__SineWave,1,length,RL_dataCollection_v2/Demux,unclassified,67649,2,0,636,0.00999999999999091,,[-0.01953355 -0.01953355],[0.0328489 0.0328489]
+day2_20261027,day2_20261027__SineWave,2,length,RL_dataCollection_v2/Demux1,unclassified,67649,1,0,636,0.00999999999999091,,-0.0164245,0.0390671
+day2_20261027,day2_20261027__SineWave,3,sampled des_length,RL_dataCollection_v2/Desired lengths 50 ms,reference_or_prediction_check_provenance,12721,2,0,636,0.0500000000000114,,[-0.01953355 -0.01953355],[0.032848888 0.032848887]
+day2_20261027,day2_20261027__SineWave,4,X,RL_dataCollection_v2/Integrator,unclassified,67649,4,0,636,0.00999999999999091,,[-0.01953355 -0.01953355 -0.0043839278 -0.0043839263],[0.0328489 0.0328489 0.0043783649 0.0043783631]
+day2_20261027,day2_20261027__SineWave,5,,RL_dataCollection_v2/MATLAB Function,unclassified,67649,2,0,636,0.00999999999999091,,[-0.01953355 -0.01953355],[0.0328489 0.0328489]
+day2_20261027,day2_20261027__SineWave,6,comp_lengths,RL_dataCollection_v2/MATLAB Function1,unclassified,67649,3,0,636,0.00999999999999091,,[-0.0164245 -0.01953355 -0.01953355],[0.0390671 0.0328489 0.0328489]
+day2_20261027,day2_20261027__SineWave,7,dX,RL_dataCollection_v2/MATLAB Function1,unclassified,67649,4,0,636,0.00999999999999091,,[-0.0043839278 -0.0043839263 -0.20754168 -0.20754205],[0.0043783649 0.0043783631 0.20383997 0.2037329]
+day2_20261027,day2_20261027__SineWave,8,des_phi,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,67649,1,0,636,0.00999999999999091,,0,3.0051615
+day2_20261027,day2_20261027__SineWave,9,des_theta,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,67649,1,0,636,0.00999999999999091,,-3.1415927,3.1415927
+day2_20261027,day2_20261027__SineWave,10,pressureUsed_bar,RL_dataCollection_v2/MATLAB Function1,unclassified,67649,3,0,636,0.00999999999999091,,[0 0 0],[2.999999 2.9999999 3]
+day2_20261027,day2_20261027__SineWave,11,tau_N,RL_dataCollection_v2/MATLAB Function1,unclassified,67649,2,0,636,0.00999999999999091,,[-39.819674 -39.819674],[39.819686 39.819687]
+day2_20261027,day2_20261027__SineWave,12,thetaObservable,RL_dataCollection_v2/MATLAB Function1,unclassified,67649,1,0,636,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__SineWave,13,d_length,RL_dataCollection_v2/MATLAB Function2,unclassified,12721,2,0,636,0.0500000000000114,,[-0.0038872379 -0.0038872364],[0.003882425 0.0038824245]
+day2_20261027,day2_20261027__SineWave,14,dd_length,RL_dataCollection_v2/MATLAB Function2,unclassified,12721,2,0,636,0.0500000000000114,,[-0.0043203533 -0.0043200305],[0.0021435974 0.0021441305]
+day2_20261027,day2_20261027__SineWave,15,length,RL_dataCollection_v2/MATLAB Function2,unclassified,12721,2,0,636,0.0500000000000114,,[-0.01953355 -0.01953355],[0.032848888 0.032848887]
+day2_20261027,day2_20261027__SineWave,16,inverseModelValid,RL_dataCollection_v2/MATLAB Function3,quality_or_time,67649,1,0,636,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__SineWave,17,pressureDesired_bar,RL_dataCollection_v2/MATLAB Function3,unclassified,67649,3,0,636,0.00999999999999091,,[0 0 0],[3 3 3]
+day2_20261027,day2_20261027__SineWave,18,pressureLimited,RL_dataCollection_v2/MATLAB Function3,unclassified,67649,1,0,636,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__SineWave,19,tauAvailable_N,RL_dataCollection_v2/MATLAB Function3,unclassified,67649,2,0,636,0.00999999999999091,,[-39.819687 -39.819687],[39.819614 39.819614]
+day2_20261027,day2_20261027__SineWave,20,tauDesired_N,RL_dataCollection_v2/MATLAB Function3,unclassified,67649,2,0,636,0.00999999999999091,,[-39.821723 -39.821723],[39.819937 39.819942]
+day2_20261027,day2_20261027__SineWave,21,filtered_d_length,RL_dataCollection_v2/MATLAB Function5,unclassified,12721,2,0,636,0.0500000000000114,,[-0.0043052564 -0.0062987329],[0.0041167676 0.0049982753]
+day2_20261027,day2_20261027__SineWave,22,filtered_dd_length,RL_dataCollection_v2/MATLAB Function5,unclassified,12721,2,0,636,0.0500000000000114,,[-0.0038074723 -0.0051050965],[0.0040400288 0.0043197617]
+day2_20261027,day2_20261027__SineWave,23,fitered_length,RL_dataCollection_v2/MATLAB Function5,unclassified,12721,2,0,636,0.0500000000000114,,[-0.014627567 -0.015941466],[0.025327923 0.032193007]
+day2_20261027,day2_20261027__SineWave,24,meas_position,RL_dataCollection_v2/NDI Sensor reading,unclassified,12721,3,0,636,0.0500000000000114,,[-0.17022122 -0.14742715 0.065351608],[0.084645402 0.14841098 0.28025294]
+day2_20261027,day2_20261027__SineWave,25,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,67649,1,0,636,0.00999999999999091,,-3.1415747,3.1415096
+day2_20261027,day2_20261027__SineWave,26,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,67649,1,0,636,0.00999999999999091,,0.0050227654,2.409654
+day2_20261027,day2_20261027__SineWave,27,configurationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,67649,1,0,636,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__SineWave,28,fitResidual_m,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,67649,1,0,636,0.00999999999999091,,1.574011e-05,0.0037463699
+day2_20261027,day2_20261027__SineWave,29,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,12721,2,0,636,0.0500000000000114,,[3070 3070],[284414 284414]
+day2_20261027,day2_20261027__SineWave,30,hostTime_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,12721,1,0,636,0.0500000000000114,,0.0373116,878.44819
+day2_20261027,day2_20261027__SineWave,31,meas_length,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12721,3,0,636,0.0500000000000114,,[-0.020898835 -0.014627567 -0.015941466],[0.025006419 0.025327923 0.032193007]
+day2_20261027,day2_20261027__SineWave,32,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12721,1,0,636,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__SineWave,33,phi,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12721,1,0,636,0.0500000000000114,,0.010305514,2.512262
+day2_20261027,day2_20261027__SineWave,34,pollStart_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,12721,1,0,636,0.0500000000000114,,0.0002034,878.43908
+day2_20261027,day2_20261027__SineWave,35,position,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12721,3,0,636,0.0500000000000114,,[-0.17022122 -0.14742715 0.065351608],[0.084645402 0.14841098 0.28025294]
+day2_20261027,day2_20261027__SineWave,36,sensorValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,12721,2,0,636,0.0500000000000114,,[1 0],[1 1]
+day2_20261027,day2_20261027__SineWave,37,theta,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12721,1,0,636,0.0500000000000114,,-3.1415696,3.1413286
+day2_20261027,day2_20261027__SineWave,38,moduleTipXYZValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,12721,1,0,636,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__SineWave,39,moduleTipXYZ_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,12721,3,0,636,0.0500000000000114,,[-0.12367395 -0.11934163 0.052327388],[0.083806639 0.10130397 0.17527755]
+day2_20261027,day2_20261027__SineWave,40,R_NDI_from_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,9,0,636,0.0500000000000114,,[0.98228003 0.0025527513 0.18657031 -0.18741585 0.0094751095 0.98221361 0.00070109754 -0.99995161 0.0098027101],[0.98242537 0.006333902 0.18739167 -0.18662204 0.015262792 0.98237334 0.0036723281 -0.99986831 0.016021958]
+day2_20261027,day2_20261027__SineWave,41,baseOreintationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,1,0,636,0.0500000000000114,,1,1
+day2_20261027,day2_20261027__SineWave,42,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,2,0,636,0.0500000000000114,,[3070 3070],[284414 284414]
+day2_20261027,day2_20261027__SineWave,43,gravity_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,3,0,636,0.0500000000000114,,[0.02504249 0.092950824 -9.8095253],[0.062135579 0.14972799 -9.8087081]
+day2_20261027,day2_20261027__SineWave,44,hostTime,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,1,0,636,0.0500000000000114,,0.0373116,878.44819
+day2_20261027,day2_20261027__SineWave,45,lengthChnage_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12721,3,0,636,0.0500000000000114,,[-0.020898835 -0.014627567 -0.015941466],[0.025006419 0.025327923 0.032193007]
+day2_20261027,day2_20261027__SineWave,46,nonBendingRotation_rad,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,3.9097876e-06,0.10487186
+day2_20261027,day2_20261027__SineWave,47,orientationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,1,0,636,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__SineWave,48,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__SineWave,49,phiOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12721,1,0,636,0.0500000000000114,,0.010305514,2.512262
+day2_20261027,day2_20261027__SineWave,50,pollStart,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,1,0,636,0.0500000000000114,,0.0002034,878.43908
+day2_20261027,day2_20261027__SineWave,51,raw1,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-5.4571824,-5.2815948
+day2_20261027,day2_20261027__SineWave,52,raw2,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,130.59006,130.83708
+day2_20261027,day2_20261027__SineWave,53,raw3,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-198.67746,-198.51587
+day2_20261027,day2_20261027__SineWave,54,raw4,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,0.043560933,0.057470299
+day2_20261027,day2_20261027__SineWave,55,raw5,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-175.56258,79.259117
+day2_20261027,day2_20261027__SineWave,56,raw6,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-149.49559,65.357285
+day2_20261027,day2_20261027__SineWave,57,raw7,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,-345.97015,-50.221443
+day2_20261027,day2_20261027__SineWave,58,raw8,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,0.012680801,0.3691411
+day2_20261027,day2_20261027__SineWave,59,thetaObservable,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12721,1,0,636,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__SineWave,60,thetaOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12721,1,0,636,0.0500000000000114,,-3.1415696,3.1413286
+day2_20261027,day2_20261027__SineWave,61,valid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12721,2,0,636,0.0500000000000114,,[1 0],[1 1]
+day2_20261027,day2_20261027__SineWave,62,X,RL_dataCollection_v2/NDI Sensor reading/Sensor/Subtract,unclassified,12721,1,0,636,0.0500000000000114,,-170.22122,84.645402
+day2_20261027,day2_20261027__SineWave,63,P1_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain,unclassified,12721,1,0,636,0.0500000000000114,,0,3.3333322
+day2_20261027,day2_20261027__SineWave,64,P2_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain1,unclassified,12721,1,0,636,0.0500000000000114,,0,3.3333333
+day2_20261027,day2_20261027__SineWave,65,P3_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain2,unclassified,12721,1,0,636,0.0500000000000114,,0,3.3333333
+day2_20261027,day2_20261027__SineWave,66,kill_switch,RL_dataCollection_v2/Pneumatic Valves/Kill,unclassified,2,1,0,0.06,0.06,,1,1
+day2_20261027,day2_20261027__SineWave,67,P1_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation,final_command_candidate,12721,1,0,636,0.0500000000000114,,0,2.999999
+day2_20261027,day2_20261027__SineWave,68,P2_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation1,final_command_candidate,12721,1,0,636,0.0500000000000114,,0,2.9999999
+day2_20261027,day2_20261027__SineWave,69,P3_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation2,final_command_candidate,12721,1,0,636,0.0500000000000114,,0,3
+day2_20261027,day2_20261027__SineWave,70,sim time,RL_dataCollection_v2/Reference clock,unclassified,67649,1,0,636,0.00999999999999091,,0,636
+day2_20261027,day2_20261027__SineWave,71,sampled time,RL_dataCollection_v2/Reference time 50 ms,unclassified,12721,1,0,636,0.0500000000000114,,0,636
+day2_20261027,day2_20261027__SineWave,72,comp_ltheta,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function,unclassified,67649,1,0,636,0.00999999999999091,,-3.1415926,3.1415926
+day2_20261027,day2_20261027__SineWave,73,phi error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,67649,1,0,636,0.00999999999999091,,-0.45223046,1.1971776
+day2_20261027,day2_20261027__SineWave,74,theta error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,67649,1,0,636,0.00999999999999091,,-3.1406606,3.1413718
+day2_20261027,day2_20261027__SineWave,75,channelId,RL_dataCollection_v2/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,3
+day2_20261027,day2_20261027__SineWave,76,cycleId,RL_dataCollection_v2/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,3
+day2_20261027,day2_20261027__SineWave,77,done,RL_dataCollection_v2/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__SineWave,78,phaseId,RL_dataCollection_v2/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,9
+day2_20261027,day2_20261027__SineWave,79,pressureCommand_bar,RL_dataCollection_v2/sineWave,unclassified,12721,3,0,636,0.0500000000000114,,[0 0 0],[2.999999 2.9999999 3]
+day2_20261027,day2_20261027__SineWave,80,testEnd_s,RL_dataCollection_v2/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,630.48668,630.48668
+day2_20261027,day2_20261027__SineWave,81,trialId,RL_dataCollection_v2/sineWave,unclassified,12721,1,0,636,0.0500000000000114,,0,6
+day2_20261027,day2_20261027__SineWave,82,measurementTime_s,RL_dataCollection_v2/validMeasurementTime,unclassified,12721,1,0,636,0.0500000000000114,,0,636
+day2_20261027,day2_20261027__StepWave,1,length,RL_dataCollection_v2/Demux,unclassified,55460,2,0,550,0.00999999999999091,,[-0.019535252 -0.019535252],[0.032849012 0.032849012]
+day2_20261027,day2_20261027__StepWave,2,length,RL_dataCollection_v2/Demux1,unclassified,55460,1,0,550,0.00999999999999091,,-0.016425117,0.039070504
+day2_20261027,day2_20261027__StepWave,3,sampled des_length,RL_dataCollection_v2/Desired lengths 50 ms,reference_or_prediction_check_provenance,11001,2,0,550,0.0500000000000114,,[-0.019535252 -0.019535252],[0.03284893 0.03284893]
+day2_20261027,day2_20261027__StepWave,4,X,RL_dataCollection_v2/Integrator,unclassified,55460,4,0,550,0.00999999999999091,,[-0.019535252 -0.019535252 -0.013169947 -0.013169947],[0.032849012 0.032849012 0.013119284 0.013119284]
+day2_20261027,day2_20261027__StepWave,5,,RL_dataCollection_v2/MATLAB Function,unclassified,55460,2,0,550,0.00999999999999091,,[-0.019535252 -0.019535252],[0.032849012 0.032849012]
+day2_20261027,day2_20261027__StepWave,6,comp_lengths,RL_dataCollection_v2/MATLAB Function1,unclassified,55460,3,0,550,0.00999999999999091,,[-0.016425117 -0.019535252 -0.019535252],[0.039070504 0.032849012 0.032849012]
+day2_20261027,day2_20261027__StepWave,7,dX,RL_dataCollection_v2/MATLAB Function1,unclassified,55460,4,0,550,0.00999999999999091,,[-0.013169947 -0.013169947 -0.65968175 -0.65968139],[0.013119284 0.013119284 0.63042544 0.63049274]
+day2_20261027,day2_20261027__StepWave,8,des_phi,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,55460,1,0,550,0.00999999999999091,,0,3.0054234
+day2_20261027,day2_20261027__StepWave,9,des_theta,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,55460,1,0,550,0.00999999999999091,,-3.1415927,3.1415927
+day2_20261027,day2_20261027__StepWave,10,pressureUsed_bar,RL_dataCollection_v2/MATLAB Function1,unclassified,55460,3,0,550,0.00999999999999091,,[0 0 0],[3 3 3]
+day2_20261027,day2_20261027__StepWave,11,tau_N,RL_dataCollection_v2/MATLAB Function1,unclassified,55460,2,0,550,0.00999999999999091,,[-39.819687 -39.819687],[39.819687 39.819687]
+day2_20261027,day2_20261027__StepWave,12,thetaObservable,RL_dataCollection_v2/MATLAB Function1,unclassified,55460,1,0,550,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__StepWave,13,d_length,RL_dataCollection_v2/MATLAB Function2,unclassified,11001,2,0,550,0.0500000000000114,,[-0.011651388 -0.011651388],[0.01161005 0.01161005]
+day2_20261027,day2_20261027__StepWave,14,dd_length,RL_dataCollection_v2/MATLAB Function2,unclassified,11001,2,0,550,0.0500000000000114,,[-0.021411193 -0.021411193],[0.010504626 0.010504626]
+day2_20261027,day2_20261027__StepWave,15,length,RL_dataCollection_v2/MATLAB Function2,unclassified,11001,2,0,550,0.0500000000000114,,[-0.019535252 -0.019535252],[0.03284893 0.03284893]
+day2_20261027,day2_20261027__StepWave,16,inverseModelValid,RL_dataCollection_v2/MATLAB Function3,quality_or_time,55460,1,0,550,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__StepWave,17,pressureDesired_bar,RL_dataCollection_v2/MATLAB Function3,unclassified,55460,3,0,550,0.00999999999999091,,[0 0 0],[3 3 3]
+day2_20261027,day2_20261027__StepWave,18,pressureLimited,RL_dataCollection_v2/MATLAB Function3,unclassified,55460,1,0,550,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__StepWave,19,tauAvailable_N,RL_dataCollection_v2/MATLAB Function3,unclassified,55460,2,0,550,0.00999999999999091,,[-39.819687 -39.819687],[39.819687 39.819687]
+day2_20261027,day2_20261027__StepWave,20,tauDesired_N,RL_dataCollection_v2/MATLAB Function3,unclassified,55460,2,0,550,0.00999999999999091,,[-39.840776 -39.840776],[39.822356 39.822356]
+day2_20261027,day2_20261027__StepWave,21,filtered_d_length,RL_dataCollection_v2/MATLAB Function5,unclassified,11001,2,0,550,0.0500000000000114,,[-0.010281257 -0.013568807],[0.0091900586 0.011987984]
+day2_20261027,day2_20261027__StepWave,22,filtered_dd_length,RL_dataCollection_v2/MATLAB Function5,unclassified,11001,2,0,550,0.0500000000000114,,[-0.0061451746 -0.012144311],[0.01332038 0.01594758]
+day2_20261027,day2_20261027__StepWave,23,fitered_length,RL_dataCollection_v2/MATLAB Function5,unclassified,11001,2,0,550,0.0500000000000114,,[-0.014629732 -0.016289002],[0.025903443 0.032828532]
+day2_20261027,day2_20261027__StepWave,24,meas_position,RL_dataCollection_v2/NDI Sensor reading,unclassified,11001,3,0,550,0.0500000000000114,,[-0.17055937 -0.14782881 0.059905685],[0.084158151 0.14841348 0.28015443]
+day2_20261027,day2_20261027__StepWave,25,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,55460,1,0,550,0.00999999999999091,,-3.1415922,3.1415886
+day2_20261027,day2_20261027__StepWave,26,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,55460,1,0,550,0.00999999999999091,,0.038993042,2.460385
+day2_20261027,day2_20261027__StepWave,27,configurationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,55460,1,0,550,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__StepWave,28,fitResidual_m,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,55460,1,0,550,0.00999999999999091,,8.8135781e-06,0.0036253427
+day2_20261027,day2_20261027__StepWave,29,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,11001,2,0,550,0.0500000000000114,,[2294 2294],[292254 292254]
+day2_20261027,day2_20261027__StepWave,30,hostTime_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,11001,1,0,550,0.0500000000000114,,0.020579,905.36096
+day2_20261027,day2_20261027__StepWave,31,meas_length,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,11001,3,0,550,0.0500000000000114,,[-0.021317017 -0.014629732 -0.016289002],[0.025691153 0.025903443 0.032828532]
+day2_20261027,day2_20261027__StepWave,32,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,11001,1,0,550,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__StepWave,33,phi,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,11001,1,0,550,0.0500000000000114,,0.034852902,2.5622489
+day2_20261027,day2_20261027__StepWave,34,pollStart_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,11001,1,0,550,0.0500000000000114,,0.0003247,905.34363
+day2_20261027,day2_20261027__StepWave,35,position,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,11001,3,0,550,0.0500000000000114,,[-0.17055937 -0.14782881 0.059905685],[0.084158151 0.14841348 0.28015443]
+day2_20261027,day2_20261027__StepWave,36,sensorValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,11001,2,0,550,0.0500000000000114,,[1 0],[1 1]
+day2_20261027,day2_20261027__StepWave,37,theta,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,11001,1,0,550,0.0500000000000114,,-3.1415174,3.1415247
+day2_20261027,day2_20261027__StepWave,38,moduleTipXYZValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,11001,1,0,550,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__StepWave,39,moduleTipXYZ_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,11001,3,0,550,0.0500000000000114,,[-0.12505133 -0.12051097 0.048289545],[0.083388657 0.10136674 0.17526767]
+day2_20261027,day2_20261027__StepWave,40,R_NDI_from_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,9,0,550,0.0500000000000114,,[0.98229447 0.002573375 0.1865095 -0.18733898 0.0094421723 0.98221272 0.00072473995 -0.9999516 0.0097986945],[0.9824365 0.0062370746 0.18731681 -0.18656832 0.014821922 0.98237108 0.0036567718 -0.99987586 0.015558366]
+day2_20261027,day2_20261027__StepWave,41,baseOreintationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,1,0,550,0.0500000000000114,,1,1
+day2_20261027,day2_20261027__StepWave,42,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,2,0,550,0.0500000000000114,,[2294 2294],[292254 292254]
+day2_20261027,day2_20261027__StepWave,43,gravity_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,3,0,550,0.0500000000000114,,[0.025244808 0.09262771 -9.8095252],[0.061185702 0.14540305 -9.8087821]
+day2_20261027,day2_20261027__StepWave,44,hostTime,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,1,0,550,0.0500000000000114,,0.020579,905.36096
+day2_20261027,day2_20261027__StepWave,45,lengthChnage_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,11001,3,0,550,0.0500000000000114,,[-0.021317017 -0.014629732 -0.016289002],[0.025691153 0.025903443 0.032828532]
+day2_20261027,day2_20261027__StepWave,46,nonBendingRotation_rad,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,5.9305873e-07,0.11005333
+day2_20261027,day2_20261027__StepWave,47,orientationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,1,0,550,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__StepWave,48,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__StepWave,49,phiOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,11001,1,0,550,0.0500000000000114,,0.034852902,2.5622489
+day2_20261027,day2_20261027__StepWave,50,pollStart,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,1,0,550,0.0500000000000114,,0.0003247,905.34363
+day2_20261027,day2_20261027__StepWave,51,raw1,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-5.4470506,-5.2848787
+day2_20261027,day2_20261027__StepWave,52,raw2,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,130.61484,130.84026
+day2_20261027,day2_20261027__StepWave,53,raw3,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-198.68805,-198.52953
+day2_20261027,day2_20261027__StepWave,54,raw4,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,0.0426897,0.055116601
+day2_20261027,day2_20261027__StepWave,55,raw5,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-175.88448,78.79232
+day2_20261027,day2_20261027__StepWave,56,raw6,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-149.39951,70.825134
+day2_20261027,day2_20261027__StepWave,57,raw7,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,-346.40509,-50.239014
+day2_20261027,day2_20261027__StepWave,58,raw8,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,0.013448362,0.31866127
+day2_20261027,day2_20261027__StepWave,59,thetaObservable,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,11001,1,0,550,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__StepWave,60,thetaOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,11001,1,0,550,0.0500000000000114,,-3.1415174,3.1415247
+day2_20261027,day2_20261027__StepWave,61,valid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,11001,2,0,550,0.0500000000000114,,[1 0],[1 1]
+day2_20261027,day2_20261027__StepWave,62,X,RL_dataCollection_v2/NDI Sensor reading/Sensor/Subtract,unclassified,11001,1,0,550,0.0500000000000114,,-170.55937,84.158151
+day2_20261027,day2_20261027__StepWave,63,P1_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain,unclassified,11001,1,0,550,0.0500000000000114,,0,3.3333333
+day2_20261027,day2_20261027__StepWave,64,P2_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain1,unclassified,11001,1,0,550,0.0500000000000114,,0,3.3333333
+day2_20261027,day2_20261027__StepWave,65,P3_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain2,unclassified,11001,1,0,550,0.0500000000000114,,0,3.3333333
+day2_20261027,day2_20261027__StepWave,66,kill_switch,RL_dataCollection_v2/Pneumatic Valves/Kill,unclassified,2,1,0,0.06,0.06,,1,1
+day2_20261027,day2_20261027__StepWave,67,P1_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation,final_command_candidate,11001,1,0,550,0.0500000000000114,,0,3
+day2_20261027,day2_20261027__StepWave,68,P2_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation1,final_command_candidate,11001,1,0,550,0.0500000000000114,,0,3
+day2_20261027,day2_20261027__StepWave,69,P3_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation2,final_command_candidate,11001,1,0,550,0.0500000000000114,,0,3
+day2_20261027,day2_20261027__StepWave,70,sim time,RL_dataCollection_v2/Reference clock,unclassified,55460,1,0,550,0.00999999999999091,,0,550
+day2_20261027,day2_20261027__StepWave,71,sampled time,RL_dataCollection_v2/Reference time 50 ms,unclassified,11001,1,0,550,0.0500000000000114,,0,550
+day2_20261027,day2_20261027__StepWave,72,comp_ltheta,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function,unclassified,55460,1,0,550,0.00999999999999091,,-3.1415927,3.1415927
+day2_20261027,day2_20261027__StepWave,73,phi error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,55460,1,0,550,0.00999999999999091,,-0.51731145,1.2866931
+day2_20261027,day2_20261027__StepWave,74,theta error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,55460,1,0,550,0.00999999999999091,,-3.1415625,3.1414135
+day2_20261027,day2_20261027__StepWave,75,channelId,RL_dataCollection_v2/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,3
+day2_20261027,day2_20261027__StepWave,76,cycleId,RL_dataCollection_v2/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,2
+day2_20261027,day2_20261027__StepWave,77,done,RL_dataCollection_v2/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__StepWave,78,phaseId,RL_dataCollection_v2/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,9
+day2_20261027,day2_20261027__StepWave,79,pressureCommand_bar,RL_dataCollection_v2/stepWave,unclassified,11001,3,0,550,0.0500000000000114,,[0 0 0],[3 3 3]
+day2_20261027,day2_20261027__StepWave,80,testEnd_s,RL_dataCollection_v2/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,545,545
+day2_20261027,day2_20261027__StepWave,81,trialId,RL_dataCollection_v2/stepWave,unclassified,11001,1,0,550,0.0500000000000114,,0,18
+day2_20261027,day2_20261027__StepWave,82,measurementTime_s,RL_dataCollection_v2/validMeasurementTime,unclassified,11001,1,0,550,0.0500000000000114,,0,550
+day2_20261027,day2_20261027__circleSweep,1,length,RL_dataCollection_v2/Demux,unclassified,62501,2,0,625,0.00999999999999091,,[-0.019513051 -0.019557261],[0.019513051 0.01951254]
+day2_20261027,day2_20261027__circleSweep,2,length,RL_dataCollection_v2/Demux1,unclassified,62501,1,0,625,0.00999999999999091,,-0.019510527,0.019504422
+day2_20261027,day2_20261027__circleSweep,3,sampled des_length,RL_dataCollection_v2/Desired lengths 50 ms,reference_or_prediction_check_provenance,12501,2,0,625,0.0500000000000114,,[-0.019499733 -0.019499733],[0.019499733 0.019499733]
+day2_20261027,day2_20261027__circleSweep,4,X,RL_dataCollection_v2/Integrator,unclassified,62501,4,0,625,0.00999999999999091,,[-0.019513051 -0.019557261 -0.0090532029 -0.0095190166],[0.019513051 0.01951254 0.0097504369 0.0070577019]
+day2_20261027,day2_20261027__circleSweep,5,,RL_dataCollection_v2/MATLAB Function,unclassified,12501,2,0,625,0.0500000000000114,,[-0.019499733 -0.019499733],[0.019499733 0.019499733]
+day2_20261027,day2_20261027__circleSweep,6,comp_lengths,RL_dataCollection_v2/MATLAB Function1,unclassified,62501,3,0,625,0.00999999999999091,,[-0.019510527 -0.019513051 -0.019557261],[0.019504422 0.019513051 0.01951254]
+day2_20261027,day2_20261027__circleSweep,7,dX,RL_dataCollection_v2/MATLAB Function1,unclassified,62501,4,0,625,0.00999999999999091,,[-0.0090532029 -0.0095190166 -0.87336373 -0.89872342],[0.0097504369 0.0070577019 0.81171688 0.69684213]
+day2_20261027,day2_20261027__circleSweep,8,des_phi,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,62501,1,0,625,0.00999999999999091,,0,1.5058145
+day2_20261027,day2_20261027__circleSweep,9,des_theta,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,62501,1,0,625,0.00999999999999091,,-3.1415927,3.1415927
+day2_20261027,day2_20261027__circleSweep,10,pressureUsed_bar,RL_dataCollection_v2/MATLAB Function1,unclassified,62501,3,0,625,0.00999999999999091,,[0 0 0],[1.7864965 1.7781317 1.7864968]
+day2_20261027,day2_20261027__circleSweep,11,tau_N,RL_dataCollection_v2/MATLAB Function1,unclassified,62501,2,0,625,0.00999999999999091,,[-23.468128 -23.712577],[23.468128 23.712581]
+day2_20261027,day2_20261027__circleSweep,12,thetaObservable,RL_dataCollection_v2/MATLAB Function1,unclassified,62501,1,0,625,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__circleSweep,13,d_length,RL_dataCollection_v2/MATLAB Function2,unclassified,12501,2,0,625,0.0500000000000114,,[-0.0061214919 -0.0061214925],[0.0061214919 0.0061214925]
+day2_20261027,day2_20261027__circleSweep,14,dd_length,RL_dataCollection_v2/MATLAB Function2,unclassified,12501,2,0,625,0.0500000000000114,,[-0.013570968 -0.014547384],[0.011929807 0.013062655]
+day2_20261027,day2_20261027__circleSweep,15,length,RL_dataCollection_v2/MATLAB Function2,unclassified,12501,2,0,625,0.0500000000000114,,[-0.019499733 -0.019499733],[0.019499733 0.019499733]
+day2_20261027,day2_20261027__circleSweep,16,inverseModelValid,RL_dataCollection_v2/MATLAB Function3,quality_or_time,62501,1,0,625,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__circleSweep,17,pressureDesired_bar,RL_dataCollection_v2/MATLAB Function3,unclassified,62501,3,0,625,0.00999999999999091,,[0 0 0],[1.7864965 1.7781317 1.7864968]
+day2_20261027,day2_20261027__circleSweep,18,pressureLimited,RL_dataCollection_v2/MATLAB Function3,unclassified,62501,1,0,625,0.00999999999999091,,0,0
+day2_20261027,day2_20261027__circleSweep,19,tauAvailable_N,RL_dataCollection_v2/MATLAB Function3,unclassified,62501,2,0,625,0.00999999999999091,,[-23.468128 -23.712577],[23.468128 23.712581]
+day2_20261027,day2_20261027__circleSweep,20,tauDesired_N,RL_dataCollection_v2/MATLAB Function3,unclassified,62501,2,0,625,0.00999999999999091,,[-23.468128 -23.712577],[23.468128 23.712581]
+day2_20261027,day2_20261027__circleSweep,21,filtered_d_length,RL_dataCollection_v2/MATLAB Function5,unclassified,12501,2,0,625,0.0500000000000114,,[-0.0053421025 -0.0070199759],[0.0064486108 0.0079448615]
+day2_20261027,day2_20261027__circleSweep,22,filtered_dd_length,RL_dataCollection_v2/MATLAB Function5,unclassified,12501,2,0,625,0.0500000000000114,,[-0.0099469112 -0.0076595955],[0.0093912797 0.011140468]
+day2_20261027,day2_20261027__circleSweep,23,fitered_length,RL_dataCollection_v2/MATLAB Function5,unclassified,12501,2,0,625,0.0500000000000114,,[-0.0079379471 -0.0075492348],[0.009650216 0.013559281]
+day2_20261027,day2_20261027__circleSweep,24,meas_position,RL_dataCollection_v2/NDI Sensor reading,unclassified,12501,3,0,625,0.0500000000000114,,[-0.092682794 -0.087406982 0.22694706],[0.081720415 0.11355876 0.28057146]
+day2_20261027,day2_20261027__circleSweep,25,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,62501,1,0,625,0.00999999999999091,,-3.1414379,3.1414026
+day2_20261027,day2_20261027__circleSweep,26,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,62501,1,0,625,0.00999999999999091,,0.010499101,1.0285239
+day2_20261027,day2_20261027__circleSweep,27,configurationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,62501,1,0,625,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__circleSweep,28,fitResidual_m,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,62501,1,0,625,0.00999999999999091,,0.00037742635,0.0034335624
+day2_20261027,day2_20261027__circleSweep,29,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,12501,2,0,625,0.0500000000000114,,[2526 2526],[204398 204398]
+day2_20261027,day2_20261027__circleSweep,30,hostTime_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,12501,1,0,625,0.0500000000000114,,0.0134667,630.31548
+day2_20261027,day2_20261027__circleSweep,31,meas_length,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12501,3,0,625,0.0500000000000114,,[-0.010117586 -0.0079379471 -0.0075492348],[0.0093685022 0.009650216 0.013559281]
+day2_20261027,day2_20261027__circleSweep,32,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__circleSweep,33,phi,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12501,1,0,625,0.0500000000000114,,0.0098782473,1.0666059
+day2_20261027,day2_20261027__circleSweep,34,pollStart_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,12501,1,0,625,0.0500000000000114,,3.7e-05,630.30252
+day2_20261027,day2_20261027__circleSweep,35,position,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12501,3,0,625,0.0500000000000114,,[-0.092682794 -0.087406982 0.22694706],[0.081720415 0.11355876 0.28057146]
+day2_20261027,day2_20261027__circleSweep,36,sensorValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,12501,2,0,625,0.0500000000000114,,[1 0],[1 1]
+day2_20261027,day2_20261027__circleSweep,37,theta,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,12501,1,0,625,0.0500000000000114,,-3.1414563,3.1378898
+day2_20261027,day2_20261027__circleSweep,38,moduleTipXYZValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,12501,1,0,625,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__circleSweep,39,moduleTipXYZ_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,12501,3,0,625,0.0500000000000114,,[-0.058354061 -0.061499693 0.14907541],[0.056724093 0.065271664 0.17562841]
+day2_20261027,day2_20261027__circleSweep,40,R_NDI_from_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,9,0,625,0.0500000000000114,,[0.98231535 0.0030426359 0.18634178 -0.18722931 0.010169393 0.98223318 0.00097223173 -0.9999431 0.010592614],[0.98247033 0.0056276519 0.1871958 -0.18639756 0.014556566 0.98239769 0.0029650736 -0.99988184 0.015223147]
+day2_20261027,day2_20261027__circleSweep,41,baseOreintationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,1,0,625,0.0500000000000114,,1,1
+day2_20261027,day2_20261027__circleSweep,42,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,2,0,625,0.0500000000000114,,[2526 2526],[204398 204398]
+day2_20261027,day2_20261027__circleSweep,43,gravity_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,3,0,625,0.0500000000000114,,[0.029848258 0.099761748 -9.8094418],[0.055207265 0.14279991 -9.8088408]
+day2_20261027,day2_20261027__circleSweep,44,hostTime,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,1,0,625,0.0500000000000114,,0.0134667,630.31548
+day2_20261027,day2_20261027__circleSweep,45,lengthChnage_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12501,3,0,625,0.0500000000000114,,[-0.010117586 -0.0079379471 -0.0075492348],[0.0093685022 0.009650216 0.013559281]
+day2_20261027,day2_20261027__circleSweep,46,nonBendingRotation_rad,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,8.5548759e-07,0.033038111
+day2_20261027,day2_20261027__circleSweep,47,orientationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,1,0,625,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__circleSweep,48,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__circleSweep,49,phiOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12501,1,0,625,0.0500000000000114,,0.0098782473,1.0666059
+day2_20261027,day2_20261027__circleSweep,50,pollStart,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,1,0,625,0.0500000000000114,,3.7e-05,630.30252
+day2_20261027,day2_20261027__circleSweep,51,raw1,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-5.2109466,-4.9720864
+day2_20261027,day2_20261027__circleSweep,52,raw2,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,130.56421,130.76833
+day2_20261027,day2_20261027__circleSweep,53,raw3,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-198.56711,-198.40233
+day2_20261027,day2_20261027__circleSweep,54,raw4,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,0.039442692,0.051481783
+day2_20261027,day2_20261027__circleSweep,55,raw5,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-97.812202,76.563957
+day2_20261027,day2_20261027__circleSweep,56,raw6,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-149.83022,-96.248955
+day2_20261027,day2_20261027__circleSweep,57,raw7,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,-285.88226,-84.931763
+day2_20261027,day2_20261027__circleSweep,58,raw8,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,0.0088625932,0.1589805
+day2_20261027,day2_20261027__circleSweep,59,thetaObservable,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__circleSweep,60,thetaOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,12501,1,0,625,0.0500000000000114,,-3.1414563,3.1378898
+day2_20261027,day2_20261027__circleSweep,61,valid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,12501,2,0,625,0.0500000000000114,,[1 0],[1 1]
+day2_20261027,day2_20261027__circleSweep,62,X,RL_dataCollection_v2/NDI Sensor reading/Sensor/Subtract,unclassified,12501,1,0,625,0.0500000000000114,,-92.682794,81.720415
+day2_20261027,day2_20261027__circleSweep,63,P1_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain,unclassified,62501,1,0,625,0.00999999999999091,,0,1.9849961
+day2_20261027,day2_20261027__circleSweep,64,P2_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain1,unclassified,62501,1,0,625,0.00999999999999091,,0,1.9757019
+day2_20261027,day2_20261027__circleSweep,65,P3_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain2,unclassified,62501,1,0,625,0.00999999999999091,,0,1.9849964
+day2_20261027,day2_20261027__circleSweep,66,kill_switch,RL_dataCollection_v2/Pneumatic Valves/Kill,unclassified,7,1,0,113.61,0.774999999999991,,1,1
+day2_20261027,day2_20261027__circleSweep,67,P1_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation,final_command_candidate,62501,1,0,625,0.00999999999999091,,0,1.7864965
+day2_20261027,day2_20261027__circleSweep,68,P2_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation1,final_command_candidate,62501,1,0,625,0.00999999999999091,,0,1.7781317
+day2_20261027,day2_20261027__circleSweep,69,P3_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation2,final_command_candidate,62501,1,0,625,0.00999999999999091,,0,1.7864968
+day2_20261027,day2_20261027__circleSweep,70,sim time,RL_dataCollection_v2/Reference clock,unclassified,62501,1,0,625,0.00999999999999091,,0,625
+day2_20261027,day2_20261027__circleSweep,71,sampled time,RL_dataCollection_v2/Reference time 50 ms,unclassified,12501,1,0,625,0.0500000000000114,,0,625
+day2_20261027,day2_20261027__circleSweep,72,comp_ltheta,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function,unclassified,62501,1,0,625,0.00999999999999091,,-3.1413762,3.1390581
+day2_20261027,day2_20261027__circleSweep,73,phi error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,62501,1,0,625,0.00999999999999091,,-0.083432501,1.0562661
+day2_20261027,day2_20261027__circleSweep,74,theta error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,62501,1,0,625,0.00999999999999091,,-3.1415798,3.1415619
+day2_20261027,day2_20261027__circleSweep,75,cycleId,RL_dataCollection_v2/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,5
+day2_20261027,day2_20261027__circleSweep,76,direction,RL_dataCollection_v2/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__circleSweep,77,done,RL_dataCollection_v2/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__circleSweep,78,phaseId,RL_dataCollection_v2/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,9
+day2_20261027,day2_20261027__circleSweep,79,phi_from_block,RL_dataCollection_v2/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,1.5
+day2_20261027,day2_20261027__circleSweep,80,testEnd_s,RL_dataCollection_v2/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,620,620
+day2_20261027,day2_20261027__circleSweep,81,theta_from_block,RL_dataCollection_v2/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,157.07963
+day2_20261027,day2_20261027__circleSweep,82,trialId,RL_dataCollection_v2/circlesweep,unclassified,12501,1,0,625,0.0500000000000114,,0,5
+day2_20261027,day2_20261027__circleSweep,83,measurementTime_s,RL_dataCollection_v2/validMeasurementTime,unclassified,12501,1,0,625,0.0500000000000114,,0,625
+day2_20261027,day2_20261027__combinePressure,1,length,RL_dataCollection_v2/Demux,unclassified,34201,2,0,342,0.00999999999999091,,[-0.0099633381 -0.0099176777],[0.0099633397 0.0099177104]
+day2_20261027,day2_20261027__combinePressure,2,length,RL_dataCollection_v2/Demux1,unclassified,34201,1,0,342,0.00999999999999091,,-0.0062740833,0.0062734
+day2_20261027,day2_20261027__combinePressure,3,sampled des_length,RL_dataCollection_v2/Desired lengths 50 ms,reference_or_prediction_check_provenance,6841,2,0,342,0.0500000000000043,,[-0.009963328 -0.0099172865],[0.0099633281 0.0099172763]
+day2_20261027,day2_20261027__combinePressure,4,X,RL_dataCollection_v2/Integrator,unclassified,34201,4,0,342,0.00999999999999091,,[-0.0099633381 -0.0099176777 -0.0022354805 -0.002226359],[0.0099633397 0.0099177104 0.0022354811 0.0022263511]
+day2_20261027,day2_20261027__combinePressure,5,,RL_dataCollection_v2/MATLAB Function,unclassified,34201,2,0,342,0.00999999999999091,,[-0.0099633381 -0.0099176777],[0.0099633397 0.0099177104]
+day2_20261027,day2_20261027__combinePressure,6,comp_lengths,RL_dataCollection_v2/MATLAB Function1,unclassified,34201,3,0,342,0.00999999999999091,,[-0.0062740833 -0.0099633381 -0.0099176777],[0.0062734 0.0099633397 0.0099177104]
+day2_20261027,day2_20261027__combinePressure,7,dX,RL_dataCollection_v2/MATLAB Function1,unclassified,34201,4,0,342,0.00999999999999091,,[-0.0022354805 -0.002226359 -0.11343488 -0.090387925],[0.0022354811 0.0022263511 0.090362854 0.11212501]
+day2_20261027,day2_20261027__combinePressure,8,des_phi,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,34201,1,0,342,0.00999999999999091,,0,0.83783163
+day2_20261027,day2_20261027__combinePressure,9,des_theta,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,34201,1,0,342,0.00999999999999091,,-3.1415927,3.1415927
+day2_20261027,day2_20261027__combinePressure,10,pressureUsed_bar,RL_dataCollection_v2/MATLAB Function1,unclassified,34201,3,0,342,0.00999999999999091,,[0 0 0],[1.9999987 2.0270435 2.0270458]
+day2_20261027,day2_20261027__combinePressure,11,tau_N,RL_dataCollection_v2/MATLAB Function1,unclassified,34201,2,0,342,0.00999999999999091,,[-9.3855795 -9.3855878],[9.3855902 9.3855653]
+day2_20261027,day2_20261027__combinePressure,12,thetaObservable,RL_dataCollection_v2/MATLAB Function1,unclassified,34201,1,0,342,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__combinePressure,13,d_length,RL_dataCollection_v2/MATLAB Function2,unclassified,6841,2,0,342,0.0500000000000043,,[-0.0019880533 -0.0019791692],[0.0019880584 0.0019791675]
+day2_20261027,day2_20261027__combinePressure,14,dd_length,RL_dataCollection_v2/MATLAB Function2,unclassified,6841,2,0,342,0.0500000000000043,,[-0.0049274604 -0.0047642542],[0.004463572 0.0044499324]
+day2_20261027,day2_20261027__combinePressure,15,length,RL_dataCollection_v2/MATLAB Function2,unclassified,6841,2,0,342,0.0500000000000043,,[-0.009963328 -0.0099172865],[0.0099633281 0.0099172763]
+day2_20261027,day2_20261027__combinePressure,16,inverseModelValid,RL_dataCollection_v2/MATLAB Function3,quality_or_time,34201,1,0,342,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__combinePressure,17,pressureDesired_bar,RL_dataCollection_v2/MATLAB Function3,unclassified,34201,3,0,342,0.00999999999999091,,[0 0 0],[0.70726471 1.0002843 1.0002834]
+day2_20261027,day2_20261027__combinePressure,18,pressureLimited,RL_dataCollection_v2/MATLAB Function3,unclassified,34201,1,0,342,0.00999999999999091,,0,0
+day2_20261027,day2_20261027__combinePressure,19,tauAvailable_N,RL_dataCollection_v2/MATLAB Function3,unclassified,34201,2,0,342,0.00999999999999091,,[-9.3876865 -9.3869851],[9.38767 9.3869926]
+day2_20261027,day2_20261027__combinePressure,20,tauDesired_N,RL_dataCollection_v2/MATLAB Function3,unclassified,34201,2,0,342,0.00999999999999091,,[-9.3876865 -9.3869851],[9.38767 9.3869926]
+day2_20261027,day2_20261027__combinePressure,21,filtered_d_length,RL_dataCollection_v2/MATLAB Function5,unclassified,6841,2,0,342,0.0500000000000043,,[-0.0013881488 -0.0018388443],[0.0016522963 0.0017775915]
+day2_20261027,day2_20261027__combinePressure,22,filtered_dd_length,RL_dataCollection_v2/MATLAB Function5,unclassified,6841,2,0,342,0.0500000000000043,,[-0.00228738 -0.0022324283],[0.0023285811 0.0017162881]
+day2_20261027,day2_20261027__combinePressure,23,fitered_length,RL_dataCollection_v2/MATLAB Function5,unclassified,6841,2,0,342,0.0500000000000043,,[-0.0066760267 -0.0041773315],[0.0060075694 0.012980046]
+day2_20261027,day2_20261027__combinePressure,24,meas_position,RL_dataCollection_v2/NDI Sensor reading,unclassified,6841,3,0,342,0.0500000000000043,,[-0.015437482 -0.052888123 0.23293825],[0.069768624 0.11277786 0.28209081]
+day2_20261027,day2_20261027__combinePressure,25,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,34201,1,0,342,0.00999999999999091,,-3.0910336,3.0695483
+day2_20261027,day2_20261027__combinePressure,26,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,34201,1,0,342,0.00999999999999091,,0.01371865,0.97263526
+day2_20261027,day2_20261027__combinePressure,27,configurationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,34201,1,0,342,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__combinePressure,28,fitResidual_m,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,34201,1,0,342,0.00999999999999091,,0.00070648633,0.0040325745
+day2_20261027,day2_20261027__combinePressure,29,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,6841,2,0,342,0.0500000000000043,,[2326 2326],[181702 181702]
+day2_20261027,day2_20261027__combinePressure,30,hostTime_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,6841,1,0,342,0.0500000000000043,,0.019536,560.09383
+day2_20261027,day2_20261027__combinePressure,31,meas_length,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,6841,3,0,342,0.0500000000000043,,[-0.0091860919 -0.0066760267 -0.0041773315],[0.00085827266 0.0060075694 0.012980046]
+day2_20261027,day2_20261027__combinePressure,32,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,6841,1,0,342,0.0500000000000043,,0,1
+day2_20261027,day2_20261027__combinePressure,33,phi,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,6841,1,0,342,0.0500000000000043,,0.031062063,1.0101647
+day2_20261027,day2_20261027__combinePressure,34,pollStart_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,6841,1,0,342,0.0500000000000043,,0.0001299,560.06867
+day2_20261027,day2_20261027__combinePressure,35,position,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,6841,3,0,342,0.0500000000000043,,[-0.015437482 -0.052888123 0.23293825],[0.069768624 0.11277786 0.28209081]
+day2_20261027,day2_20261027__combinePressure,36,sensorValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,6841,2,0,342,0.0500000000000043,,[1 0],[1 1]
+day2_20261027,day2_20261027__combinePressure,37,theta,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,6841,1,0,342,0.0500000000000043,,-3.1172864,2.9806177
+day2_20261027,day2_20261027__combinePressure,38,moduleTipXYZValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,6841,1,0,342,0.0500000000000043,,0,1
+day2_20261027,day2_20261027__combinePressure,39,moduleTipXYZ_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,6841,3,0,342,0.0500000000000043,,[-0.010178835 -0.038747685 0.15252296],[0.050584233 0.066077989 0.1771522]
+day2_20261027,day2_20261027__combinePressure,40,R_NDI_from_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,9,0,342,0.0500000000000043,,[0.98226788 0.0031920446 0.18669518 -0.1874754 0.01015274 0.98217502 0.0011604155 -0.99994248 0.010630796],[0.98240513 0.0051744882 0.1874336 -0.18674875 0.014447836 0.98232971 0.0024826925 -0.9998826 0.015143832]
+day2_20261027,day2_20261027__combinePressure,41,baseOreintationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,1,0,342,0.0500000000000043,,1,1
+day2_20261027,day2_20261027__combinePressure,42,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,2,0,342,0.0500000000000043,,[2326 2326],[181702 181702]
+day2_20261027,day2_20261027__combinePressure,43,gravity_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,3,0,342,0.0500000000000043,,[0.031313957 0.099598375 -9.8094358],[0.050761729 0.14173327 -9.8088483]
+day2_20261027,day2_20261027__combinePressure,44,hostTime,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,1,0,342,0.0500000000000043,,0.019536,560.09383
+day2_20261027,day2_20261027__combinePressure,45,lengthChnage_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,6841,3,0,342,0.0500000000000043,,[-0.0091860919 -0.0066760267 -0.0041773315],[0.00085827266 0.0060075694 0.012980046]
+day2_20261027,day2_20261027__combinePressure,46,nonBendingRotation_rad,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,3.9101851e-06,0.022111681
+day2_20261027,day2_20261027__combinePressure,47,orientationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,1,0,342,0.0500000000000043,,0,1
+day2_20261027,day2_20261027__combinePressure,48,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,0,1
+day2_20261027,day2_20261027__combinePressure,49,phiOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,6841,1,0,342,0.0500000000000043,,0.031062063,1.0101647
+day2_20261027,day2_20261027__combinePressure,50,pollStart,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,1,0,342,0.0500000000000043,,0.0001299,560.06867
+day2_20261027,day2_20261027__combinePressure,51,raw1,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-5.4562778,-5.3126068
+day2_20261027,day2_20261027__combinePressure,52,raw2,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,130.60825,130.81535
+day2_20261027,day2_20261027__combinePressure,53,raw3,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-198.68924,-198.53947
+day2_20261027,day2_20261027__combinePressure,54,raw4,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,0.037092969,0.052595723
+day2_20261027,day2_20261027__combinePressure,55,raw5,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-20.787838,64.400093
+day2_20261027,day2_20261027__combinePressure,56,raw6,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-151.34052,-102.21576
+day2_20261027,day2_20261027__combinePressure,57,raw7,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,-251.48827,-85.825745
+day2_20261027,day2_20261027__combinePressure,58,raw8,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,0.011276746,0.12451477
+day2_20261027,day2_20261027__combinePressure,59,thetaObservable,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,6841,1,0,342,0.0500000000000043,,0,1
+day2_20261027,day2_20261027__combinePressure,60,thetaOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,6841,1,0,342,0.0500000000000043,,-3.1172864,2.9806177
+day2_20261027,day2_20261027__combinePressure,61,valid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,6841,2,0,342,0.0500000000000043,,[1 0],[1 1]
+day2_20261027,day2_20261027__combinePressure,62,X,RL_dataCollection_v2/NDI Sensor reading/Sensor/Subtract,unclassified,6841,1,0,342,0.0500000000000043,,-15.437482,69.768624
+day2_20261027,day2_20261027__combinePressure,63,P1_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain,unclassified,6841,1,0,342,0.0500000000000043,,0,2.2222208
+day2_20261027,day2_20261027__combinePressure,64,P2_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain1,unclassified,6841,1,0,342,0.0500000000000043,,0,2.2522705
+day2_20261027,day2_20261027__combinePressure,65,P3_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain2,unclassified,6841,1,0,342,0.0500000000000043,,0,2.2522731
+day2_20261027,day2_20261027__combinePressure,66,kill_switch,RL_dataCollection_v2/Pneumatic Valves/Kill,unclassified,1,1,0,0,NaN,,1,1
+day2_20261027,day2_20261027__combinePressure,67,P1_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation,final_command_candidate,6841,1,0,342,0.0500000000000043,,0,1.9999987
+day2_20261027,day2_20261027__combinePressure,68,P2_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation1,final_command_candidate,6841,1,0,342,0.0500000000000043,,0,2.0270435
+day2_20261027,day2_20261027__combinePressure,69,P3_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation2,final_command_candidate,6841,1,0,342,0.0500000000000043,,0,2.0270458
+day2_20261027,day2_20261027__combinePressure,70,sim time,RL_dataCollection_v2/Reference clock,unclassified,34201,1,0,342,0.00999999999999091,,0,342
+day2_20261027,day2_20261027__combinePressure,71,sampled time,RL_dataCollection_v2/Reference time 50 ms,unclassified,6841,1,0,342,0.0500000000000043,,0,342
+day2_20261027,day2_20261027__combinePressure,72,comp_ltheta,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function,unclassified,34201,1,0,342,0.00999999999999091,,-3.1406412,3.1412468
+day2_20261027,day2_20261027__combinePressure,73,phi error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,34201,1,0,342,0.00999999999999091,,-0.58936633,0.63348024
+day2_20261027,day2_20261027__combinePressure,74,theta error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,34201,1,0,342,0.00999999999999091,,-3.1406895,3.1408356
+day2_20261027,day2_20261027__combinePressure,75,channelId,RL_dataCollection_v2/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,0
+day2_20261027,day2_20261027__combinePressure,76,cycleId,RL_dataCollection_v2/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,2
+day2_20261027,day2_20261027__combinePressure,77,done,RL_dataCollection_v2/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,1
+day2_20261027,day2_20261027__combinePressure,78,phaseId,RL_dataCollection_v2/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,9
+day2_20261027,day2_20261027__combinePressure,79,pressureCommand_bar,RL_dataCollection_v2/pressure combine,unclassified,6841,3,0,342,0.0500000000000043,,[0 0 0],[1.9999987 2.0270435 2.0270458]
+day2_20261027,day2_20261027__combinePressure,80,testEnd_s,RL_dataCollection_v2/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,336.32741,336.32741
+day2_20261027,day2_20261027__combinePressure,81,trialId,RL_dataCollection_v2/pressure combine,unclassified,6841,1,0,342,0.0500000000000043,,0,4
+day2_20261027,day2_20261027__combinePressure,82,measurementTime_s,RL_dataCollection_v2/validMeasurementTime,unclassified,6841,1,0,342,0.0500000000000043,,0,342
+day2_20261027,day2_20261027__helix,1,length,RL_dataCollection_v2/Demux,unclassified,53001,2,0,530,0.00999999999999091,,[-0.018895464 -0.018853788],[0.019341968 0.019341968]
+day2_20261027,day2_20261027__helix,2,length,RL_dataCollection_v2/Demux1,unclassified,53001,1,0,530,0.00999999999999091,,-0.019504497,0.018082208
+day2_20261027,day2_20261027__helix,3,sampled des_length,RL_dataCollection_v2/Desired lengths 50 ms,reference_or_prediction_check_provenance,10601,2,0,530,0.0500000000000114,,[-0.01884091 -0.01884091],[0.019328466 0.019328466]
+day2_20261027,day2_20261027__helix,4,X,RL_dataCollection_v2/Integrator,unclassified,53001,4,0,530,0.00999999999999091,,[-0.018895464 -0.018853788 -0.009063007 -0.0097259346],[0.019341968 0.019341968 0.0088759829 0.0092565577]
+day2_20261027,day2_20261027__helix,5,,RL_dataCollection_v2/MATLAB Function,unclassified,10601,2,0,530,0.0500000000000114,,[-0.01884091 -0.01884091],[0.019328466 0.019328466]
+day2_20261027,day2_20261027__helix,6,comp_lengths,RL_dataCollection_v2/MATLAB Function1,unclassified,53001,3,0,530,0.00999999999999091,,[-0.019504497 -0.018895464 -0.018853788],[0.018082208 0.019341968 0.019341968]
+day2_20261027,day2_20261027__helix,7,dX,RL_dataCollection_v2/MATLAB Function1,unclassified,53001,4,0,530,0.00999999999999091,,[-0.009063007 -0.0097259346 -0.87311572 -0.89414002],[0.0088759829 0.0092565577 0.69611592 0.74916255]
+day2_20261027,day2_20261027__helix,8,des_phi,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,53001,1,0,530,0.00999999999999091,,0,1.50219
+day2_20261027,day2_20261027__helix,9,des_theta,RL_dataCollection_v2/MATLAB Function1,reference_or_prediction_check_provenance,53001,1,0,530,0.00999999999999091,,-3.1415927,3.1415927
+day2_20261027,day2_20261027__helix,10,pressureUsed_bar,RL_dataCollection_v2/MATLAB Function1,unclassified,53001,3,0,530,0.00999999999999091,,[0 0 0],[1.6958366 1.7825933 1.7825933]
+day2_20261027,day2_20261027__helix,11,tau_N,RL_dataCollection_v2/MATLAB Function1,unclassified,53001,2,0,530,0.00999999999999091,,[-22.509227 -22.509227],[23.660769 23.660769]
+day2_20261027,day2_20261027__helix,12,thetaObservable,RL_dataCollection_v2/MATLAB Function1,unclassified,53001,1,0,530,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__helix,13,d_length,RL_dataCollection_v2/MATLAB Function2,unclassified,10601,2,0,530,0.0500000000000114,,[-0.006108211 -0.006108211],[0.0061082172 0.0061082172]
+day2_20261027,day2_20261027__helix,14,dd_length,RL_dataCollection_v2/MATLAB Function2,unclassified,10601,2,0,530,0.0500000000000114,,[-0.0019340001 -0.0019340001],[0.0018877347 0.0018877347]
+day2_20261027,day2_20261027__helix,15,length,RL_dataCollection_v2/MATLAB Function2,unclassified,10601,2,0,530,0.0500000000000114,,[-0.01884091 -0.01884091],[0.019328466 0.019328466]
+day2_20261027,day2_20261027__helix,16,inverseModelValid,RL_dataCollection_v2/MATLAB Function3,quality_or_time,53001,1,0,530,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__helix,17,pressureDesired_bar,RL_dataCollection_v2/MATLAB Function3,unclassified,53001,3,0,530,0.00999999999999091,,[0 0 0],[1.6958366 1.7825933 1.7825933]
+day2_20261027,day2_20261027__helix,18,pressureLimited,RL_dataCollection_v2/MATLAB Function3,unclassified,53001,1,0,530,0.00999999999999091,,0,0
+day2_20261027,day2_20261027__helix,19,tauAvailable_N,RL_dataCollection_v2/MATLAB Function3,unclassified,53001,2,0,530,0.00999999999999091,,[-22.509227 -22.509227],[23.660769 23.660769]
+day2_20261027,day2_20261027__helix,20,tauDesired_N,RL_dataCollection_v2/MATLAB Function3,unclassified,53001,2,0,530,0.00999999999999091,,[-22.509227 -22.509227],[23.660769 23.660769]
+day2_20261027,day2_20261027__helix,21,filtered_d_length,RL_dataCollection_v2/MATLAB Function5,unclassified,10601,2,0,530,0.0500000000000114,,[-0.0057856357 -0.0078692171],[0.0061054469 0.0075385145]
+day2_20261027,day2_20261027__helix,22,filtered_dd_length,RL_dataCollection_v2/MATLAB Function5,unclassified,10601,2,0,530,0.0500000000000114,,[-0.0083656162 -0.0073854721],[0.0080101197 0.0088653586]
+day2_20261027,day2_20261027__helix,23,fitered_length,RL_dataCollection_v2/MATLAB Function5,unclassified,10601,2,0,530,0.0500000000000114,,[-0.0070789697 -0.0069315316],[0.0097280223 0.013078914]
+day2_20261027,day2_20261027__helix,24,meas_position,RL_dataCollection_v2/NDI Sensor reading,unclassified,10601,3,0,530,0.0500000000000114,,[-0.078762425 -0.085211441 0.23027077],[0.086024696 0.10721124 0.28052052]
+day2_20261027,day2_20261027__helix,25,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,53001,1,0,530,0.00999999999999091,,-3.1407937,3.1410311
+day2_20261027,day2_20261027__helix,26,,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,53001,1,0,530,0.00999999999999091,,0,0.99291561
+day2_20261027,day2_20261027__helix,27,configurationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,53001,1,0,530,0.00999999999999091,,0,1
+day2_20261027,day2_20261027__helix,28,fitResidual_m,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,53001,1,0,530,0.00999999999999091,,0.00073161956,0.0035130116
+day2_20261027,day2_20261027__helix,29,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,10601,2,0,530,0.0500000000000114,,[2446 2446],[173734 173734]
+day2_20261027,day2_20261027__helix,30,hostTime_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,10601,1,0,530,0.0500000000000114,,0.0329126,534.84854
+day2_20261027,day2_20261027__helix,31,meas_length,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,10601,3,0,530,0.0500000000000114,,[-0.010010694 -0.0070789697 -0.0069315316],[0.0079016575 0.0097280223 0.013078914]
+day2_20261027,day2_20261027__helix,32,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,10601,1,0,530,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__helix,33,phi,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,10601,1,0,530,0.0500000000000114,,0.0014881716,1.0314094
+day2_20261027,day2_20261027__helix,34,pollStart_s,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,10601,1,0,530,0.0500000000000114,,4.87e-05,534.82759
+day2_20261027,day2_20261027__helix,35,position,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,10601,3,0,530,0.0500000000000114,,[-0.078762425 -0.085211441 0.23027077],[0.086024696 0.10721124 0.28052052]
+day2_20261027,day2_20261027__helix,36,sensorValid,RL_dataCollection_v2/NDI Sensor reading/Sensor,quality_or_time,10601,2,0,530,0.0500000000000114,,[1 0],[1 1]
+day2_20261027,day2_20261027__helix,37,theta,RL_dataCollection_v2/NDI Sensor reading/Sensor,unclassified,10601,1,0,530,0.0500000000000114,,-3.1413818,3.139941
+day2_20261027,day2_20261027__helix,38,moduleTipXYZValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,quality_or_time,10601,1,0,530,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__helix,39,moduleTipXYZ_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB Function1,unclassified,10601,3,0,530,0.0500000000000114,,[-0.05016218 -0.059705231 0.1507447],[0.056608067 0.061765607 0.17562328]
+day2_20261027,day2_20261027__helix,40,R_NDI_from_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,9,0,530,0.0500000000000114,,[0.98715023 0.0040757019 0.15878204 -0.15976027 0.0085403387 0.98709818 0.0025637981 -0.99995347 0.0091463802],[0.98729003 0.006901082 0.15971881 -0.15885848 0.013061704 0.98722715 0.0048397077 -0.99989244 0.013951363]
+day2_20261027,day2_20261027__helix,41,baseOreintationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,1,0,530,0.0500000000000114,,1,1
+day2_20261027,day2_20261027__helix,42,frame,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,2,0,530,0.0500000000000114,,[2446 2446],[173734 173734]
+day2_20261027,day2_20261027__helix,43,gravity_arm,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,3,0,530,0.0500000000000114,,[0.039982636 0.083780723 -9.8095436],[0.067699614 0.12813532 -9.8089448]
+day2_20261027,day2_20261027__helix,44,hostTime,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,1,0,530,0.0500000000000114,,0.0329126,534.84854
+day2_20261027,day2_20261027__helix,45,lengthChnage_m,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,10601,3,0,530,0.0500000000000114,,[-0.010010694 -0.0070789697 -0.0069315316],[0.0079016575 0.0097280223 0.013078914]
+day2_20261027,day2_20261027__helix,46,nonBendingRotation_rad,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,6.6640019e-08,0.036186726
+day2_20261027,day2_20261027__helix,47,orientationValid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,1,0,530,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__helix,48,overrun,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__helix,49,phiOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,10601,1,0,530,0.0500000000000114,,0.0014881716,1.0314094
+day2_20261027,day2_20261027__helix,50,pollStart,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,1,0,530,0.0500000000000114,,4.87e-05,534.82759
+day2_20261027,day2_20261027__helix,51,raw1,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-1.7142698,-1.4089991
+day2_20261027,day2_20261027__helix,52,raw2,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,130.37584,130.63261
+day2_20261027,day2_20261027__helix,53,raw3,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-197.56927,-197.40771
+day2_20261027,day2_20261027__helix,54,raw4,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,0.037423145,0.049300566
+day2_20261027,day2_20261027__helix,55,raw5,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-80.247948,84.524811
+day2_20261027,day2_20261027__helix,56,raw6,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-149.96667,-99.69294
+day2_20261027,day2_20261027__helix,57,raw7,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,-282.70016,-90.293861
+day2_20261027,day2_20261027__helix,58,raw8,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,0.011222602,0.18874022
+day2_20261027,day2_20261027__helix,59,thetaObservable,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,unclassified,10601,1,0,530,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__helix,60,thetaOrientation,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,physical_response_orientation_derived,10601,1,0,530,0.0500000000000114,,-3.1413818,3.139941
+day2_20261027,day2_20261027__helix,61,valid,RL_dataCollection_v2/NDI Sensor reading/Sensor/MATLAB System,quality_or_time,10601,2,0,530,0.0500000000000114,,[1 0],[1 1]
+day2_20261027,day2_20261027__helix,62,X,RL_dataCollection_v2/NDI Sensor reading/Sensor/Subtract,unclassified,10601,1,0,530,0.0500000000000114,,-78.762425,86.024696
+day2_20261027,day2_20261027__helix,63,P1_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain,unclassified,53001,1,0,530,0.00999999999999091,,0,1.8842628
+day2_20261027,day2_20261027__helix,64,P2_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain1,unclassified,53001,1,0,530,0.00999999999999091,,0,1.9806592
+day2_20261027,day2_20261027__helix,65,P3_voltage,RL_dataCollection_v2/Pneumatic Valves/Gain2,unclassified,53001,1,0,530,0.00999999999999091,,0,1.9806592
+day2_20261027,day2_20261027__helix,66,kill_switch,RL_dataCollection_v2/Pneumatic Valves/Kill,unclassified,6,1,0,119.16,1.5,,1,1
+day2_20261027,day2_20261027__helix,67,P1_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation,final_command_candidate,53001,1,0,530,0.00999999999999091,,0,1.6958366
+day2_20261027,day2_20261027__helix,68,P2_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation1,final_command_candidate,53001,1,0,530,0.00999999999999091,,0,1.7825933
+day2_20261027,day2_20261027__helix,69,P3_NI_DAQ,RL_dataCollection_v2/Pneumatic Valves/Saturation2,final_command_candidate,53001,1,0,530,0.00999999999999091,,0,1.7825933
+day2_20261027,day2_20261027__helix,70,sim time,RL_dataCollection_v2/Reference clock,unclassified,53001,1,0,530,0.00999999999999091,,0,530
+day2_20261027,day2_20261027__helix,71,sampled time,RL_dataCollection_v2/Reference time 50 ms,unclassified,10601,1,0,530,0.0500000000000114,,0,530
+day2_20261027,day2_20261027__helix,72,comp_ltheta,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function,unclassified,53001,1,0,530,0.00999999999999091,,-3.1414369,3.1404971
+day2_20261027,day2_20261027__helix,73,phi error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,53001,1,0,530,0.00999999999999091,,-0.044004258,1.028871
+day2_20261027,day2_20261027__helix,74,theta error,RL_dataCollection_v2/Seperate paramter calculation/MATLAB Function1,unclassified,53001,1,0,530,0.00999999999999091,,-3.1414703,3.1415107
+day2_20261027,day2_20261027__helix,75,cycleId,RL_dataCollection_v2/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,6
+day2_20261027,day2_20261027__helix,76,direction,RL_dataCollection_v2/helix,unclassified,10601,1,0,530,0.0500000000000114,,-1,1
+day2_20261027,day2_20261027__helix,77,done,RL_dataCollection_v2/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,1
+day2_20261027,day2_20261027__helix,78,phaseId,RL_dataCollection_v2/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,9
+day2_20261027,day2_20261027__helix,79,phi_from_block,RL_dataCollection_v2/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,1.5
+day2_20261027,day2_20261027__helix,80,testEnd_s,RL_dataCollection_v2/helix,unclassified,10601,1,0,530,0.0500000000000114,,525,525
+day2_20261027,day2_20261027__helix,81,theta_from_block,RL_dataCollection_v2/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,37.699112
+day2_20261027,day2_20261027__helix,82,trialId,RL_dataCollection_v2/helix,unclassified,10601,1,0,530,0.0500000000000114,,0,4
+day2_20261027,day2_20261027__helix,83,measurementTime_s,RL_dataCollection_v2/validMeasurementTime,unclassified,10601,1,0,530,0.0500000000000114,,0,530

@@ -1,0 +1,11 @@
+runId,cohort,rows,validRows,segments,forwardWindows,inverseWindows,trainForward,validationForward,externalForward
+day1_root__SineWave,day1_root,12721,12499,27,11871,11871,5871,6000,0
+day1_root__StepWave,day1_root,11001,10791,27,10085,10085,8422,1663,0
+day1_root__circleSweep,day1_root,12501,12273,32,11446,11446,9153,2293,0
+day1_root__combinePressure,day1_root,6841,6618,14,6253,6253,4651,1602,0
+day1_root__helix,day1_root,10601,10374,30,9672,9672,7253,2419,0
+day2_20261027__SineWave,day2_20261027,12721,12209,663,2952,2952,0,0,2952
+day2_20261027__StepWave,day2_20261027,11001,10762,1975,46,46,0,0,46
+day2_20261027__circleSweep,day2_20261027,12501,12269,36,11339,11339,0,0,11339
+day2_20261027__combinePressure,day2_20261027,6841,6620,1157,26,26,0,0,26
+day2_20261027__helix,day2_20261027,10601,10378,26,9716,9716,0,0,9716

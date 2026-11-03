@@ -1,0 +1,4 @@
+time_sim_s,sensor_host_s,sensor_dt_host_s,orientation_valid,p1_command_bar,p2_command_bar,p3_command_bar
+0.05,0.3163393,0.2890891,1,0,0,0
+0.25,0.9741671,0.4945927,1,0,0,0
+19.5,21.2274556,0.598117199999997,1,0.201096804778686,0,0.211621263873194

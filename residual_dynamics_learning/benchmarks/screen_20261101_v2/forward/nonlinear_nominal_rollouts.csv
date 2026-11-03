@@ -1,0 +1,6 @@
+runId,rollouts,failures,successfulPathRMSE_mm,successfulFinalRMSE_mm
+day1_root__SineWave,20,0,7.64575569112699,7.95967831946819
+day1_root__StepWave,20,0,6.58396503192674,6.73035241194893
+day1_root__circleSweep,20,0,9.41240232364534,9.75494801509505
+day1_root__combinePressure,20,0,2.67769645692007,2.71083323292985
+day1_root__helix,20,0,7.11431609759721,7.36677153949531

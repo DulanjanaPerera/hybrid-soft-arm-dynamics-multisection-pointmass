@@ -1,0 +1,10 @@
+variant,seed,metricsReproduced
+gru64,113,1
+gru64,211,1
+gru64,307,1
+gru128,113,1
+gru128,211,1
+gru128,307,1
+gru64x2,113,1
+gru64x2,211,1
+gru64x2,307,1

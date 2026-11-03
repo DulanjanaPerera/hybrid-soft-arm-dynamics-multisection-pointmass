@@ -1,0 +1,18 @@
+
+START SCREEN A widths32 horizon0.5s
+Update 50/1200, loss 0.50389, total 5.2s.
+Update 100/1200, loss 0.27809, total 9.6s.
+Update 150/1200, loss 0.41849, total 13.9s.
+{Error using horzcat
+Dimensions of arrays being concatenated are not consistent.
+
+Error in sgAssess (line 22)
+            f=reshape(forces(:,i,1:count),2,[]);bounds=[bounds abs(f(:))>=.99*cfg.forceBound_N]; %#ok<AGROW>
+                                                        ^^^^^^
+Error in sgTrain (line 42)
+        numeric=sgPlain(params);[score,selection]=sgAssess(numeric,D,cfg);
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^
+Error in sgCampaign (line 23)
+    model=sgTrain(data,run,c);p=model.params;names=fieldnames(p);count=0;
+          ^^^^^^^^^^^^^^^^^^^
+} 

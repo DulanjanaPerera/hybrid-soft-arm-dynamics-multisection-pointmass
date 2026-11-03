@@ -1,0 +1,35 @@
+                researchOnly: 1
+                  selectedId: "B"
+          representativeSeed: 113
+                   selection: 'lowest mean old holdout score across three fixed seeds; representative seed113'
+     selectedMeanOldScore_mm: 0.5523
+                 modelSHA256: "8150352dd47230a2a4094b240e1e886b641b8c22ebad0cbfe300f63e9f526c6a"
+                     created: '03-Nov-2026 13:18:24'
+              externalLoaded: 0
+    previousReleaseUnchanged: 1
+           hardwareQualified: 0
+
+EXTERNAL complete: B seed113.
+EXTERNAL complete: B seed211.
+EXTERNAL complete: B seed307.
+EXTERNAL complete: E seed113.
+EXTERNAL complete: E seed211.
+EXTERNAL complete: E seed307.
+    id     GroupCount    mean_mean_vectorRMSE_mm    std_mean_vectorRMSE_mm
+    ___    __________    _______________________    ______________________
+
+    "B"        3                 0.56295                   0.068362       
+    "E"        3                 0.63906                   0.067512       
+
+EXTERNAL COMPLETE; no fitting or post-test selection.
+                    cases: 128
+            knownFeasible: 128
+       forceErrorMedian_N: 1.3731e-08
+          forceErrorMax_N: 4.7431e-05
+    maxBoundViolation_bar: 2.2204e-16
+         latencyMedian_ms: 5.1898
+            latencyP95_ms: 13.9267
+         fractionOver50ms: 0.0156
+          statePurityPass: 1
+
+VERIFICATION PASS; maximum score discrepancy 4.66293670343e-15 mm.

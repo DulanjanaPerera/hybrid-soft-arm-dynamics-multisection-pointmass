@@ -1,0 +1,7 @@
+partition,model,maximumBoundViolation_bar,violationAbovePoint01Fraction
+validation,ridge,0.00360452254926932,0
+validation,mlp,0.141532156667673,0.187522358159834
+validation,gru,0.123514796980784,0.220433569435501
+external_test,ridge,0.00165996178919392,0
+external_test,mlp,0.0730828104763569,0.198637817185099
+external_test,gru,0.0807054319247494,0.279953486440467

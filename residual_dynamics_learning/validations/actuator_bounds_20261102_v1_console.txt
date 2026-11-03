@@ -1,0 +1,37 @@
+PASS: legacy/corrected nominal RHS equivalence, inverse roundtrip and allocation identity, including implied-l1 bound.
+PASS: zero-lag original nonlinear RHS, no future-state leakage, delayed-input causality.
+                              bound_m: [2×1 double]
+    maxPotentialGradientRelativeError: 5.1067e-10
+       maxCyclicSymmetryRelativeError: 6.5344e-17
+               maxLegacyRelativeError: 3.2839e-16
+       correctedEquilibriumSpread_rad: 4.8850e-15
+
+    boundMode    channel    finalPhi_rad    maximumPhi_rad
+    _________    _______    ____________    ______________
+
+        0           1          3.0051           3.0381    
+        0           2          2.5268           2.5269    
+        0           3          2.5268           2.5269    
+        1           1          2.5268           2.5287    
+        1           2          2.5268           2.5269    
+        1           3          2.5268           2.5269    
+
+PASS: three-actuator bounds, potential gradient, cyclic symmetry, legacy RHS and inverse/PAC consistency.
+             minimumMassEigenvalue: 0.4991
+                      maxSkewError: 1.9626e-17
+    maxMassDerivativeRelativeError: 2.5032e-10
+       maxClosedLoopBalanceError_N: 1.4211e-14
+                finalLengthError_m: 2.9021e-11
+                        odeSamples: 269
+                             scope: 'Continuous-time matched model; no pressure allocation'
+
+PASS: fixed PAC offline checks; no hardware/Simulink run.
+     regressorAndForceBalance: 1
+             projectionAndSPD: 1
+              historyReversal: 1
+          idealEnergyIdentity: 1
+    wrapperFreshnessAndFaults: 1
+                        scope: 'Offline algebra/supervisor checks; sampled physical stability not established'
+
+PASS: adaptive PAC offline checks.
+V2 offline single-frame and sustained-fault checks passed.

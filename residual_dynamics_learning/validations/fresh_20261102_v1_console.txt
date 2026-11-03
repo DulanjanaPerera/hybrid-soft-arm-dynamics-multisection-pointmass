@@ -1,0 +1,16 @@
+{Unrecognized field name "boundMode".
+
+Error in validateFreshResidualModels (line 13)
+cfg=old.cfg;assert(cfg.boundMode==0);
+                   ^^^^^^^^^^^^^
+} 
+{Error using table (line 57)
+All table variables must have the same number of rows.
+
+Error in validateFreshResidualModels>metrics (line 184)
+    T=[T;table(string(name),string(id),trial,nnz(keep),rmse(1),rmse(2),third,vector, ...
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Error in validateFreshResidualModels (line 95)
+    for j=1:numel(names),forward=[forward;metrics(names{j},id,S,idx,preds{j},B.Y,1000)];end %#ok<AGROW>
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 

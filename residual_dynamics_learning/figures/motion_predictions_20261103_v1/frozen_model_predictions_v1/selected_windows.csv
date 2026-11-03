@@ -1,0 +1,6 @@
+runId,channel,trial,firstRow,lastRow,startSim_s,endSim_s,durationPhysical_s,missingMeasuredRows,selection
+circleSweep,0,3,3181,3381,159,169,10.117425,0,first eligible full circle at requested phi1
+SineWave,1,1,133,385,6.6,19.2,12.7451241,0,first eligible one-period sine window for channel
+SineWave,2,3,2041,2293,102,114.6,12.7398131,0,first eligible one-period sine window for channel
+SineWave,3,5,3949,4201,197.4,210,12.751975,0,first eligible one-period sine window for channel
+helix,0,1,133,1300,6.6,64.95,59.0473695,4,first eligible loading+unloading helix remainder after observed warmup

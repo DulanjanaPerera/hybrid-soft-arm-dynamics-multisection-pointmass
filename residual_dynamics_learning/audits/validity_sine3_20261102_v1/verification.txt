@@ -1,0 +1,27 @@
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for
+better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message
+again.] 
+       runId       sensorSamples    invalidSensorSamples    invalidPercent    channel3Invalid    nativeConfigSamples    nativeInvalidRows    minimumDropDuration_sim_s    maximumDropDuration_sim_s
+    ___________    _____________    ____________________    ______________    _______________    ___________________    _________________    _________________________    _________________________
+
+    "SineWave3"        12721                 14                0.11005              13                  67649                  78                      0.05                         0.05           
+
+PASS: every native configuration rejection matches invalid tip/orientation and nonfinite XYZ.
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for
+better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message
+again.] 
+{Error using exportgraphics
+Unable to print, export, or copy the contents of the figure because the figure is invalid or has been closed.
+
+Error in compareRlDropoutPoses (line 50)
+exportgraphics(fig,fullfile(folder,'dropout_pose_comparison.pdf'),'ContentType','vector');close(fig);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+       runId       sensorSamples    channel3Dropouts    totalDropouts    minimumPreviousPhi_rad    maximumPreviousPhi_rad    minimumNearbyValidSamples    maximumNearbyValidSamples
+    ___________    _____________    ________________    _____________    ______________________    ______________________    _________________________    _________________________
+
+    "SineWave"         12721               14                15                 0.11019                    2.4316                       34                           974           
+    "SineWave2"        12721               19                20                 0.10866                      2.34                        0                          1108           
+    "SineWave3"        12721               13                14                 0.18598                    2.2019                        0                           116           
+
+PASS: dropout positions explicitly unknown; only recorded neighboring valid poses used. No filling/prediction/fitting.

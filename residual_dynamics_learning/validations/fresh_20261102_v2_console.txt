@@ -1,0 +1,29 @@
+Fresh validation complete: StepWave, 10016 guarded anchors.
+Fresh validation complete: SineWave4, 12035 guarded anchors.
+Fresh validation complete: combinePressure, 6120 guarded anchors.
+Fresh validation complete: circleSweep, 11903 guarded anchors.
+Fresh validation complete: helix, 10004 guarded anchors.
+           model           runs    anchors    macroVectorRMSE    pooledVectorRMSE
+    ___________________    ____    _______    _______________    ________________
+
+    "nominal_legacy"        5       50078          4.9183              5.3078    
+    "nominal_corrected"     5       50078          4.9183              5.3078    
+    "persistence"           5       50078         0.10546             0.11371    
+    "constant_velocity"     5       50078        0.062354            0.066748    
+    "ridge"                 5       50078        0.059757            0.064868    
+    "mlp"                   5       50078         0.41796             0.42665    
+    "gru"                   5       50078         0.34447             0.36351    
+    "kinematic_ridge"       5       50078        0.059607            0.064745    
+
+             model             runs    anchors    macroVectorRMSE    pooledVectorRMSE
+    _______________________    ____    _______    _______________    ________________
+
+    "nominal_inverse"           5       50078          0.49851             0.53798   
+    "previous_differential"     5       50078        0.0093362            0.010252   
+    "ridge"                     5       50078       0.00055892          0.00064802   
+    "mlp"                       5       50078         0.033216            0.033691   
+    "gru"                       5       50078         0.030048            0.030988   
+    "pressure_ar"               5       50078        0.0005545          0.00063836   
+    "motion_ridge"              5       50078          0.32967             0.36325   
+
+PASS: same-segment mature windows; forward target and inverse-current-pressure isolation; frozen-file/raw/export hashes unchanged; no fitting.

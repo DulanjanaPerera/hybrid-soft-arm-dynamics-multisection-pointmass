@@ -1,0 +1,18 @@
+Offline sgCheck executed before six-model fitting, November3,2026.
+All three parameter shapes passed finite loss/gradient checks, gradient central
+differences, masked measured-state carry equality, future-target-independent
+carry and physical primary/auxiliary time caps.
+
+Reported derivative of loss wrt skip(1,1), autodiff / central difference:
+1x32: -0.16500549 / -0.16500561
+1x64:  0.62089450 /  0.62089370
+2x32: -0.65150499 / -0.65150495
+Printed values rounded; assertion tolerance 1e-4*max(1,abs(fd)).
+Nonzero random output head was used so recurrent/solver derivatives were active.
+Training uses the exact numerical forward flow and first-order central-difference
+flow Jacobians linked into neural autodiff, unchanged from prior checked solver.
+
+Additional executed full-anchor/target/replay checks are recorded separately in
+additional_checks_20261103.txt. Verification after final replay recomputes all
+90 one-step table rows from saved predictions and audits source/data/model hashes.
+These are numerical/software checks, not hardware or physical force validation.

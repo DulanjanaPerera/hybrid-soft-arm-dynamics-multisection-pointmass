@@ -1,0 +1,2 @@
+cases,knownFeasible,forceErrorMedian_N,forceErrorMax_N,maxBoundViolation_bar,latencyMedian_ms,latencyP95_ms,fractionOver50ms,statePurityPass
+208,208,4.49998377617905e-09,9.16771618473517e-05,2.22044604925031e-16,2.349,5.19753,0,1

@@ -1,0 +1,6 @@
+runId,anchors,maxAbsoluteResidual_N,fractionNearForceBound
+StepWave,10016,17.9896858253701,0
+SineWave4,12035,17.9216428098257,0
+combinePressure,6120,9.71140782643028,0
+circleSweep,11903,13.1214670941447,0
+helix,10004,13.2217104814165,0

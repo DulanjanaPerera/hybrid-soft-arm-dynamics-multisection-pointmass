@@ -1,0 +1,11 @@
+runId,matureTrainingRows,trainingWindows,selectionWindows
+day1_root__SineWave,6081,360,20
+day1_root__StepWave,8737,360,20
+day1_root__circleSweep,9509,360,20
+day1_root__combinePressure,4818,360,20
+day1_root__helix,7538,360,20
+day2_20261027__SineWave,3562,360,20
+day2_20261027__StepWave,1535,3,0
+day2_20261027__circleSweep,9466,360,20
+day2_20261027__combinePressure,823,0,0
+day2_20261027__helix,7561,360,20

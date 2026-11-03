@@ -1,0 +1,381 @@
+
+START SCREEN A widths32 horizon0.5s
+Update 50/1200, loss 0.50389, total 5.2s.
+Update 100/1200, loss 0.27809, total 9.6s.
+Update 150/1200, loss 0.41849, total 13.9s.
+SELECTION update 150: 3.99088 mm, best 3.99088, elapsed 14.4s.
+Update 200/1200, loss 0.27788, total 18.7s.
+Update 250/1200, loss 0.19744, total 22.9s.
+Update 300/1200, loss 0.19326, total 27.1s.
+SELECTION update 300: 2.96905 mm, best 2.96905, elapsed 27.4s.
+Update 350/1200, loss 0.21611, total 31.7s.
+Update 400/1200, loss 0.11469, total 35.9s.
+Update 450/1200, loss 0.12779, total 40.1s.
+SELECTION update 450: 2.37067 mm, best 2.37067, elapsed 40.4s.
+Update 500/1200, loss 0.14436, total 44.5s.
+Update 550/1200, loss 0.097582, total 48.8s.
+Update 600/1200, loss 0.13625, total 53.0s.
+SELECTION update 600: 2.12108 mm, best 2.12108, elapsed 53.2s.
+Update 650/1200, loss 0.16605, total 57.5s.
+Update 700/1200, loss 0.1151, total 61.6s.
+Update 750/1200, loss 0.091289, total 65.9s.
+SELECTION update 750: 1.94228 mm, best 1.94228, elapsed 66.2s.
+Update 800/1200, loss 0.077688, total 70.4s.
+Update 850/1200, loss 0.061828, total 74.5s.
+Update 900/1200, loss 0.075681, total 78.7s.
+SELECTION update 900: 1.73332 mm, best 1.73332, elapsed 78.9s.
+Update 950/1200, loss 0.065528, total 83.1s.
+Update 1000/1200, loss 0.037192, total 87.3s.
+Update 1050/1200, loss 0.053736, total 91.5s.
+SELECTION update 1050: 1.47218 mm, best 1.47218, elapsed 91.8s.
+Update 1100/1200, loss 0.047492, total 96.0s.
+Update 1150/1200, loss 0.019795, total 100.1s.
+Update 1200/1200, loss 0.016072, total 104.3s.
+SELECTION update 1200: 1.16608 mm, best 1.16608, elapsed 104.6s.
+
+START SCREEN B widths64 horizon0.5s
+Update 50/1200, loss 0.40382, total 4.4s.
+Update 100/1200, loss 0.17108, total 8.7s.
+Update 150/1200, loss 0.19403, total 13.0s.
+SELECTION update 150: 2.82268 mm, best 2.82268, elapsed 13.3s.
+Update 200/1200, loss 0.13911, total 17.6s.
+Update 250/1200, loss 0.057227, total 21.9s.
+Update 300/1200, loss 0.067421, total 26.1s.
+SELECTION update 300: 1.72786 mm, best 1.72786, elapsed 26.4s.
+Update 350/1200, loss 0.055136, total 30.7s.
+Update 400/1200, loss 0.017223, total 35.0s.
+Update 450/1200, loss 0.016686, total 39.2s.
+SELECTION update 450: 1.19311 mm, best 1.19311, elapsed 39.5s.
+Update 500/1200, loss 0.024157, total 43.8s.
+Update 550/1200, loss 0.0098883, total 48.1s.
+Update 600/1200, loss 0.0076424, total 52.3s.
+SELECTION update 600: 0.86691 mm, best 0.86691, elapsed 52.6s.
+Update 650/1200, loss 0.013867, total 56.9s.
+Update 700/1200, loss 0.0098982, total 61.2s.
+Update 750/1200, loss 0.010202, total 65.4s.
+SELECTION update 750: 0.70785 mm, best 0.70785, elapsed 65.7s.
+Update 800/1200, loss 0.0038815, total 70.0s.
+Update 850/1200, loss 0.003247, total 74.2s.
+Update 900/1200, loss 0.0045008, total 78.4s.
+SELECTION update 900: 0.62780 mm, best 0.62780, elapsed 78.7s.
+Update 950/1200, loss 0.011093, total 83.0s.
+Update 1000/1200, loss 0.00546, total 87.2s.
+Update 1050/1200, loss 0.0057069, total 91.5s.
+SELECTION update 1050: 0.57656 mm, best 0.57656, elapsed 91.8s.
+Update 1100/1200, loss 0.0046379, total 96.1s.
+Update 1150/1200, loss 0.0046832, total 100.3s.
+Update 1200/1200, loss 0.0021721, total 104.5s.
+SELECTION update 1200: 0.54411 mm, best 0.54411, elapsed 104.8s.
+
+START SCREEN C widths[32 32] horizon0.5s
+Update 50/1200, loss 0.44614, total 4.9s.
+Update 100/1200, loss 0.18831, total 9.8s.
+Update 150/1200, loss 0.24011, total 14.6s.
+SELECTION update 150: 2.97748 mm, best 2.97748, elapsed 15.1s.
+Update 200/1200, loss 0.11333, total 19.9s.
+Update 250/1200, loss 0.049774, total 24.7s.
+Update 300/1200, loss 0.057135, total 29.5s.
+SELECTION update 300: 1.54109 mm, best 1.54109, elapsed 29.9s.
+Update 350/1200, loss 0.061321, total 34.7s.
+Update 400/1200, loss 0.011076, total 39.5s.
+Update 450/1200, loss 0.019275, total 44.3s.
+SELECTION update 450: 1.19104 mm, best 1.19104, elapsed 44.7s.
+Update 500/1200, loss 0.025971, total 49.5s.
+Update 550/1200, loss 0.014936, total 54.3s.
+Update 600/1200, loss 0.0081627, total 59.1s.
+SELECTION update 600: 1.03088 mm, best 1.03088, elapsed 59.5s.
+Update 650/1200, loss 0.019249, total 64.3s.
+Update 700/1200, loss 0.017092, total 69.3s.
+Update 750/1200, loss 0.014288, total 74.2s.
+SELECTION update 750: 0.85089 mm, best 0.85089, elapsed 74.6s.
+Update 800/1200, loss 0.008083, total 79.4s.
+Update 850/1200, loss 0.0071495, total 84.2s.
+Update 900/1200, loss 0.0072519, total 89.0s.
+SELECTION update 900: 0.78217 mm, best 0.78217, elapsed 89.4s.
+Update 950/1200, loss 0.022051, total 94.2s.
+Update 1000/1200, loss 0.010384, total 99.0s.
+Update 1050/1200, loss 0.0085976, total 103.8s.
+SELECTION update 1050: 0.72339 mm, best 0.72339, elapsed 104.2s.
+Update 1100/1200, loss 0.0081033, total 109.0s.
+Update 1150/1200, loss 0.0046925, total 113.8s.
+Update 1200/1200, loss 0.0030685, total 118.6s.
+SELECTION update 1200: 0.65677 mm, best 0.65677, elapsed 119.0s.
+
+START SCREEN D widths32 horizon1.0s
+Update 50/1200, loss 0.48343, total 7.2s.
+Update 100/1200, loss 0.30456, total 14.7s.
+Update 150/1200, loss 0.48928, total 21.8s.
+SELECTION update 150: 4.26851 mm, best 4.26851, elapsed 22.1s.
+Update 200/1200, loss 0.3205, total 29.3s.
+Update 250/1200, loss 0.26838, total 36.5s.
+Update 300/1200, loss 0.28714, total 43.6s.
+SELECTION update 300: 3.69551 mm, best 3.69551, elapsed 43.9s.
+Update 350/1200, loss 0.30663, total 51.0s.
+Update 400/1200, loss 0.18657, total 58.1s.
+Update 450/1200, loss 0.23643, total 65.2s.
+SELECTION update 450: 3.19399 mm, best 3.19399, elapsed 65.5s.
+Update 500/1200, loss 0.2505, total 72.6s.
+Update 550/1200, loss 0.17453, total 79.7s.
+Update 600/1200, loss 0.2626, total 86.8s.
+SELECTION update 600: 2.88023 mm, best 2.88023, elapsed 87.1s.
+Update 650/1200, loss 0.32577, total 94.2s.
+Update 700/1200, loss 0.2204, total 101.3s.
+Update 750/1200, loss 0.20134, total 108.4s.
+SELECTION update 750: 2.53015 mm, best 2.53015, elapsed 108.7s.
+Update 800/1200, loss 0.19489, total 115.8s.
+Update 850/1200, loss 0.11766, total 122.9s.
+Update 900/1200, loss 0.17305, total 130.0s.
+SELECTION update 900: 2.51794 mm, best 2.51794, elapsed 130.3s.
+Update 950/1200, loss 0.12469, total 137.5s.
+Update 1000/1200, loss 0.11058, total 144.6s.
+Update 1050/1200, loss 0.13365, total 151.8s.
+SELECTION update 1050: 2.20819 mm, best 2.20819, elapsed 152.0s.
+Update 1100/1200, loss 0.13275, total 159.1s.
+Update 1150/1200, loss 0.10802, total 166.4s.
+Update 1200/1200, loss 0.05708, total 173.6s.
+SELECTION update 1200: 2.01052 mm, best 2.01052, elapsed 173.9s.
+
+START SCREEN E widths64 horizon1.0s
+Update 50/1200, loss 0.389, total 7.5s.
+Update 100/1200, loss 0.17648, total 15.0s.
+Update 150/1200, loss 0.21707, total 22.5s.
+SELECTION update 150: 3.08542 mm, best 3.08542, elapsed 22.8s.
+Update 200/1200, loss 0.13384, total 30.2s.
+Update 250/1200, loss 0.065776, total 37.6s.
+Update 300/1200, loss 0.073091, total 44.8s.
+SELECTION update 300: 1.99789 mm, best 1.99789, elapsed 45.1s.
+Update 350/1200, loss 0.077616, total 52.4s.
+Update 400/1200, loss 0.026597, total 59.6s.
+Update 450/1200, loss 0.026477, total 66.8s.
+SELECTION update 450: 1.52812 mm, best 1.52812, elapsed 67.1s.
+Update 500/1200, loss 0.040109, total 74.5s.
+Update 550/1200, loss 0.013246, total 82.2s.
+Update 600/1200, loss 0.017162, total 89.5s.
+SELECTION update 600: 1.12938 mm, best 1.12938, elapsed 89.8s.
+Update 650/1200, loss 0.023637, total 97.1s.
+Update 700/1200, loss 0.016628, total 104.3s.
+Update 750/1200, loss 0.020334, total 111.5s.
+SELECTION update 750: 0.85999 mm, best 0.85999, elapsed 111.8s.
+Update 800/1200, loss 0.0072319, total 119.1s.
+Update 850/1200, loss 0.0055986, total 126.3s.
+Update 900/1200, loss 0.0061225, total 133.5s.
+SELECTION update 900: 0.77166 mm, best 0.77166, elapsed 133.8s.
+Update 950/1200, loss 0.014965, total 141.1s.
+Update 1000/1200, loss 0.008379, total 148.3s.
+Update 1050/1200, loss 0.008943, total 155.5s.
+SELECTION update 1050: 0.64993 mm, best 0.64993, elapsed 155.8s.
+Update 1100/1200, loss 0.0080252, total 163.2s.
+Update 1150/1200, loss 0.0072825, total 170.7s.
+Update 1200/1200, loss 0.0035565, total 178.1s.
+SELECTION update 1200: 0.61827 mm, best 0.61827, elapsed 178.4s.
+
+START SCREEN F widths[32 32] horizon1.0s
+Update 50/1200, loss 0.44993, total 8.4s.
+Update 100/1200, loss 0.18939, total 16.7s.
+Update 150/1200, loss 0.27081, total 25.1s.
+SELECTION update 150: 3.20131 mm, best 3.20131, elapsed 25.5s.
+Update 200/1200, loss 0.12953, total 33.9s.
+Update 250/1200, loss 0.062215, total 42.2s.
+Update 300/1200, loss 0.085134, total 50.6s.
+SELECTION update 300: 1.77563 mm, best 1.77563, elapsed 51.0s.
+Update 350/1200, loss 0.066308, total 59.3s.
+Update 400/1200, loss 0.017943, total 67.6s.
+Update 450/1200, loss 0.024928, total 75.8s.
+SELECTION update 450: 1.27444 mm, best 1.27444, elapsed 76.2s.
+Update 500/1200, loss 0.032546, total 85.0s.
+Update 550/1200, loss 0.017551, total 93.8s.
+Update 600/1200, loss 0.013298, total 102.7s.
+SELECTION update 600: 1.16562 mm, best 1.16562, elapsed 103.2s.
+Update 650/1200, loss 0.02322, total 112.0s.
+Update 700/1200, loss 0.020139, total 120.8s.
+Update 750/1200, loss 0.021727, total 129.5s.
+SELECTION update 750: 1.00594 mm, best 1.00594, elapsed 130.0s.
+Update 800/1200, loss 0.0097802, total 138.8s.
+Update 850/1200, loss 0.012189, total 147.8s.
+Update 900/1200, loss 0.0092801, total 156.6s.
+SELECTION update 900: 0.89411 mm, best 0.89411, elapsed 157.1s.
+Update 950/1200, loss 0.025982, total 165.9s.
+Update 1000/1200, loss 0.014981, total 174.6s.
+Update 1050/1200, loss 0.011008, total 183.5s.
+SELECTION update 1050: 0.85657 mm, best 0.85657, elapsed 183.9s.
+Update 1100/1200, loss 0.010624, total 192.7s.
+Update 1150/1200, loss 0.0063459, total 201.5s.
+Update 1200/1200, loss 0.0041621, total 210.3s.
+SELECTION update 1200: 0.78541 mm, best 0.78541, elapsed 210.7s.
+Update 50/1200, loss 0.40768, total 4.8s.
+Update 100/1200, loss 0.17392, total 9.6s.
+Update 150/1200, loss 0.2092, total 14.4s.
+SELECTION update 150: 2.87568 mm, best 2.87568, elapsed 14.7s.
+Update 200/1200, loss 0.14149, total 19.5s.
+Update 250/1200, loss 0.059809, total 24.1s.
+Update 300/1200, loss 0.065823, total 28.8s.
+SELECTION update 300: 1.76145 mm, best 1.76145, elapsed 29.1s.
+Update 350/1200, loss 0.053527, total 33.8s.
+Update 400/1200, loss 0.015835, total 38.4s.
+Update 450/1200, loss 0.016703, total 43.1s.
+SELECTION update 450: 1.23118 mm, best 1.23118, elapsed 43.4s.
+Update 500/1200, loss 0.021888, total 48.1s.
+Update 550/1200, loss 0.0097034, total 52.7s.
+Update 600/1200, loss 0.0064602, total 57.5s.
+SELECTION update 600: 0.88717 mm, best 0.88717, elapsed 57.8s.
+Update 650/1200, loss 0.013549, total 62.5s.
+Update 700/1200, loss 0.0097385, total 67.1s.
+Update 750/1200, loss 0.010609, total 71.7s.
+SELECTION update 750: 0.71885 mm, best 0.71885, elapsed 72.0s.
+Update 800/1200, loss 0.0039232, total 76.7s.
+Update 850/1200, loss 0.0032601, total 81.3s.
+Update 900/1200, loss 0.0045015, total 85.9s.
+SELECTION update 900: 0.64477 mm, best 0.64477, elapsed 86.2s.
+Update 950/1200, loss 0.010684, total 90.9s.
+Update 1000/1200, loss 0.0054074, total 95.8s.
+Update 1050/1200, loss 0.0057466, total 100.6s.
+SELECTION update 1050: 0.59318 mm, best 0.59318, elapsed 100.9s.
+Update 1100/1200, loss 0.0044762, total 105.8s.
+Update 1150/1200, loss 0.0035718, total 110.4s.
+Update 1200/1200, loss 0.0020935, total 115.1s.
+SELECTION update 1200: 0.56325 mm, best 0.56325, elapsed 115.4s.
+Update 50/1200, loss 0.55284, total 4.8s.
+Update 100/1200, loss 0.18467, total 9.4s.
+Update 150/1200, loss 0.12846, total 14.1s.
+SELECTION update 150: 2.65441 mm, best 2.65441, elapsed 14.4s.
+Update 200/1200, loss 0.062943, total 19.2s.
+Update 250/1200, loss 0.074134, total 23.8s.
+Update 300/1200, loss 0.036386, total 28.6s.
+SELECTION update 300: 1.60170 mm, best 1.60170, elapsed 28.9s.
+Update 350/1200, loss 0.029466, total 33.6s.
+Update 400/1200, loss 0.014325, total 38.3s.
+Update 450/1200, loss 0.027065, total 43.4s.
+SELECTION update 450: 0.99808 mm, best 0.99808, elapsed 43.7s.
+Update 500/1200, loss 0.012528, total 48.8s.
+Update 550/1200, loss 0.010011, total 53.7s.
+Update 600/1200, loss 0.0082147, total 58.5s.
+SELECTION update 600: 0.80869 mm, best 0.80869, elapsed 58.8s.
+Update 650/1200, loss 0.0056031, total 63.5s.
+Update 700/1200, loss 0.010071, total 68.4s.
+Update 750/1200, loss 0.0087225, total 73.1s.
+SELECTION update 750: 0.72969 mm, best 0.72969, elapsed 73.4s.
+Update 800/1200, loss 0.0061694, total 78.1s.
+Update 850/1200, loss 0.0041541, total 82.8s.
+Update 900/1200, loss 0.0066482, total 87.5s.
+SELECTION update 900: 0.64676 mm, best 0.64676, elapsed 87.8s.
+Update 950/1200, loss 0.0033665, total 92.6s.
+Update 1000/1200, loss 0.0028315, total 97.3s.
+Update 1050/1200, loss 0.002483, total 101.9s.
+SELECTION update 1050: 0.60300 mm, best 0.60300, elapsed 102.2s.
+Update 1100/1200, loss 0.0047931, total 106.9s.
+Update 1150/1200, loss 0.002919, total 111.5s.
+Update 1200/1200, loss 0.0016916, total 116.2s.
+SELECTION update 1200: 0.52992 mm, best 0.52992, elapsed 116.5s.
+Update 50/1200, loss 0.38861, total 4.7s.
+Update 100/1200, loss 0.2744, total 9.4s.
+Update 150/1200, loss 0.20283, total 14.1s.
+SELECTION update 150: 2.94112 mm, best 2.94112, elapsed 14.4s.
+Update 200/1200, loss 0.10674, total 19.1s.
+Update 250/1200, loss 0.05806, total 23.8s.
+Update 300/1200, loss 0.056734, total 28.5s.
+SELECTION update 300: 1.68874 mm, best 1.68874, elapsed 28.8s.
+Update 350/1200, loss 0.037176, total 33.5s.
+Update 400/1200, loss 0.016321, total 38.3s.
+Update 450/1200, loss 0.023339, total 43.1s.
+SELECTION update 450: 1.16265 mm, best 1.16265, elapsed 43.4s.
+Update 500/1200, loss 0.0092731, total 48.2s.
+Update 550/1200, loss 0.012272, total 53.0s.
+Update 600/1200, loss 0.00948, total 57.7s.
+SELECTION update 600: 0.86455 mm, best 0.86455, elapsed 58.0s.
+Update 650/1200, loss 0.015377, total 62.7s.
+Update 700/1200, loss 0.0050407, total 67.3s.
+Update 750/1200, loss 0.010951, total 72.1s.
+SELECTION update 750: 0.68795 mm, best 0.68795, elapsed 72.4s.
+Update 800/1200, loss 0.007077, total 77.0s.
+Update 850/1200, loss 0.0063791, total 81.7s.
+Update 900/1200, loss 0.0049721, total 86.3s.
+SELECTION update 900: 0.66054 mm, best 0.66054, elapsed 86.6s.
+Update 950/1200, loss 0.0057593, total 91.3s.
+Update 1000/1200, loss 0.0071452, total 96.0s.
+Update 1050/1200, loss 0.0018703, total 100.6s.
+SELECTION update 1050: 0.62072 mm, best 0.62072, elapsed 100.9s.
+Update 1100/1200, loss 0.0044219, total 105.5s.
+Update 1150/1200, loss 0.0023044, total 110.2s.
+Update 1200/1200, loss 0.0039834, total 114.8s.
+SELECTION update 1200: 0.58300 mm, best 0.58300, elapsed 115.1s.
+Update 50/1200, loss 0.57256, total 7.8s.
+Update 100/1200, loss 0.20516, total 15.2s.
+Update 150/1200, loss 0.15086, total 22.5s.
+SELECTION update 150: 2.97445 mm, best 2.97445, elapsed 22.8s.
+Update 200/1200, loss 0.081935, total 30.1s.
+Update 250/1200, loss 0.092797, total 37.5s.
+Update 300/1200, loss 0.047649, total 44.8s.
+SELECTION update 300: 1.88995 mm, best 1.88995, elapsed 45.1s.
+Update 350/1200, loss 0.041357, total 52.4s.
+Update 400/1200, loss 0.020618, total 59.8s.
+Update 450/1200, loss 0.033416, total 67.1s.
+SELECTION update 450: 1.22025 mm, best 1.22025, elapsed 67.4s.
+Update 500/1200, loss 0.021274, total 74.8s.
+Update 550/1200, loss 0.016585, total 82.2s.
+Update 600/1200, loss 0.013345, total 89.5s.
+SELECTION update 600: 0.91138 mm, best 0.91138, elapsed 89.8s.
+Update 650/1200, loss 0.0088207, total 97.3s.
+Update 700/1200, loss 0.013204, total 104.9s.
+Update 750/1200, loss 0.011799, total 112.3s.
+SELECTION update 750: 0.80161 mm, best 0.80161, elapsed 112.6s.
+Update 800/1200, loss 0.010379, total 120.1s.
+Update 850/1200, loss 0.0054274, total 127.5s.
+Update 900/1200, loss 0.0082136, total 134.8s.
+SELECTION update 900: 0.71056 mm, best 0.71056, elapsed 135.1s.
+Update 950/1200, loss 0.0046859, total 142.5s.
+Update 1000/1200, loss 0.0036591, total 149.8s.
+Update 1050/1200, loss 0.0030953, total 157.4s.
+SELECTION update 1050: 0.63905 mm, best 0.63905, elapsed 157.7s.
+Update 1100/1200, loss 0.0059055, total 165.2s.
+Update 1150/1200, loss 0.0041413, total 172.6s.
+Update 1200/1200, loss 0.0031482, total 179.9s.
+SELECTION update 1200: 0.61991 mm, best 0.61991, elapsed 180.2s.
+Update 50/1200, loss 0.36752, total 7.5s.
+Update 100/1200, loss 0.25672, total 15.1s.
+Update 150/1200, loss 0.21919, total 22.7s.
+SELECTION update 150: 3.14614 mm, best 3.14614, elapsed 23.0s.
+Update 200/1200, loss 0.13724, total 31.0s.
+Update 250/1200, loss 0.062779, total 38.8s.
+Update 300/1200, loss 0.085261, total 46.9s.
+SELECTION update 300: 1.96054 mm, best 1.96054, elapsed 47.2s.
+Update 350/1200, loss 0.052173, total 55.3s.
+Update 400/1200, loss 0.030261, total 63.3s.
+Update 450/1200, loss 0.05352, total 71.5s.
+SELECTION update 450: 1.57607 mm, best 1.57607, elapsed 71.8s.
+Update 500/1200, loss 0.017211, total 85.6s.
+Update 550/1200, loss 0.021625, total 102.8s.
+Update 600/1200, loss 0.018622, total 120.0s.
+SELECTION update 600: 1.05217 mm, best 1.05217, elapsed 120.9s.
+Update 650/1200, loss 0.025381, total 138.1s.
+Update 700/1200, loss 0.0065891, total 155.3s.
+Update 750/1200, loss 0.016867, total 172.7s.
+SELECTION update 750: 0.84139 mm, best 0.84139, elapsed 173.6s.
+Update 800/1200, loss 0.0077744, total 190.8s.
+Update 850/1200, loss 0.0092598, total 208.0s.
+Update 900/1200, loss 0.0056963, total 225.2s.
+SELECTION update 900: 0.73667 mm, best 0.73667, elapsed 226.1s.
+Update 950/1200, loss 0.0080135, total 242.9s.
+Update 1000/1200, loss 0.0091209, total 259.2s.
+Update 1050/1200, loss 0.002051, total 275.6s.
+SELECTION update 1050: 0.63137 mm, best 0.63137, elapsed 276.4s.
+Update 1100/1200, loss 0.0067406, total 292.9s.
+Update 1150/1200, loss 0.0028691, total 309.7s.
+Update 1200/1200, loss 0.0045222, total 326.4s.
+SELECTION update 1200: 0.63462 mm, best 0.63137, elapsed 327.2s.
+    id      widths      horizon_s    burnIn_s    parameters    oldScore_mm    selectedUpdate                                                                                    folder                                                                                
+    ___    _________    _________    ________    __________    ___________    ______________    ______________________________________________________________________________________________________________________________________________________________________
+
+    "A"    "32"            0.5         0.5          4018          1.1661           1200         "C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\A_seed113"
+    "B"    "64"            0.5         0.5         14162         0.54411           1200         "C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\B_seed113"
+    "C"    "[32 32]"       0.5         0.5         10258         0.65677           1200         "C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\C_seed113"
+    "D"    "32"              1         0.5          4018          2.0105           1200         "C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\D_seed113"
+    "E"    "64"              1         0.5         14162         0.61827           1200         "C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\E_seed113"
+    "F"    "[32 32]"         1         0.5         10258         0.78541           1200         "C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\campaign_20261103_v2\F_seed113"
+
+    id     GroupCount    mean_oldScore_mm    std_oldScore_mm
+    ___    __________    ________________    _______________
+
+    "B"        3             0.55235              0.02748   
+    "E"        3             0.62318            0.0071338   
+
+CAMPAIGN COMPLETE; external evaluation can now begin.

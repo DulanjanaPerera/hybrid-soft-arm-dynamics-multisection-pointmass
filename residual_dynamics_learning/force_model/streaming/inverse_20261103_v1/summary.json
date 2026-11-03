@@ -1,0 +1,1 @@
+{"cases":128,"knownFeasible":128,"forceErrorMedian_N":1.3730562660270436E-8,"forceErrorMax_N":4.7431078778281066E-5,"maxBoundViolation_bar":2.2204460492503131E-16,"latencyMedian_ms":5.1898,"latencyP95_ms":13.926679999999992,"fractionOver50ms":0.015625,"statePurityPass":true}

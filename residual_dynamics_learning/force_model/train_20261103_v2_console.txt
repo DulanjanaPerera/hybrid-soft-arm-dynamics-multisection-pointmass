@@ -1,0 +1,12 @@
+Force GRU epoch 1/18: training loss 0.56434, old-day selection 4.6634 mm, 11.9s.
+Force GRU epoch 2/18: training loss 0.40874, old-day selection 4.1813 mm, 10.5s.
+Force GRU epoch 3/18: training loss 1.2462, old-day selection 7.4715 mm, 10.4s.
+Force GRU epoch 4/18: training loss 0.29545, old-day selection 4.2537 mm, 10.4s.
+Force GRU epoch 5/18: training loss 0.21877, old-day selection 3.0332 mm, 10.4s.
+Force GRU epoch 6/18: training loss 0.40656, old-day selection 6.0009 mm, 10.3s.
+Force GRU epoch 7/18: training loss 0.50743, old-day selection 4.1708 mm, 10.3s.
+Force GRU epoch 8/18: training loss 5.9534, old-day selection 26.9455 mm, 10.5s.
+Force GRU epoch 9/18: training loss 20.23, old-day selection 33.7653 mm, 10.9s.
+Force GRU epoch 10/18: training loss 19.097, old-day selection 25.6266 mm, 10.9s.
+Stopping: five epochs without old-day selection improvement.
+FROZEN: selected epoch 5, 3.0332 mm old-day selection; new data never loaded.

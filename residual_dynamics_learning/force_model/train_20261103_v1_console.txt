@@ -1,0 +1,7 @@
+{Error using assert
+Assertion failed.
+
+Error in trainForceResidualModel (line 35)
+            v=extractdata(g.(f{1}));assert(all(isfinite(v),'all'));normSquared=normSquared+sum(v.^2,'all');
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 

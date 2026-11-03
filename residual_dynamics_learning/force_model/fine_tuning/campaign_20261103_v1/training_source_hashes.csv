@@ -1,0 +1,24 @@
+source,sha256
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\fine_tuning\ftAssess.m,0c8bba983401cbf97cd4fa1974d6c204e3d777f846069cc1ce66dc3cdcbd5f20
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\fine_tuning\ftCheck.m,aaeaf36e645389a34d4fbd3ce57f636377c405efc525565a3ff1a2dd21b464b3
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\fine_tuning\ftConfig.m,49d7d957567bdfd6140833e29e2e201eada763fe8e90cbce33f5180378005044
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\fine_tuning\ftPrepare.m,712b5336260da73ecaa077915f6ed591dc38f855febf0e0e4ac9c06e061607b5
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\fine_tuning\ftRun.m,17625d4902bd26a26769178b6c0d65d7e2daa23a3b3f096f4e99d900bd2efeca
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\fine_tuning\ftTrain.m,acdf7ffd4390c35e11043417c4af7cdc7eabcb5cf33a74df71ff4867edcc8959
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgAssess.m,a70690ccb8e5b7132f05abd5530422169ffb02f6e0ae3df0493d4b0dd3fc8bad
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgStates.m,9f88c71ae2b864be59ea7196d6f81055629441ec00845e69ca943780c7a4df8c
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgWarm.m,97d03ff881103b6ddd21bbf0a28091dfa82a0fe78f97d8644071b8a16e86927a
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgBatch.m,48c6a92ade6e084d5006dc4067f010457dba212faa385e1535d5b20d7d692d39
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgLoss.m,d46263b7b25cec0b22cc36b625b5f5bcd2ed954295ba0ed279114b3a628aeadf
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgFree.m,6897a8f743b6ad068b84d6cac48025c3bc7a06263392495b1dbec1e41215157d
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgFlow.m,39e5902e8c4c9b924bbbfcccb2acc4c116597ed792baf4b2350d04bb2c65b8ed
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgZero.m,a4ed18306553de5efab1a0c51f3030b3cfa0518b846201beef6b4ee7a38c186f
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgPlain.m,22bda25cc2cd82a885576bae7c4d5f5a6286c7dc0d082be95b9ea3cf4bc0a531
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgHash.m,09cbfbe875ccb60c8742ca53945b8d0db1c798942f1ac37620c3d00bb0711dd8
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgRead.m,65710bd106000ea0b9b707c6b360cf597a0e1c18c025be03dc1d42200b287254
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\sgCell.m,3b6d3d60a80a0797e1a859b782e29bd5b45909e15a44373f36211f7089f7b9fa
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\forceResidualStep.m,ef5e925d0d273db76a969fbfd0bbe11e4e67c124b218974323097815fd443dfc
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\forceResidualTrainStep.m,6ea031d1d5cde1e1c22f69a1282e856ad33fa2612ee2b69e352faf425ee9747b
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\forceResidualPhysics.m,ef3cf36c3a397c6dc1a32c719b199c5d3f4b5214c63290da4bdd5b2674f93313
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\streaming\release_20261103_v1\force_model.mat,8150352dd47230a2a4094b240e1e886b641b8c22ebad0cbfe300f63e9f526c6a
+C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\force_model\fine_tuning\campaign_20261103_v1\data\data.mat,409925b752ed7bd873179dccfe591f8bdb87fd8b0bdb47d38965e809442b9e42

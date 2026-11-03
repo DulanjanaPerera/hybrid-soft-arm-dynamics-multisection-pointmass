@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-02",
+  "branch": "codex/residual-dynamics-learning",
+  "preparedDataset": "residual_dynamics_learning/datasets/two_day_v2",
+  "preparationSHA256": "77A49B3140728EC2DEE5CC2B316600DBA1E1DE86896C429B3E5CD9C58BF16774",
+  "fittingCohort": "2026-10-19",
+  "validationCohort": "2026-10-19 whole trials disjoint from fitting",
+  "october27Loaded": false,
+  "hardwareRun": false,
+  "simulinkChanged": false
+}

@@ -1,0 +1,25 @@
+Exported StepWave
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\validations\fresh_20261102_v2\raw_export_verification\StepWave
+  11001 sensor rows, 10989 valid orientation rows.
+Exported SineWave4
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\validations\fresh_20261102_v2\raw_export_verification\SineWave4
+  12721 sensor rows, 12711 valid orientation rows.
+Exported combinePressure
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\validations\fresh_20261102_v2\raw_export_verification\combinePressure
+  6841 sensor rows, 6828 valid orientation rows.
+Exported circleSweep
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\validations\fresh_20261102_v2\raw_export_verification\circleSweep
+  12501 sensor rows, 12491 valid orientation rows.
+Exported helix
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\residual_dynamics_learning\validations\fresh_20261102_v2\raw_export_verification\helix
+  10601 sensor rows, 10590 valid orientation rows.
+          runId          rawExportIdentical        recordedModel         recordedModelVersion    maxAbsL1_m    maxAbsL2_m    maxAbsL3_m
+    _________________    __________________    ______________________    ____________________    __________    __________    __________
+
+    "StepWave"                 true            "RL_dataCollection_v2"           "1.46"            0.025422      0.025315      0.032732 
+    "SineWave4"                true            "RL_dataCollection_v2"           "1.47"            0.025057       0.02472      0.032168 
+    "combinePressure"          true            "RL_dataCollection_v2"           "1.46"           0.0081264     0.0068462      0.011794 
+    "circleSweep"              true            "RL_dataCollection_v2"           "1.47"           0.0098675     0.0091215      0.014035 
+    "helix"                    true            "RL_dataCollection_v2"           "1.47"            0.010028     0.0089585      0.013997 
+
+PASS: all five supplied exports exactly reproduce observations, commands and model predictions from their current raw MAT; phase scores and 180 deterministic rollout windows retained.

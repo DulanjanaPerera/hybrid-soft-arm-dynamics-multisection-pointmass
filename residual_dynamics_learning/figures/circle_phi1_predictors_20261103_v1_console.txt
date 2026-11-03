@@ -1,0 +1,12 @@
+Circle prediction Nominal model: complete=1
+Circle prediction Constant velocity: complete=1
+Circle prediction Nominal + ridge: complete=1
+Circle prediction Kinematic + ridge: complete=1
+Circle prediction Nominal + GRU: complete=1
+{Error using table (line 57)
+All table variables must have the same number of rows.
+
+Error in plotResidualCirclePredictors (line 89)
+    series=[series;table(repmat(string(labels{m}),N,1),actual,relativeTime,elapsed, ...
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 

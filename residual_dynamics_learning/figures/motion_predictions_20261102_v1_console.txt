@@ -1,0 +1,55 @@
+WINDOW circleSweep channel0: 259.00-279.00s, 0 missing truth rows; complete GRU/nominal/CV [true true true].
+WINDOW SineWave4 channel1: 41.30-72.75s, 0 missing truth rows; complete GRU/nominal/CV [true true true].
+WINDOW SineWave4 channel2: 215.10-246.55s, 0 missing truth rows; complete GRU/nominal/CV [true true true].
+WINDOW SineWave4 channel3: 423.60-455.05s, 3 missing truth rows; complete GRU/nominal/CV [true true true].
+WINDOW helix channel0: 6.60-124.95s, 3 missing truth rows; complete GRU/nominal/CV [true true true].
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for
+better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message
+again.] 
+[Warning: Vectorized content might take a long time to create, or it might contain unexpected results. Set 'ContentType' to 'image' for
+better performance. <a href="matlab:warning('off', 'MATLAB:print:ContentTypeImageSuggested')">Click here</a> to not see this message
+again.] 
+        runId        channel    trial    firstRow    lastRow    startSim_s    endSim_s    durationPhysical_s    missingMeasuredRows                                   selection                                
+    _____________    _______    _____    ________    _______    __________    ________    __________________    ___________________    ________________________________________________________________________
+
+    "circleSweep"       0         3        5181       5581          259           279           20.232                   0             "first eligible full circle at requested phi1"                          
+    "SineWave4"         1         1         827       1456         41.3         72.75           31.879                   0             "first eligible one-period sine window for channel"                     
+    "SineWave4"         2         3        4303       4932        215.1        246.55           31.859                   0             "first eligible one-period sine window for channel"                     
+    "SineWave4"         3         5        8473       9102        423.6        455.05           31.848                   3             "first eligible one-period sine window for channel"                     
+    "helix"             0         1         133       2500          6.6        124.95           119.85                   3             "first eligible loading+unloading helix remainder after observed warmup"
+
+        runId        channel     mode          predictor         completedWindow    scoredSamples    windowSamples    lengthVectorRMSE_mm    l2RMSE_mm    l3RMSE_mm    phiMAE_rad    observableThetaMAE_rad
+    _____________    _______    ______    ___________________    _______________    _____________    _____________    ___________________    _________    _________    __________    ______________________
+
+    "circleSweep"       0       "free"    "force_gru64"               true               401              401                 0.944           0.55488      0.76371      0.039986              0.2096       
+    "circleSweep"       0       "free"    "nominal"                   true               401              401                11.481             8.136       8.1011       0.85535             0.55242       
+    "circleSweep"       0       "free"    "constant_velocity"         true               401              401                 2.253            1.4819        1.697       0.04652              1.4049       
+    "circleSweep"       0       "one"     "force_gru64"               true               401              401               0.31265           0.23984      0.20057      0.010725             0.13534       
+    "circleSweep"       0       "one"     "nominal"                   true               401              401                7.1616            5.0424       5.0856        0.5846              0.5429       
+    "circleSweep"       0       "one"     "constant_velocity"         true               401              401              0.045382          0.031123     0.033029      0.001266           0.0091796       
+    "SineWave4"         1       "free"    "force_gru64"               true               630              630                2.3355            1.2059       2.0001       0.13751             0.69466       
+    "SineWave4"         1       "free"    "nominal"                   true               630              630                6.0698            2.7493       5.4115       0.50842             0.15475       
+    "SineWave4"         1       "free"    "constant_velocity"         true               630              630                9.4811            7.4914       5.8113       0.79596             0.30397       
+    "SineWave4"         1       "one"     "force_gru64"               true               629              630               0.91334           0.70904      0.57573      0.073765             0.07574       
+    "SineWave4"         1       "one"     "nominal"                   true               629              630                5.3782             2.882       4.5407       0.46739              0.1107       
+    "SineWave4"         1       "one"     "constant_velocity"         true               629              630               0.12039          0.077904     0.091792     0.0029632           0.0045454       
+    "SineWave4"         2       "free"    "force_gru64"               true               630              630                1.7784            1.2537       1.2613      0.082514             0.27543       
+    "SineWave4"         2       "free"    "nominal"                   true               630              630                9.6563            9.1939       2.9524       0.57018             0.49885       
+    "SineWave4"         2       "free"    "constant_velocity"         true               630              630                 17.48            14.711       9.4423        0.7657               2.362       
+    "SineWave4"         2       "one"     "force_gru64"               true               629              630               0.48634           0.39164      0.28835      0.026816            0.080897       
+    "SineWave4"         2       "one"     "nominal"                   true               629              630                6.7643            6.7013      0.92096       0.41021             0.55322       
+    "SineWave4"         2       "one"     "constant_velocity"         true               629              630               0.09491          0.065705     0.068489     0.0023804           0.0042461       
+    "SineWave4"         3       "free"    "force_gru64"               true               627              630                1.7958             1.152       1.3776      0.089329             0.30031       
+    "SineWave4"         3       "free"    "nominal"                   true               627              630                7.5594            4.5728       6.0195        0.3184              0.4559       
+    "SineWave4"         3       "free"    "constant_velocity"         true               627              630                21.731            8.4697       20.013        1.0157              2.0437       
+    "SineWave4"         3       "one"     "force_gru64"               true               517              630                1.1055           0.72555      0.83414      0.055939            0.082034       
+    "SineWave4"         3       "one"     "nominal"                   true               517              630                4.1179            2.4852       3.2835       0.17497             0.39216       
+    "SineWave4"         3       "one"     "constant_velocity"         true               517              630              0.058044          0.027437      0.05115     0.0022878           0.0024517       
+    "helix"             0       "free"    "force_gru64"               true              2365             2368               0.76268           0.53816      0.54043      0.034329             0.36617       
+    "helix"             0       "free"    "nominal"                   true              2365             2368                8.9723            6.4151       6.2729       0.52766             0.97565       
+    "helix"             0       "free"    "constant_velocity"         true              2365             2368                4.7396            2.8715       3.7707       0.20672              1.1809       
+    "helix"             0       "one"     "force_gru64"               true              2247             2368               0.30934           0.22848      0.20854      0.014419             0.17834       
+    "helix"             0       "one"     "nominal"                   true              2247             2368                5.6709            4.0008       4.0191         0.345             0.91483       
+    "helix"             0       "one"     "constant_velocity"         true              2247             2368              0.057432          0.040895     0.040324     0.0014757           0.0059971       
+
+PASS: first free steps reproduce frozen predictions; source/model unchanged; missing truth unfilled.

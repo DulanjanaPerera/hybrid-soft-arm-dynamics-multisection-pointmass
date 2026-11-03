@@ -1,0 +1,6 @@
+    oldTrainingNormalizerRows    trainedProbeLoss    autodiff    finiteDifference    relativeGradientError
+    _________________________    ________________    ________    ________________    _____________________
+
+              59630                  0.02577         0.096231        0.096231             2.9785e-08      
+
+PASS: whole-trial isolation, exact old-TRAIN-only normalization, trained nonzero-network gradient and target-free propagation.
