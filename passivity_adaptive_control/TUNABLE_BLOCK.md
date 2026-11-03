@@ -1,5 +1,14 @@
 # Tunable PAC with switchable common pressure
 
+2026-11-02 source correction: external pacAdaptiveForce/pacFixedController now
+use armS_single_boundForce for equal soft bounds on l1=-l2-l3,l2,l3. The bound
+remains+-0.035m; gains, adaptation and pressure settings are unchanged. This
+adds the missing l1 generalized-force contribution. No SLX edited/run; rebuild
+manually for a fresh test. See RL_data_collection/ACTUATOR_BOUND_CORRECTION.md
+and the actuator_bounds_20261102_v1 numerical verification report. Historical
+reports/weights retain their original nominal-model version; no new hardware
+qualification or compiled-model success is claimed.
+
 Use **pacAdaptiveTunableBlock.m** in a duplicate MATLAB Function block/model.
 The existing pacAdaptiveCommonPressureBlock and its ports remain usable.
 No SLX file was edited. Set the new block explicitly to discrete **0.05 s**.

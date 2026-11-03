@@ -26,11 +26,7 @@ T=[-1 -1;1 0;0 1];
 Y(:,1)=[q(1);0];Y(:,2)=[0;q(2)];Y(:,3)=[q(1)+q(2);q(1)+q(2)];
 Y(:,4)=[v(1);0];Y(:,5)=[0;v(2)];
 Y(:,6:8)=T.'*diag(state.z);Y(:,9:10)=eye(2);
-bound=zeros(2,1);
-for i=1:2
- bound(i)=.5*p.lKbounds(3)*(2+tanh(p.mu*(q(i)-p.lKbounds(2)))- ...
-     tanh(p.mu*(q(i)-p.lKbounds(1))))*q(i);
-end
+bound=armS_single_boundForce(q,p.mu,p.lKbounds);
 fi=M*a;fc=C*v;fd=Dh*v;fs=G+Kh*q+bound;ff=-Ks(:).*s;
 fh=Y(:,6:8)*th(6:8);fb=th(9:10);
 tau=fi+fc+fd+fs+ff+fh+fb;valid=all(isfinite(tau));

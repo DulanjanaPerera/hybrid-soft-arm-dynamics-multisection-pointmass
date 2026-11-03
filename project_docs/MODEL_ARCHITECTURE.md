@@ -2,6 +2,9 @@
 
 Current as of 2026-10-06; numeric settings are model-specific.
 
+Bound-force architecture updated2026-11-02 below. Older model-specific numeric
+entries retain their original scope and have not all been re-audited.
+
 ## Physical system and coordinates
 
 One hanging module, stiff backbone, three PMAs spaced around radius 13 mm,
@@ -13,6 +16,13 @@ Signed bend `U=(l2+l3)/r`, `V=(l3-l2)/(sqrt(3)*r)` remains useful near straight
 where bending-plane theta is poorly observable.
 
 ## Measurement subsystem
+
+2026-11-02 current-source update: BaseRotation appends output23 and Position_only
+output20, ndiDiagnostics32x2 double(base,tip). Same-BX raw status/packet fields
+and reader rejection conditions, without changing prior ports/holds/validity.
+Cached getter never polls; CRC received, not checked. See ndi_diagnostics/README.md.
+20261102 collection logs use BaseRotation; earlier model notes below retain
+their dated scope. No SLX port update or hardware run performed here.
 
 `AuroraDriver_2.m` and `PortHandle.m` handle serial acquisition;
 `AuroraReader_s2_Position_only.m` provides Simulink System-block integration;
@@ -49,7 +59,18 @@ do not yet consume these outputs.
 
 `M(q)*ddq + (C(q,dq)+D)*dq + G(q) + Keff(q)*q = tau`.
 
-K is a coupled 2x2 matrix; smooth diagonal penalties bound reduced lengths.
+K is a coupled 2x2 matrix. As of 2026-11-02, current shared source uses
+armS_single_boundForce: identical soft restoring laws on all three actuator
+lengths, mapped into q by J'F with J=[-1 -1;1 0;0 1]. The implied l1=-l2-l3
+must be included. The former diagonal l2/l3-only bound is legacy mode0; the
+corrected default is mode1. Keff above can represent K plus the shared helper's
+force-coefficient matrix, which includes off-diagonal l1 terms and is not the
+tangent stiffness. Current bounds remain +/-35mm.
+
+Apply this convention consistently to PAC and PDI/FB/PDFB model-based variants
+using these coordinates; trace each actual implementation before porting.
+Saved SLX/inline copies are not automatically migrated by changing external
+source. D-12 and OI-10 track this standing reminder and pending integration.
 The common-pressure inverse currently uses K=650*[2 1;1 2], D=40*I,
 gravity [0;0;-9.81], mu=2000, bounds [-0.035;0.035;1e6].
 In the saved `FBL_commonP_circle.slx`, the active V2 inverse hardcodes that

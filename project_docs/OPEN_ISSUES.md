@@ -1,9 +1,74 @@
 # Active unresolved issues
 
+## OI-11 — First force-residual model needs better short-horizon accuracy
+
+- November3 streaming sequence completed: 11 offline fits, old-only selection,
+  all finalists frozen before November2. Single GRU64/.5s wins this budget;
+  two layers do not improve the screen. New macro one-step .563+/- .068mm,
+  .5/1s paths .361/.427mm; CV .062/.114/.332mm remains better through1s.
+  Different update contract from first release; do not credit all gains to width.
+  Model-generated bounded inverse succeeds128/128, but no physical force or
+  tracking validation. Median/p95 latency5.19/13.93ms;2/128 exceed50ms, including
+  cold-start cost. State-commit and source/data/metric checks pass. Retain issue:
+  improve prediction/generalization, obtain fresh confirmation and validate real
+  pressure correction before PAC/PDFB integration. New report/figures/checkpoint:
+  residual_dynamics_learning/force_model/streaming/REPORT.md. Previous release
+  retained; no controller/SLX/hardware changes or post-test tuning.
+- November3 first trained force GRU: force_model/release_20261103_v1 under
+  residual_dynamics_learning. Old October19/27 training and whole-trial selection;
+  November2 evaluation only after freeze, with no post-test refit.
+- Effective two-force output is correctly inside the nonlinear mechanics;
+  integrated lengths are the training target. It improves the poor nominal
+  baseline, but new one-step2.151mm and2s1.837mm remain worse than CV.06235/.8927.
+  Five-second2.127mm improves CV3.406mm. No inverse/PAC/PDFB readiness claim.
+- Investigate initialization/state-velocity consistency, capacity and optimization
+  on older development trials; reasons are not isolated. Preserve November2's
+  evaluation-only role and obtain fresh confirmation for later test-informed work.
+- Residual depends on current pressure/history; inverse use requires solving
+  that dependence and choosing common pressure, not only algebraic subtraction.
+- Pressure is a command proxy, lengths inferred, physical forces unobserved;
+  numerical guards/bounded forces do not prove passivity or control stability.
+- This issue records limitations, not authorization for controller/SLX/hardware
+  changes. Full evidence and reproducible training/evaluation sources retained.
+
 Current as of 2026-10-08. Resolutions belong in the log and relevant results or
 decisions; remove resolved items here. Prior code edits require explicit direction.
 
+2026-11-02: OI-10 adds current controller bound-migration work. Earlier issue
+evidence retains its stated dates and has not all been re-audited.
+
+## OI-10 — Carry three-actuator bounds into other PAC and PDI/FB variants
+
+- Standing request2026-11-02: remember the missing-l1 correction when working
+  on other PAC/PDI/FB controllers; see D-12 in DECISIONS.md.
+- For the same q=[l2;l3],l1=-l2-l3 formulation, align forward, inverse and
+  controller bound forces through armS_single_boundForce/J'F. Keep the current
+  +/-35mm limit unless a separate model-specific change is requested.
+- Updated external helpers are not proof that every saved SLX/inline copy,
+  older PDI/FB/PDFB controller or historical inverse model has been migrated.
+  Audit actual scripts, coordinate conventions and bounds in the model being
+  used. The old Inv_Dyn_val +/-30mm pending item is not implicitly resolved.
+- Collection inverseModel still requires the paste-ready rlInverseModelBlock.m
+  installation. Standalone Coder emitted source but its toolchain step failed;
+  compiled Simulink integration and physical confirmation remain pending.
+- Preserve coordinate-bounds-v1/mode0 datasets/weights/results; declare
+  actuator-bounds-v2/mode1 in new matched comparisons. Do not silently change
+  a frozen residual model's nominal context.
+- Status: open for model-by-model installation/build/validation. This reminder
+  adds documentation only; no further controller/SLX/hardware work performed.
+
 ## OI-01 — Invalid-input pressure discontinuity
+
+2026-11-02 SineWave4: diagnostic logging now observed. All10tip losses are
+rawstatus2=MISSING, no volume/partial/broken/system/overrun flags, currentpaired
+frames. Missing-transform reply is32bytes shorter, consistent with withheld
+pose. Physical field/cable/orientation/motion cause remains open; do not label
+generic MISSING as a unique hardware diagnosis. No validity relaxation needed.
+
+2026-11-02 tip-loss diagnosis: passive same-BX NDI status output implemented/
+offline tested (ndi_diagnostics/README.md). New operator logging is needed to
+distinguish actual device/host rejection in channel3. Physical tracking cause
+remains open; old recordings lack the raw bits. Hold/fault/pressure logic unchanged.
 
 - Evidence: feedback recording at 14.40 s, one invalid 0.05 s NDI pair;
   approximately 1.666 bar to zero immediately, about 33.3 bar/s.

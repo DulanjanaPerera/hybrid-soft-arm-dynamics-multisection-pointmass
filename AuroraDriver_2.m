@@ -46,14 +46,27 @@ classdef AuroraDriver_2 < handle
         selected_command_format;
         device_init;
         tracking_started = false;
+        bx_reply_counter = 0;
+        bx_start_sequence = NaN;
+        bx_reply_length = NaN;
+        bx_header_crc = NaN;
+        bx_system_status = NaN;
+        bx_body_crc = NaN;
+        bx_read_complete = false;
     end
 
     methods (Access = public)
-        function obj = AuroraDriver_2(serial_port)
-            obj.serial_port = serial(serial_port);     % legacy serial object
-            obj.serial_port.Terminator = 'CR';
-            set(obj.serial_port,'Timeout',2);          % ADDED
-            set(obj.serial_port,'FlowControl','none'); % ADDED
+        function obj = AuroraDriver_2(serial_port, transport)
+            if nargin<2
+                obj.serial_port = serial(serial_port); % Existing live transport.
+                obj.serial_port.Terminator = 'CR';
+                set(obj.serial_port,'Timeout',2);
+                set(obj.serial_port,'FlowControl','none');
+            else
+                % Inject an fread/fprintf-compatible transport for offline tests.
+                % Initialization is still required; this does not open a port.
+                obj.serial_port = transport;
+            end
             obj.n_port_handles = 0;
             obj.selected_command_format = obj.COMMAND_FORMAT_2;
             obj.device_init = 0;
@@ -231,16 +244,19 @@ classdef AuroraDriver_2 < handle
         function updateSensorDataAll(obj)
             if obj.device_init == 1
                 obj.sendCommand(sprintf('BX %s', obj.READ_OUT_OF_VOLUME_ALLOWED));
+                obj.bx_reply_counter = obj.bx_reply_counter+1;
+                obj.bx_start_sequence = NaN; obj.bx_reply_length = NaN;
+                obj.bx_header_crc = NaN; obj.bx_system_status = NaN;
+                obj.bx_body_crc = NaN; obj.bx_read_complete = false;
 
                 % A handle omitted from this reply must not retain old data.
                 for i_port_handle = 1:obj.n_port_handles
-                    obj.port_handles(1,i_port_handle).updateSensorStatus( ...
-                        obj.SENSOR_STATUS_MISSING);
+                    obj.port_handles(1,i_port_handle).beginReply();
                 end
 
-                start_sequence = obj.readScalar('uint16'); %#ok<NASGU>
-                reply_length   = obj.readScalar('uint16'); %#ok<NASGU>
-                header_CRC     = obj.readScalar('uint16'); %#ok<NASGU>
+                obj.bx_start_sequence = obj.readScalar('uint16');
+                obj.bx_reply_length = obj.readScalar('uint16');
+                obj.bx_header_crc = obj.readScalar('uint16');
 
                 num_handle_reads = obj.readScalar('uint8');
 
@@ -257,6 +273,7 @@ classdef AuroraDriver_2 < handle
                     end
                     if handle_index > 0
                         obj.port_handles(1,handle_index).updateSensorStatus(sensor_status);
+                        obj.port_handles(1,handle_index).markPresentInReply();
                     end
 
                     if strcmp(sensor_status, obj.SENSOR_STATUS_DISABLED) == 0
@@ -291,8 +308,9 @@ classdef AuroraDriver_2 < handle
                     end
                 end
 
-                system_status = obj.readScalar('uint16'); %#ok<NASGU>
-                crc           = obj.readScalar('uint16'); %#ok<NASGU>
+                obj.bx_system_status = obj.readScalar('uint16');
+                obj.bx_body_crc = obj.readScalar('uint16');
+                obj.bx_read_complete = true;
             end
         end
 
@@ -328,7 +346,7 @@ classdef AuroraDriver_2 < handle
             frame = handle.frame_number;
         end
 
-        function [x, y, z, error_val, valid, frame, quaternion] = measureTipPositionAll(obj, sensorIds)
+        function [x, y, z, error_val, valid, frame, quaternion, diagnostics] = measureTipPositionAll(obj, sensorIds)
             obj.updateSensorDataAll();
             if obj.n_port_handles < 2
                 error('AuroraDriver_2:TwoSensorsRequired', ...
@@ -353,6 +371,14 @@ classdef AuroraDriver_2 < handle
             % Same BX reply as XYZ; scalar-first [q0;qx;qy;qz] per sensor.
             quaternion = [handle1.rot(:), handle2.rot(:)];
             quaternion(:,~valid) = NaN;
+            if nargout>=8, diagnostics=obj.cachedDiagnostics(indices); end
+        end
+
+        function diagnostics = getLastDiagnostics(obj, sensorIds)
+            % Cached SAME-reply data only. Never send another BX here.
+            indices=[1 2];
+            if nargin>1,indices=obj.sensorIndices(sensorIds);end
+            diagnostics=obj.cachedDiagnostics(indices);
         end
 
         function indices = sensorIndices(obj, sensorIds)
@@ -485,6 +511,40 @@ classdef AuroraDriver_2 < handle
     end
 
     methods (Access = private)
+        function diagnostics=cachedDiagnostics(obj,indices)
+            % Schema1 is documented by ndiDiagnosticsSchema. Rows17:23 and
+            % 31:32 are finalized by the reader, after its existing gates.
+            diagnostics=nan(32,2);
+            diagnostics(1,:)=1;diagnostics(3,:)=obj.bx_reply_counter;
+            diagnostics(24,:)=obj.bx_system_status;
+            diagnostics(25,:)=0; % CRC bytes captured, never claim verified CRC.
+            diagnostics(26,:)=obj.bx_start_sequence;
+            diagnostics(27,:)=obj.bx_reply_length;
+            diagnostics(28,:)=obj.bx_header_crc;
+            diagnostics(29,:)=obj.bx_body_crc;
+            diagnostics(30,:)=double(obj.bx_read_complete);
+            for j=1:2
+                h=obj.port_handles(indices(j));
+                diagnostics(2,j)=hex2dec(h.id);
+                diagnostics(4,j)=double(h.present_in_reply);
+                if h.present_in_reply,diagnostics(5,j)=hex2dec(h.sensor_status);end
+                diagnostics(6,j)=h.raw_status_word;
+                diagnostics(7,j)=double(h.status_word_available);
+                if h.status_word_available
+                    diagnostics(8:10,j)=[h.out_of_volume;h.partial_out_of_volume;h.sensor_broken];
+                end
+                diagnostics(11,j)=double(all(isfinite(h.trans)));
+                if all(isfinite(h.rot))
+                    diagnostics(12,j)=norm(h.rot);
+                end
+                diagnostics(13,j)=double(isfinite(diagnostics(12,j))&& ...
+                    abs(diagnostics(12,j)-1)<=.02);
+                diagnostics(14,j)=double(h.hasUsablePosition());
+                diagnostics(15,j)=h.frame_number;
+                diagnostics(16,j)=h.error;
+            end
+        end
+
         function requireOkay(~, reply, command)
             if ~startsWith(reply,'OKAY')
                 error('NDI:CommandFailed','%s failed: %s',command,reply);

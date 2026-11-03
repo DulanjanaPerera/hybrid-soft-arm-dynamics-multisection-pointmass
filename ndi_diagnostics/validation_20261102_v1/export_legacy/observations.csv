@@ -1,0 +1,4 @@
+time_sim_s,sensor_frame_1,sensor_frame_2,orientation_valid,theta_observable,theta_measured_rad,phi_measured_rad,p1_command_bar,p1_command_bar_last_log_age_sim_s,p2_command_bar,p2_command_bar_last_log_age_sim_s,p3_command_bar,p3_command_bar_last_log_age_sim_s,fresh_sensor_frame,phi_valid,theta_valid,theta_wrapped_rad,dynamics_observation_valid,transition_from_previous_valid
+0,101,101,1,1,0,0.2,0.5,0,0.5,0,0.5,0,1,1,1,0,1,0
+0.05,102,102,1,1,0,0.2,0.5,0,0.5,0,0.5,0,1,1,1,0,1,0
+0.1,103,103,1,1,0,0.2,0.5,0,0.5,0,0.5,0,1,1,1,0,1,0

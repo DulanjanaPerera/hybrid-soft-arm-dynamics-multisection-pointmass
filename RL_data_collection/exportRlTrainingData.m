@@ -78,6 +78,26 @@ put({'frame'},'MATLAB System','sensor_frame','count','raw sensor frame',false);
 put({'valid','sensorValid'},'MATLAB System','sensor_valid','bool','raw sensor validity',false);
 put({'overrun'},'MATLAB System','sensor_overrun','bool','acquisition timing flag',false);
 put({'orientationValid'},'MATLAB System','orientation_valid','bool','orientation validity',true);
+diagnosticIndex=pick({'ndiDiagnostics'},'MATLAB System',false);
+if ~isempty(diagnosticIndex)
+    [diagnosticValues,~,~]=align(items{diagnosticIndex},t);
+    assert(size(diagnosticValues,2)==64,'ndiDiagnostics must be schema1,32x2.');
+    version=diagnosticValues(:,[1 33]);version=version(isfinite(version));
+    assert(all(version==1),'Unsupported NDI diagnostic schema.');
+    [diagnosticFields,rejectionReasons]=ndiDiagnosticsSchema();
+    sensors={'base','tip'};
+    for sensor=1:2
+        for row=1:height(diagnosticFields)
+            column=['ndi_' sensors{sensor} '_' diagnosticFields.field{row}];
+            O.(column)=diagnosticValues(:,row+32*(sensor-1));
+            note=sprintf('Schema1 row%d, %s sensor. %s',row,sensors{sensor},diagnosticFields.notes{row});
+            add(column,diagnosticIndex,diagnosticFields.units{row}, ...
+                'passive same-BX diagnostic; no acceptance override',note);
+        end
+    end
+    writetable(diagnosticFields,fullfile(folder,'ndi_diagnostic_fields.csv'));
+    writetable(rejectionReasons,fullfile(folder,'ndi_rejection_reasons.csv'));
+end
 put({'thetaObservable'},'MATLAB System','theta_observable','bool','direction observability',true);
 put({'baseOreintationValid','baseOrientationValid'},'MATLAB System','base_orientation_valid','bool','base validity',false);
 put({'thetaOrientation'},'MATLAB System','theta_measured_rad','rad','measured orientation-derived angle',true);
@@ -235,6 +255,7 @@ quality=struct('observation_rows',numel(t),'start_sim_s',t(1),'end_sim_s',t(end)
     'fresh_frame_rows',nnz(fresh),'phi_valid_rows',nnz(phiGood),'theta_valid_rows',nnz(thetaGood), ...
     'dynamics_valid_rows',nnz(O.dynamics_observation_valid),'pressure_min_bar',min(C{:,2:2:6},[],1,'omitnan'), ...
     'pressure_max_bar',max(C{:,2:2:6},[],1,'omitnan'));
+quality.ndi_diagnostics_logged=~isempty(diagnosticIndex);
 if ismember('sensor_host_s',O.Properties.VariableNames)
     dh=diff(O.sensor_host_s);quality.host_elapsed_s=O.sensor_host_s(end)-O.sensor_host_s(1);
     quality.median_dt_host_s=median(dh,'omitnan');quality.max_dt_host_s=max(dh);

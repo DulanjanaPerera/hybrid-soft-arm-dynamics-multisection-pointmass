@@ -6,9 +6,9 @@ channelSelection=0;
 peakLevels_bar=[1.0 2.0 3.0];
 repeats=2;
 initialZero_s=5.0;
-rise_s=5.0;
+rise_s=3.0;
 hold_s=10.0;
-fall_s=5.0;
+fall_s=3.0;
 relax_s=10.0;
 % phase: -1 invalid time, 0 initial zero, 1 rise, 2 hold, 3 fall,
 % 4 zero relaxation, 9 complete. No deadzone subtraction.

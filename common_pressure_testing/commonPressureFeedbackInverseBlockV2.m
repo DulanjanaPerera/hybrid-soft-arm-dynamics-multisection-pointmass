@@ -67,16 +67,11 @@ if inputValid && ~faultLatched
     params.mu = 2000;
     params.lKbounds = [-0.035;0.035;1e6];
     [M,C,G] = armS_single_core(q,dq,params);
-    Keff = params.K;
-    for i = 1:2
-        Keff(i,i) = Keff(i,i) + 0.5*params.lKbounds(3)*(2 + ...
-            tanh(params.mu*(q(i)-params.lKbounds(2))) - ...
-            tanh(params.mu*(q(i)-params.lKbounds(1))));
-    end
+    bound = armS_single_boundForce(q,params.mu,params.lKbounds);
 
     MassForce_N = M*desiredAcceleration;
     CoriolisForce_N = (C+params.D)*dq;
-    GnStiff_N = G+Keff*q;
+    GnStiff_N = G+params.K*q+bound;
     tauDesired_N = MassForce_N+CoriolisForce_N+GnStiff_N;
     modelValid = all(isfinite(tauDesired_N)) && ...
         all(isfinite(GnStiff_N)) && all(isfinite(MassForce_N)) && ...

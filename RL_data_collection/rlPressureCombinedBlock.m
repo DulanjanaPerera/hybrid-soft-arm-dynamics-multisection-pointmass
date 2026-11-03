@@ -6,7 +6,7 @@ function [pressureRequest_bar,trialId,phaseId,channelId,cycleId,done,testEnd_s] 
 commonPeak_bar=2.0;
 bias_bar=1.5;
 differentialAmplitude_bar=0.5;
-omega_radPerS=0.2;
+omega_radPerS=0.5;
 cyclesPerTrial=2;
 initialZero_s=5.0;
 preloadRise_s=5.0;

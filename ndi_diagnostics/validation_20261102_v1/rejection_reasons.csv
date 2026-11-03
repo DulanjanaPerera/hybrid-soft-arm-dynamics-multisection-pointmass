@@ -1,0 +1,14 @@
+value,condition
+1,handle_absent
+2,sensor_status_not_valid
+4,out_of_volume
+8,partial_out_of_volume
+16,sensor_broken
+32,nonfinite_position
+64,nonfinite_frame
+128,repeated_frame
+256,pair_frame_rejected
+512,invalid_quaternion
+1024,calibration_missing
+2048,orientation_estimator_rejected
+4096,pair_sample_invalid

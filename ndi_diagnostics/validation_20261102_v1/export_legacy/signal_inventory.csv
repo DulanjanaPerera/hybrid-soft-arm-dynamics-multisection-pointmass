@@ -1,0 +1,9 @@
+signal_index,name,block_path,samples,channels,start_sim_s,end_sim_s,median_dt_sim_s,nonincreasing_time_steps,finite_fraction,logged_units,native_csv
+1,phiOrientation,OfflineFixture/NDI Sensor reading/Sensor/MATLAB System,3,1,0,0.1,0.05,0,1,unspecified,
+2,thetaOrientation,OfflineFixture/NDI Sensor reading/Sensor/MATLAB System,3,1,0,0.1,0.05,0,1,unspecified,
+3,orientationValid,OfflineFixture/NDI Sensor reading/Sensor/MATLAB System,3,1,0,0.1,0.05,0,1,unspecified,
+4,thetaObservable,OfflineFixture/NDI Sensor reading/Sensor/MATLAB System,3,1,0,0.1,0.05,0,1,unspecified,
+5,frame,OfflineFixture/NDI Sensor reading/Sensor/MATLAB System,3,2,0,0.1,0.05,0,1,unspecified,
+6,P1_NI_DAQ,OfflineFixture/Pneumatic Valves,3,1,0,0.1,0.05,0,1,unspecified,
+7,P2_NI_DAQ,OfflineFixture/Pneumatic Valves,3,1,0,0.1,0.05,0,1,unspecified,
+8,P3_NI_DAQ,OfflineFixture/Pneumatic Valves,3,1,0,0.1,0.05,0,1,unspecified,

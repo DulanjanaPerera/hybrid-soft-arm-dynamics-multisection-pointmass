@@ -23,15 +23,10 @@ q=measured(1:2); q=q(:); dq=measured(3:4); dq=dq(:);
 qd=desired(1:2); qd=qd(:); dqd=desired(3:4); dqd=dqd(:);
 ddqd=desired(5:6); ddqd=ddqd(:);
 [M,C,G]=armS_single_core(q,dq,params);
-Keff=params.K;
-for i=1:2
-    Keff(i,i)=Keff(i,i)+0.5*params.lKbounds(3)*(2+ ...
-        tanh(params.mu*(q(i)-params.lKbounds(2)))- ...
-        tanh(params.mu*(q(i)-params.lKbounds(1))));
-end
+bound=armS_single_boundForce(q,params.mu,params.lKbounds);
 % Reject an unusable inertia matrix before constructing controller outputs.
 if ~all(isfinite(M(:))) || ~all(isfinite(C(:))) || ...
-        ~all(isfinite(G(:))) || ~all(isfinite(Keff(:))) || ...
+        ~all(isfinite(G(:))) || ~all(isfinite(bound)) || ...
         M(1,1)<=0 || det(M)<=0 || norm(M-M.','fro')>1e-8*max(1,norm(M,'fro'))
     return;
 end
@@ -41,7 +36,7 @@ s=dq-referenceRate;
 inertiaForce=M*referenceAcceleration;
 coriolisForce=C*referenceRate;
 dampingForce=params.D*dq;
-staticForce=G+Keff*q;
+staticForce=G+params.K*q+bound;
 feedbackForce=-dampingGain(:).*s;
 tau=inertiaForce+coriolisForce+dampingForce+staticForce+feedbackForce;
 valid=all(isfinite(tau));

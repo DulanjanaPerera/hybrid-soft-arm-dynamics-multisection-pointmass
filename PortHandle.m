@@ -36,6 +36,10 @@ classdef PortHandle < handle
 
         % Handle Status (source: Aurora_API_Guide page 13)
         sensor_status;
+        % Same-BX provenance. Unknown/omitted status must not look current.
+        present_in_reply = false;
+        raw_status_word = NaN;
+        status_word_available = false;
 
         % Last registered tool data
         trans;
@@ -81,6 +85,8 @@ classdef PortHandle < handle
 
         function updateStatusComplete(obj, status)
             status_value = hex2dec(status);
+            obj.raw_status_word = status_value;
+            obj.status_word_available = true;
             obj.occupied              = bitget(status_value, 1);
             obj.gpio_line1_closed     = bitget(status_value, 2);
             obj.gpio_line2_closed     = bitget(status_value, 3);
@@ -101,6 +107,18 @@ classdef PortHandle < handle
                 obj.error = NaN;
                 obj.frame_number = NaN;
             end
+        end
+
+        function beginReply(obj)
+            % Retain the former missing-transform reset and mark old flags unknown.
+            obj.updateSensorStatus(obj.SENSOR_STATUS_MISSING);
+            obj.present_in_reply = false;
+            obj.raw_status_word = NaN;
+            obj.status_word_available = false;
+        end
+
+        function markPresentInReply(obj)
+            obj.present_in_reply = true;
         end
 
         function valid = hasUsablePosition(obj)

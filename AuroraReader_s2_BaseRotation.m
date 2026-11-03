@@ -5,7 +5,8 @@ classdef AuroraReader_s2_BaseRotation < matlab.System
     % Outputs 20:22 add absolute arm attitude in NDI axes, arm-frame model
     % gravity, and validity of the current base pose. The first 19 outputs
     % retain the AuroraReader_s2_Position_only interface and order.
-    % One BX per step supplies both XYZ and quaternions.
+    % Output23 appends32x2 ndiDiagnostics (base/tip); see ndiDiagnosticsSchema.
+    % One BX per step supplies XYZ, quaternions and passive diagnostics.
     properties (Nontunable)
         Port = 'COM12'
         BaudRate = 921600
@@ -122,15 +123,16 @@ classdef AuroraReader_s2_BaseRotation < matlab.System
         function [x1,y1,z1,e1,x2,y2,z2,e2,valid,frame,hostTime,overrun,pollStart, ...
                 thetaOrientation,phiOrientation,lengthChange_m,orientationValid, ...
                 thetaObservable,nonBendingRotation_rad,R_NDI_from_arm, ...
-                gravity_arm,baseOrientationValid] = stepImpl(obj)
+                gravity_arm,baseOrientationValid,ndiDiagnostics] = stepImpl(obj)
             % Pace physical polls, not just simulated time. Never burst to catch up.
             if isempty(obj.clockStart), obj.clockStart=tic; end
             remaining = obj.nextPoll-toc(obj.clockStart);
             if remaining > 0, pause(remaining); end
             pollStart = toc(obj.clockStart);
-            [x,y,z,ep,valid,frame,quaternion] = obj.aurora.measureTipPositionAll( ...
+            [x,y,z,ep,valid,frame,quaternion,rawDiagnostics] = obj.aurora.measureTipPositionAll( ...
                 {obj.BaseSensorId,obj.TipSensorId});
             hostTime = toc(obj.clockStart);
+            previousFrame=obj.previousFrame;
             [p,valid] = ndiSupportFnc.validSample( ...
                 [x;y;z],valid,frame,obj.previousFrame);
             obj.previousFrame = frame;
@@ -145,6 +147,8 @@ classdef AuroraReader_s2_BaseRotation < matlab.System
             lengthChange_m = obj.lastLengthChange_m;
             orientationValid = false; thetaObservable = false;
             nonBendingRotation_rad = obj.lastNonBendingRotation_rad;
+            ndiDiagnostics=ndiFinalizeDiagnostics(rawDiagnostics,frame,previousFrame, ...
+                valid,~isempty(obj.calibration),false,pollStart,hostTime);
             R_NDI_from_arm = obj.lastR_NDI_from_arm;
             gravity_arm = obj.lastGravity_arm;
             baseOrientationValid = false;
@@ -177,6 +181,8 @@ classdef AuroraReader_s2_BaseRotation < matlab.System
             nonBendingRotation_rad = est.nonBendingRotation_rad;
             obj.lastNonBendingRotation_rad = nonBendingRotation_rad;
             obj.thetaPrior = est.theta;
+            ndiDiagnostics=ndiFinalizeDiagnostics(rawDiagnostics,frame,previousFrame, ...
+                valid,true,orientationValid,pollStart,hostTime);
         end
         function releaseImpl(obj)
             if ~isempty(obj.aurora)
@@ -188,40 +194,44 @@ classdef AuroraReader_s2_BaseRotation < matlab.System
             sts = createSampleTime(obj,'Type','Discrete','SampleTime',obj.SamplePeriod);
         end
         function [o1,o2,o3,o4,o5,o6,o7,o8,o9,o10,o11,o12,o13, ...
-                o14,o15,o16,o17,o18,o19,o20,o21,o22] = getOutputSizeImpl(~)
+                o14,o15,o16,o17,o18,o19,o20,o21,o22,o23] = getOutputSizeImpl(~)
             o1=[1 1]; o2=[1 1]; o3=[1 1]; o4=[1 1];
             o5=[1 1]; o6=[1 1]; o7=[1 1]; o8=[1 1];
             o9=[1 2]; o10=[1 2]; o11=[1 1]; o12=[1 1]; o13=[1 1];
             o14=[1 1]; o15=[1 1]; o16=[3 1];
             o17=[1 1]; o18=[1 1]; o19=[1 1];
             o20=[3 3]; o21=[3 1]; o22=[1 1];
+            o23=[32 2];
         end
         function [o1,o2,o3,o4,o5,o6,o7,o8,o9,o10,o11,o12,o13, ...
-                o14,o15,o16,o17,o18,o19,o20,o21,o22] = getOutputDataTypeImpl(~)
+                o14,o15,o16,o17,o18,o19,o20,o21,o22,o23] = getOutputDataTypeImpl(~)
             o1='double'; o2='double'; o3='double'; o4='double';
             o5='double'; o6='double'; o7='double'; o8='double';
             o9='logical'; o10='double'; o11='double'; o12='logical'; o13='double';
             o14='double'; o15='double'; o16='double';
             o17='logical'; o18='logical'; o19='double';
             o20='double'; o21='double'; o22='logical';
+            o23='double';
         end
         function [o1,o2,o3,o4,o5,o6,o7,o8,o9,o10,o11,o12,o13, ...
-                o14,o15,o16,o17,o18,o19,o20,o21,o22] = isOutputComplexImpl(~)
+                o14,o15,o16,o17,o18,o19,o20,o21,o22,o23] = isOutputComplexImpl(~)
             o1=false; o2=false; o3=false; o4=false;
             o5=false; o6=false; o7=false; o8=false;
             o9=false; o10=false; o11=false; o12=false; o13=false;
             o14=false; o15=false; o16=false;
             o17=false; o18=false; o19=false;
             o20=false; o21=false; o22=false;
+            o23=false;
         end
         function [o1,o2,o3,o4,o5,o6,o7,o8,o9,o10,o11,o12,o13, ...
-                o14,o15,o16,o17,o18,o19,o20,o21,o22] = isOutputFixedSizeImpl(~)
+                o14,o15,o16,o17,o18,o19,o20,o21,o22,o23] = isOutputFixedSizeImpl(~)
             o1=true; o2=true; o3=true; o4=true;
             o5=true; o6=true; o7=true; o8=true;
             o9=true; o10=true; o11=true; o12=true; o13=true;
             o14=true; o15=true; o16=true;
             o17=true; o18=true; o19=true;
             o20=true; o21=true; o22=true;
+            o23=true;
         end
     end
 end

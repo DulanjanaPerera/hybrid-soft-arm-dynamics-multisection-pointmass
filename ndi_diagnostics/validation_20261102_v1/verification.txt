@@ -1,0 +1,13 @@
+Exported synthetic_legacy
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\ndi_diagnostics\validation_20261102_v1\export_legacy
+  3 sensor rows, 3 valid orientation rows.
+Exported synthetic_diagnostics
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\ndi_diagnostics\validation_20261102_v1\export_diagnostics
+  3 sensor rows, 3 valid orientation rows.
+PASS:32x2 matrix ordering, named base/tip columns and legacy export unchanged.
+PASS:32 reader replay cases, legacy outputs, same-BX status, incomplete/recovery and named export. No hardware/model run.
+PASS: named rejection decoder and unknown reader-stage handling.
+Exported SineWave3
+  C:\Users\dperera\OneDrive - Texas A&M University\Lab\Research\fDyn_ExpCom\hyDyn_Ctrl\ndi_diagnostics\validation_20261102_v1\legacy_recording_export
+  12721 sensor rows, 12707 valid orientation rows.
+PASS: actual legacy SineWave3 observations unchanged with updated exporter.

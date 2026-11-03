@@ -2,8 +2,8 @@ function [theta,phi,trialId,phaseId,cycleId,direction,done,testEnd_s] = rlCircle
 %#codegen
 % Requested ANGLES, not pressures or measured arm motion.
 % Five phi levels, five circles each, no pauses between revolutions.
-phiLevels_rad=[0.2 0.8 1.0 1.2 1.5];
-circleTime_s=20.0;
+phiLevels_rad=[0.2 0.8 1.0 1.2 2.5];
+circleTime_s=10.0;
 circlesPerTrial=5;
 initialZero_s=5.0;
 phiRise_s=5.0;

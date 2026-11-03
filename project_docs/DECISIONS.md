@@ -21,6 +21,9 @@ Skip invalid measurement updates and use pollStart timestamps as practical timin
 
 ## D-03 — Coupled stiffness and bound expansion (2026-10-01–02)
 
+2026-11-02: the diagonal reduced-coordinate bound rule below is superseded
+for current two-coordinate models by D-12. Retain this entry as history.
+
 Keep K coupled as k*[2 1;1 2], with a separate diagonal smooth bound penalty.
 Raise modeled reduced bounds from +/-30 to +/-35 mm at user request; this is
 not a measured physical limit. Historical inverse analysis retains +/-30 mm;
@@ -99,3 +102,44 @@ suggested external `des_phi` and `circle_time_s` Simulink input ports. Each
 lap smoothly runs through 2*pi while phi holds its target. The code remains
 paste-ready guidance until the user installs and logs it; the saved model
 still has the earlier one-input reference hardcoded to 0.1 rad.
+
+## D-12 — Shared three-actuator bounds across PAC and PDI/FB variants (2026-11-02)
+
+User explicitly requests retaining this correction for other PAC and PDI/FB
+controllers. For every controller/forward/inverse path using q=[l2;l3] and
+l1=-l2-l3, use the same three-actuator restoring-force mapping:
+
+    f_bound_q = [F(l2)-F(l1); F(l3)-F(l1)].
+
+Use armS_single_boundForce, or an explicitly equivalent implementation. The
+current limit is already +/-35mm; this corrects an omitted l1 contribution,
+not a limit increase. These actuator-length bounds are distinct from adaptive
+parameter bounds and pressure limits. D-03's diagonal l2/l3-only prescription
+is historical, not the current model convention.
+
+Before porting, editing or comparing other PAC, PDI/FB, PDFB or feedback-
+linearization variants, trace their actual coordinates and force path. Check
+for embedded copies of the old diagonal formula and align forward, inverse
+and controller compensation terms. Do not apply the two-coordinate mapping
+blindly to a different coordinate/model formulation.
+
+Current external force helpers were updated, but this does not establish
+migration of every saved SLX or copied MATLAB Function. Track manual block
+installation/build/validation separately; no new SLX edits or hardware runs
+are authorized by this reminder. Coder/toolchain build verification remains
+unresolved. See OI-10 and RL_data_collection/ACTUATOR_BOUND_CORRECTION.md.
+Keep historical datasets/weights/results tied to coordinate-bounds-v1/mode0;
+current corrected source is actuator-bounds-v2/mode1. New controller/residual
+comparisons must declare the baseline version and retain plots/source/data.
+
+## D-13 — Passive same-reply NDI rejection diagnostics (2026-11-02)
+
+User authorized reader/driver diagnostic output for recurring tip losses.
+Keep one BX query per sample; retain raw status and availability before masking.
+Append fixed-size diagnostics without changing existing pose/validity/hold or
+pressure behavior. Use the same reply/frame/timestamps, never a second status
+query. Omitted status stays unknown, not reused or interpreted as success.
+Raw status narrows the rejection stage, not a unique physical hardware cause.
+CRC reception/read-complete is not checksum validation. No SLX/hardware run
+implied by source implementation; operator must log the new last reader port.
+Schema/instructions/tests: ndi_diagnostics/README.md.

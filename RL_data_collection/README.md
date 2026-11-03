@@ -1,5 +1,12 @@
 # Open-loop pressure sources for real-arm dynamics data
 
+2026-11-02 NDI diagnostics: the updated reader appends a32x2 base/tip status
+matrix (BaseRotation port23, Position_only port20). With the model stopped,
+refresh the System class and log the new last output as ndiDiagnostics.
+See ndi_diagnostics/README.md for wiring/schema and offline tests. Exporter
+adds named raw-status/rejection fields when present; existing logs are supported.
+No SLX wiring or hardware run performed by the assistant.
+
 Paste **one** of these standalone .m functions into a MATLAB Function block.
 Inputs: sampled simulation time `t` in seconds (existing .05 s sampled clock).
 Set explicit discrete sample time .05 s for predictable labels. No workspace

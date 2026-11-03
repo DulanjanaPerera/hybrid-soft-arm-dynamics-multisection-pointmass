@@ -4,7 +4,7 @@ function [pressureRequest_bar,trialId,phaseId,channelId,cycleId,done,testEnd_s] 
 % channelSelection: 1=P1, 2=P2, 3=P3, 0=all three separately.
 channelSelection=0;
 peak_bar=3.0;
-omega_radPerS=0.2;
+omega_radPerS=0.5;
 cyclesPerTrial=3;
 repeats=2;
 initialZero_s=5.0;

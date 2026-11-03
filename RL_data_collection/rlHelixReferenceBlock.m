@@ -2,8 +2,8 @@ function [theta,phi,trialId,phaseId,cycleId,direction,done,testEnd_s] = rlHelixR
 %#codegen
 % Requested theta/phi: outward then inward spiral/helix-like arm-tip path.
 % Actual XYZ follows arm geometry; this is not a constant-pitch Cartesian helix.
-peakPhi_rad=1.5;
-circleTime_s=20.0;
+peakPhi_rad=2.5;
+circleTime_s=10.0;
 turnsLoading=3;
 turnsUnloading=3;
 numTrials=4;
