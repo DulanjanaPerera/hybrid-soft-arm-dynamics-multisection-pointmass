@@ -3,7 +3,7 @@
 % The base origin and orientation are stationary throughout this ODE solve.
 
 params.N = 3;
-params.L = 0.278;                 % Section length (m)
+params.L = 0.178;                 % Section length (m)
 params.r = 0.013;                 % Arm geometry parameter (m)
 params.mi = [0.1;0.1;0.1];        % Distributed section masses (kg)
 params.gWorld = [0;0; 9.81];      % Matches the current orientation sweep runner
@@ -12,7 +12,7 @@ params.D = 600*eye(6);
 params.mu = 2000;
 params.lKbounds = [-0.02;0.02;1e6];
 
-pressureBar = [5; 5; 0; 0; 0; 0];
+pressureBar = [0; 0; 0; 0; 0; 0];
 area = pi*(params.r/2)^2;
 params.tau = (area*pressureBar*1e5);
 
@@ -41,7 +41,7 @@ end
 R_world_from_arm=params.R_world_from_arm;
 params.gArm=R_world_from_arm.'*params.gWorld;
 
-q0BySection = [0.001 0.001;
+q0BySection = [0.01 0.01;
                0.001 0.001;
                0.001 0.001];
 dq0BySection = 1e-6*ones(3,2);
