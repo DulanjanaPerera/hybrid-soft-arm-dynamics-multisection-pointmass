@@ -1,0 +1,30 @@
+[
+  {
+    "file": "residual_controller/Experiments/Model_Val/circlesweep_FWD_INV_test_4.mat",
+    "sha256": "e9cec406208de7ff8332827b653e7fcad926133ea7f9001324eaa9fbfc49952d"
+  },
+  {
+    "file": "residual_FWD_INV_validation.slx",
+    "sha256": "3c1d4b3144fb16fccec8ee7d8c40f12fbc740fde1dee4be5bc1833c257be1b53"
+  },
+  {
+    "file": "residual_controller/analyzeSinglePassTargetMismatch.m",
+    "sha256": "52733655c22c556df91d3a35f1be3e9ea6f17ee431e077a1ad00b41977f498e0"
+  },
+  {
+    "file": "residual_controller/rlResidualSinglePassCollectionShadowBlock.m",
+    "sha256": "b32b9c3ef37b7e913e398d2d3a676b18e136935364d69c91ac1c0a3161ab4e57"
+  },
+  {
+    "file": "RL_data_collection/rlInverseModelBlock.m",
+    "sha256": "28a752bee830a903443065d8fe330c2135a97fdc0392a81718ca821150775dbf"
+  },
+  {
+    "file": "residual_controller/residualShadowPhysicsConfig.m",
+    "sha256": "deb0182d3b25e727b70b3b264c318fb2b7976a83c0109655756ddb351ed6f22b"
+  },
+  {
+    "file": "residual_controller/residualNetwork128_v1.mat",
+    "sha256": "a5efd346d2d23a0dfb83dcda9647f9ec5f2fe690364cb226c03fafb0363fcd60"
+  }
+]

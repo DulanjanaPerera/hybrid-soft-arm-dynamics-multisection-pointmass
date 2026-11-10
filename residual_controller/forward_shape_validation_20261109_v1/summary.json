@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "cases": 50,
+  "rowColumnVariants": 100,
+  "maxDerivativeDifference": 8.8817841970012523E-15,
+  "scope": "Offline numeric wrapper only; no SLX or hardware run"
+}

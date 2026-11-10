@@ -1,0 +1,25 @@
+{
+  "method": "Least-squares alignment of standard 3-channel sine timing to raw relative orientation change",
+  "referenceSource": "RL_data_collection/rlPressureSineBlock.m; user confirms standard block",
+  "offset_s": 14.625,
+  "orientationFitRMSE_rad": 0.13397558935850398,
+  "fitCoefficients": [
+    0.03702819436498276,
+    0.54315938135036679,
+    0.6087962615124165,
+    0.81036260940253935
+  ],
+  "P3TemplateWindows_elapsed_s": [
+    [
+      153.87277960769379,
+      177.43472450961724
+    ],
+    [
+      187.43472450961724,
+      210.99666941154069
+    ]
+  ],
+  "runtimeTipMissing": 23,
+  "missingWithinInferredP3Excitation": 23,
+  "caveat": "Motion-fitted offset includes actuator response lag; no actual pressure timestamps or values were recorded. Channel assignment is sequence-based inference, not synchronized proof."
+}

@@ -1,0 +1,27 @@
+{
+  "invalid_orientation_times_sim_s": [
+    102.8,
+    103.25,
+    106.45,
+    116.35,
+    147.3,
+    152.35,
+    160.45
+  ],
+  "physical_intervals_gt_0p10_s": [
+    {
+      "time_sim_s": 0.05,
+      "host_interval_s": 0.29380769999999995
+    },
+    {
+      "time_sim_s": 0.1,
+      "host_interval_s": 0.45081090000000007
+    }
+  ],
+  "score_coverage_of_physically_valid_rows": 0.9334032511798637,
+  "moving_velocity_threshold_mPerS": 0.001,
+  "all_rows_RMSE_reduction_vs_nominal_percent": [
+    76.77987920308198,
+    87.38051828659627
+  ]
+}

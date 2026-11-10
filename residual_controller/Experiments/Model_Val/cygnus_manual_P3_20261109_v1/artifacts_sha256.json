@@ -1,0 +1,82 @@
+[
+  {
+    "file": "freshness_checks.json",
+    "bytes": 335,
+    "sha256": "c725bb3a2b8d7445e3e01651ed9107a7302b6839fad9fb5b043715e78ff1f957"
+  },
+  {
+    "file": "independent_csv_checks.json",
+    "bytes": 107,
+    "sha256": "1a3c9eb006a43ef4079ff338ee74d425484772ee1d2d1922e2adbeede3e88942"
+  },
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 572,
+    "sha256": "1a44ac7659e4de36b93990d72c50f77754375e16a2093bd89b374aa45532ad5a"
+  },
+  {
+    "file": "manual_tracking.fig",
+    "bytes": 238175,
+    "sha256": "50c7dfc42b245f212af4724685ecc7714f383d7bc640dd3957eec72ed226996f"
+  },
+  {
+    "file": "manual_tracking.pdf",
+    "bytes": 530956,
+    "sha256": "bbdca5ba0d3ddcb6f3784da5f33cd18b4adcbe0850194b261cec4efb51f49598"
+  },
+  {
+    "file": "manual_tracking.png",
+    "bytes": 201475,
+    "sha256": "402fa3178654d5e9e1e29ca2adbb7f1e5163d82a3fdf958a0c0e3a85471dbd45"
+  },
+  {
+    "file": "missing_episodes.csv",
+    "bytes": 2996,
+    "sha256": "813fa4aa0e69dbc734a2d15b320b27e53c8a18938ddbcf9e491f51355c8abfd8"
+  },
+  {
+    "file": "missing_tip_reports.csv",
+    "bytes": 8062,
+    "sha256": "ecc421c30643c2469e7a3726bb3ad763880fe22572a77ee72ca36b5d1bb98f8b"
+  },
+  {
+    "file": "pose_comparison.json",
+    "bytes": 927,
+    "sha256": "ed42cf2cde45a863a26b663a37c0a1bd6e813a632ca1d01d4a55e2c1c2fe246c"
+  },
+  {
+    "file": "README.md",
+    "bytes": 5283,
+    "sha256": "adb5dc7a1630d90cb837847cb8beb0deacce10a042f5c4e555bcd555d59db12e"
+  },
+  {
+    "file": "source_log.txt",
+    "bytes": 3640632,
+    "sha256": "a6a8cd6c8c30e24645b8519762691e560db93ff18dabe6494c9d1442fbe0d118"
+  },
+  {
+    "file": "source_snapshot\\analyzeCygnusBxLog.py",
+    "bytes": 7386,
+    "sha256": "61d405e0a2fd87830b405a131e621fc38243b46b9aef442db40d57f3e28f81cb"
+  },
+  {
+    "file": "source_snapshot\\ndiSupportFnc.m",
+    "bytes": 23454,
+    "sha256": "f305fa64f0cf91a56e746b9f7c2a5a5f44784e1741e6091d25d6af2f43f06550"
+  },
+  {
+    "file": "source_snapshot\\plotCygnusManualAudit.m",
+    "bytes": 1685,
+    "sha256": "e2fbd5644c57a3da7c7877c902e6e6c5c09edf7672c208536e09aa3eda6f3674"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 1249,
+    "sha256": "866b6688f8ca4fbdb18a40560481f5602b9499bf29079f2bab50462bf75f48e4"
+  },
+  {
+    "file": "tracking.csv",
+    "bytes": 1154060,
+    "sha256": "346ed90f7cdd640881a9e100c639f89709a46dc9e8c15eed2bc7f431b7bee095"
+  }
+]

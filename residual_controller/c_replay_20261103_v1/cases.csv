@@ -1,0 +1,17 @@
+id,controller,units,variableCommon,enabled,ticks,inputs,outputs
+kind1_units64_common0_enabled0,1,64,0,0,161,43,43
+kind1_units64_common0_enabled1,1,64,0,1,161,43,43
+kind1_units64_common1_enabled0,1,64,1,0,161,43,43
+kind1_units64_common1_enabled1,1,64,1,1,161,43,43
+kind1_units128_common0_enabled0,1,128,0,0,161,43,43
+kind1_units128_common0_enabled1,1,128,0,1,161,43,43
+kind1_units128_common1_enabled0,1,128,1,0,161,43,43
+kind1_units128_common1_enabled1,1,128,1,1,161,43,43
+kind2_units64_common0_enabled0,2,64,0,0,161,120,88
+kind2_units64_common0_enabled1,2,64,0,1,161,120,88
+kind2_units64_common1_enabled0,2,64,1,0,161,120,88
+kind2_units64_common1_enabled1,2,64,1,1,161,120,88
+kind2_units128_common0_enabled0,2,128,0,0,161,120,88
+kind2_units128_common0_enabled1,2,128,0,1,161,120,88
+kind2_units128_common1_enabled0,2,128,1,0,161,120,88
+kind2_units128_common1_enabled1,2,128,1,1,161,120,88

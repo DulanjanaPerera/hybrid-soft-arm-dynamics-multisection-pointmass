@@ -1,0 +1,3 @@
+source,rows,tipInvalid,orientationInvalid,thetaUnobservableWithValidOrientation,configurationInvalid,inverseValid,inverseConverged,fractionInverseEqual,maxPressureDifference_bar
+circlesweep_FWD_INV_test.mat,7501,17,17,9,17,6908,156,0.797625940938043,0.6
+helix_FWD_INV_test.mat,5801,28,28,796,28,5056,245,0.701344936708861,0.600000000000001

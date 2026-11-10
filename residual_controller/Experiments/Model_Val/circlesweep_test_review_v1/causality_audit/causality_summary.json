@@ -1,0 +1,55 @@
+{
+  "source": "C:\\Users\\dperera\\OneDrive - Texas A&M University\\Lab\\Research\\fDyn_ExpCom\\hyDyn_Ctrl\\residual_controller\\Experiments\\Model_Val\\circlesweep_test.mat",
+  "replayOptions": [
+    128,
+    0.05,
+    0.2,
+    0.6,
+    1,
+    0.1,
+    0.075,
+    0.075,
+    0.005,
+    0.05,
+    3
+  ],
+  "replayOptionsSource": "Current source defaults; width/horizon verified from log. Full options vector was not saved.",
+  "replayIssuedDifference_m": 1.3877787807814457E-16,
+  "replayMatchedDifference_m": 1.3877787807814457E-16,
+  "replayForceDifference_N": 1.0658141036401503E-14,
+  "replayStatusMismatches": 0,
+  "replayReadyMismatches": 0,
+  "replayIssuedFiniteMaskMismatches": 0,
+  "counterfactualOrigin_sim_s": 87.050000000000011,
+  "counterfactualTarget_sim_s": 87.100000000000009,
+  "futureMeasurementOffset_mm": [
+    5,
+    -3
+  ],
+  "previousPredictionChange_m": 0,
+  "targetErrorChange_mm": [
+    -5,
+    3
+  ],
+  "newForecastChange_mm": [
+    1.1086426528654063,
+    -1.0714792521345937
+  ],
+  "persistenceOneStepRMSE_mm": [
+    0.20633082906524128,
+    0.25553825600760793
+  ],
+  "persistenceMovingRMSE_mm": [
+    0.37459421638641083,
+    0.46411380419875092
+  ],
+  "rolloutAnchors": 320,
+  "rolloutHorizonSteps": [
+    1,
+    2,
+    5,
+    10
+  ],
+  "rolloutProtocol": "Every20th eligible positive-trial anchor. Known recorded future commands/elapsed intervals; no future measured state correction. Guard .05m; failures counted, never clipped.",
+  "rolloutFutureMeasurementsUsedAsInputs": false
+}

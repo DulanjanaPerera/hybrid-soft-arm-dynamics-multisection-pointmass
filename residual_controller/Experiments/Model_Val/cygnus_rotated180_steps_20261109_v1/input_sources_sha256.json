@@ -1,0 +1,22 @@
+[
+  {
+    "file": "RL_data_collection/analyzeCygnusBxLog.py",
+    "sha256": "61d405e0a2fd87830b405a131e621fc38243b46b9aef442db40d57f3e28f81cb"
+  },
+  {
+    "file": "RL_data_collection/classifyCygnusStepGroups.py",
+    "sha256": "c2ac30f98f5241deb93ddb9b59f6cb42fe4efa2640e473615a9331257ecac8cf"
+  },
+  {
+    "file": "RL_data_collection/plotCygnusManualAudit.m",
+    "sha256": "625c42aba417f9427bb9fd546885fe2836a9aa65e096f9ecbd93c60ea45ba923"
+  },
+  {
+    "file": "ndiSupportFnc.m",
+    "sha256": "f305fa64f0cf91a56e746b9f7c2a5a5f44784e1741e6091d25d6af2f43f06550"
+  },
+  {
+    "file": "C:/Users/dperera/Desktop/log.txt",
+    "sha256": "0f9f50794d0c91262b9719f455f0260de4d74e7b3d1add897dfde06c37c3f974"
+  }
+]

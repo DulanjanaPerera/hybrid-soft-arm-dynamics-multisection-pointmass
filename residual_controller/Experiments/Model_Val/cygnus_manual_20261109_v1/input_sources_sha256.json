@@ -1,0 +1,14 @@
+[
+  {
+    "file": "RL_data_collection/analyzeCygnusBxLog.py",
+    "sha256": "61d405e0a2fd87830b405a131e621fc38243b46b9aef442db40d57f3e28f81cb"
+  },
+  {
+    "file": "RL_data_collection/plotCygnusManualAudit.m",
+    "sha256": "9931b8939baec7191d8dad045e869d2c02a8850b774f3db0c28ddb2f8dcaabe7"
+  },
+  {
+    "file": "C:/Users/dperera/Desktop/log.txt",
+    "sha256": "7253f8388b1db67f0818371db0850e5691deef8385abd3b4354504b70d314290"
+  }
+]

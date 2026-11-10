@@ -1,0 +1,22 @@
+[
+  {
+    "file": "residual_controller/residualCommandValid.m",
+    "sha256": "207ec324274931b50fe14ea9113364dfdb632b3202d26082ba0e3e63be4e9caf"
+  },
+  {
+    "file": "residual_controller/validateResidualCommandHandoff.m",
+    "sha256": "0d88edb41a79c05f3927d874bf8bbcc347e0fa6da802b221ccaed505bdf704bd"
+  },
+  {
+    "file": "residual_controller/COMMAND_HANDOFF.md",
+    "sha256": "430321ba91e4e856f7de4a11044138ce6a794cb9570a4fbdf79e9384f39a8bc7"
+  },
+  {
+    "file": "residual_controller/Experiments/Model_Val/desired_pressure_test5_review_20261109_v2/analysis.mat",
+    "sha256": "226ad90ac11f7bb68c8fae77b60459b77418755901d42c734a4b5a1b0ae7abca"
+  },
+  {
+    "file": "residual_FWD_INV_validation_v2.slx",
+    "sha256": "1c53063a443bbcbf4f3ac6899faa0c379e7ee28d6795b0184386e4f0e6d8ac4d"
+  }
+]

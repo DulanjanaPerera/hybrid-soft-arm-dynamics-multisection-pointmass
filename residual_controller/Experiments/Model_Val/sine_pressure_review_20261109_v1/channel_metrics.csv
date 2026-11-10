@@ -1,0 +1,4 @@
+channel,validMeasurementRows,l2RMSE_mm,l3RMSE_mm,residualReadyRows,inputFaultRows,allocationScaledRows,readyStepsAbove0p25bar,readyPressureSlopeReversals
+1,943,2.15315222552719,5.08422140941722,943,0,427,4,24
+2,942,5.33528845351224,1.93788515112792,942,0,386,0,26
+3,938,9.44047229336839,18.3785742031922,163,388,55,0,5

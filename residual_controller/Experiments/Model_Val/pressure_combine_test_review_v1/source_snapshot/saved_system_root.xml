@@ -1,0 +1,1828 @@
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[-8, 2, 1304, 877]</P>
+  <P Name="Open">on</P>
+  <P Name="ZoomFactor">125</P>
+  <P Name="ReportName">simulink-default.rpt</P>
+  <P Name="SIDHighWatermark">319</P>
+  <Block BlockType="Constant" Name="Constant" SID="309">
+    <P Name="Position">[210, 1230, 240, 1260]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Value">false</P>
+    <P Name="OutDataTypeStr">boolean</P>
+  </Block>
+  <Block BlockType="Constant" Name="Constant1" SID="310">
+    <P Name="Position">[245, 1295, 275, 1325]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Value">shadowOptions</P>
+  </Block>
+  <Block BlockType="Demux" Name="Demux" SID="83">
+    <PortCounts in="1" out="2"/>
+    <P Name="Position">[375, 31, 380, 69]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Outputs">2</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">length</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">length velocity</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Demux" Name="Demux1" SID="256">
+    <PortCounts in="1" out="3"/>
+    <P Name="Position">[-15, 571, -10, 609]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="NameLocation">top</P>
+    <P Name="Outputs">3</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">length</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">d_length</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">dd_length</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Demux" Name="Demux2" SID="300">
+    <PortCounts in="1" out="2"/>
+    <P Name="Position">[100, 1051, 105, 1089]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Outputs">2</P>
+  </Block>
+  <Block BlockType="ZeroOrderHold" Name="Desired lengths 50 ms" SID="276">
+    <P Name="Position">[-105, -405, -85, -375]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="SampleTime">0.05</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">sampled des_length</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From" SID="282">
+    <P Name="Position">[1195, -315, 1235, -285]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">meastheta</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">meas_theta</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From1" SID="212">
+    <P Name="Position">[1195, -290, 1235, -260]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A2</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">meas_phi</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From10" SID="308">
+    <P Name="Position">[315, 1205, 355, 1235]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">sampledtime</P>
+  </Block>
+  <Block BlockType="From" Name="From11" SID="319">
+    <P Name="Position">[315, 1180, 355, 1210]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A9</P>
+  </Block>
+  <Block BlockType="From" Name="From2" SID="213">
+    <P Name="Position">[1195, -265, 1235, -235]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A3</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">meas_length</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From3" SID="127">
+    <P Name="Position">[310, -270, 350, -240]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A1</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">orientationValid</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From4" SID="291">
+    <P Name="Position">[315, 1030, 355, 1060]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A3</P>
+  </Block>
+  <Block BlockType="From" Name="From5" SID="293">
+    <P Name="Position">[315, 1055, 355, 1085]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A4</P>
+  </Block>
+  <Block BlockType="From" Name="From6" SID="295">
+    <P Name="Position">[315, 1080, 355, 1110]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A5</P>
+  </Block>
+  <Block BlockType="From" Name="From7" SID="297">
+    <P Name="Position">[315, 1105, 355, 1135]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A6</P>
+  </Block>
+  <Block BlockType="From" Name="From8" SID="302">
+    <P Name="Position">[30, 1055, 70, 1085]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A7</P>
+  </Block>
+  <Block BlockType="From" Name="From9" SID="306">
+    <P Name="Position">[315, 1155, 355, 1185]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A8</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto" SID="138">
+    <P Name="Position">[-325, 875, -285, 905]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A1</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto1" SID="139">
+    <P Name="Position">[-395, 905, -355, 935]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A2</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto10" SID="318">
+    <P Name="Position">[2185, 390, 2225, 420]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A9</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto2" SID="140">
+    <P Name="Position">[-430, 1035, -400, 1075]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="BlockRotation">270</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">A3</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto3" SID="281">
+    <P Name="Position">[270, 135, 300, 175]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="BlockRotation">90</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">meastheta</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto4" SID="292">
+    <P Name="Position">[-395, 1020, -365, 1060]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="BlockRotation">270</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">A4</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto5" SID="294">
+    <P Name="Position">[-170, 930, -140, 970]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="BlockRotation">270</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">A5</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto6" SID="296">
+    <P Name="Position">[-415, 945, -385, 985]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="BlockRotation">90</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">A6</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto7" SID="301">
+    <P Name="Position">[-460, 1010, -420, 1040]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A7</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto8" SID="305">
+    <P Name="Position">[2190, 340, 2230, 370]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">A8</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto9" SID="307">
+    <P Name="Position">[-275, 745, -235, 775]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GotoTag">sampledtime</P>
+  </Block>
+  <Block BlockType="Integrator" Name="Integrator" SID="84">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[295, 35, 325, 65]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="InitialCondition">[0;0;0;0]</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">X</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="SubSystem" Name="MATLAB Function" SID="277">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[-210, -413, -140, -367]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_277"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">lout</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_277"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="MATLAB Function1" SID="5">
+    <PortCounts in="3" out="7"/>
+    <P Name="Position">[-125, -25, 65, 125]</P>
+    <P Name="ZOrder">5</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_5"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">dX</P>
+        <P Name="PropagatedSignals">dX</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">comp_lengths</P>
+        <P Name="PropagatedSignals">lengths_m</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">des_theta</P>
+        <P Name="PropagatedSignals">theta_rad</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">des_phi</P>
+        <P Name="PropagatedSignals">phi_rad</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">tau_N</P>
+        <P Name="PropagatedSignals">tau_N</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="Name">pressureUsed_bar</P>
+        <P Name="PropagatedSignals">pressureUsed_bar</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="Name">thetaObservable</P>
+        <P Name="PropagatedSignals">thetaObservable</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_5"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="MATLAB Function2" SID="278">
+    <PortCounts in="2" out="3"/>
+    <P Name="Position">[-30, -417, 105, -313]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_278"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">length</P>
+        <P Name="PropagatedSignals">l</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">d_length</P>
+        <P Name="PropagatedSignals">dl</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">dd_length</P>
+        <P Name="PropagatedSignals">ddl</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_278"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="MATLAB Function3" SID="125">
+    <PortCounts in="3" out="5"/>
+    <P Name="Position">[440, -331, 630, -179]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_125"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">pressureCommand_bar</P>
+        <P Name="PropagatedSignals">pressure_bar</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">tauDesired_N</P>
+        <P Name="PropagatedSignals">tauDesired_N</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">tauAvailable_N</P>
+        <P Name="PropagatedSignals">tauAvailable_N</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">pressureLimited</P>
+        <P Name="PropagatedSignals">limited</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">inverseModelValid</P>
+        <P Name="PropagatedSignals">modelValid</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_125"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="MATLAB Function4" SID="289">
+    <PortCounts in="10" out="5"/>
+    <P Name="Position">[385, 1040, 630, 1275]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_289"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">dX</P>
+        <P Name="PropagatedSignals">predictionLength_m</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">comp_lengths</P>
+        <P Name="PropagatedSignals">predictionAtMeasurement_m</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">des_theta</P>
+        <P Name="PropagatedSignals">retimedPrediction_m</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">des_phi</P>
+        <P Name="PropagatedSignals">shadowDiagnostic</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">tau_N</P>
+        <P Name="PropagatedSignals">inverseContext</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_289"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="MATLAB Function5" SID="141">
+    <PortCounts in="3" out="3"/>
+    <P Name="Position">[-350, 949, -215, 1031]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_141"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">fitered_length</P>
+        <P Name="PropagatedSignals">l</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">filtered_d_length</P>
+        <P Name="PropagatedSignals">dl</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">filtered_dd_length</P>
+        <P Name="PropagatedSignals">ddl</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_141"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="MATLAB Function7" SID="136">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[-35, -217, 90, -133]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="NameLocation">top</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_136"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">k_N_m</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_136"/>
+  </Block>
+  <Block BlockType="Memory" Name="Memory" SID="137">
+    <P Name="Position">[120, -190, 150, -160]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="NameLocation">top</P>
+    <P Name="InitialCondition">0.01</P>
+  </Block>
+  <Block BlockType="Mux" Name="Mux1" SID="105">
+    <PortCounts in="4" out="1"/>
+    <P Name="Position">[565, 71, 570, 109]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="DisplayOption">bar</P>
+  </Block>
+  <Block BlockType="Mux" Name="Mux2" SID="107">
+    <PortCounts in="4" out="1"/>
+    <P Name="Position">[365, 191, 370, 229]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="DisplayOption">bar</P>
+  </Block>
+  <Block BlockType="Mux" Name="Mux3" SID="279">
+    <PortCounts in="2" out="1"/>
+    <P Name="Position">[-245, -409, -240, -371]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Inputs">2</P>
+    <P Name="DisplayOption">bar</P>
+  </Block>
+  <Block BlockType="Mux" Name="Mux5" SID="142">
+    <PortCounts in="2" out="1"/>
+    <P Name="Position">[-75, 951, -70, 989]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Inputs">2</P>
+    <P Name="DisplayOption">bar</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">meas_lengths and derivatives</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Mux" Name="Mux6" SID="124">
+    <PortCounts in="3" out="1"/>
+    <P Name="Position">[395, -384, 400, -346]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Inputs">3</P>
+    <P Name="DisplayOption">bar</P>
+  </Block>
+  <Block BlockType="Mux" Name="Mux7" SID="143">
+    <PortCounts in="2" out="1"/>
+    <P Name="Position">[-125, 1076, -120, 1114]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Inputs">2</P>
+    <P Name="DisplayOption">bar</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">l</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Mux" Name="Mux8" SID="144">
+    <PortCounts in="2" out="1"/>
+    <P Name="Position">[-125, 1161, -120, 1199]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Inputs">2</P>
+    <P Name="DisplayOption">bar</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">dl</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Mux" Name="Mux9" SID="145">
+    <PortCounts in="2" out="1"/>
+    <P Name="Position">[-125, 1241, -120, 1279]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Inputs">2</P>
+    <P Name="DisplayOption">bar</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">ddl</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="SubSystem" Name="NDI Sensor reading" SID="146">
+    <PortCounts in="3" out="10"/>
+    <P Name="Position">[-645, 880, -490, 1035]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">meas_theta</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">meas_phi</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="PropagatedSignals">meas_length</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="PropagatedSignals">orientationValid</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="PropagatedSignals">pollStart_s</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="PropagatedSignals">gravity_arm</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="PropagatedSignals">BaseOrientationValid</P>
+      </Port>
+      <Port Type="out" Index="8">
+        <P Name="Name">meas_position</P>
+        <P Name="PropagatedSignals">y</P>
+      </Port>
+      <Port Type="out" Index="9">
+        <P Name="Name">meas_positionTip_offsetCorrected</P>
+        <P Name="PropagatedSignals">y</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_146"/>
+  </Block>
+  <Block BlockType="Constant" Name="P1" SID="1">
+    <P Name="Position">[-1290, -215, -1260, -185]</P>
+    <P Name="ZOrder">1</P>
+    <P Name="Commented">on</P>
+    <P Name="Value">0</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">P1</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Constant" Name="P2" SID="2">
+    <P Name="Position">[-1290, -80, -1260, -50]</P>
+    <P Name="ZOrder">2</P>
+    <P Name="Commented">on</P>
+    <P Name="Value">0</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">P2</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Constant" Name="P3" SID="81">
+    <P Name="Position">[-1290, -20, -1260, 10]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Commented">on</P>
+    <P Name="Value">0</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">P3</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="SubSystem" Name="Pneumatic Valves" SID="230">
+    <PortCounts in="1" out="3"/>
+    <P Name="Position">[2000, 277, 2155, 433]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <System Ref="system_230"/>
+  </Block>
+  <Block BlockType="Clock" Name="Reference clock" SID="254">
+    <P Name="Position">[-500, 615, -480, 635]</P>
+    <P Name="ZOrder">100000</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">sim time</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="ZeroOrderHold" Name="Reference time 50 ms" SID="255">
+    <P Name="Position">[-385, 613, -365, 637]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="SampleTime">0.05</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">sampled time</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="SubSystem" Name="Seperate paramter calculation" SID="215">
+    <PortCounts in="4"/>
+    <P Name="Position">[1265, -334, 1365, -241]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <System Ref="system_215"/>
+  </Block>
+  <Block BlockType="Sin" Name="Sine Wave" SID="119">
+    <PortCounts out="1"/>
+    <P Name="Position">[-1290, -140, -1260, -110]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Commented">on</P>
+    <P Name="Amplitude">1.5</P>
+    <P Name="Bias">1.5</P>
+    <P Name="Frequency">0.2</P>
+    <P Name="Phase">3*pi/2</P>
+    <P Name="SampleTime">0</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">P1</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Sin" Name="Sine Wave1" SID="122">
+    <PortCounts out="1"/>
+    <P Name="Position">[-1330, -25, -1300, 5]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Commented">on</P>
+    <P Name="Amplitude">1.5</P>
+    <P Name="Bias">1.5</P>
+    <P Name="Frequency">0.2</P>
+    <P Name="Phase">3*pi/2</P>
+    <P Name="SampleTime">0</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">P3</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="SliderBlock" Name="Slider" SID="100">
+    <P Name="Position">[-1870, -276, -1457, -171]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="ShowName">off</P>
+    <P Name="Commented">on</P>
+    <P Name="BindingPersistence" Ref="bdmxdata:BindingPersistence_100"/>
+    <P Name="ScaleMax">3</P>
+  </Block>
+  <Block BlockType="SliderBlock" Name="Slider1" SID="101">
+    <P Name="Position">[-1870, -131, -1457, -26]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="ShowName">off</P>
+    <P Name="Commented">on</P>
+    <P Name="BindingPersistence" Ref="bdmxdata:BindingPersistence_101"/>
+    <P Name="ScaleMax">3</P>
+  </Block>
+  <Block BlockType="SliderBlock" Name="Slider2" SID="102">
+    <P Name="Position">[-1870, 4, -1457, 109]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="ShowName">off</P>
+    <P Name="Commented">on</P>
+    <P Name="BindingPersistence" Ref="bdmxdata:BindingPersistence_102"/>
+    <P Name="ScaleMax">3</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator" SID="85">
+    <P Name="Position">[440, 50, 460, 70]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator1" SID="97">
+    <P Name="Position">[310, 95, 330, 115]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator10" SID="265">
+    <P Name="Position">[-340, -125, -320, -105]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator11" SID="266">
+    <P Name="Position">[-340, -100, -320, -80]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator12" SID="267">
+    <P Name="Position">[-340, -75, -320, -55]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator13" SID="268">
+    <P Name="Position">[-340, -50, -320, -30]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator14" SID="269">
+    <P Name="Position">[-340, -25, -320, -5]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator15" SID="270">
+    <P Name="Position">[-340, 0, -320, 20]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator16" SID="275">
+    <P Name="Position">[-540, 155, -520, 175]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Commented">on</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator17" SID="303">
+    <P Name="Position">[150, 1050, 170, 1070]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator2" SID="98">
+    <P Name="Position">[310, 115, 330, 135]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator3" SID="99">
+    <P Name="Position">[215, 165, 235, 185]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator4" SID="128">
+    <P Name="Position">[720, -325, 740, -305]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator5" SID="129">
+    <P Name="Position">[720, -295, 740, -275]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator6" SID="130">
+    <P Name="Position">[720, -265, 740, -245]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator7" SID="131">
+    <P Name="Position">[720, -235, 740, -215]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator8" SID="132">
+    <P Name="Position">[720, -205, 740, -185]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Terminator" Name="Terminator9" SID="263">
+    <P Name="Position">[240, 885, 260, 905]</P>
+    <P Name="ZOrder">100000</P>
+  </Block>
+  <Block BlockType="Scope" Name="Tip_offsetCOrrected" SID="286">
+    <PortCounts in="1"/>
+    <P Name="Position">[-330, 1147, -300, 1183]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667],[0.9607843137254902,0.4666666666666667,0.1607843137254902]],&quot;ChannelNames&quot;:&quot;&quot;,&quot;DefaultLegendLabel&quot;:[&quot;meas_positionTip_offsetCorrected:1&quot;,&quot;meas_positionTip_offsetCorrected:2&quot;,&quot;meas_positionTip_offsetCorrected:3&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[3],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;meas_positionTip_offsetCorrected:1&quot;,&quot;meas_positionTip_offsetCorrected:2&quot;,&quot;meas_positionTip_offsetCorrected:3&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Manual&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:false,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[1,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:0.3369304736852646,&quot;MaxYLimReal&quot;:0.3369304736852646,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.22727653062343597,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:0.3369304736852646,&quot;MaxYLimReal&quot;:0.3369304736852646,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.22727653062343597,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:3,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
+    <P Name="WindowPosition">[1281.000000,62.000000,1277.000000,691.000000,]</P>
+    <P Name="Visible">on</P>
+    <P Name="ScopeFrameLocation">window</P>
+    <P Name="WasSavedAsWebScope">on</P>
+    <P Name="Floating">off</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:0.33693047368526458,&quot;MaxYLimReal&quot;:0.33693047368526458,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.22727653062343597,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="NumInputPorts">1</P>
+    <P Name="LayoutDimensionsString">[1,1]</P>
+    <P Name="ShowLegend">on</P>
+    <P Name="ActiveDisplayYMinimum">-0.22727653062343597</P>
+    <P Name="ActiveDisplayYMaximum">0.33693047368526458</P>
+    <P Name="DataLoggingVariableName">ScopeData9</P>
+  </Block>
+  <Block BlockType="ToWorkspace" Name="To Workspace" SID="104">
+    <PortCounts in="1"/>
+    <P Name="Position">[610, 75, 700, 105]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="VariableName">dynamicModel</P>
+    <P Name="MaxDataPoints">inf</P>
+    <P Name="SaveFormat">Timeseries</P>
+    <P Name="FixptAsFi">on</P>
+    <P Name="SampleTime">-1</P>
+  </Block>
+  <Block BlockType="ToWorkspace" Name="To Workspace1" SID="108">
+    <PortCounts in="1"/>
+    <P Name="Position">[565, 195, 655, 225]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="VariableName">dynamic_NDI_meas_angle</P>
+    <P Name="MaxDataPoints">inf</P>
+    <P Name="SaveFormat">Timeseries</P>
+    <P Name="FixptAsFi">on</P>
+    <P Name="SampleTime">-1</P>
+  </Block>
+  <Block BlockType="Scope" Name="XYZ" SID="208">
+    <PortCounts in="1"/>
+    <P Name="Position">[-300, 1107, -270, 1143]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667],[0.9607843137254902,0.4666666666666667,0.1607843137254902]],&quot;ChannelNames&quot;:&quot;&quot;,&quot;DefaultLegendLabel&quot;:[&quot;meas_position:1&quot;,&quot;meas_position:2&quot;,&quot;meas_position:3&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[3],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;meas_position:1&quot;,&quot;meas_position:2&quot;,&quot;meas_position:3&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Manual&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:false,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[1,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:0.3369304736852646,&quot;MaxYLimReal&quot;:0.3369304736852646,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.22727653062343597,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:0.3369304736852646,&quot;MaxYLimReal&quot;:0.3369304736852646,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.22727653062343597,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:3,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
+    <P Name="WindowPosition">[1281.000000,62.000000,1277.000000,691.000000,]</P>
+    <P Name="Visible">on</P>
+    <P Name="ScopeFrameLocation">window</P>
+    <P Name="WasSavedAsWebScope">on</P>
+    <P Name="Floating">off</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:0.33693047368526458,&quot;MaxYLimReal&quot;:0.33693047368526458,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.22727653062343597,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="NumInputPorts">1</P>
+    <P Name="LayoutDimensionsString">[1,1]</P>
+    <P Name="ShowLegend">on</P>
+    <P Name="ActiveDisplayYMinimum">-0.22727653062343597</P>
+    <P Name="ActiveDisplayYMaximum">0.33693047368526458</P>
+    <P Name="DataLoggingVariableName">ScopeData15</P>
+  </Block>
+  <Block BlockType="SubSystem" Name="circlesweep" SID="272">
+    <PortCounts in="1" out="8"/>
+    <P Name="Position">[-740, -461, -520, -264]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Commented">on</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_272"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">theta_from_block</P>
+        <P Name="PropagatedSignals">theta</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">phi_from_block</P>
+        <P Name="PropagatedSignals">phi</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">trialId</P>
+        <P Name="PropagatedSignals">trialId</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">phaseId</P>
+        <P Name="PropagatedSignals">phaseId</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">cycleId</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="Name">direction</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="Name">done</P>
+      </Port>
+      <Port Type="out" Index="8">
+        <P Name="Name">testEnd_s</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_272"/>
+  </Block>
+  <Block BlockType="Scope" Name="computed lengths" SID="209">
+    <PortCounts in="3"/>
+    <P Name="Position">[-5, 1173, 25, 1207]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true,true,true,true,true,true,true,true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1,1,1,1,1,1,1,1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1,1,1,1,1,1,1,1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667],[0.9607843137254902,0.4666666666666667,0.1607843137254902],[0.28627450980392155,0.8588235294117647,0.25098039215686274],[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667],[0.9607843137254902,0.4666666666666667,0.1607843137254902],[0.28627450980392155,0.8588235294117647,0.25098039215686274],[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667],[0.9607843137254902,0.4666666666666667,0.1607843137254902],[0.28627450980392155,0.8588235294117647,0.25098039215686274]],&quot;ChannelNames&quot;:&quot;&quot;,&quot;DefaultLegendLabel&quot;:[&quot;l:1&quot;,&quot;l:2&quot;,&quot;l:3&quot;,&quot;l:4&quot;,&quot;dl:1&quot;,&quot;dl:2&quot;,&quot;dl:3&quot;,&quot;dl:4&quot;,&quot;ddl:1&quot;,&quot;ddl:2&quot;,&quot;ddl:3&quot;,&quot;ddl:4&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[4,4,4],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;l:1&quot;,&quot;l:2&quot;,&quot;l:3&quot;,&quot;l:4&quot;,&quot;dl:1&quot;,&quot;dl:2&quot;,&quot;dl:3&quot;,&quot;dl:4&quot;,&quot;ddl:1&quot;,&quot;ddl:2&quot;,&quot;ddl:3&quot;,&quot;ddl:4&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Manual&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:true,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[3,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:0.012253598977961501,&quot;MaxYLimReal&quot;:0.009816178100338446,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.012253598977961501,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:0.0021308864760208224,&quot;MaxYLimReal&quot;:0.0021308864760208224,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.0005434744658980969,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:4,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:0.004447580825159578,&quot;MaxYLimReal&quot;:0.004447580825159578,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.0026997074453442983,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:4,&quot;ShowContent&quot;:1,&quot;Placement&quot;:1},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:0.012253598977961501,&quot;MaxYLimReal&quot;:0.009816178100338446,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.012253598977961501,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:4,&quot;ShowContent&quot;:1,&quot;Placement&quot;:2}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
+    <P Name="WindowPosition">[12.000000,23.000000,1518.000000,813.000000,]</P>
+    <P Name="ScopeFrameLocation">window</P>
+    <P Name="WasSavedAsWebScope">on</P>
+    <P Name="Floating">off</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:0.019521084576218834,&quot;MaxYLimReal&quot;:0.019521084576218834,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.016802180124961048,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:0.014623119754417352,&quot;MaxYLimReal&quot;:0.014623119754417352,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.011480273405379222,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:0.023987598914619403,&quot;MaxYLimReal&quot;:0.021430540941146266,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.023987598914619403,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="NumInputPorts">3</P>
+    <P Name="LayoutDimensionsString">[3,1]</P>
+    <P Name="ShowLegend">on</P>
+    <P Name="ActiveDisplayYMinimum">-0.016802180124961048</P>
+    <P Name="ActiveDisplayYMaximum">0.019521084576218834</P>
+    <P Name="DataLoggingVariableName">ScopeData11</P>
+  </Block>
+  <Block BlockType="Scope" Name="gravity" SID="287">
+    <PortCounts in="1"/>
+    <P Name="Position">[-300, 1052, -270, 1088]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667],[0.9607843137254902,0.4666666666666667,0.1607843137254902]],&quot;ChannelNames&quot;:&quot;&quot;,&quot;DefaultLegendLabel&quot;:[&quot;NDI Sensor reading/gravity_arm:1&quot;,&quot;NDI Sensor reading/gravity_arm:2&quot;,&quot;NDI Sensor reading/gravity_arm:3&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[3],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;NDI Sensor reading/gravity_arm:1&quot;,&quot;NDI Sensor reading/gravity_arm:2&quot;,&quot;NDI Sensor reading/gravity_arm:3&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Manual&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:false,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[1,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:11.042014198482379,&quot;MaxYLimReal&quot;:1.2784590278504426,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.042014198482379,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:11.042014198482379,&quot;MaxYLimReal&quot;:1.2784590278504426,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.042014198482379,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:3,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
+    <P Name="WindowPosition">[1281.000000,62.000000,1277.000000,691.000000,]</P>
+    <P Name="Visible">on</P>
+    <P Name="ScopeFrameLocation">window</P>
+    <P Name="WasSavedAsWebScope">on</P>
+    <P Name="Floating">off</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:11.042014198482379,&quot;MaxYLimReal&quot;:1.2784590278504426,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.042014198482379,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="NumInputPorts">1</P>
+    <P Name="LayoutDimensionsString">[1,1]</P>
+    <P Name="ShowLegend">on</P>
+    <P Name="ActiveDisplayYMinimum">-11.042014198482379</P>
+    <P Name="ActiveDisplayYMaximum">1.2784590278504426</P>
+    <P Name="DataLoggingVariableName">ScopeData10</P>
+  </Block>
+  <Block BlockType="SubSystem" Name="helix" SID="273">
+    <PortCounts in="1" out="8"/>
+    <P Name="Position">[-740, -696, -520, -499]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Commented">on</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_273"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">theta_from_block</P>
+        <P Name="PropagatedSignals">theta</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">phi_from_block</P>
+        <P Name="PropagatedSignals">phi</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">trialId</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">phaseId</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">cycleId</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="Name">direction</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="Name">done</P>
+      </Port>
+      <Port Type="out" Index="8">
+        <P Name="Name">testEnd_s</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_273"/>
+  </Block>
+  <Block BlockType="ToggleSwitchBlock" Name="kill the pressure" SID="33">
+    <P Name="Position">[-245, 75, -190, 175]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="ShowName">off</P>
+    <P Name="BindingPersistence" Ref="bdmxdata:BindingPersistence_33"/>
+    <Array PropName="Values" Type="Cell" Dimension="1*2">
+      <Array PropName="Cell" Type="Cell" Dimension="1*2">
+        <Cell Class="char">Off</Cell>
+        <Cell Class="char">On</Cell>
+      </Array>
+      <Cell Class="double">[0.0, 1.0]</Cell>
+    </Array>
+  </Block>
+  <Block BlockType="SubSystem" Name="pressure combine" SID="274">
+    <PortCounts in="1" out="7"/>
+    <P Name="Position">[-740, -162, -525, 32]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_274"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">pressureRequested_bar</P>
+        <P Name="PropagatedSignals">pressureRequest_bar</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">trialId</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">phaseId</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">channelId</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">cycleId</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="Name">done</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="Name">testEnd_s</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_274"/>
+  </Block>
+  <Block BlockType="Scope" Name="pressures comparision" SID="133">
+    <PortCounts in="2"/>
+    <P Name="Position">[800, -156, 865, -94]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="FontSize">16</P>
+    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true,true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[0.75,1.5,1.5,1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9,0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1,1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1,1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667],[0.9607843137254902,0.4666666666666667,0.1607843137254902],[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667],[0.9607843137254902,0.4666666666666667,0.1607843137254902]],&quot;ChannelNames&quot;:[&quot;&quot;],&quot;DefaultLegendLabel&quot;:[&quot;pressureCommand_bar:1&quot;,&quot;pressureCommand_bar:2&quot;,&quot;pressureCommand_bar:3&quot;,&quot;pressureUsed_bar:1&quot;,&quot;pressureUsed_bar:2&quot;,&quot;pressureUsed_bar:3&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[3,3],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;pressureCommand_bar:1&quot;,&quot;pressureCommand_bar:2&quot;,&quot;pressureCommand_bar:3&quot;,&quot;pressureUsed_bar:1&quot;,&quot;pressureUsed_bar:2&quot;,&quot;pressureUsed_bar:3&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:2,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Manual&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:false,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[2,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:3.375,&quot;MaxYLimReal&quot;:3.375,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.3749999999999999,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:3.375,&quot;MaxYLimReal&quot;:3.375,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.3749999999999999,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:3,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:3.375,&quot;MaxYLimReal&quot;:3.375,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.3749999999999999,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:3,&quot;ShowContent&quot;:1,&quot;Placement&quot;:1}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
+    <P Name="WindowPosition">[648.000000,457.000000,1265.000000,527.000000,]</P>
+    <P Name="Visible">on</P>
+    <P Name="ScopeFrameLocation">window</P>
+    <P Name="WasSavedAsWebScope">on</P>
+    <P Name="Floating">off</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:3.375,&quot;MaxYLimReal&quot;:3.375,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.37499999999999989,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:3.375,&quot;MaxYLimReal&quot;:3.375,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.37499999999999989,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:true,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="NumInputPorts">2</P>
+    <P Name="LayoutDimensionsString">[2,1]</P>
+    <P Name="ShowLegend">on</P>
+    <P Name="ActiveDisplayYMinimum">-0.37499999999999989</P>
+    <P Name="ActiveDisplayYMaximum">3.375</P>
+    <P Name="DataLoggingVariableName">ScopeData6</P>
+  </Block>
+  <Block BlockType="SubSystem" Name="sineWave" SID="264">
+    <PortCounts in="1" out="7"/>
+    <P Name="Position">[-1130, -162, -910, 32]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Commented">on</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_264"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">pressureRequested_bar</P>
+        <P Name="PropagatedSignals">pressureRequest_bar</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">trialId</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">phaseId</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">channelId</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">cycleId</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="Name">done</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="Name">testEnd_s</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_264"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="stepWave" SID="271">
+    <PortCounts in="1" out="7"/>
+    <P Name="Position">[-1150, -381, -930, -189]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="Commented">on</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_271"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">pressureRequested_bar</P>
+        <P Name="PropagatedSignals">pressureRequest_bar</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">trialId</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">phaseId</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">channelId</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">cycleId</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="Name">done</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="Name">testEnd_s</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_271"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="validMeasurementTime" SID="210">
+    <PortCounts in="3" out="1"/>
+    <P Name="Position">[-125, 834, 10, 916]</P>
+    <P Name="ZOrder">100000</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_210"/>
+    <P Name="ErrorFcn">Stateflow.Translate.translate</P>
+    <P Name="PermitHierarchicalResolution">ExplicitOnly</P>
+    <P Name="TreatAsAtomicUnit">on</P>
+    <P Name="SFBlockType">MATLAB Function</P>
+    <P Name="ContentPreviewEnabled">on</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">measurementTime_s</P>
+        <P Name="PropagatedSignals">measurementTime_s</P>
+      </Port>
+    </PortProperties>
+    <System Ref="system_210"/>
+  </Block>
+  <Line>
+    <P Name="Name">dX</P>
+    <P Name="ZOrder">40</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">5#out:1</P>
+    <P Name="Points">[200, 0; 0, 60]</P>
+    <Branch>
+      <P Name="ZOrder">95</P>
+      <P Name="Labels">[2, 1]</P>
+      <P Name="Points">[0, 25]</P>
+      <P Name="Dst">105#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">94</P>
+      <P Name="Dst">84#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">X</P>
+    <P Name="ZOrder">41</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">84#out:1</P>
+    <P Name="Points">[19, 0]</P>
+    <Branch>
+      <P Name="ZOrder">43</P>
+      <P Name="Points">[0, 35]</P>
+      <Branch>
+        <P Name="ZOrder">128</P>
+        <P Name="Points">[0, 59; -498, 0; 0, -94]</P>
+        <P Name="Dst">5#in:2</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">98</P>
+        <P Name="Labels">[1, 1]</P>
+        <P Name="Dst">105#in:2</P>
+      </Branch>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">42</P>
+      <P Name="Dst">83#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">length velocity</P>
+    <P Name="ZOrder">45</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">83#out:2</P>
+    <P Name="Dst">85#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">tau_N</P>
+    <P Name="ZOrder">83</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">5#out:5</P>
+    <P Name="Points">[88, 0; 0, 35]</P>
+    <P Name="Dst">97#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">pressureUsed_bar</P>
+    <P Name="ZOrder">85</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">5#out:6</P>
+    <P Name="Points">[201, 0]</P>
+    <Branch>
+      <P Name="ZOrder">125</P>
+      <P Name="Points">[0, 35]</P>
+      <P Name="Dst">98#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">124</P>
+      <P Name="Points">[69, 0; 0, 5; 91, 0]</P>
+      <Branch>
+        <P Name="ZOrder">854</P>
+        <P Name="Points">[0, -205]</P>
+        <P Name="Dst">133#in:2</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">853</P>
+        <P Name="Labels">[1, 1]</P>
+        <P Name="Dst">105#in:3</P>
+      </Branch>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">thetaObservable</P>
+    <P Name="ZOrder">86</P>
+    <P Name="Labels">[2, 1]</P>
+    <P Name="Src">5#out:7</P>
+    <P Name="Points">[25, 0; 0, 65]</P>
+    <P Name="Dst">99#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">93</P>
+    <P Name="Src">105#out:1</P>
+    <P Name="Dst">104#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">129</P>
+    <P Name="Src">107#out:1</P>
+    <P Name="Dst">108#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">233</P>
+    <P Name="Src">124#out:1</P>
+    <P Name="Points">[18, 0; 0, 60]</P>
+    <P Name="Dst">125#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">237</P>
+    <P Name="Src">127#out:1</P>
+    <P Name="Dst">125#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Name">tauDesired_N</P>
+    <P Name="ZOrder">240</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">125#out:2</P>
+    <P Name="Dst">129#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">tauAvailable_N</P>
+    <P Name="ZOrder">241</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">125#out:3</P>
+    <P Name="Dst">130#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">pressureLimited</P>
+    <P Name="ZOrder">242</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">125#out:4</P>
+    <P Name="Dst">131#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">inverseModelValid</P>
+    <P Name="ZOrder">243</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">125#out:5</P>
+    <P Name="Dst">132#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">381</P>
+    <P Name="Src">136#out:1</P>
+    <P Name="Points">[-44, 0]</P>
+    <Branch>
+      <P Name="ZOrder">438</P>
+      <P Name="Points">[0, 66; 506, 0; 0, -96]</P>
+      <P Name="Dst">125#in:3</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">437</P>
+      <P Name="Points">[-78, 0; 0, 275]</P>
+      <P Name="Dst">5#in:3</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">384</P>
+    <P Name="Src">137#out:1</P>
+    <P Name="Dst">136#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">441</P>
+    <P Name="Src">146#out:5</P>
+    <P Name="Points">[2, 0; 0, 64; 83, 0]</P>
+    <Branch>
+      <P Name="ZOrder">985</P>
+      <P Name="Points">[0, 1]</P>
+      <P Name="Dst">141#in:3</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">980</P>
+      <P Name="Dst">296#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">meas_position</P>
+    <P Name="ZOrder">442</P>
+    <P Name="Labels">[2, 1]</P>
+    <P Name="Src">146#out:8</P>
+    <P Name="Points">[16, 0; 0, 130]</P>
+    <P Name="Dst">208#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">meas_theta</P>
+    <P Name="ZOrder">444</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">146#out:1</P>
+    <P Name="Points">[35, 0; 0, -685; 735, 0]</P>
+    <Branch>
+      <P Name="ZOrder">608</P>
+      <P Name="Dst">281#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">605</P>
+      <P Name="Dst">107#in:2</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">448</P>
+    <P Name="Src">146#out:3</P>
+    <P Name="Points">[19, 0; 0, 31; 51, 0; 0, 14]</P>
+    <Branch>
+      <P Name="ZOrder">447</P>
+      <P Name="Dst">141#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">446</P>
+      <P Name="Dst">140#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">453</P>
+    <P Name="Src">146#out:4</P>
+    <P Name="Points">[43, 0]</P>
+    <Branch>
+      <P Name="ZOrder">984</P>
+      <P Name="Points">[0, 55; 62, 0]</P>
+      <Branch>
+        <P Name="ZOrder">970</P>
+        <P Name="Dst">292#in:1</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">968</P>
+        <P Name="Dst">141#in:2</P>
+      </Branch>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">604</P>
+      <P Name="Points">[0, -45]</P>
+      <Branch>
+        <P Name="ZOrder">451</P>
+        <P Name="Points">[0, -74; 164, 0; 0, 59]</P>
+        <P Name="Dst">210#in:2</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">603</P>
+        <P Name="Dst">138#in:1</P>
+      </Branch>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">meas_phi</P>
+    <P Name="ZOrder">454</P>
+    <P Name="Src">146#out:2</P>
+    <P Name="Points">[69, 0]</P>
+    <Branch>
+      <P Name="ZOrder">983</P>
+      <P Name="Labels">[1, 1]</P>
+      <P Name="Points">[0, 15]</P>
+      <P Name="Dst">139#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">505</P>
+      <P Name="Points">[0, -80; 664, 0; 0, -600]</P>
+      <P Name="Dst">107#in:4</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">fitered_length</P>
+    <P Name="ZOrder">457</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">141#out:1</P>
+    <P Name="Points">[46, 0; 0, -5; 18, 0]</P>
+    <Branch>
+      <P Name="ZOrder">456</P>
+      <P Name="Labels">[4, 1]</P>
+      <P Name="Points">[0, 15; -10, 0; 0, 130]</P>
+      <P Name="Dst">143#in:2</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">455</P>
+      <P Name="Dst">142#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">dd_length</P>
+    <P Name="ZOrder">496</P>
+    <P Name="Labels">[3, 1]</P>
+    <P Name="Src">256#out:3</P>
+    <P Name="Points">[-156, 0; 0, 650]</P>
+    <P Name="Dst">145#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">462</P>
+    <P Name="Src">146#out:7</P>
+    <P Name="Points">[10, 0; 0, -118; 320, 0; 0, 38]</P>
+    <Branch>
+      <P Name="ZOrder">975</P>
+      <P Name="Dst">294#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">973</P>
+      <P Name="Dst">210#in:3</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">length</P>
+    <P Name="ZOrder">494</P>
+    <P Name="Labels">[3, 1]</P>
+    <P Name="Src">256#out:1</P>
+    <P Name="Points">[-189, 0; 0, 505]</P>
+    <P Name="Dst">143#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">d_length</P>
+    <P Name="ZOrder">495</P>
+    <P Name="Labels">[3, 1]</P>
+    <P Name="Src">256#out:2</P>
+    <P Name="Points">[-162, 0; 0, 580]</P>
+    <P Name="Dst">144#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">dl</P>
+    <P Name="ZOrder">465</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">144#out:1</P>
+    <P Name="Points">[16, 0; 0, 10]</P>
+    <P Name="Dst">209#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Name">filtered_dd_length</P>
+    <P Name="ZOrder">466</P>
+    <P Name="Labels">[1, 1; 3, 1]</P>
+    <P Name="Src">141#out:3</P>
+    <P Name="Points">[40, 0; 0, 255]</P>
+    <P Name="Dst">145#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Name">l</P>
+    <P Name="ZOrder">467</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">143#out:1</P>
+    <P Name="Points">[37, 0; 0, 85]</P>
+    <P Name="Dst">209#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">filtered_d_length</P>
+    <P Name="ZOrder">472</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">141#out:2</P>
+    <P Name="Points">[17, 0]</P>
+    <Branch>
+      <P Name="ZOrder">471</P>
+      <P Name="Labels">[2, 1]</P>
+      <P Name="Points">[0, 200]</P>
+      <P Name="Dst">144#in:2</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">470</P>
+      <P Name="Points">[0, -10]</P>
+      <P Name="Dst">142#in:2</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">ddl</P>
+    <P Name="ZOrder">473</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">145#out:1</P>
+    <P Name="Points">[21, 0; 0, -60]</P>
+    <P Name="Dst">209#in:3</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">476</P>
+    <P Name="Src">213#out:1</P>
+    <P Name="Dst">215#in:4</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">477</P>
+    <P Name="Src">212#out:1</P>
+    <P Name="Dst">215#in:3</P>
+  </Line>
+  <Line>
+    <P Name="Name">sim time</P>
+    <P Name="ZOrder">489</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">254#out:1</P>
+    <P Name="Dst">255#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">sampled time</P>
+    <P Name="ZOrder">490</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">255#out:1</P>
+    <P Name="Points">[56, 0]</P>
+    <Branch>
+      <P Name="ZOrder">578</P>
+      <P Name="Points">[0, -142; -465, 0; 0, -548]</P>
+      <Branch>
+        <P Name="ZOrder">919</P>
+        <P Name="Dst">274#in:1</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">899</P>
+        <P Name="Labels">[2, 1]</P>
+        <P Name="Points">[0, -144; 489, 0; 0, -131]</P>
+        <P Name="Dst">278#in:2</P>
+      </Branch>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">514</P>
+      <P Name="Points">[0, 135]</P>
+      <Branch>
+        <P Name="ZOrder">998</P>
+        <P Name="Dst">307#in:1</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">995</P>
+        <P Name="Points">[0, 90]</P>
+        <P Name="Dst">210#in:1</P>
+      </Branch>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">comp_lengths</P>
+    <P Name="ZOrder">491</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">5#out:2</P>
+    <P Name="Points">[7, 0; 0, 571]</P>
+    <Branch>
+      <P Name="ZOrder">501</P>
+      <P Name="Points">[1166, 0; 0, -906]</P>
+      <P Name="Dst">215#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">499</P>
+      <P Name="Points">[0, 1; -58, 0]</P>
+      <Branch>
+        <P Name="ZOrder">498</P>
+        <P Name="Points">[0, 151; -688, 0; 0, 177]</P>
+        <P Name="Dst">146#in:1</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">497</P>
+        <P Name="Points">[-2, 0; 0, 8]</P>
+        <P Name="Dst">256#in:1</P>
+      </Branch>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">measurementTime_s</P>
+    <P Name="ZOrder">509</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">210#out:1</P>
+    <P Name="Points">[201, 0; 0, 20]</P>
+    <P Name="Dst">263#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">trialId</P>
+    <P Name="ZOrder">924</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">274#out:2</P>
+    <P Name="Dst">265#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">phaseId</P>
+    <P Name="ZOrder">921</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">274#out:3</P>
+    <P Name="Dst">266#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">channelId</P>
+    <P Name="ZOrder">925</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">274#out:4</P>
+    <P Name="Dst">267#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">cycleId</P>
+    <P Name="ZOrder">918</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">274#out:5</P>
+    <P Name="Dst">268#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">done</P>
+    <P Name="ZOrder">922</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">274#out:6</P>
+    <P Name="Dst">269#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">testEnd_s</P>
+    <P Name="ZOrder">923</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">274#out:7</P>
+    <P Name="Dst">270#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">direction</P>
+    <P Name="ZOrder">878</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Points">[-715, 165]</P>
+    <P Name="Dst">275#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">580</P>
+    <P Name="Src">277#out:1</P>
+    <P Name="Dst">276#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">sampled des_length</P>
+    <P Name="ZOrder">581</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">276#out:1</P>
+    <P Name="Dst">278#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">585</P>
+    <P Name="Src">279#out:1</P>
+    <P Name="Dst">277#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">length</P>
+    <P Name="ZOrder">596</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">278#out:1</P>
+    <P Name="Points">[135, 0; 0, 25]</P>
+    <P Name="Dst">124#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">d_length</P>
+    <P Name="ZOrder">597</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">278#out:2</P>
+    <P Name="Dst">124#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Name">dd_length</P>
+    <P Name="ZOrder">598</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">278#out:3</P>
+    <P Name="Points">[135, 0; 0, -25]</P>
+    <P Name="Dst">124#in:3</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">609</P>
+    <P Name="Src">282#out:1</P>
+    <P Name="Dst">215#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Name">pressureCommand_bar</P>
+    <P Name="ZOrder">239</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">125#out:1</P>
+    <P Name="Points">[0, 0]</P>
+    <Branch>
+      <P Name="ZOrder">600</P>
+      <P Name="Points">[0, 250]</P>
+      <Branch>
+        <P Name="ZOrder">601</P>
+        <P Name="Labels">[1, 1; 3, 1]</P>
+        <P Name="Points">[-134, 0; 0, 170]</P>
+        <P Name="Dst">105#in:4</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">126</P>
+        <P Name="Points">[80, 0; 0, -75]</P>
+        <P Name="Dst">133#in:1</P>
+      </Branch>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">599</P>
+      <P Name="Dst">128#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">meas_positionTip_offsetCorrected</P>
+    <P Name="ZOrder">837</P>
+    <P Name="Labels">[4, 1]</P>
+    <P Name="Src">146#out:9</P>
+    <P Name="Points">[10, 0; 0, 129; 94, 0; 0, 26]</P>
+    <P Name="Dst">286#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">838</P>
+    <P Name="Src">146#out:6</P>
+    <P Name="Points">[28, 0; 0, 134; 79, 0; 0, -29]</P>
+    <P Name="Dst">287#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">des_theta</P>
+    <P Name="ZOrder">56</P>
+    <P Name="Src">5#out:3</P>
+    <P Name="Points">[61, 0]</P>
+    <Branch>
+      <P Name="ZOrder">485</P>
+      <P Name="Labels">[3, 1]</P>
+      <P Name="Points">[0, 160; -812, 0; 0, 770]</P>
+      <P Name="Dst">146#in:2</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">484</P>
+      <P Name="Labels">[1, 1]</P>
+      <P Name="Points">[86, 0]</P>
+      <Branch>
+        <P Name="ZOrder">907</P>
+        <P Name="Labels">[3, 0]</P>
+        <P Name="Points">[0, -295; -479, 0; 0, -135]</P>
+        <P Name="Dst">279#in:1</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">906</P>
+        <P Name="Labels">[3, 1]</P>
+        <P Name="Points">[41, 0; 0, 165]</P>
+        <P Name="Dst">107#in:1</P>
+      </Branch>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">des_phi</P>
+    <P Name="ZOrder">57</P>
+    <P Name="Src">5#out:4</P>
+    <P Name="Points">[42, 0]</P>
+    <Branch>
+      <P Name="ZOrder">386</P>
+      <P Name="Labels">[1, 1]</P>
+      <P Name="Points">[0, 165]</P>
+      <Branch>
+        <P Name="ZOrder">487</P>
+        <P Name="Labels">[3, 0]</P>
+        <P Name="Points">[-805, 0; 0, 795]</P>
+        <P Name="Dst">146#in:3</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">486</P>
+        <P Name="Labels">[-1, 0]</P>
+        <P Name="Dst">107#in:3</P>
+      </Branch>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">385</P>
+      <P Name="Points">[0, -30; 62, 0; 0, -55]</P>
+      <Branch>
+        <P Name="ZOrder">909</P>
+        <P Name="Labels">[2, 0]</P>
+        <P Name="Points">[-444, 0; 0, -345]</P>
+        <P Name="Dst">279#in:2</P>
+      </Branch>
+      <Branch>
+        <P Name="ZOrder">908</P>
+        <P Name="Points">[0, -140]</P>
+        <P Name="Dst">137#in:1</P>
+      </Branch>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Name">pressureRequested_bar</P>
+    <P Name="ZOrder">920</P>
+    <P Name="Labels">[0, 0; -1, 0]</P>
+    <P Name="Src">274#out:1</P>
+    <P Name="Points">[282, 0; 0, 90]</P>
+    <Branch>
+      <P Name="ZOrder">904</P>
+      <P Name="Points">[1860, 0; 0, 405]</P>
+      <P Name="Dst">230#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">901</P>
+      <P Name="Points">[0, 50]</P>
+      <P Name="Dst">5#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">967</P>
+    <P Name="Src">291#out:1</P>
+    <P Name="Dst">289#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">971</P>
+    <P Name="Src">293#out:1</P>
+    <P Name="Dst">289#in:2</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">976</P>
+    <P Name="Src">295#out:1</P>
+    <P Name="Dst">289#in:3</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">981</P>
+    <P Name="Src">297#out:1</P>
+    <P Name="Dst">289#in:4</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">988</P>
+    <P Name="Src">300#out:2</P>
+    <P Name="Points">[100, 0; 0, 65]</P>
+    <P Name="Dst">289#in:5</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">989</P>
+    <P Name="Src">146#out:10</P>
+    <P Name="Dst">301#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">990</P>
+    <P Name="Src">302#out:1</P>
+    <P Name="Dst">300#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">991</P>
+    <P Name="Src">300#out:1</P>
+    <P Name="Dst">303#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">994</P>
+    <P Name="Src">306#out:1</P>
+    <P Name="Dst">289#in:6</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">999</P>
+    <P Name="Src">308#out:1</P>
+    <P Name="Dst">289#in:8</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">1001</P>
+    <P Name="Src">309#out:1</P>
+    <P Name="Dst">289#in:9</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">1002</P>
+    <P Name="Src">310#out:1</P>
+    <P Name="Points">[50, 0; 0, -40]</P>
+    <P Name="Dst">289#in:10</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">1004</P>
+    <P Name="Src">230#out:2</P>
+    <P Name="Dst">305#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">1006</P>
+    <P Name="Src">230#out:3</P>
+    <P Name="Dst">318#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">1007</P>
+    <P Name="Src">319#out:1</P>
+    <P Name="Dst">289#in:7</P>
+  </Line>
+  <Annotation SID="253">
+    <P Name="Name">Actuator</P>
+    <P Name="Position">[1929, 215, 2250, 485]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedWidth">on</P>
+    <P Name="ForegroundColor">[0.972549, 0.952941, 0.929412]</P>
+    <P Name="BackgroundColor">[0.972549, 0.952941, 0.929412]</P>
+    <P Name="DropShadow">on</P>
+    <P Name="AnnotationType">area_annotation</P>
+    <P Name="ZOrder">725</P>
+    <P Name="FontSize">36</P>
+  </Annotation>
+</System>

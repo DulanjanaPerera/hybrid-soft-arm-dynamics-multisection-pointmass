@@ -1,0 +1,6 @@
+{
+  "retainedSwitchNaNPatternExact": true,
+  "retainedSwitchMaxDifference_bar": 0,
+  "handoffNonfiniteRows": 0,
+  "actualNonfiniteRows": 435
+}

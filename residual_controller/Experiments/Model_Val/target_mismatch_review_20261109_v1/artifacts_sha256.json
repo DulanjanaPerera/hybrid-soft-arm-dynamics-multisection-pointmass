@@ -1,0 +1,77 @@
+[
+  {
+    "file": "analysis.mat",
+    "bytes": 8200705,
+    "sha256": "40fec577d9afc7646f83c0144e0e0a8e6b61627803a9373b6d698857ccf73cc3"
+  },
+  {
+    "file": "first_window_metrics.csv",
+    "bytes": 2033,
+    "sha256": "f9b7b5bb41cdc47434377922ce70233f2f3ae853ed3172506cad70c19ce518ed"
+  },
+  {
+    "file": "independent_csv_checks.json",
+    "bytes": 279,
+    "sha256": "98c497c4dd7975c12dc4b924b6a80be1833431ee614fbac7482585e92f10fceb"
+  },
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 1126,
+    "sha256": "39104b02b7f410c585a0e775d8b7a9ea7b530d534aa32a03ac5d3f587cf3872f"
+  },
+  {
+    "file": "README.md",
+    "bytes": 6431,
+    "sha256": "0388dde1e5e68abf1829dbdc199e0ca54fb9b5200f3b0a8389d8a2f84e8b3158"
+  },
+  {
+    "file": "saved_model_readonly_wiring.json",
+    "bytes": 1596,
+    "sha256": "445c417b8336f592b602f9259089d667275fe15665c1abe037510122906ad41c"
+  },
+  {
+    "file": "source_snapshot\\analyzeSinglePassTargetMismatch.m",
+    "bytes": 10116,
+    "sha256": "52733655c22c556df91d3a35f1be3e9ea6f17ee431e077a1ad00b41977f498e0"
+  },
+  {
+    "file": "source_snapshot\\residualShadowPhysicsConfig.m",
+    "bytes": 462,
+    "sha256": "deb0182d3b25e727b70b3b264c318fb2b7976a83c0109655756ddb351ed6f22b"
+  },
+  {
+    "file": "source_snapshot\\rlInverseModelBlock.m",
+    "bytes": 3015,
+    "sha256": "28a752bee830a903443065d8fe330c2135a97fdc0392a81718ca821150775dbf"
+  },
+  {
+    "file": "source_snapshot\\rlResidualSinglePassCollectionShadowBlock.m",
+    "bytes": 4795,
+    "sha256": "b32b9c3ef37b7e913e398d2d3a676b18e136935364d69c91ac1c0a3161ab4e57"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 4727,
+    "sha256": "3475611dc540ce406ed491f2c8b87d6e7a30121d40d2437ba9622aad2df6edef"
+  },
+  {
+    "file": "target_comparison_first70.fig",
+    "bytes": 807348,
+    "sha256": "fdc73ac7e686dc5b6adb5c15d5ed5e4caa7a062895c8e06dd41df2f0e3ba5527"
+  },
+  {
+    "file": "target_comparison_first70.pdf",
+    "bytes": 176009,
+    "sha256": "4edf0cd26635e411d767437dcea0ad29e0d5ce2af530d122b5bd4797c9576b53"
+  },
+  {
+    "file": "target_comparison_first70.png",
+    "bytes": 350532,
+    "sha256": "822c441d27c7be0e1486868789c8b42e5441e581c2aead2371e1255ff3fa5ab1"
+  },
+  {
+    "file": "trace.csv",
+    "bytes": 2807126,
+    "sha256": "522d0835c513ac085d09358eca083d8aeb630aeb4cd83b7899d6ac13d8186c5c"
+  }
+]

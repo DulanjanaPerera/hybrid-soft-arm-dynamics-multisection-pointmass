@@ -1,0 +1,55 @@
+function [el, edl, eddl, iel] = computeLengthError(meas_l, des_l, t)
+%#codegen
+% iel is the integral of length error, in m*s.
+
+integralStart_s = 20.0;  % after rotation, trim, and feedback blend
+integralStop_s  = 220.0;
+integralLimit_m_s = 0.04;
+
+persistent integralError lastTime_s
+if isempty(lastTime_s)
+    integralError = zeros(2,1);
+    lastTime_s = -1.0;
+end
+
+el = nan(2,1);
+edl = nan(2,1);
+eddl = nan(2,1);
+iel = nan(2,1);
+
+if ~isfinite(t)
+    return;
+end
+
+% Reset on a new simulation run.
+if lastTime_s > t
+    integralError = zeros(2,1);
+    lastTime_s = -1.0;
+end
+
+% Do not accumulate during startup/trim or after feedback stops.
+if t < integralStart_s || t >= integralStop_s
+    integralError = zeros(2,1);
+end
+
+% Pause integration on an invalid sample; do not integrate across the gap.
+if ~all(isfinite(meas_l)) || ~all(isfinite(des_l))
+    lastTime_s = t;
+    return;
+end
+
+el   = des_l(1:2) - meas_l(1:2);
+edl  = des_l(3:4) - meas_l(3:4);
+eddl = des_l(5:6) - meas_l(5:6);
+
+if t >= integralStart_s && t < integralStop_s && ...
+        lastTime_s >= integralStart_s && t > lastTime_s
+    dt = t - lastTime_s;
+    integralError = integralError + dt*el;
+    integralError = min(max(integralError, -integralLimit_m_s), ...
+                        integralLimit_m_s);
+end
+
+iel = integralError;
+lastTime_s = t;
+end

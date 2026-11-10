@@ -1,0 +1,64 @@
+{
+  "independentMeasurementErrorAndPriorIssueChecksPassed": true,
+  "horizon_s": 0.05,
+  "errorDefinition": "prediction minus measured",
+  "predictedThetaStraightTolerance_rad": 0.0087266462599716477,
+  "records": [
+    {
+      "source": "circlesweep_test.mat",
+      "modelName": "residual_FWD_INV_validation",
+      "modelVersion": "1.51",
+      "rows": 7501,
+      "endTime_s": 375,
+      "physicalValidRows": 7479,
+      "scoreValidRows": 6767,
+      "NDIMeasurementDifference_m": 0,
+      "loggedErrorDifference_m": 0,
+      "previousIssuedDifference_m": 0,
+      "measuredPhiGeometryDifference_rad": 8.8817841970012523E-16,
+      "measuredThetaGeometryDifference_rad": 4.4408920985006262E-16
+    },
+    {
+      "source": "helix_FWD_INV_test.mat",
+      "modelName": "residual_FWD_INV_validation",
+      "modelVersion": "1.51",
+      "rows": 5801,
+      "endTime_s": 290,
+      "physicalValidRows": 5773,
+      "scoreValidRows": 5030,
+      "NDIMeasurementDifference_m": 0,
+      "loggedErrorDifference_m": 0,
+      "previousIssuedDifference_m": 0,
+      "measuredPhiGeometryDifference_rad": 6.6613381477509392E-16,
+      "measuredThetaGeometryDifference_rad": 4.4408920985006262E-16
+    },
+    {
+      "source": "sinewave_test.mat",
+      "modelName": "residual_FWD_INV_validation",
+      "modelVersion": "1.51",
+      "rows": 4241,
+      "endTime_s": 212,
+      "physicalValidRows": 4229,
+      "scoreValidRows": 3866,
+      "NDIMeasurementDifference_m": 0,
+      "loggedErrorDifference_m": 0,
+      "previousIssuedDifference_m": 0,
+      "measuredPhiGeometryDifference_rad": 4.4408920985006262E-16,
+      "measuredThetaGeometryDifference_rad": 2.2204460492503131E-16
+    },
+    {
+      "source": "sinewave_test_100g.mat",
+      "modelName": "residual_FWD_INV_validation",
+      "modelVersion": "1.51",
+      "rows": 4241,
+      "endTime_s": 212,
+      "physicalValidRows": 4231,
+      "scoreValidRows": 3984,
+      "NDIMeasurementDifference_m": 0,
+      "loggedErrorDifference_m": 0,
+      "previousIssuedDifference_m": 0,
+      "measuredPhiGeometryDifference_rad": 6.6613381477509392E-16,
+      "measuredThetaGeometryDifference_rad": 4.4408920985006262E-16
+    }
+  ]
+}

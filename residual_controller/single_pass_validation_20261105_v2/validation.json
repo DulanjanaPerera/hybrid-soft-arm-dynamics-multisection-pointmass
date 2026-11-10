@@ -1,0 +1,53 @@
+{
+  "busPassed": true,
+  "syntheticCases": 2,
+  "syntheticSignSlewCausalityInvalidPassed": true,
+  "savedContextRows": 11964,
+  "allNumericAssertionsPassed": true,
+  "results": [
+    {
+      "caseName": "circlesweep_FWD_INV_test",
+      "validRows": 6908,
+      "equalAfterSlew": 5440,
+      "equalBeforeSlew": 0,
+      "allocationLimited": 236,
+      "slewLimited": 6646,
+      "frozenBalanceSatisfied": 110,
+      "candidateModelBalanceSatisfied": 23,
+      "frozenErrorMedian_N": 0.41965474032920547,
+      "candidateModelErrorMedian_N": 0.40826162799865617,
+      "candidateModelErrorP95_N": 4.3583397864854865,
+      "iterativeModelErrorMedian_N": 0.377221350417971,
+      "nominalErrorMedian_N": 9.4966636582197737,
+      "maxDifferenceBeforeSlew_bar": 1.1134662240046491,
+      "maxDifferenceAfterSlew_bar": 0.57986926704141739,
+      "numericP95_ms": 0.14412999999999984,
+      "targetReproductionMax_N": 0,
+      "residualReproductionMax_N": 1.0658141036401503E-14,
+      "nominalReproductionMax_bar": 0,
+      "errorDecompositionMax_N": 9.1443565084388119E-15
+    },
+    {
+      "caseName": "helix_FWD_INV_test",
+      "validRows": 5056,
+      "equalAfterSlew": 3491,
+      "equalBeforeSlew": 0,
+      "allocationLimited": 79,
+      "slewLimited": 4891,
+      "frozenBalanceSatisfied": 201,
+      "candidateModelBalanceSatisfied": 1,
+      "frozenErrorMedian_N": 0.44274535194595027,
+      "candidateModelErrorMedian_N": 0.58154790978677207,
+      "candidateModelErrorP95_N": 4.8579349471747051,
+      "iterativeModelErrorMedian_N": 0.4840726658860407,
+      "nominalErrorMedian_N": 7.7555458460141153,
+      "maxDifferenceBeforeSlew_bar": 0.97670065915517834,
+      "maxDifferenceAfterSlew_bar": 0.60000000000000053,
+      "numericP95_ms": 0.13207999999999992,
+      "targetReproductionMax_N": 0,
+      "residualReproductionMax_N": 1.0658141036401503E-14,
+      "nominalReproductionMax_bar": 0,
+      "errorDecompositionMax_N": 1.3061055499232969E-14
+    }
+  ]
+}

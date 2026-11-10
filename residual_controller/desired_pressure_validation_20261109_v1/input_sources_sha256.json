@@ -1,0 +1,58 @@
+[
+  {
+    "file": "residual_controller/rlResidualDesiredPressureBlock.m",
+    "sha256": "50a458e330d64f688d6484ce192908e513887e24b18d4d0f2fa613bc26bbc867"
+  },
+  {
+    "file": "residual_controller/validateResidualDesiredPressure.m",
+    "sha256": "aa7efbf5af00932b64e453c97e2f3b3560492f95b52000d1fdc73ba8e45514f8"
+  },
+  {
+    "file": "residual_controller/writeResidualDesiredPressureFixtures.m",
+    "sha256": "deaa8d735c922e625c547a6a009656ec56630db6800dc615da590c5c7e832f37"
+  },
+  {
+    "file": "residual_controller/checkResidualSinglePassShadowCodegen.m",
+    "sha256": "a955d974f2f4d3a9f1dd491c134c5f8a5e25137ebf819d259b0a9df6f2c95005"
+  },
+  {
+    "file": "residual_controller/checkNativeResidualSinglePass.py",
+    "sha256": "c8ed66c2d23a9d76549371542d04a26b22324449b8f13a8279f17853b58897da"
+  },
+  {
+    "file": "residual_controller/residualSinglePassDiagnostics.m",
+    "sha256": "5b63b658d1c6ba9d0d5c3e940c204441cc543e84f0299a176cc23544f96d09c8"
+  },
+  {
+    "file": "residual_controller/residualShadowPhysicsConfig.m",
+    "sha256": "deb0182d3b25e727b70b3b264c318fb2b7976a83c0109655756ddb351ed6f22b"
+  },
+  {
+    "file": "residual_controller/residualControllerNetwork.m",
+    "sha256": "994f63040dbc200b481dcb60123b80b9d512b69863412ce517fa2ec95c016f23"
+  },
+  {
+    "file": "residual_controller/DESIRED_PRESSURE_BLOCK.md",
+    "sha256": "64807b3f7fefc41f3653239ef21050296f8fb0fd54b7989b9e6877e624d1b14a"
+  },
+  {
+    "file": "RL_data_collection/rlInverseModelBlock.m",
+    "sha256": "28a752bee830a903443065d8fe330c2135a97fdc0392a81718ca821150775dbf"
+  },
+  {
+    "file": "residual_controller/residualNetwork64_v1.mat",
+    "sha256": "2ccabff35396e5f21785bd8d9f4eeb0e09a181fbadf3e665dbf879bc8f2d633a"
+  },
+  {
+    "file": "residual_controller/residualNetwork128_v1.mat",
+    "sha256": "a5efd346d2d23a0dfb83dcda9647f9ec5f2fe690364cb226c03fafb0363fcd60"
+  },
+  {
+    "file": "residual_controller/Experiments/Model_Val/circlesweep_FWD_INV_test_4.mat",
+    "sha256": "e9cec406208de7ff8332827b653e7fcad926133ea7f9001324eaa9fbfc49952d"
+  },
+  {
+    "file": "residual_FWD_INV_validation.slx",
+    "sha256": "3c1d4b3144fb16fccec8ee7d8c40f12fbc740fde1dee4be5bc1833c257be1b53"
+  }
+]

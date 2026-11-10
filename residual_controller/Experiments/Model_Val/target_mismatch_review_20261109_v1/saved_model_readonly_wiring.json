@@ -1,0 +1,68 @@
+[
+  {
+    "source": "124#out:1",
+    "sourceName": "Mux6",
+    "destination": "125#in:1",
+    "destinationName": "MATLAB Function3"
+  },
+  {
+    "source": "127#out:1",
+    "sourceName": "From3",
+    "destination": "125#in:2",
+    "destinationName": "MATLAB Function3"
+  },
+  {
+    "source": "136#out:1",
+    "sourceName": "MATLAB Function7",
+    "destination": "125#in:3",
+    "destinationName": "MATLAB Function3"
+  },
+  {
+    "source": "278#out:1",
+    "sourceName": "MATLAB Function2",
+    "destination": "124#in:1",
+    "destinationName": "Mux6"
+  },
+  {
+    "source": "278#out:2",
+    "sourceName": "MATLAB Function2",
+    "destination": "124#in:2",
+    "destinationName": "Mux6"
+  },
+  {
+    "source": "278#out:3",
+    "sourceName": "MATLAB Function2",
+    "destination": "124#in:3",
+    "destinationName": "Mux6"
+  },
+  {
+    "source": "289#out:5",
+    "sourceName": "MATLAB Function4",
+    "destination": "340#in:1",
+    "destinationName": "MATLAB Function8"
+  },
+  {
+    "source": "334#out:1",
+    "sourceName": "From12",
+    "destination": "340#in:2",
+    "destinationName": "MATLAB Function8"
+  },
+  {
+    "source": "341#out:1",
+    "sourceName": "Constant5",
+    "destination": "340#in:4",
+    "destinationName": "MATLAB Function8"
+  },
+  {
+    "source": "342#out:1",
+    "sourceName": "Constant6",
+    "destination": "340#in:5",
+    "destinationName": "MATLAB Function8"
+  },
+  {
+    "source": "343#out:1",
+    "sourceName": "Constant7",
+    "destination": "340#in:3",
+    "destinationName": "MATLAB Function8"
+  }
+]

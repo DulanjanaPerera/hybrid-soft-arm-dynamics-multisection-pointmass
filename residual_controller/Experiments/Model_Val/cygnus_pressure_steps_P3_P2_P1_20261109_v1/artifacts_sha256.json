@@ -1,0 +1,82 @@
+[
+  {
+    "file": "independent_csv_checks.json",
+    "bytes": 218,
+    "sha256": "db576f753d7cca8685f50591d83b8a6c5c9768ea9c9f93760397f987d02d6207"
+  },
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 572,
+    "sha256": "31d7998a07077b96bcd4538e80537ea94e0dd6bb2930cf6c46bee9180c85b125"
+  },
+  {
+    "file": "manual_tracking.fig",
+    "bytes": 381887,
+    "sha256": "9153f277e1ee404fc1bdf7a4bd19197103beb8e8febd986f796e9dd30590f7e0"
+  },
+  {
+    "file": "manual_tracking.pdf",
+    "bytes": 853759,
+    "sha256": "ddc10b294bb82bfa3eddfa9074ce4511da7e70f4e8614a49bc9158a5687e751c"
+  },
+  {
+    "file": "manual_tracking.png",
+    "bytes": 241220,
+    "sha256": "82e3a4fecd99013086033ccc3376a3c3b6deb1b362fdc4190d744c15a315e89e"
+  },
+  {
+    "file": "missing_episodes.csv",
+    "bytes": 3153,
+    "sha256": "2ad593c648bd2c6e9ded3bde644557e97d6b6464710c3768ec379550f0d8a69c"
+  },
+  {
+    "file": "missing_tip_reports.csv",
+    "bytes": 8508,
+    "sha256": "ff6b3a2671fd34de47b98b62e12d0324e486b0aefd941f1301f9eefc512fcb98"
+  },
+  {
+    "file": "movement_classification.json",
+    "bytes": 1711,
+    "sha256": "49eb5edb874afede63f1d3d4274fdb2adc180138ddc81e4e86091b618eca2477"
+  },
+  {
+    "file": "movement_groups.csv",
+    "bytes": 458,
+    "sha256": "1c94d9f7adbe9f5ff41538e5b9890b0c0bba619096aa79880d0c52a4ba2f1aa8"
+  },
+  {
+    "file": "README.md",
+    "bytes": 4834,
+    "sha256": "fc136e7b397c5e43b7efed68065c770860ef151b7749a7e5a616879f72bf3ec8"
+  },
+  {
+    "file": "source_log.txt",
+    "bytes": 5986190,
+    "sha256": "1976de55d612ba40bad58af96c84073e1eb87b7a6b466295563a1a46cbf10e87"
+  },
+  {
+    "file": "source_snapshot\\analyzeCygnusBxLog.py",
+    "bytes": 7386,
+    "sha256": "61d405e0a2fd87830b405a131e621fc38243b46b9aef442db40d57f3e28f81cb"
+  },
+  {
+    "file": "source_snapshot\\ndiSupportFnc.m",
+    "bytes": 23454,
+    "sha256": "f305fa64f0cf91a56e746b9f7c2a5a5f44784e1741e6091d25d6af2f43f06550"
+  },
+  {
+    "file": "source_snapshot\\plotCygnusManualAudit.m",
+    "bytes": 2206,
+    "sha256": "c84250d3b3f8b9a1438926f2a2400236304e90b46b934b660ff0f3f9377887c7"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 1263,
+    "sha256": "bbbd26c95c3bf3d66a0139bb97d1a5b4759b7f7992958f154cf1a96f83fbad31"
+  },
+  {
+    "file": "tracking.csv",
+    "bytes": 1894680,
+    "sha256": "76ed0e3706862a10f4aedb216a15d03e34e03af522aa5b569e0e69f7d601b197"
+  }
+]

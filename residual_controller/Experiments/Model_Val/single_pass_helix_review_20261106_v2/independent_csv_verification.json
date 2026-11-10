@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "validRows": 5266,
+  "equalSinglePassIterative": 3960,
+  "zeroCommandRows": 853,
+  "zeroCommandPoint3Rows": 853,
+  "maximumClippingIdentityDifference_bar": 1.021405182655144e-14
+}

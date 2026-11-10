@@ -1,0 +1,25 @@
+PASS: packed64/128 cells match frozen streaming cells 0; pressure Jacobian FD 9.8e-11; candidate state purity.
+PASS: zero/.2/.8 activation-map re-expression, residual RHS sign and units.
+PASS: PAC force exactly nominal-reference force + Y*(theta-theta0); adaptive law unchanged.
+PASS: all28 PAC model-off outputs exactly match existing wrapper, fixed/variable common, adaptation and dropouts.
+PASS: zero learned residual recovers matched zero-activation pressure path, warmup and dropout/fault behavior.
+PASS:48 known-target inversions; max 8.818e-06N, P95 1.448ms; impossible requests bounded/limited.
+PASS: selected-pressure single commit, short-gap hold/recovery and sustained fault/slew; no automatic rearm.
+PASS: PDFB retains virtual acceleration input and corrected nominal inverse force with live gravity.
+PASS:804 full PDFB/PAC wrapper component ticks, both common modes, bounded/slew/fault checks. P95 0.579ms.
+                 cellMaximumError: 0
+    pressureJacobianRelativeError: 9.7972e-11
+           activationIdentityPass: 1
+        pacReparameterizationPass: 1
+                  pacOffExactPass: 1
+        zeroResidualReductionPass: 1
+                inverseMaxError_N: 8.8177e-06
+                    inverseP95_ms: 1.4477
+                    inverseMax_ms: 12.4143
+               memoryAndFaultPass: 1
+                    pdfbForcePass: 1
+                    wrapperP95_ms: 0.5787
+                wrapperMaximum_ms: 5.9104
+                  fullWrapperPass: 1
+
+ALL OFFLINE RESIDUAL CONTROLLER CHECKS PASS. No Simulink/hardware run.

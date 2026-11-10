@@ -1,0 +1,9 @@
+{
+  "source": "helix_FWD_INV_singlePass_test_2.mat",
+  "passed": true,
+  "validRows": 5257,
+  "independentClippingMaxDifference_bar": 1.021405182655144e-14,
+  "tailAbove1N": 751,
+  "tailWithLimiting": 750,
+  "medianErrorWithoutLimiting_N": 0.06838424591016055
+}

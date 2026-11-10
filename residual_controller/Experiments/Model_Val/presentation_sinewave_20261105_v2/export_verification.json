@@ -1,0 +1,97 @@
+[
+  {
+    "file": "sinewave_00g_cycle2_by_channel.png",
+    "pixels": [
+      3840,
+      2160
+    ],
+    "passed": true
+  },
+  {
+    "file": "sinewave_00g_full.png",
+    "pixels": [
+      3840,
+      2160
+    ],
+    "passed": true
+  },
+  {
+    "file": "sinewave_100g_cycle2_by_channel.png",
+    "pixels": [
+      3840,
+      2160
+    ],
+    "passed": true
+  },
+  {
+    "file": "sinewave_100g_full.png",
+    "pixels": [
+      3840,
+      2160
+    ],
+    "passed": true
+  },
+  {
+    "file": "sinewave_payload_comparison_channel2_cycle2.png",
+    "pixels": [
+      3840,
+      2160
+    ],
+    "passed": true
+  },
+  {
+    "file": "sinewave_00g_cycle2_by_channel.pdf",
+    "mediaBox_points": [
+      0.0,
+      0.0,
+      922.0,
+      519.0
+    ],
+    "note": "MATLAB print rounds page dimensions to whole points.",
+    "passed": true
+  },
+  {
+    "file": "sinewave_00g_full.pdf",
+    "mediaBox_points": [
+      0.0,
+      0.0,
+      922.0,
+      519.0
+    ],
+    "note": "MATLAB print rounds page dimensions to whole points.",
+    "passed": true
+  },
+  {
+    "file": "sinewave_100g_cycle2_by_channel.pdf",
+    "mediaBox_points": [
+      0.0,
+      0.0,
+      922.0,
+      519.0
+    ],
+    "note": "MATLAB print rounds page dimensions to whole points.",
+    "passed": true
+  },
+  {
+    "file": "sinewave_100g_full.pdf",
+    "mediaBox_points": [
+      0.0,
+      0.0,
+      922.0,
+      519.0
+    ],
+    "note": "MATLAB print rounds page dimensions to whole points.",
+    "passed": true
+  },
+  {
+    "file": "sinewave_payload_comparison_channel2_cycle2.pdf",
+    "mediaBox_points": [
+      0.0,
+      0.0,
+      922.0,
+      519.0
+    ],
+    "note": "MATLAB print rounds page dimensions to whole points.",
+    "passed": true
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "file": "freshness_checks.json",
+    "bytes": 2381,
+    "sha256": "2390ab34840719d87f53f55c6edc75e8d6974a82813bd3d3f2d175e8d9deeb5a"
+  },
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 447,
+    "sha256": "50bcd5d88ac3cc2813bb5a0257f1e378552ec3b8a2175fde8911da46badf9055"
+  },
+  {
+    "file": "manual_tracking.fig",
+    "bytes": 191980,
+    "sha256": "c86fa588d9028580ba09655d12ea7dc7451983cebe85b906403c1233a74f0643"
+  },
+  {
+    "file": "manual_tracking.pdf",
+    "bytes": 433454,
+    "sha256": "e4edc783f2ced51f614637cca215e2da5288242fe371dd3476707f4a7b3982f4"
+  },
+  {
+    "file": "manual_tracking.png",
+    "bytes": 172441,
+    "sha256": "d6afb27a113368ac78658a22d94154aa160f57879444f2a31b574bebbf75bf88"
+  },
+  {
+    "file": "missing_episodes.csv",
+    "bytes": 143,
+    "sha256": "3a2bd9fab87eaeab6998d2adca27597952c25de7b2daa5759497e2b06f2d0db7"
+  },
+  {
+    "file": "missing_tip_reports.csv",
+    "bytes": 304,
+    "sha256": "3124834fe9543304a60ceb94d469fcc8b546a4bf00de060cd966d3c0e3b05a0f"
+  },
+  {
+    "file": "query_gaps.csv",
+    "bytes": 394,
+    "sha256": "4a971f9e914cad3d78e9e5b2941e881e25f2a44536207d1fc7b5b8e9f812db4c"
+  },
+  {
+    "file": "README.md",
+    "bytes": 5108,
+    "sha256": "1a981192e57e9317b2af83114de0ce9731dcf48069097942697325bea95d465a"
+  },
+  {
+    "file": "source_log.txt",
+    "bytes": 2973106,
+    "sha256": "7253f8388b1db67f0818371db0850e5691deef8385abd3b4354504b70d314290"
+  },
+  {
+    "file": "source_snapshot\\analyzeCygnusBxLog.py",
+    "bytes": 7386,
+    "sha256": "61d405e0a2fd87830b405a131e621fc38243b46b9aef442db40d57f3e28f81cb"
+  },
+  {
+    "file": "source_snapshot\\plotCygnusManualAudit.m",
+    "bytes": 1422,
+    "sha256": "9931b8939baec7191d8dad045e869d2c02a8850b774f3db0c28ddb2f8dcaabe7"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 1179,
+    "sha256": "10efaa6a7eb62be65b8976da6036a3ffb09a0f3b1c8b49820cb44e0a4038d784"
+  },
+  {
+    "file": "tracking.csv",
+    "bytes": 929932,
+    "sha256": "77b260f22ea1091bf8e0bc03d053abbe1d66dd5e2b86e35b42ad0cfaad3c37e1"
+  },
+  {
+    "file": "zero_missing_checks.json",
+    "bytes": 131,
+    "sha256": "8b1172f3c545298c37d3c228210acd7163aae52c8a3e4702f6108fc9f62f9dce"
+  }
+]

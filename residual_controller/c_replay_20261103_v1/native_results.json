@@ -1,0 +1,114 @@
+[
+  {
+    "case": "kind1_units64_common0_enabled0",
+    "ticks": 161,
+    "maximumDifference": 3.907985046680551e-14,
+    "pressureDifference_bar": 6.217248937900877e-15,
+    "activationFlagBoundaryDifferences": 0
+  },
+  {
+    "case": "kind1_units64_common0_enabled1",
+    "ticks": 161,
+    "maximumDifference": 2.113864638886298e-13,
+    "pressureDifference_bar": 1.354472090042691e-14,
+    "activationFlagBoundaryDifferences": 0
+  },
+  {
+    "case": "kind1_units64_common1_enabled0",
+    "ticks": 161,
+    "maximumDifference": 4.107825191113079e-14,
+    "pressureDifference_bar": 5.995204332975845e-15,
+    "activationFlagBoundaryDifferences": 0
+  },
+  {
+    "case": "kind1_units64_common1_enabled1",
+    "ticks": 161,
+    "maximumDifference": 3.4994229736184934e-13,
+    "pressureDifference_bar": 1.9761969838327786e-14,
+    "activationFlagBoundaryDifferences": 0
+  },
+  {
+    "case": "kind1_units128_common0_enabled0",
+    "ticks": 161,
+    "maximumDifference": 2.5757174171303632e-14,
+    "pressureDifference_bar": 6.217248937900877e-15,
+    "activationFlagBoundaryDifferences": 0
+  },
+  {
+    "case": "kind1_units128_common0_enabled1",
+    "ticks": 161,
+    "maximumDifference": 2.2515322473530054e-13,
+    "pressureDifference_bar": 1.9539925233402755e-14,
+    "activationFlagBoundaryDifferences": 0
+  },
+  {
+    "case": "kind1_units128_common1_enabled0",
+    "ticks": 161,
+    "maximumDifference": 2.7755575615628914e-14,
+    "pressureDifference_bar": 5.995204332975845e-15,
+    "activationFlagBoundaryDifferences": 0
+  },
+  {
+    "case": "kind1_units128_common1_enabled1",
+    "ticks": 161,
+    "maximumDifference": 3.5438318946034997e-13,
+    "pressureDifference_bar": 2.2648549702353193e-14,
+    "activationFlagBoundaryDifferences": 0
+  },
+  {
+    "case": "kind2_units64_common0_enabled0",
+    "ticks": 161,
+    "maximumDifference": 5.002220859751105e-12,
+    "pressureDifference_bar": 5.329070518200751e-15,
+    "activationFlagBoundaryDifferences": 1
+  },
+  {
+    "case": "kind2_units64_common0_enabled1",
+    "ticks": 161,
+    "maximumDifference": 5.002220859751105e-12,
+    "pressureDifference_bar": 2.0872192862952943e-14,
+    "activationFlagBoundaryDifferences": 1
+  },
+  {
+    "case": "kind2_units64_common1_enabled0",
+    "ticks": 161,
+    "maximumDifference": 5.002220859751105e-12,
+    "pressureDifference_bar": 5.329070518200751e-15,
+    "activationFlagBoundaryDifferences": 1
+  },
+  {
+    "case": "kind2_units64_common1_enabled1",
+    "ticks": 161,
+    "maximumDifference": 5.002220859751105e-12,
+    "pressureDifference_bar": 2.220446049250313e-14,
+    "activationFlagBoundaryDifferences": 1
+  },
+  {
+    "case": "kind2_units128_common0_enabled0",
+    "ticks": 161,
+    "maximumDifference": 5.002220859751105e-12,
+    "pressureDifference_bar": 5.329070518200751e-15,
+    "activationFlagBoundaryDifferences": 1
+  },
+  {
+    "case": "kind2_units128_common0_enabled1",
+    "ticks": 161,
+    "maximumDifference": 5.002220859751105e-12,
+    "pressureDifference_bar": 2.886579864025407e-14,
+    "activationFlagBoundaryDifferences": 1
+  },
+  {
+    "case": "kind2_units128_common1_enabled0",
+    "ticks": 161,
+    "maximumDifference": 5.002220859751105e-12,
+    "pressureDifference_bar": 5.329070518200751e-15,
+    "activationFlagBoundaryDifferences": 1
+  },
+  {
+    "case": "kind2_units128_common1_enabled1",
+    "ticks": 161,
+    "maximumDifference": 5.002220859751105e-12,
+    "pressureDifference_bar": 2.375877272697835e-14,
+    "activationFlagBoundaryDifferences": 4
+  }
+]

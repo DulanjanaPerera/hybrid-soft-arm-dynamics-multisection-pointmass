@@ -1,0 +1,44 @@
+{
+  "method": "Three response groups from valid raw-tip displacement >30mm from initial baseline, joining active samples separated by <=8s; midpoint of long rest gaps sets classification boundaries. User-specified order P3,P2,P1. No pressure interpolation or values assumed.",
+  "groups": [
+    {
+      "PMA": "P3",
+      "response_start_s": 8.967601728573927,
+      "response_end_s": 37.319211650388425,
+      "group_start_s": 0,
+      "group_end_s": 47.2110508830215,
+      "runtime_reports": 1868,
+      "tip_missing_reports": 32,
+      "base_missing_reports": 0,
+      "maximum_valid_pair_raw_position_rate_mmPerS": 819.2712262346273
+    },
+    {
+      "PMA": "P2",
+      "response_start_s": 57.10289011565458,
+      "response_end_s": 83.80586016536357,
+      "group_start_s": 47.2110508830215,
+      "group_end_s": 90.02572877376164,
+      "runtime_reports": 1699,
+      "tip_missing_reports": 0,
+      "base_missing_reports": 0,
+      "maximum_valid_pair_raw_position_rate_mmPerS": 609.9455780992317
+    },
+    {
+      "PMA": "P1",
+      "response_start_s": 96.24559738215972,
+      "response_end_s": 121.2249893837584,
+      "group_start_s": 90.02572877376164,
+      "group_end_s": 125.49646541603177,
+      "runtime_reports": 1406,
+      "tip_missing_reports": 0,
+      "base_missing_reports": 0,
+      "maximum_valid_pair_raw_position_rate_mmPerS": 610.1326237611818
+    }
+  ],
+  "missing_interval_valid_endpoint_motion_indicator_mmPerS": [
+    180.93970527146988,
+    380.47279690629,
+    740.8623671593898
+  ],
+  "caveat": "Raw position finite differences are a motion indicator, not ground-truth velocity. Actual pressure amplitudes/onsets not recorded."
+}

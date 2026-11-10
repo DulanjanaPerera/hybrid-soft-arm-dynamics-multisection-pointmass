@@ -1,0 +1,12 @@
+{
+  "rlResidualShadowBlock": {
+    "entry": "rlResidualShadowBlock",
+    "success": false,
+    "message": "Error using codegen\n\n\nError in checkResidualShadowCodegen (line 13)\n        codegen('-config',cfg,cases{k},'-args',arguments{k},'-d',fullfile(folder,cases{k}));\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  },
+  "rlResidualInverseShadowBlock": {
+    "entry": "rlResidualInverseShadowBlock",
+    "success": false,
+    "message": "Error using codegen\n\n\nError in checkResidualShadowCodegen (line 13)\n        codegen('-config',cfg,cases{k},'-args',arguments{k},'-d',fullfile(folder,cases{k}));\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+  }
+}

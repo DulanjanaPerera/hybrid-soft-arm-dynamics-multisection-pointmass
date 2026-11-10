@@ -1,0 +1,7 @@
+source,trialId,channelId,cycleId,start_s,end_s,rows,scoredRows
+sinewave_test.mat,1,1,2,12.9,20.7,157,157
+sinewave_test_100g.mat,1,1,2,12.9,20.7,157,157
+sinewave_test.mat,3,2,2,80,87.8,157,157
+sinewave_test_100g.mat,3,2,2,80,87.8,157,157
+sinewave_test.mat,5,3,2,147.15,154.95,157,130
+sinewave_test_100g.mat,5,3,2,147.15,154.95,157,121

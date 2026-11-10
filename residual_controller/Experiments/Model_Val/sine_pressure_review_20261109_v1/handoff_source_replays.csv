@@ -1,0 +1,10 @@
+nominalSource,appliedSource,pressureMaxError_bar,modeMismatches,ageMaxError_s,limitMismatches
+collection_inverse,actual_NI,1.48214773787458e-14,0,0,0
+collection_inverse,inverse_context,2.7,445,25.85,605
+collection_inverse,shadow_nominal,3,539,0,2112
+raw_sine,actual_NI,0.0792479758521192,0,0,0
+raw_sine,inverse_context,2.7,445,25.85,606
+raw_sine,shadow_nominal,3,539,0,2112
+shadow_nominal,actual_NI,0.352281577169118,539,0,309
+shadow_nominal,inverse_context,3,539,25.85,0
+shadow_nominal,shadow_nominal,3,539,0,2112

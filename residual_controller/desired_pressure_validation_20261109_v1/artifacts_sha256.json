@@ -1,0 +1,112 @@
+[
+  {
+    "file": "codegen_result.json",
+    "bytes": 297,
+    "sha256": "edb4e0451cb84726f233f1dedc76b8214b38e4b08f9da4ee7d1718c5f08f6a47"
+  },
+  {
+    "file": "desired_pressure_first70.fig",
+    "bytes": 498407,
+    "sha256": "36118ea11533d060eb8e2ef762b809df18ea2f6340f56f444d006a0fbb678229"
+  },
+  {
+    "file": "desired_pressure_first70.pdf",
+    "bytes": 70030,
+    "sha256": "dd1e418cb1338c9d6ffb5bb180a198fa3e89439820936d2b836f47818294e507"
+  },
+  {
+    "file": "desired_pressure_first70.png",
+    "bytes": 296011,
+    "sha256": "d3d8a93f4ff92a9c0cfe24a6609235259941b0f8f9538cc1b36d1ca9b3e715b9"
+  },
+  {
+    "file": "generated_entry\\rlResidualDesiredPressureBlock.c",
+    "bytes": 33890,
+    "sha256": "0296a929f56fc4e15b19ead0ec8e14786a11891f17139719996463e6ae57e5de"
+  },
+  {
+    "file": "generated_entry\\rlResidualDesiredPressureBlock.h",
+    "bytes": 1137,
+    "sha256": "c096070e6c948b51567401861bff83256e46a63c153f5ea6dc644e9b7b2dd828"
+  },
+  {
+    "file": "generated_entry\\rlResidualDesiredPressureBlock_types.h",
+    "bytes": 2093,
+    "sha256": "27c74394b2a7c0e6ad4eee0c38d96f42971cce2ae6c07b86eda245e08a50504d"
+  },
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 2240,
+    "sha256": "fdd10b359ced629c369e94db8e2d563adeae98717a538e394d2b9f0e1f3cb2ce"
+  },
+  {
+    "file": "README.md",
+    "bytes": 4869,
+    "sha256": "87311fccc7848df49722a9e7746ac9b3794bad770e019dfec9a9ea91b9cac3e8"
+  },
+  {
+    "file": "replay.csv",
+    "bytes": 1359119,
+    "sha256": "651c1363bdbfe24ecb54bd2a5fbb7546c31f49965162c78bc6578978dda6085f"
+  },
+  {
+    "file": "replay.mat",
+    "bytes": 608275,
+    "sha256": "f90185c344c84b7c684ecbde97b563e2ff3979d55ab49e22259694365f73b187"
+  },
+  {
+    "file": "source_snapshot\\checkNativeResidualSinglePass.py",
+    "bytes": 4856,
+    "sha256": "c8ed66c2d23a9d76549371542d04a26b22324449b8f13a8279f17853b58897da"
+  },
+  {
+    "file": "source_snapshot\\checkResidualSinglePassShadowCodegen.m",
+    "bytes": 1419,
+    "sha256": "a955d974f2f4d3a9f1dd491c134c5f8a5e25137ebf819d259b0a9df6f2c95005"
+  },
+  {
+    "file": "source_snapshot\\DESIRED_PRESSURE_BLOCK.md",
+    "bytes": 7727,
+    "sha256": "64807b3f7fefc41f3653239ef21050296f8fb0fd54b7989b9e6877e624d1b14a"
+  },
+  {
+    "file": "source_snapshot\\residualControllerNetwork.m",
+    "bytes": 483,
+    "sha256": "994f63040dbc200b481dcb60123b80b9d512b69863412ce517fa2ec95c016f23"
+  },
+  {
+    "file": "source_snapshot\\residualShadowPhysicsConfig.m",
+    "bytes": 462,
+    "sha256": "deb0182d3b25e727b70b3b264c318fb2b7976a83c0109655756ddb351ed6f22b"
+  },
+  {
+    "file": "source_snapshot\\residualSinglePassDiagnostics.m",
+    "bytes": 805,
+    "sha256": "5b63b658d1c6ba9d0d5c3e940c204441cc543e84f0299a176cc23544f96d09c8"
+  },
+  {
+    "file": "source_snapshot\\rlInverseModelBlock.m",
+    "bytes": 3015,
+    "sha256": "28a752bee830a903443065d8fe330c2135a97fdc0392a81718ca821150775dbf"
+  },
+  {
+    "file": "source_snapshot\\rlResidualDesiredPressureBlock.m",
+    "bytes": 5258,
+    "sha256": "50a458e330d64f688d6484ce192908e513887e24b18d4d0f2fa613bc26bbc867"
+  },
+  {
+    "file": "source_snapshot\\validateResidualDesiredPressure.m",
+    "bytes": 10092,
+    "sha256": "aa7efbf5af00932b64e453c97e2f3b3560492f95b52000d1fdc73ba8e45514f8"
+  },
+  {
+    "file": "source_snapshot\\writeResidualDesiredPressureFixtures.m",
+    "bytes": 1873,
+    "sha256": "deaa8d735c922e625c547a6a009656ec56630db6800dc615da590c5c7e832f37"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 1637,
+    "sha256": "0f868187bf958f975a6971bb062574eb399bc1c508356354129942b1172a221d"
+  }
+]

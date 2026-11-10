@@ -1,0 +1,79 @@
+{
+  "input": "C:\\Users\\dperera\\OneDrive - Texas A&M University\\Lab\\Research\\fDyn_ExpCom\\hyDyn_Ctrl\\residual_controller\\Experiments\\Model_Val\\pressure_combine_test.mat",
+  "modelName": "residual_FWD_INV_validation",
+  "modelVersion": "1.50",
+  "rows": 3821,
+  "durationSimulation_s": 191,
+  "stopEvent": "ReachedStopTime",
+  "stopDescription": "Reached stop time of 191",
+  "hasSimulationError": false,
+  "orientationValidRows": 3814,
+  "baseValidRows": 3821,
+  "acceptedRows": 3814,
+  "readyRows": 3580,
+  "prospectiveScoredRows": 3560,
+  "retimedScoredRows": 3573,
+  "prospectiveCoverageAllRows": 0.93169327401203872,
+  "movingScoredRows": 1043,
+  "pressurePresentScoredRows": 2174,
+  "networkWidths": 128,
+  "loggedHorizon_s": 0.05,
+  "loggedPressureCommandAgeRange_s": [
+    0,
+    0
+  ],
+  "hostPollIntervalMedianP95Max_s": [
+    0.0508066499999984,
+    0.050904550000012705,
+    0.45081090000000007
+  ],
+  "hostMinusSimulationElapsed_s": 3.3607153000000096,
+  "scoreHorizonMismatchMedianP95Max_s": [
+    0.000806500000000196,
+    0.00089879999999879778,
+    0.0048095999999986788
+  ],
+  "maximumNDILength_mm": [
+    8.1300055933911768,
+    6.2894074832812805,
+    11.262119846672253
+  ],
+  "finalPressureRange_bar": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      2.9999999630239351,
+      2.9999999630239351,
+      2.9999999630239351
+    ]
+  ],
+  "killValues": 1,
+  "neuralForcePeak_N": [
+    10.406076259681903,
+    10.792327575718328
+  ],
+  "maximumTrainingZ": 4.1181168088196634,
+  "fractionReadyTrainingZAbove5": 0,
+  "observerSegments": 10,
+  "historyResetRows": 17,
+  "rawNDIMeasurementDifference_m": 0,
+  "contextMeasurementDifference_m": 0,
+  "pressureContextVsCurrentNI_max_bar": 0,
+  "pressureContextVsStampedNI_max_bar": 0,
+  "loggedErrorRecalculationDifference_m": 0,
+  "loggedRetimedErrorRecalculationDifference_m": 0,
+  "issuedToMatchedPredictionDifference_m": 0,
+  "minimumPredictionLeadSamples": 1,
+  "maximumPredictionLeadSamples": 1,
+  "independentTargetMismatchMedianP95Max_s": [
+    0.00080649999999593547,
+    0.0008987999999945373,
+    0.0048096000000015238
+  ],
+  "frozenContextProbeRows": 101,
+  "frozenCellProbeDifference_N": 2.6645352591003757E-15,
+  "frozenForwardProbeDifference_m": 1.9949319973733282E-17
+}

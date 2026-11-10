@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "missing_counts_P3_P2_P1": [
+    32,
+    0,
+    0
+  ],
+  "total_runtime_reports": 4973,
+  "missing_reports": 32,
+  "consecutive_missing_episodes": 30,
+  "all_missing_base_valid": true
+}

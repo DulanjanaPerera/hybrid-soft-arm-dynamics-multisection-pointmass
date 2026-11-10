@@ -1,0 +1,14 @@
+{
+  "syntheticPassed": true,
+  "normalStepBound_bar": 0.3,
+  "repeatTickPassed": true,
+  "disableResetFaultClockPassed": true,
+  "frozenInputSamples": 7501,
+  "maximumNewOrdinaryStep_bar": 0.30000000000000027,
+  "maximumRecordedStep_bar": 1.5139512028379793,
+  "stepsAbove0p3bar_new": 0,
+  "stepsAbove0p3bar_recorded": 30,
+  "invalidGraceRows": 74,
+  "fallbackBlendRows": 370,
+  "reentryRows": 339
+}

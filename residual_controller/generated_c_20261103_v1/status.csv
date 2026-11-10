@@ -1,0 +1,13 @@
+entrypoint,generationReturnedSuccess,cFilesEmitted,message
+pdfbResidualInverseBlock,0,27,"Error using codegen
+
+
+Error in checkResidualControllerCodegen (line 14)
+        codegen('-config',cfg,name,'-args',args,'-d',target);ok=true;
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+pacResidualAdaptiveTunableBlock,0,31,"Error using codegen
+
+
+Error in checkResidualControllerCodegen (line 14)
+        codegen('-config',cfg,name,'-args',args,'-d',target);ok=true;
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"

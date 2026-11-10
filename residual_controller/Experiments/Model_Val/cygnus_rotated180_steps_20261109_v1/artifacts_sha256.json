@@ -1,0 +1,92 @@
+[
+  {
+    "file": "independent_csv_checks.json",
+    "bytes": 265,
+    "sha256": "bf73c7f7c354b28dfec29f370f696e42cad75754b55212df65bb34de8de35eab"
+  },
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 728,
+    "sha256": "f44eb63200417a499643235d720d6ebd4c1a55ad3ff62b3fa2cf4bb9b320b34e"
+  },
+  {
+    "file": "manual_tracking.fig",
+    "bytes": 403313,
+    "sha256": "dc4ef656488225797ef747ee089bc4700e684f04540a256787f65a9045e19298"
+  },
+  {
+    "file": "manual_tracking.pdf",
+    "bytes": 900476,
+    "sha256": "71dc60c686ac90b8ef2a3a862a76851f7120f363974329ad12b332e98978da29"
+  },
+  {
+    "file": "manual_tracking.png",
+    "bytes": 233033,
+    "sha256": "bc4a50c04700755fae14ba4c130d6430ad2e261abef951e6ef0c3079a4a2e0b2"
+  },
+  {
+    "file": "missing_episodes.csv",
+    "bytes": 2756,
+    "sha256": "0bbc50cfa4b26e238fcc13d6380fdf2064775bbad0781c31ae9f6784665e2c8c"
+  },
+  {
+    "file": "missing_tip_reports.csv",
+    "bytes": 9628,
+    "sha256": "d4238993c790dc61a14cdee7778458d4b712435f7a65bdeb7674e8bb0343d1cc"
+  },
+  {
+    "file": "movement_classification.json",
+    "bytes": 2346,
+    "sha256": "4cfc9969d90ed7cffa8ac7f148804a4d81898446a6b908329dea1d686a6feb72"
+  },
+  {
+    "file": "movement_groups.csv",
+    "bytes": 621,
+    "sha256": "5239cfc6b4bd00ee531cf4380b32af20099bdab49fdcba2da62944e68fdec43c"
+  },
+  {
+    "file": "README.md",
+    "bytes": 4923,
+    "sha256": "0aaa5fec966eae0fb51a49094350d1929c89251e69362ee14f04639494fe6cdd"
+  },
+  {
+    "file": "rotation_comparison.csv",
+    "bytes": 222,
+    "sha256": "5574138c9a601765d8cffecc3514f64fa7735d7844838f92a13a0eeed5affff5"
+  },
+  {
+    "file": "source_log.txt",
+    "bytes": 6335092,
+    "sha256": "0f9f50794d0c91262b9719f455f0260de4d74e7b3d1add897dfde06c37c3f974"
+  },
+  {
+    "file": "source_snapshot\\analyzeCygnusBxLog.py",
+    "bytes": 7386,
+    "sha256": "61d405e0a2fd87830b405a131e621fc38243b46b9aef442db40d57f3e28f81cb"
+  },
+  {
+    "file": "source_snapshot\\classifyCygnusStepGroups.py",
+    "bytes": 4304,
+    "sha256": "c2ac30f98f5241deb93ddb9b59f6cb42fe4efa2640e473615a9331257ecac8cf"
+  },
+  {
+    "file": "source_snapshot\\ndiSupportFnc.m",
+    "bytes": 23454,
+    "sha256": "f305fa64f0cf91a56e746b9f7c2a5a5f44784e1741e6091d25d6af2f43f06550"
+  },
+  {
+    "file": "source_snapshot\\plotCygnusManualAudit.m",
+    "bytes": 2231,
+    "sha256": "625c42aba417f9427bb9fd546885fe2836a9aa65e096f9ecbd93c60ea45ba923"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 1250,
+    "sha256": "6a4123c78471f38b30b17f646cd89a34e336296befbb16894bfd1054e95e60e0"
+  },
+  {
+    "file": "tracking.csv",
+    "bytes": 2014760,
+    "sha256": "24515aa4994dcce5719974f6eec0909aa2e67dd24f36da461a803bbd895562f5"
+  }
+]

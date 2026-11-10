@@ -1,0 +1,83 @@
+{
+  "file": "circlesweep_FWD_INV_test.mat",
+  "rows": 7501,
+  "endTime_s": 375,
+  "stopEvent": "ReachedStopTime",
+  "hasSimulationError": false,
+  "baseInvalid": 0,
+  "tipInvalid": 17,
+  "orientationInvalid": 17,
+  "orientationInvalidWithBothSamplesValid": 0,
+  "thetaNotObservable": 26,
+  "thetaNotObservableDespiteOrientationValid": 9,
+  "validButThetaUnobservablePhiRange_rad": [
+    0.00088997395619097434,
+    0.0082858978034879519
+  ],
+  "configurationInvalidAtNDIRate": 17,
+  "configurationInvalidDespiteOrientationValid": 0,
+  "configurationValidDespiteTipInvalid": 0,
+  "tipInvalidRawDriverStatusMissing": 17,
+  "tipInvalidRawDriverUsable": 0,
+  "tipInvalidRawPositionFinite": 0,
+  "tipOutOfVolume": 0,
+  "tipPartialOutOfVolume": 0,
+  "tipRepeatedFrame": 0,
+  "unpairedFrame": 0,
+  "tipInvalidMaskedRawXYZFinite": 0,
+  "orientationInvalidCorrectedTipExactlyHeld": 17,
+  "orientationInvalidCorrectedTipFinite": 17,
+  "forwardReady": 6908,
+  "forwardScored": 6873,
+  "inverseValid": 6908,
+  "inverseFinite": 6908,
+  "inverseEqual": 5510,
+  "fractionInverseEqual": 0.79762594093804284,
+  "pressureDifferenceMax_bar": 0.60000000000000009,
+  "inverseConverged": 156,
+  "inverseLimited": 6835,
+  "nominalLimited": 6908,
+  "inverseIterations": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "residualInverseErrorMedianP95Max_N": [
+    0.377221350417971,
+    3.0465744040410576,
+    12.644926606332852
+  ],
+  "nominalInverseErrorMedianP95Max_N": [
+    9.4966636582197737,
+    20.001274819128394,
+    23.503107887456416
+  ],
+  "rawNeuralForceMedianP95Max_N": [
+    10.418186012758541,
+    22.407978627254995,
+    25.808419504903533
+  ],
+  "maxStepFromActual_bar": 0.30000000000000027,
+  "maximumPollInterval_s": 0.3826941,
+  "overrunRows": 2,
+  "defaultReplayMaxDifference_fixedVariable_bar": [
+    0.44789654679740032,
+    1.7925954054476279E-9
+  ],
+  "defaultReplayConvergenceMismatches_fixedVariable": [
+    0,
+    0
+  ],
+  "tipInvalidInternalPositionFinite": 0,
+  "tipInvalidInternalPositionExactlyHeld": 0,
+  "tipInvalidPublicXYZFinite": 17,
+  "tipInvalidPublicXYZExactlyHeld": 17,
+  "forwardRejectedDespiteValidOrientation": 0,
+  "forwardAcceptedDespiteInvalidOrientation": 0,
+  "forwardRejectedThetaUnobservableOnly": 0,
+  "orientationInvalidAndOverrun": 0
+}

@@ -1,0 +1,13 @@
+{
+  "paired_frame_equality": "Verified on decoded base/tip records by parser assertion",
+  "runtime_frame_repeats": 0,
+  "tip_identical_consecutive_transforms": 0,
+  "episode_duration_range_to_next_report_s": [
+    0.02497939200159749,
+    0.04995878400319853
+  ],
+  "episode_length_counts": {
+    "1": 26,
+    "2": 2
+  }
+}

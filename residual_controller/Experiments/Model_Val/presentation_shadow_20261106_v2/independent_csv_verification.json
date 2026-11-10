@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "maximumCSVLengthErrorIdentityDifference_mm": 1.0302869668521453e-13,
+  "allCSVMetricRecalculationsPassed": true,
+  "priorCircleAndSineMetricsMatch": true
+}

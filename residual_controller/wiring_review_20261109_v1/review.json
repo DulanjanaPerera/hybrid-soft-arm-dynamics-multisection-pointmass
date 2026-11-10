@@ -1,0 +1,27 @@
+{
+  "model": "residual_FWD_INV_validation_v2.slx",
+  "model_sha256": "1c53063a443bbcbf4f3ac6899faa0c379e7ee28d6795b0184386e4f0e6d8ac4d",
+  "inspection": "Read-only ZIP/XML; no load_system, callbacks, compile, edit or hardware run",
+  "switch": {
+    "true": "MATLAB Function8 output1 desiredPressurePrediction_bar",
+    "false": "MATLAB Function3 output1 original nominal pressureRequested_bar",
+    "control": "MATLAB Function9 output1 useResidual"
+  },
+  "unit_delay": {
+    "position": "Switch output -> Unit Delay -> Pneumatic Valves input1",
+    "sample_time_s": 0.05,
+    "initial_condition": [
+      0,
+      0,
+      0
+    ]
+  },
+  "validity_function": {
+    "p": "MATLAB Function8 output1",
+    "current_valid": "From6 tag A5 -> NDI Sensor reading output7 baseOreintationValid",
+    "required_valid": "MATLAB Function8 output3 diagnostic bus field valid",
+    "code": "useResidual = valid && all(isfinite(p));"
+  },
+  "feedback": "Post-Kill/saturation command vector coherently sampled with simulation timestamp at .01s, then Rate Transition .05s, Demux [3 1], A8/A9 -> observer pressure/time inputs6/7",
+  "finding": "One readiness-input correction. Command-delay topology matches recommended loop break; full model compilation not verified."
+}

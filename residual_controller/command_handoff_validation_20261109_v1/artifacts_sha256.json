@@ -1,0 +1,57 @@
+[
+  {
+    "file": "command_handoff_example.fig",
+    "bytes": 384074,
+    "sha256": "8be434b7331bb414bc4a891d40e154e797e1ed1f88c077e0283c505afd9b856d"
+  },
+  {
+    "file": "command_handoff_example.pdf",
+    "bytes": 16333,
+    "sha256": "393b5971f4d4a97fa7a22635b60cc28a1fdf5f987f8370129d757fde33bbc9d1"
+  },
+  {
+    "file": "command_handoff_example.png",
+    "bytes": 123369,
+    "sha256": "d0fe07de4803d4ea5c3309fee98eac02ee59f8c94ba83b2103511d9241d15ca4"
+  },
+  {
+    "file": "frozen_input_commands.csv",
+    "bytes": 894224,
+    "sha256": "3925eab634ffc5ca2677190b48bea044159f7370a02d9c8f4b9f684c086b822f"
+  },
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 815,
+    "sha256": "2c5fbae85040137059c7350b89ef2e4c7ab08a1c23f0da0f69fa9f1784e97b18"
+  },
+  {
+    "file": "README.md",
+    "bytes": 1955,
+    "sha256": "e71971d3f95a624ce931546ffb53938faa5e93bdf0e5f905944eeb2ff436168c"
+  },
+  {
+    "file": "source_snapshot\\COMMAND_HANDOFF.md",
+    "bytes": 6556,
+    "sha256": "430321ba91e4e856f7de4a11044138ce6a794cb9570a4fbdf79e9384f39a8bc7"
+  },
+  {
+    "file": "source_snapshot\\residualCommandValid.m",
+    "bytes": 4602,
+    "sha256": "207ec324274931b50fe14ea9113364dfdb632b3202d26082ba0e3e63be4e9caf"
+  },
+  {
+    "file": "source_snapshot\\validateResidualCommandHandoff.m",
+    "bytes": 4970,
+    "sha256": "0d88edb41a79c05f3927d874bf8bbcc347e0fa6da802b221ccaed505bdf704bd"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 399,
+    "sha256": "e8970e7c5c6b0854738b2a12affd93184365311d3b04f1a0f0791dd5e6959d88"
+  },
+  {
+    "file": "verification.mat",
+    "bytes": 209992,
+    "sha256": "c2ec7ed10f23eb2f5f8a0d7f04bc85cced4bf71dbc2285f0e4bd8cb70dd56a25"
+  }
+]

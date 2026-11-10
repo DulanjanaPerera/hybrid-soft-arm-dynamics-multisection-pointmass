@@ -1,0 +1,4 @@
+PASS: packed64/128 cells match frozen streaming cells 0; pressure Jacobian FD 9.8e-11; candidate state purity.
+PASS: zero/.2/.8 activation-map re-expression, residual RHS sign and units.
+PASS: PAC force exactly nominal-reference force + Y*(theta-theta0); adaptive law unchanged.
+PASS: all28 PAC model-off outputs exactly match existing wrapper, fixed/variable common, adaptation and dropouts.

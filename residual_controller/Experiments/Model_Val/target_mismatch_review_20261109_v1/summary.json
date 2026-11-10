@@ -1,0 +1,210 @@
+{
+  "source": "C:\\Users\\dperera\\OneDrive - Texas A&M University\\Lab\\Research\\fDyn_ExpCom\\hyDyn_Ctrl\\residual_controller\\Experiments\\Model_Val\\circlesweep_FWD_INV_test_4.mat",
+  "modelVersion": "1.54",
+  "stopEvent": "StopCommand",
+  "rows": 5433,
+  "duration_s": 271.6,
+  "validRows": 5118,
+  "savedVariableNames": [
+    "out"
+  ],
+  "replayOptionsHypothesis": [
+    1.6,
+    0,
+    0,
+    0,
+    3,
+    2.5,
+    2.5,
+    6,
+    0,
+    13.273228961416876
+  ],
+  "desiredStateForceVsLoggedMax_N": 3.5527136788005009E-15,
+  "measuredTargetVsLoggedMax_N": 0,
+  "desiredNominalVsRequestedMax_bar": 4.4408920985006262E-16,
+  "installedOutputReplayMax_bar": 1.1102230246251565E-15,
+  "actualVsRequestedMax_bar": 0,
+  "contextVsActualMax_bar": 0,
+  "correctedSlewRows": 0,
+  "nominalSlewRows": 3026,
+  "correctedScaledRows": 0,
+  "commandAgeRange_s": [
+    0,
+    0
+  ],
+  "windows": [
+    {
+      "window": "0_to_70s",
+      "rows": 1338,
+      "timeRange_s": [
+        1.6,
+        70
+      ],
+      "desiredPeakAbs_mm": [
+        2.5998574403503314,
+        2.5998574403503314
+      ],
+      "measuredPeakAbs_mm": [
+        0.374244253938413,
+        0.17962371370255581
+      ],
+      "trackingRMSE_mm": [
+        1.542874812319893,
+        1.5823335192126144
+      ],
+      "actualPeak_bar": [
+        0.24226481363523417,
+        0.24026731569657087,
+        0.24227088271544839
+      ],
+      "nominalShadowPeak_bar": [
+        0,
+        0.0429617640387975,
+        0.032500255990776564
+      ],
+      "correctedShadowPeak_bar": [
+        0.25837401059239123,
+        0.25854093168785508,
+        0.2522004175950156
+      ],
+      "desiredFrozenPeak_bar": [
+        0.52278008572998447,
+        0.46819272885666796,
+        0.48352652679429742
+      ],
+      "nominalShadowVsActualRMSE_bar": [
+        0.12860366335916334,
+        0.12030130754016388,
+        0.12382481186499071
+      ],
+      "correctedShadowVsActualRMSE_bar": [
+        0.0057722160074489531,
+        0.0086541622141958086,
+        0.0069419477756272616
+      ],
+      "correctedBeforeSlewVsActualRMSE_bar": [
+        0.0057722160074489531,
+        0.0086541622141958086,
+        0.0069419477756272616
+      ],
+      "correctedSlewRows": 0,
+      "nominalSlewRows": 0,
+      "residualForceRange_N": [
+        [
+          -2.8991499982294453,
+          -2.9395456669467683
+        ],
+        [
+          3.8169801885659203,
+          3.4683672325970551
+        ]
+      ]
+    },
+    {
+      "window": "first_circles_phase5",
+      "rows": 969,
+      "timeRange_s": [
+        13,
+        62.95
+      ],
+      "desiredPeakAbs_mm": [
+        2.5998574403503314,
+        2.5998574403503314
+      ],
+      "measuredPeakAbs_mm": [
+        0.374244253938413,
+        0.17962371370255581
+      ],
+      "trackingRMSE_mm": [
+        1.7771875936370187,
+        1.8063748734989211
+      ],
+      "actualPeak_bar": [
+        0.24226481363523417,
+        0.24026731569657087,
+        0.24227088271544839
+      ],
+      "nominalShadowPeak_bar": [
+        0,
+        0.0429617640387975,
+        0.032500255990776564
+      ],
+      "correctedShadowPeak_bar": [
+        0.25837401059239123,
+        0.25854093168785508,
+        0.2522004175950156
+      ],
+      "desiredFrozenPeak_bar": [
+        0.52278008572998447,
+        0.46819272885666796,
+        0.48352652679429742
+      ],
+      "nominalShadowVsActualRMSE_bar": [
+        0.15111915204158388,
+        0.12751494673483638,
+        0.129927583292263
+      ],
+      "correctedShadowVsActualRMSE_bar": [
+        0.0065965890258794166,
+        0.0087269573813665187,
+        0.0069440789254585954
+      ],
+      "correctedBeforeSlewVsActualRMSE_bar": [
+        0.0065965890258794166,
+        0.0087269573813665187,
+        0.0069440789254585954
+      ],
+      "correctedSlewRows": 0,
+      "nominalSlewRows": 0,
+      "residualForceRange_N": [
+        [
+          -2.8991499982294453,
+          -2.9395456669467683
+        ],
+        [
+          3.8169801885659203,
+          3.4683672325970551
+        ]
+      ]
+    }
+  ],
+  "forwardRMSE_mm": [
+    [
+      0.22574794149646102,
+      0.23146904003230104
+    ],
+    [
+      3.7506625257411152,
+      3.8072441587548265
+    ],
+    [
+      0.054682773269649557,
+      0.058133680868835122
+    ]
+  ],
+  "first70ForwardRMSE_mm": [
+    [
+      0.065767802737056291,
+      0.055243147685460986
+    ],
+    [
+      0.95913594891817433,
+      1.0068426764344476
+    ],
+    [
+      0.0050141991898926116,
+      0.0063731588038555735
+    ]
+  ],
+  "forwardOrder": [
+    "residual_plus_nominal",
+    "nominal",
+    "constant_velocity"
+  ],
+  "desiredFrozenCandidateModelErrorMedianP95Max_N": [
+    1.4777547186462114,
+    2.2331226128660355,
+    3.5685754544949795
+  ]
+}

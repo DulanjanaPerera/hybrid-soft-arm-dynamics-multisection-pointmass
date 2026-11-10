@@ -1,0 +1,95 @@
+{
+  "base": {
+    "identical_consecutive_transforms": 0,
+    "repeated_frames": 0,
+    "xyz_range_mm": {
+      "x_mm": [
+        -9.438720703125,
+        -8.069169998168945
+      ],
+      "y_mm": [
+        118.28189086914062,
+        118.94664001464844
+      ],
+      "z_mm": [
+        -276.1012268066406,
+        -272.556884765625
+      ]
+    },
+    "out_of_volume_rows": 0,
+    "partial_volume_rows": 0
+  },
+  "tip": {
+    "identical_consecutive_transforms": 0,
+    "repeated_frames": 0,
+    "xyz_range_mm": {
+      "x_mm": [
+        -73.44609832763672,
+        61.02130889892578
+      ],
+      "y_mm": [
+        -162.4152374267578,
+        -148.47451782226562
+      ],
+      "z_mm": [
+        -340.86669921875,
+        -222.5954132080078
+      ]
+    },
+    "out_of_volume_rows": 0,
+    "partial_volume_rows": 0
+  },
+  "base_median_position_manual_minus_sine_mm": [
+    0.18050098419189453,
+    0.043392181396484375,
+    0.0970306396484375
+  ],
+  "runtime_query_gaps": [
+    {
+      "before_s": 0.09991756800639472,
+      "after_s": 0.1498763520095921,
+      "interval_s": 0.04995878400319736,
+      "frame_increment": 16,
+      "unqueried_update_slots": 1,
+      "before_log_line": 264,
+      "after_log_line": 273
+    },
+    {
+      "before_s": 41.46579072265381,
+      "after_s": 41.51574950665701,
+      "interval_s": 0.04995878400319736,
+      "frame_increment": 16,
+      "unqueried_update_slots": 1,
+      "before_log_line": 15153,
+      "after_log_line": 15162
+    },
+    {
+      "before_s": 61.09959283591037,
+      "after_s": 61.27444857992156,
+      "interval_s": 0.17485574401119075,
+      "frame_increment": 56,
+      "unqueried_update_slots": 6,
+      "before_log_line": 22200,
+      "after_log_line": 22209
+    },
+    {
+      "before_s": 61.27444857992156,
+      "after_s": 61.44930432393275,
+      "interval_s": 0.17485574401119075,
+      "frame_increment": 56,
+      "unqueried_update_slots": 6,
+      "before_log_line": 22209,
+      "after_log_line": 22218
+    }
+  ],
+  "paired_frame_equality": "Verified directly for every decoded 0A/0B pair by parser assertion; not inferred from a single CSV frame column",
+  "fast_motion_window": {
+    "elapsed_s": [
+      46,
+      54
+    ],
+    "reports": 320,
+    "both_valid_reports": 320,
+    "all_frame_increments": 8
+  }
+}

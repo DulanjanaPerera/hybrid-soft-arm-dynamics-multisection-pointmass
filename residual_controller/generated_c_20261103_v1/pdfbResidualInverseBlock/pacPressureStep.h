@@ -1,0 +1,43 @@
+/*
+ * Academic License - for use in teaching, academic research, and meeting
+ * course requirements at degree granting institutions only.  Not for
+ * government, commercial, or other organizational use.
+ * File: pacPressureStep.h
+ *
+ * MATLAB Coder version            : 25.1
+ * C/C++ source code generated on  : 03-Nov-2026 18:16:46
+ */
+
+#ifndef PACPRESSURESTEP_H
+#define PACPRESSURESTEP_H
+
+/* Include Files */
+#include "pdfbResidualInverseBlock_internal_types.h"
+#include "rtwtypes.h"
+#include <stddef.h>
+#include <stdlib.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Function Declarations */
+boolean_T pacPressureStep(const double requested[2],
+                          const double staticForce[2], const double speed[2],
+                          boolean_T valid, double sampleTime, double t,
+                          boolean_T enable, const struct_T *cfg,
+                          b_struct_T *state, double pressure[3],
+                          double equivalentForce[2], double residual[2],
+                          unsigned char *status, boolean_T *thresholdActive,
+                          double effectiveRequest[2]);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+/*
+ * File trailer for pacPressureStep.h
+ *
+ * [EOF]
+ */

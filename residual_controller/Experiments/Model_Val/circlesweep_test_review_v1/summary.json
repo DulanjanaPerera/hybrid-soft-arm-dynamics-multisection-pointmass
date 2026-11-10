@@ -1,0 +1,79 @@
+{
+  "input": "C:\\Users\\dperera\\OneDrive - Texas A&M University\\Lab\\Research\\fDyn_ExpCom\\hyDyn_Ctrl\\residual_controller\\Experiments\\Model_Val\\circlesweep_test.mat",
+  "modelName": "residual_FWD_INV_validation",
+  "modelVersion": "1.51",
+  "rows": 7501,
+  "durationSimulation_s": 375,
+  "stopEvent": "ReachedStopTime",
+  "stopDescription": "Reached stop time of 375",
+  "hasSimulationError": false,
+  "orientationValidRows": 7479,
+  "baseValidRows": 7501,
+  "acceptedRows": 7479,
+  "readyRows": 6806,
+  "prospectiveScoredRows": 6767,
+  "retimedScoredRows": 6786,
+  "prospectiveCoverageAllRows": 0.90214638048260232,
+  "movingScoredRows": 2042,
+  "pressurePresentScoredRows": 5238,
+  "networkWidths": 128,
+  "loggedHorizon_s": 0.05,
+  "loggedPressureCommandAgeRange_s": [
+    0,
+    0
+  ],
+  "hostPollIntervalMedianP95Max_s": [
+    0.050818399999997155,
+    0.050885700000009138,
+    0.28904820000000003
+  ],
+  "hostMinusSimulationElapsed_s": 5.4441536999999585,
+  "scoreHorizonMismatchMedianP95Max_s": [
+    0.0008174999999937399,
+    0.00088451499999937235,
+    0.0038272999999662688
+  ],
+  "maximumNDILength_mm": [
+    24.835985407263664,
+    22.020120024548042,
+    29.692518138361578
+  ],
+  "finalPressureRange_bar": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      2.9457578519564782,
+      2.9208101906174679,
+      2.9457956742716691
+    ]
+  ],
+  "killValues": 1,
+  "neuralForcePeak_N": [
+    21.650869733196522,
+    20.382221137871358
+  ],
+  "maximumTrainingZ": 18.046900481789677,
+  "fractionReadyTrainingZAbove5": 0.1284161034381428,
+  "observerSegments": 24,
+  "historyResetRows": 46,
+  "rawNDIMeasurementDifference_m": 0,
+  "contextMeasurementDifference_m": 0,
+  "pressureContextVsCurrentNI_max_bar": 0,
+  "pressureContextVsStampedNI_max_bar": 0,
+  "loggedErrorRecalculationDifference_m": 0,
+  "loggedRetimedErrorRecalculationDifference_m": 0,
+  "issuedToMatchedPredictionDifference_m": 0,
+  "minimumPredictionLeadSamples": 1,
+  "maximumPredictionLeadSamples": 1,
+  "independentTargetMismatchMedianP95Max_s": [
+    0.000817499999982374,
+    0.00088451499999919747,
+    0.0038272999999549029
+  ],
+  "frozenContextProbeRows": 101,
+  "frozenCellProbeDifference_N": 5.3290705182007514E-15,
+  "frozenForwardProbeDifference_m": 6.613633252161577E-18
+}

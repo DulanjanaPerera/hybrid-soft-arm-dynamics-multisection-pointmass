@@ -1,0 +1,7 @@
+source,window,start_sim_s,end_sim_s
+circlesweep_test.mat,full_record,0,375
+helix_FWD_INV_test.mat,full_record,0,290
+sinewave_test.mat,full_record,0,212
+sinewave_test_100g.mat,full_record,0,212
+circlesweep_test.mat,first_complete_phi1_cycle,159,169
+helix_FWD_INV_test.mat,first_loading_unloading_episode,5,65

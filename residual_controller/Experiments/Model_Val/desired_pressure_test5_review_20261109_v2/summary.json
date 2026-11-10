@@ -1,0 +1,65 @@
+{
+  "file": "C:\\Users\\dperera\\OneDrive - Texas A&M University\\Lab\\Research\\fDyn_ExpCom\\hyDyn_Ctrl\\residual_controller\\Experiments\\Model_Val\\circlesweep_FWD_INV_test_5_fwdPressure.mat",
+  "modelVersion": "1.59",
+  "stopEvent": "ReachedStopTime",
+  "rows": 7501,
+  "duration_s": 375,
+  "readyRows": 6143,
+  "notReadyRows": 1358,
+  "orientationInvalidRows": 49,
+  "baseInvalidRows": 0,
+  "tipSensorInvalidRows": 49,
+  "tipMissingRows": 49,
+  "overrunRows": 13,
+  "longPhysicalIntervalRows": 9,
+  "physicalDtMedianP95Max_s": [
+    0.050075249999991911,
+    0.051009399999998095,
+    0.63572740000000749
+  ],
+  "commandAgeRange_s": [
+    0,
+    0
+  ],
+  "selectionDelayMaxDifference_bar": 0,
+  "actualVsSelectedMaxDifference_bar": 4.4408920985006262E-16,
+  "fallbackEntriesAfterReady": 37,
+  "firstReady_sim_s": 1.6,
+  "correctedAllocationScaledRows": 1012,
+  "correctedSlewLimitedRows": 122,
+  "sensorStatusAtInvalid": 2,
+  "physicalVsSimulationElapsed_s": [
+    379.9939792,
+    375
+  ],
+  "eventCauseCounts": [
+    {
+      "cause": "orientation_invalid",
+      "episodes": 32
+    },
+    {
+      "cause": "physical_interval_gt_0p1",
+      "episodes": 5
+    }
+  ],
+  "fallbackDurationMedianP95Max_sim_s": [
+    1.6500000000000341,
+    2.3825000000000016,
+    2.5999999999999943
+  ],
+  "fallbackDurationMedianP95Max_host_s": [
+    1.6636967000000027,
+    2.4589955399999979,
+    2.6185519
+  ],
+  "eventsPressureDropAbove0p1bar": 32,
+  "eventsPhiDropAbove0p1radStableReference": 26,
+  "maxFallbackChannelDrop_bar": 1.5139512028379793,
+  "historyWarmRows": 1253,
+  "observerNumericalGuardRows": 0,
+  "validPhiRange_rad": [
+    0.0012074313633920878,
+    2.3740560242845632
+  ],
+  "fallbackAppliedExactlyOneTickLater": true
+}

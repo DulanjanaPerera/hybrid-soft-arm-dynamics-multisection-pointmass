@@ -1,0 +1,26 @@
+[
+  {
+    "case": "shadow64",
+    "rows": 221,
+    "maxAbsoluteDifference": 5.129230373768223e-12,
+    "passed": true
+  },
+  {
+    "case": "inverse64",
+    "rows": 442,
+    "maxAbsoluteDifference": 2.369660023759934e-12,
+    "passed": true
+  },
+  {
+    "case": "shadow128",
+    "rows": 221,
+    "maxAbsoluteDifference": 2.3656632208712836e-12,
+    "passed": true
+  },
+  {
+    "case": "inverse128",
+    "rows": 442,
+    "maxAbsoluteDifference": 2.579048099756766e-12,
+    "passed": true
+  }
+]

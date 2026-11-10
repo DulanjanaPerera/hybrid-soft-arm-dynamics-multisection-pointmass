@@ -1,0 +1,5 @@
+source,modelName,modelVersion,rows,endTime_s,physicalValidRows,scoreValidRows,NDIMeasurementDifference_m,loggedErrorDifference_m,previousIssuedDifference_m,measuredPhiGeometryDifference_rad,measuredThetaGeometryDifference_rad
+circlesweep_test.mat,residual_FWD_INV_validation,1.51,7501,375,7479,6767,0,0,0,8.88178419700125e-16,4.44089209850063e-16
+helix_FWD_INV_test.mat,residual_FWD_INV_validation,1.51,5801,290,5773,5030,0,0,0,6.66133814775094e-16,4.44089209850063e-16
+sinewave_test.mat,residual_FWD_INV_validation,1.51,4241,212,4229,3866,0,0,0,4.44089209850063e-16,2.22044604925031e-16
+sinewave_test_100g.mat,residual_FWD_INV_validation,1.51,4241,212,4231,3984,0,0,0,6.66133814775094e-16,4.44089209850063e-16

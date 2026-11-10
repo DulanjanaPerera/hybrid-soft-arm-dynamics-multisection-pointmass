@@ -1,0 +1,92 @@
+[
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 720,
+    "sha256": "1ee59ccc0e61fb3a892fb363c4595dbf7f4a53432ec15b0a6e81c030c865c7d5"
+  },
+  {
+    "file": "missing_episodes.csv",
+    "bytes": 1899,
+    "sha256": "f20f78187428751dcbd4530138cdaf9f76f8810b25b83c0216db62c718d0b83f"
+  },
+  {
+    "file": "missing_tip_reports.csv",
+    "bytes": 6262,
+    "sha256": "b32b41835fa5b0717482f089f9236c5549ab20dd607ecbef5963757463d1575d"
+  },
+  {
+    "file": "motion_alignment.csv",
+    "bytes": 541178,
+    "sha256": "60fcbb72304e9b5420f146adc76c59f56b93703b74506077aa841e778f4f7381"
+  },
+  {
+    "file": "parser_checks.json",
+    "bytes": 123,
+    "sha256": "44200067b1f2eb7a47fdc9f68a9c7224a3229e8f18137c08686d3a9278451488"
+  },
+  {
+    "file": "protocol_reference.json",
+    "bytes": 408,
+    "sha256": "2909c07b7f3ebafffdcb14f397cba4fbe40b4cfeaebff8c0a9d7dcbed316b201"
+  },
+  {
+    "file": "README.md",
+    "bytes": 6859,
+    "sha256": "df2c2b9794cb34775ad9fa62877b495275700ef3bdc11a62842b7e17b7b7b9e8"
+  },
+  {
+    "file": "sine_alignment.json",
+    "bytes": 834,
+    "sha256": "d6231f1c9d28e51975264b222dc21a99043ab92a0f32e2122578baa978f9a5c8"
+  },
+  {
+    "file": "source_log.txt",
+    "bytes": 12416162,
+    "sha256": "56204593a7734975c1db959d60607583936e5ea6b81f0c47891e328f5c073b60"
+  },
+  {
+    "file": "source_snapshot\\analyzeCygnusBxLog.py",
+    "bytes": 7026,
+    "sha256": "28a7a78cac4b7a9356009f090e133e960695f67840587d253b6a144b26c029a1"
+  },
+  {
+    "file": "source_snapshot\\ndiSupportFnc.m",
+    "bytes": 23454,
+    "sha256": "f305fa64f0cf91a56e746b9f7c2a5a5f44784e1741e6091d25d6af2f43f06550"
+  },
+  {
+    "file": "source_snapshot\\plotCygnusSineAudit.m",
+    "bytes": 3857,
+    "sha256": "bcdc19d4f312d4986f0c0051abe2af29eb781a145f600a17fc6cd289a5631f19"
+  },
+  {
+    "file": "source_snapshot\\rlPressureSineBlock.m",
+    "bytes": 1599,
+    "sha256": "6fc9fd5d67b782cc2406412d392245ce47ecd483ccbe7a86febce46c9dda4372"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 1317,
+    "sha256": "695a309f7051c18373583d027b01969767c7447a0e67f17880fe23adf88d5d43"
+  },
+  {
+    "file": "tracking.csv",
+    "bytes": 3953085,
+    "sha256": "7b0b4afaff8db29a867b249a9cccf7e770233f40a8cf743d8fc4a2ed333ac26a"
+  },
+  {
+    "file": "tracking_and_sine_sequence.fig",
+    "bytes": 1129955,
+    "sha256": "8cc5a3a19a4b99d46cbf6488c362bf47242d293461b91b821f4dd897d7ca13be"
+  },
+  {
+    "file": "tracking_and_sine_sequence.pdf",
+    "bytes": 695547,
+    "sha256": "d62577e115efd52d35e349aac08db0eeb78ca850771c767b256ed78578855e6e"
+  },
+  {
+    "file": "tracking_and_sine_sequence.png",
+    "bytes": 280869,
+    "sha256": "986ba92e9101fbbd72233a2083298766c96748b9a9230553e5724cfaa73fb56a"
+  }
+]

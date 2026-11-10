@@ -1,0 +1,14 @@
+{
+  "primary_interface": "https://github.com/PlusToolkit/ndicapi/blob/master/ndicapi.h",
+  "handle_status": {
+    "valid": 1,
+    "missing": 2,
+    "disabled": 4
+  },
+  "transform_fields": "quaternion4,position_mm3,error1",
+  "port_status_bits": {
+    "out_of_volume": 64,
+    "partially_in_volume": 128
+  },
+  "CRC": "Reflected polynomial A001, initial0; header/payload independently checked"
+}

@@ -1,3 +1,296 @@
+## 2026-11-09 - Operator sine test1 retained-Switch fault
+
+212s4241ticksnewhandoff outputsallfinite,fullreplay1.49e-14bar,modes/ages/
+flags exact. ActualdelayinsteadmatchesretainedoldSwitch perchannelpressure>0
+selectcandidateelserawsine,includingEVERYNaNand0barfinitevalueerror.
+435nonfiniteNI-commandrows,435handoffmode6;only5tipmissingand434observer
+invalidwithvalidsensors. Firsttipmissing145.90->NaNcommand145.95. Badcommand
+feedbackblocksrewarm. Cannotinferactualanalog/chamberresponsefromNaNproxy.
+ManualFunction9pressureoutput->UnitDelaydirect,bypassSwitch required;new
+handoffphysicallyunqualifieduntilproperlywired. SecondaryfallbacksourceMC3
+nominalvsrawsine.091bar;inverseallocation868/3267scaled3bar. Data/plots/
+exactsourceandSwitchreplayscanonical sine_pressure_review_20261109_v1 under
+residual_controller/Experiments/Model_Val. Noruntime/SLXchange,hardware/modelrun.
+
+## 2026-11-09 - Stateful command-handoff numeric verification
+
+residualCommandValid.m nowpressureoutput,7inputs4outputs. Syntheticstartup/
+dropout/grace/fade/reentry/reset/disable/nonfinite/timing/duplicate tick and
+actualpressureanchor casespass.7501frozenrecordedtest5candidate/validity/
+nominalinputs simulatedthroughcommanddelay,allfinite0..3bar,sharedordinary
+step<=.3bar.0newsteps>.3 vsold30,max1.514. This iscommand-selectionevidence,
+notnewphysicaltrackingorNNpredictionunderchangedcommands. GRUunchanged.
+Artifacts residual_controller/command_handoff_validation_20261109_v1 and
+COMMAND_HANDOFF.md. NoSLXedit/build/run,hardware/acquisition/trainingrun.
+
+## 2026-11-09 - Operator residual-on test5 tracking/fallback sequence
+
+circlesweep_FWD_INV_test_5_fwdPressure.mat375smodel1.59.49tipMISSINGinvalid,
+9physicalgaps>.1s;37freshreadinesslosses32NDI/5gap,median1.65sfallback.
+Switchand.05delayreplayexact;actualNIcommandmatches4.45e-16bar,Killalways1.
+Everyfirstfallback.05safterinitialinvalid/gap.32channel-drops>.1bar,max1.514;
+26stable-requestphidips>.1radwithin2s. Noobservernumericalguards/stalecommand.
+Fallbacknotprotectedbycandidatebranchslew. Warmup1253samplesvs49NDIinvalid.
+Phi1lengthRMSE[3.875,3.923]mm vspriornominal[8.203,8.173],commonreference
+identical,butnotcontrolledphysicalrepeatcomparison. Phi2.5stillpoor;
+1012correctedscaled,122slew/6143valid. Needstatefulhandoff,notgaterelaxation.
+Offline analyzer/report/events/plots/data canonical
+residual_controller/Experiments/Model_Val/desired_pressure_test5_review_20261109_v2.
+No runtime/SLXchange,model/hardwarerun,training,commit,pushduringaudit.
+
+## 2026-11-09 - Explicit-shape nominal forward wrapper
+
+Operatorcompile reportsinconsistentconcatenation atarmS_single_dynamics and
+unresolveddX inMATLABFunction1; savedportsinherited-1,IC4x1. Exactfirstwrong
+operandnotknownfromscreenshot. Newpaste-ready rlForwardModelBlock normalizes
+pressure/state/torque/RHS columns withsamephysics.50cases/100row-column
+variants shapespass;maxderivativechange8.882e-15 vsoriginalRHS. Report:
+residual_controller/forward_shape_validation_20261109_v1. NoSLXedit/build/run.
+Desiredpressure outputNaN duringcold/invalidcontexts meansdirectactuator
+wiring stillneedssupervisedstartup/hold/fault/Kill integration. Nogatebypass.
+
+## 2026-11-09 - Desired-pressure source numeric/native verification
+
+New rlResidualDesiredPressureBlock,6x1 desiredq/v/a reference, samebus and
+actualGRUconditioning. Both64/128synthetics pass desiredtarget/sign/limits/
+invalid/contextimmutability. All5433savedtest4rows replayed5118valid315invalid.
+Nominaloutput=requested4.45e-16bar;targetforce3.56e-15N;observedresidual
+unchanged1.07e-14N;independentpressuremap/clipping1.34e-15/1.12e-15bar.
+First70s correctedppeak[.523,.468,.484]vsnominal[.242,.240,.242]bar,no slew.
+Fullrecordscaled126/slew3027;afterlimits frozen/candidate modelbalanceerror
+median7.107/7.615N,notphysicalmeasurement ordesiredtrackingevidence.
+
+Fixed6x1 C emitted but existinglocalstandalonecompilerIndexerror persists.
+IndependentGCC/native764fixtures passmax2.203e-13. Canonical numeric/native
+reports residual_controller/desired_pressure_validation_20261109_v1 and
+desired_pressure_native_20261109_v1. Paste/wiringguide DESIRED_PRESSURE_BLOCK.
+No SLX/model/hardware/trainingrun,commit,push;actualmodelcompile/timing open.
+
+## 2026-11-09 - Circle test4 exposes inverse force-target mismatch
+
+Offline circlesweep_FWD_INV_test_4.mat, model1.54,271.6s/5433rows,
+5118valid contexts. Collection desiredq/v/a force matches logged tauDesired
+3.56e-15N; mappednominal matches pressureRequested4.45e-16bar. ActualNI and
+contextpressure exactly equal requested. Shadow target measuredq/v+desireda
+matches exactly; full source replay outputs1.12e-15bar. No corrected slew or
+scaling. Hence corrected~actual reflects observed-motion reconstruction,
+not desired inverse performance or a clipping artifact in this run.
+
+Firstcircles desiredpeak2.600mm each,actual[.374,.180]mm;trackingRMSE
+[1.777,1.806]mm. Actualpeakp[.242,.240,.242]bar;currentcorrected
+[.258,.259,.252];offline sharedDESIREDtarget-rActual peak[.523,.468,.484].
+Lastcase unvalidated frozen-residual counterfactual, not requiredphysicalp.
+Candidate-pressure modelbalanceerror normmedian/P95/max1.478/2.233/3.569N.
+Forward50ms nominal/res/CV RMSEmm[3.751,3.807]/[.226,.231]/[.055,.058].
+Forward local accuracy does not imply inverse accuracy or desired tracking.
+Independent CSV balancechecks pass including1e-8bar pressure-zero threshold.
+
+New analyzeSinglePassTargetMismatch.m and canonical report/figures/data:
+residual_controller/Experiments/Model_Val/target_mismatch_review_20261109_v1.
+Needednext: separate sharedforce-demand comparison, actual GRU state/history,
+samepolicy/constraints, no hidden desired-state substitution. No runtime,
+NN,SLX edits,model/hardware run,training,commit,push.
+
+## 2026-11-06 - Operator test2 circle/helix confirm collection-policy block
+
+Found circlesweep_FWD_INV_test_2.mat (user.at typo) and
+helix_FWD_INV_singlePass_test_2.mat (actualhelixfilename). Model1.53completed
+375s7501rows/290s5801rows, no saved errors; actualsaved options present.
+6961/5257valid inversecontexts. Fullcollection-source replayoutputs1.34e-15bar,
+diagnostics1.07e-14,flags0mismatch; independentmapping/clipping4.45e-16bar.
+Actual/contextNI andforward/inverseresidual exact, networkevaluations1.
+Newminimum-policy operator model execution now evidenced, no codefix indicated.
+
+0.3startupartifact gone:0all-three-.3 vectors during979/852zero-commandrows.
+First1.65s correctedcircle[.0200,.0168,0],helix[.0254,.0093,0]bar. Nominal/
+corrected differallpre-slewrows, only3/0equalpost; maxprecorrection1.628/1.621bar.
+Correctedslew774/6961(11.12%)/859/5257(16.34%);scaling64(.92%)/40(.76%).
+Candidate-pressure modelerror median.06110/.10035N,P954.0416/3.2014N,
+max8.4019/8.1804N. >1Ntail733/735 and750/751coincidewithlimits.
+Frozenbalance is not nonlinear consistency; only1154/1321meet.02N after
+reevaluation. Olditerative stillPACpolicy, notmatchedsolvercomparison.
+
+NDItipMISSING16/18,baseinvalid0;helix1119valid-nearstraightthetaunobservable
+allaccepted(phi<=.008654rad), notdropouts. No forwardnumericalguards.
+Forwardall-scored lengthRMSEmm nominal/residual/CV:
+circle[4.407,4.824]/[.848,1.283]/[.100,.114];
+helix[4.526,4.650]/[1.085,1.281]/[.124,.137]. Prior-issued/error/rawqidentities
+exact. ActualNI equalsoriginalcollectionrequestedpressure onvalidrows;
+these remain shadowobservations, notresidual-onPAC/PDFB tracking evidence.
+
+Canonicalreport residual_controller/Experiments/Model_Val/
+collection_runs_review_20261106_v2: savedsettings,JSON/CSV/MAT,pressurefull/
+startupPNG/PDF/FIG,source/rawhashes. Newoffline analyzeCollectionShadowRuns.
+Initialv1ambiguousoverrun source markedincomplete; v2explicitNDIsource.
+Next PACmath must retainpressure-limit/frozenresidual terms andgating/dropout
+recovery. No hardware/modelrun,SLX/runtime/controller/NN edits,training,
+commit orpush duringaudit.
+
+## 2026-11-06 - Collection-policy single-pass replacement source ready
+
+User authorized updated code. New paste-ready
+rlResidualSinglePassCollectionShadowBlock.m replaces ONLY pressure conversion
+with collection minimum-nonnegative rule plus maximum-pressure scaling.
+Same5inputs/3outputs/ResidualSinglePassDiagnosticsBus and.05s schedule.
+Single GRU atactualpressure, measuredq/v+desiredddq target, readiness/NaN and
+immutablehistory unchanged. Rails/slew retained; compatibility variableCommon
+and common/trim/PACs-a-cap slots ignored underthis different policy.
+OldPAC-policy block/iterative/PAC/PDFB sources preserved. No SLX edits.
+
+Offline canonical single_pass_collection_20261106_v1: bothwidth synthetic
+feasibleforce/sign/zero-preload/scaling/rails/slew/invalid/port-invariance pass.
+All5266valid native-inputhelixcontexts match independentminimum-policy
+counterfactual1.34e-15bar; targetexact,force1.43e-14N. First1.60s corrected
+[.022919,.011821,0],nominal[.009561,.038671,0]bar; zero-command all-three-.3
+rows0/853. Correctedslew861/5266 vsold5099;nominal3336,scaled30corrected.
+Candidate-pressure model mismatchmedian.1010N,not measuredforce/tracking.
+
+Coder emitsC but existingstandalonecompiler failsIndexexceedsarraybounds;
+independentGCC/native764rows passmax1.99e-13. GenericofflineCfixture/check
+tools now accept optionalentryname,originaldefaultunchanged. Source/data/hash,
+CSV/MAT/startupPNG/PDF/FIG andnativefixtures retained. Manualinstallation:
+residual_controller/SINGLE_PASS_COLLECTION_SHADOW.md. Userpastesentirefile
+includinglocalhelper intoexistingobservationblock, no rewiring/newbus required.
+OlditerativeblockstillPACpolicy, so notmatchedsolvercomparison withnewvariant.
+No hardware/modelrun,training,actualpressurecommands/controller changes,
+commit orpush. ActualoperatorSLXcompile/full-loop/physicalinverse pending.
+
+## 2026-11-06 - Operator single-pass helix:0.3bar is allocation/slew artifact
+
+Reviewed helix_FWD_INV_singlePass_test.mat, model1.52,290s5801rows, no saved
+simulationerror;5266jointvalidcontexts. Atfirstvalid1.60s actualNI=[0,0,0];
+PAC nominalpre=[1.59348,1.62259,1.58392],singlepasspre=[1.61134,1.60024,1.58842]
+bar; all3inverseoutputs=[.3,.3,.3]. ALL853valid zero-command rows have that
+output. ReusedPAC nominalcommon1.6bar plus6bar/s*.05=.30bar peractualcommand
+clipping causes this; not NN-learned deadzone or actualpressure starting.3.
+Stateless shadow cannot accumulate a hypothetical ramp from its old output.
+
+Singlepass=iterative3960/5266(75.20%),singlepassslewlimited5099(96.83%),
+nominalslewlimitedall5266. Pre-slew singlepass differsfromnominalallvalidrows,
+max.97574bar. Singlepassvsiterative maxaxis difference median0/P95.28666/max.6
+bar. Candidate-pressure equationerror medianssinglepass.60208N/iterative.49672N;
+nominal8.03121N. These are model algebra errors, not measured forces.
+
+Trainingusedrecordedpressureforwardinputs,noPACcommon/slewpolicy. Saved
+collectioninverse ZIP/XML usesminimum-nonnegative pressure then3bar scaling,
+not PAC1.6common. Suppliedshadowwrappersintroduceddifferent allocation, which
+obscures the requested comparison. Offline SAMEforce-target policy comparison
+firstnominalmin=[.009561,.038671,0],singlepassmin=[.022919,.011821,0]bar.
+5186force-feasible mappings preserveBp<=7.11e-15N, but pressure-dependentr
+means this does not prove equal augmented/physical response. Target remains
+measuredq/v+desiredaccel, distinct from collectiondesiredstate demand.
+
+Alltargets/residuals/nominal/clipidentities exact.120contextsource-default
+variablecommonreplays singlepass8.89e-16bar,iterative7.27e-9bar; fulloptions
+not saved. NI uses nativefastergrid; timestampboundedalignment confirmscommand
+age0 andexactcontextmatch, not a runtime timestampfailure. Initialanalyzerv1
+strictgridassert markedincomplete; canonicalv2 handlesit.
+
+Artifacts: residual_controller/Experiments/Model_Val/
+single_pass_helix_review_20261106_v2 (README,CSV/MAT/JSON,full/startupPNG/PDF/FIG,
+savedchart/source/inputhashes). Newoffline analyzeSinglePassHelixLog and
+compareCollectionShadowAllocation only. Next proposedpassive comparison:
+matchcollectionallocation and show pre-slew correction separately fromlimited
+output. No runtimeblock/controller/settings/SLX/NN edits, hardware/modelrun,
+training,commit orpush. Original inverse is iterative search, not integration.
+
+## 2026-11-05 - Single-pass subtraction shadow block implemented
+
+User authorized a separate paste-ready inverse observation block. New
+rlResidualSinglePassShadowBlock.m evaluates GRU ONCE at actual current pressure,
+measuredq/v and immutable historyPre, subtracts that force from the existing
+measuredq/v+desiredacceleration nominal demand, then uses bounded allocation
+and the same actualcommand-reanchored slew box. No inverse iteration, ODE or
+state commit. Existing forward/iterative inverse/PAC/PDFB/NDI/SLX unchanged.
+New setupResidualSinglePassShadow returns singlePassOptions=[128;.02] and
+ResidualSinglePassDiagnosticsBus. Manual ports/types/Selector/save instructions:
+residual_controller/SINGLE_PASS_SHADOW.md. Pre/post-slew pressure diagnostics
+separate correction from clipping; frozenBalanceSatisfied is NOT nonlinear
+convergence or measuredforce accuracy. All observer readiness gates retained.
+
+Canonical offline checks: single_pass_validation_20261105_v2. Bothwidths,
+feasibletarget subtraction sign, immutable/repeated contexts, invalid/NaN,
+bounds/slew/error decomposition pass.11964valid savedcontexts: force target
+and nominalpressure exact, neuralforce1.07e-14N. Corrected/nominal pressures
+differ EVERY valid pre-slew sample (max1.1135/.9767bar circle/helix), but equal
+78.75/69.05% after clipping. Frozenforce-error medians.4197/.4427N; reevaluating
+GRU at predictedpressure OFFLINE gives.4083/.5815N versus iterative.3772/.4841N.
+This quantifies approximation, not superiority/physicalpressure validation.
+
+Coder emits C but existing standalone toolchain fails Index exceeds arraybounds;
+not an actual SLX build. Independent GCC compile and764native rows pass,
+maxdifference1.92e-13 inclall diagnosticfields. Numeric P95.144/.132ms excludes
+acquisition/scheduling/observer, not worstcase full-loop qualification.
+Sources/inputhashes/CSV/MAT and PNG/PDF/FIG retained in v2 validation folder;
+native fixtures/results in single_pass_native_20261105_v1. No hardware/model
+execution, training, controller swap, protection change, commit or push.
+Next operator action: manually add discrete.05s block, branch same context/ddq/
+pressureoptions/common Boolean, new options2x1; new bus scalar, outputsScope
+only. Inspect pre/post-slew pressure and frozen residual flags together.
+
+## 2026-11-05 - Circle/helix inverse and NDI missing-transform audit
+
+Operator circlesweep_FWD_INV_test.mat375s7501rows and helix_FWD_INV_test.mat
+290s5801rows, model1.51, ReachedStopTime/no saved error. All17/28 orientation
+invalid samples are raw tipstatus2=MISSING/positionnonfinite; base allvalid.
+No valid-pair quaternion-only rejection, outvolume/partial/repeat/pairreject,
+or eventcoincident overrun. Configuration invalid matches tip loss atNDIgrid.
+Physical cause remains unproven. Public meas_position and correctedtip XYZ
+hold preceding values at all17/28 losses; internal rawrelativeposition NaN.
+Smooth XYZ does not establish better position sensing. Nearstraight valid
+theta-unobservable9/796samples below0.5deg are distinct; observer accepts them
+and every orientationvalid sample. True losses reset0.6+1s warmup.
+
+Inverse equal79.76%/70.13%, but neuralforce median10.42/8.94N, not disabled.
+Bothoutputs limited to actualcommand +/-0.30bar EACH tick (6bar/s*.05s),
+not preceding hypotheticalcommand. Inverseconverged156/6908(2.26%) and
+245/5056(4.85%); valid does not imply converged. Defaultvariablecommon replay
+120contexts/file matches2.09e-9bar and convergenceflags exactly; fulloption
+vectors notsaved. Diagnosticinverse targets measuredq/v plus desiredaccel,
+not desiredlength/outerfeedback. Residual need not increase allpressures.
+
+Confirmed supplied projectedsolver plateau:16selected equal-output contexts
+have zero localprojector Jacobian;15better candidates through IDENTICAL
+allocator/slew/rails/caps. Helix39.20s inverseerror4.9088->2.2984N within same
+limits. Separate copied-option no-slew probes show nonzero correction up
+~0.83bar; not proposed live limit removal or physical inverse validation.
+Next: improve disconnected inverse/diagnostics offline before controller
+deployment; keep genuinevalidity/readiness, display staleXYZ clearly and
+operatorinvestigate tipMISSING without claiming a cause. Shared controller
+allocator has same numerical limitation. No productionfix applied here.
+
+Artifacts: residual_controller/Experiments/Model_Val/
+inverse_ndi_review_20261105_v1/README.md; event/schema/sourcehash tables,
+defaultreplays, sameprojector probes, PNG/PDF/FIG and immutablecontext MATs.
+Added offline analyzeInverseNdiValidation/probeInverseProjectionPlateaus only.
+No SLX/runtime/NDI/network changes, hardware/modelrun, training, commit or push.
+
+## 2026-11-03 - Residual PDFB/PAC source implementation and offline verification
+
+Implemented residual_controller PDFB/PAC wrappers, frozen64/128 numeric packet
+loader, bounded learned-pressure inverse, one-commit GRU state, typed diagnostic
+bus and manual installation instructions. Original feedback/adaptive law/gains/
+filters/references unchanged. No SLX was edited/opened/run. Saved PDFB base-rotation
+inverse still had old bounds; new off/on pair uses corrected bounds and shared
+supervisor/allocator, so a fresh new-wrapper nominal baseline is required.
+PAC first28 model-off outputs exactly match existing wrapper; theta-theta0 now
+logs remaining correction when model-on. Fixed-nominal activation/gravity
+re-expression and trim alignment derived; no new passivity guarantee.
+
+Canonical tests: residual_controller/validation_20261103_v4. Exact frozen-cell
+agreement, FD Jacobian9.8e-11,48 inverse cases max8.82e-6N,804 full-wrapper
+synthetic-kinematic ticks pass bounds/slew/hold/fault checks. MATLAB Coder emitted
+both wrappers but hit existing toolchain error; independent GCC build and2576
+native ticks passed (numeric<6e-12, pressure<3e-14bar). Strict activation-boundary
+logging flag differences documented. This is component evidence, not physical
+tracking or successful user-model build. Setup/diagnostic bus test passed.
+
+Read residual_controller/README.md, MODEL_INTEGRATION.md and VERIFICATION.md.
+Next: operator installation/build and model-off smoke, then fresh matched
+model-on trial. Confirm actual live PDFB settings and timestamps first. No
+hardware, retraining, HIL automation, new Git commit or push performed.
+
+
 ## 2026-11-03 - Three-seed GRU capacity comparison completed
 
 User authorized quick offline1x64/1x128/2x64 comparison. Three seeds113/211/307, matched original1200-update stage plus1200 old-only continuation updates; unchanged physics/loss/masks/normalizer.
@@ -2559,6 +2852,106 @@ seeded leftover model socket in worker, verified startup cleanup, probes11s
 apart, subsequent two-batch completion and persisted audit. Existing R02
 validity regression still passes. Reports under R03/startup_review_v1; old
 raw recording preserved. No hardware runs/gain changes performed.
+
+## 2026-11-05 - Circle causality and no-reset rollout audit
+
+circlesweep_test.mat375s/model1.51,7501ticks;6767scored prior-issued targets
+verified exact. Full observer replay from rawmeasurement/frame/clocks/p matches
+predictions1.39e-16m,NNforce1.07e-14N,allready/status/masks exact. Changed
+future q87.10s by+5/-3mm: oldpredchange0,errorchange-5/+3mm. FrozenNov3packet
+hash unchanged; no future-target leakage found, no updates/fit. Reinitializing
+each origin from measuredq makes50ms absolute overlays weak model evidence.
+AllRMSE(res/nom/CV/persistence,mm):[.748,1.220]/[4.296,4.714]/[.097,.111]/
+[.206,.256]. Moving2042rows:[1.337,2.204]/[6.321,7.328]/[.174,.199]/[.375,.464].
+320no-reset conditional recorded-input anchors (88moving), .05/.1/.25/.5s,
+no futureNDIstateinputs, zero guards. .5smoving res[1.660,2.906],nom[9.102,9.902],
+CV[1.748,2.042],persistence[3.338,4.221]mm. Not live forecasts. No consistent
+CV win reversal/NMPC qualification. Velstandardizedfeatures18.05/17.13 and
+12.84%readyanyZ>5; not calibrated uncertainty/support test. SavedScope input3
+is separate model/length chain; residual input correctly prior-issued output.
+Source/data/plots/hashes: residual_controller/Experiments/Model_Val/
+circlesweep_test_review_v1. No raw/SLX/controller/weight changes, hardware,
+model execution, training, commit or push.
+
+## 2026-11-05 - Sine-wave0g/100g presentation comparison
+
+Two operator MATs each212s/model1.51/GRU128/.05s horizon. Matched nominal and
+residual one-step predictions vs independent NDI l2/l3, no fitting. Identity
+checks (measurement,previous issued prediction,logged error,NI/contextcommand)
+all exact. Scored3866/4241(0g) and3984/4241(100g). All-scored RMSEmm nominal/
+residual:0g[3.696,2.897]/[.482,.429];100g[4.505,3.733]/[.729,.809]. Active
+sine phase5 only:0g[4.582,3.586]/[.594,.529];100g[5.556,4.587]/[.896,.994].
+No free-run/inverse/control or causal payload inference. Attachment/calibration
+timing not embedded; labels user supplied. Fixed second-cycle first-repeat
+windows acrosschannels, no error-based selection; missing predictions retained.
+Five16:9figures PNG3840x2160/300dpi+PDF/SVG/FIG,metrics/data/source/hash/ZIP:
+residual_controller/Experiments/Model_Val/presentation_sinewave_20261105_v2.
+No raw/model/controller changes, hardware execution, retraining, commit or push.
+
+## 2026-11-04 - Operator pressure-combine forward shadow test
+
+Recorded residual_FWD_INV_validation1.50,191s finishes no simulation error.
+3821ticks,3814orientationvalid,baseallvalid;3560prospective issued predictions
+score(93.17% rows),3573retimed. Raw NDI/observerq and NI/contextcommands exact;
+score-to-previous-issued identity exact; independenterror recalculation exact.
+101immutable-context frozen-network/flow probes match2.66e-15N/1.99e-17m.
+GRU128 horizon.05; source option vector notsaved. Finalcommands0..3bar,Kill1.
+Seven invalid measurements re-warm;0numericguard. Ten segments; two long poll
+intervals .294/.451s occur at startup, not during excitation. Medianphysical
+dt.050807s,scoredhorizonmismatch median.807ms, max4.810ms; clockdrift3.361s.
+
+Prospective all-row RMSE(l2/l3,mm): residual.234/.198,nominal1.007/1.569,
+CV.046/.047. Movingvnorm>.001m/s1043rows: residual.346/.300,nominal1.700/2.491,
+CV.074/.074. Residual improves nominal by76.8/87.4%, yet CV wins short-horizon
+comparison. No tracking/inverse/force-error inference. Learned-inverse outputs
+not logged; context alone not inverse validation. FeaturemaxZ4.118,forcespeaks
+10.406/10.792N. Operator forward build/run now demonstrated; block timing unknown.
+Retained report/figures/tables/MAT/SHA: residual_controller/Experiments/Model_Val/
+pressure_combine_test_review_v1. No model/controller/source change except offline
+analyzer, no hardware execution, training, commit or push during review.
+
+## 2026-11-03 - PAC residual firstTime: dropout recovery causes latched fault
+
+Follow-up passive source implementation: see residual_controller/
+SHADOW_VALIDATION.md and shadow_validation_20261103_v4. No SLX edits. Raw
+orientation q plus segmented causal v, physical poll/frame and separate
+simulation command freshness. Pure-step/wrapper and trained SDIRK/GRU reference
+identity, zero-residual reduction, both widths, prefix causality,1/2/3 dropout,
+duplicate frame/tick, gap/clock/base/stale-command recovery and inverse fixed/
+variable-common immutable-history checks pass. No automatic actuation/fault
+latch. Saved firstTime1935rows:1825predictions,1814prospective and1822retimed
+scores; observer ready23s after PAC fault20.8. Pre-fault prospective380scores
+RMSE aug[.694,.622],nom[1.537,1.747],CV[.111,.098]mm. Predominantly trim/blend,
+not circle performance; stationary postfault scored separately. Numeric forward
+P95.798ms excludes acquisition/Simulink/inverse. Coder emitted13/17Cfiles then
+known standalone compiler/index issue; local GCC independently built/replayed
+1326native ticks, maxdifference5.13e-12 with exact flag agreement. Actual SLX
+build and hardware response untested. PNG/PDF/FIG, traces, metrics and source
+hashes retained; canonical native fixtures shadow_c_replay_20261103_v2.
+
+Saved firstTime.mat reviewed offline. At20.70/20.75 tip orientation invalid,
+base valid, sensorValid[1,0], overrun0. Recovered accepted timestamp20.80 gives
+0.15s gap>residual maxGap0.10. Neural memory resets/ready false; existing
+anchor rejects cold history; invalidGrace0.10 exceeded andstatus5 latches.
+Pressure shutdown20.80 precedes later simulation StopCommand96.7; no saved
+simulation ErrorDiagnostic. Large tracking error is not this fault's trigger.
+
+Logged-input residualPressureStep replay from initialization reproduces ready/
+status exactly, pressure maxdifference8.53e-14bar and raw residual3.98e-13N.
+Isolated original pacPressureStep seeded20.65 yields[4,4,3] for20.70/.75/.80,
+versus residual[4,4,5]. Prior synthetic tests omitted two invalid then recover.
+Pre-fault blend/control inverse residual<=0.0197N; tiny immediately before
+dropout, not a measured physical force error. Common adjustment on, controlled
+mean1.6000–1.7271bar; final NI commands match controller exactly.
+
+Clock limitation: latched simulation-time measurementTime vs physical poll
+median0.0508s, P950.0509s, maximum0.3089s; total host-vs-sim drift2.0011s.
+Saved PAC_residual.slx old23-input chart differs from executed residual log.
+Source provenance/time contract and explicit dropout recovery remain open.
+Recommend passive model-forward/inverse evaluation before more residual-on
+tracking; no hardware/SLX/controller changes during audit. Retained figures,
+tables, replay and source: residual_controller/Experiments/PAC/20261103/
+firstTime_review_v1. Exact NDI tip-rejection reason not logged.
 
 ## 2026-10-28 - R033 completed motion, insufficient coverage, rejection handshake fix
 

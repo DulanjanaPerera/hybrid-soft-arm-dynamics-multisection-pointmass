@@ -1,0 +1,47 @@
+{
+  "source": "C:\\Users\\dperera\\Desktop\\log.txt",
+  "source_sha256": "1976de55d612ba40bad58af96c84073e1eb87b7a6b466295563a1a46cbf10e87",
+  "bx_replies": 4978,
+  "crc_header_passed": 4978,
+  "crc_payload_passed": 4978,
+  "main_tracking_session": 3,
+  "main_tracking_replies": 4976,
+  "frame_counter_hz": 320.264,
+  "transform_update_hz": 40.033,
+  "elapsed_s": 125.49646541603177,
+  "time_origin": "First BX reply in final tracking session; frame difference / reported frame frequency",
+  "startup_reports": 3,
+  "runtime_reports": 4973,
+  "runtime_base_missing": 0,
+  "runtime_tip_missing": 32,
+  "runtime_tip_missing_percent": 0.6434747637241102,
+  "runtime_tip_missing_episodes": 30,
+  "maximum_consecutive_missing": 2,
+  "missing_first_last_elapsed_s": [
+    9.09249868858192,
+    37.24427347438363
+  ],
+  "missing_base_valid_reports": 32,
+  "missing_out_of_volume_reports": 0,
+  "missing_partial_reports": 0,
+  "system_status_counts": {
+    "0": 4976
+  },
+  "frame_increment_counts": {
+    "8": 4933,
+    "16": 40,
+    "40": 1,
+    "48": 1
+  },
+  "sessions": [
+    {
+      "session": 2,
+      "replies": 2
+    },
+    {
+      "session": 3,
+      "replies": 4976
+    }
+  ],
+  "pressure_markers_present": false
+}

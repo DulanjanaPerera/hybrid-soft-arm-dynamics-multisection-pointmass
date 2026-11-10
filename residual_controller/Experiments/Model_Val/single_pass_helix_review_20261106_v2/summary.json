@@ -1,0 +1,116 @@
+{
+  "file": "helix_FWD_INV_singlePass_test.mat",
+  "modelVersion": "1.52",
+  "rows": 5801,
+  "duration_s": 290,
+  "stopEvent": "ReachedStopTime",
+  "hasSimulationError": false,
+  "validRows": 5266,
+  "contextVsFinalCommandMax_bar": 0,
+  "contextVsLaterCurrentCommandMax_bar": 0,
+  "commandAgeRange_sim_s": [
+    0,
+    0
+  ],
+  "singlePassResidualInputVsFinalCommandMax_bar": 0,
+  "targetDifferenceMax_N": 0,
+  "residualVsForwardForceMax_N": 0,
+  "nominalPressureDifferenceMax_bar": 0,
+  "singlePassClipFormulaDifferenceMax_bar": 0,
+  "nominalClipFormulaDifferenceMax_bar": 0,
+  "loggedHorizon_s": 0.05,
+  "maximumStepFromActual_bar": 0.30000000000000027,
+  "singlePassEqualsIterative": 3960,
+  "singlePassEqualsNominal": 3570,
+  "iterativeEqualsNominal": 3647,
+  "singlePassPreSlewEqualsNominal": 0,
+  "maximumPreSlewCorrection_bar": 0.97573974596835766,
+  "maximumSinglePassVsIterative_bar": 0.60000000000000053,
+  "singlePassVsIterativeMedianP95Max_bar": [
+    0,
+    0.2866594252033452,
+    0.60000000000000053
+  ],
+  "singlePassAllocationLimited": 80,
+  "singlePassSlewLimited": 5099,
+  "nominalAllocationLimited": 0,
+  "nominalSlewLimited": 5266,
+  "iterativeConverged": 241,
+  "iterativeLimited": 5173,
+  "singlePassFrozenBalanceSatisfied": 214,
+  "actualZeroCommandRows": 853,
+  "zeroCommandSinglePassAllExactlyPoint3": 853,
+  "zeroCommandNominalAllExactlyPoint3": 853,
+  "zeroCommandIterativeAllExactlyPoint3": 853,
+  "firstValidTime_s": 1.6,
+  "firstValidActual_bar": [
+    0,
+    0,
+    0
+  ],
+  "firstValidNominalBeforeSlew_bar": [
+    1.5934837867588307,
+    1.622593652588483,
+    1.5839225606526866
+  ],
+  "firstValidSinglePassBeforeSlew_bar": [
+    1.6113393554031814,
+    1.6002405715419858,
+    1.588420073054833
+  ],
+  "firstValidSinglePass_bar": [
+    0.30000000000000004,
+    0.30000000000000004,
+    0.30000000000000004
+  ],
+  "firstValidNominal_bar": [
+    0.30000000000000004,
+    0.30000000000000004,
+    0.30000000000000004
+  ],
+  "firstValidIterative_bar": [
+    0.30000000000000004,
+    0.30000000000000004,
+    0.30000000000000004
+  ],
+  "firstValidResidual_N": [
+    0.53369861357602788,
+    0.17730453898226228
+  ],
+  "defaultFixedVariableReplay_singlePassIterative_bar": [
+    [
+      0.22505305729952252,
+      0.37395790502116633
+    ],
+    [
+      8.8817841970012523E-16,
+      7.2696759723100968E-9
+    ]
+  ],
+  "targetReplayMax_N": 0,
+  "singlePassFrozenEquationErrorMedianP95Max_N": [
+    0.46364427674702774,
+    4.9491100116301459,
+    9.53668797556666
+  ],
+  "singlePassCandidateEquationErrorMedianP95Max_N": [
+    0.60207698201338389,
+    5.2834754766020557,
+    9.9047840707536832
+  ],
+  "iterativeEquationErrorMedianP95Max_N": [
+    0.49671647196267155,
+    4.0627732105604473,
+    8.0736994062105474
+  ],
+  "nominalEquationErrorMedianP95Max_N": [
+    8.0312084165224871,
+    19.558381718539945,
+    24.098914127074572
+  ],
+  "pressureDependentResidualChangeMedianP95Max_N": [
+    0.25186557384308766,
+    0.66319036805740816,
+    1.1939504048662875
+  ]
+}

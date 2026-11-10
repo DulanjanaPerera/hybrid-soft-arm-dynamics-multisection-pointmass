@@ -1,0 +1,7 @@
+source,predictor,scoredRows,l2RMSE_mm,l3RMSE_mm
+circlesweep_FWD_INV_test_2.mat,residual_plus_nominal,6927,0.848186073753616,1.28290144604432
+circlesweep_FWD_INV_test_2.mat,nominal,6927,4.40698570424792,4.82374061118508
+circlesweep_FWD_INV_test_2.mat,constant_velocity,6927,0.0997087204271156,0.113841165933289
+helix_FWD_INV_singlePass_test_2.mat,residual_plus_nominal,5236,1.0854700916141,1.28132195751862
+helix_FWD_INV_singlePass_test_2.mat,nominal,5236,4.52563893564393,4.65043703636499
+helix_FWD_INV_singlePass_test_2.mat,constant_velocity,5236,0.124242924158461,0.136981837823006

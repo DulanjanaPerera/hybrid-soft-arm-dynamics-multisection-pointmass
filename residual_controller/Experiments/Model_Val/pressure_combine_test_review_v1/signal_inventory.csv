@@ -1,0 +1,90 @@
+index,name,blockPath,valueClass
+1,length,residual_FWD_INV_validation/Demux,timeseries
+2,length,residual_FWD_INV_validation/Demux1,timeseries
+3,sampled des_length,residual_FWD_INV_validation/Desired lengths 50 ms,timeseries
+4,X,residual_FWD_INV_validation/Integrator,timeseries
+5,,residual_FWD_INV_validation/MATLAB Function,timeseries
+6,comp_lengths,residual_FWD_INV_validation/MATLAB Function1,timeseries
+7,dX,residual_FWD_INV_validation/MATLAB Function1,timeseries
+8,des_phi,residual_FWD_INV_validation/MATLAB Function1,timeseries
+9,des_theta,residual_FWD_INV_validation/MATLAB Function1,timeseries
+10,pressureUsed_bar,residual_FWD_INV_validation/MATLAB Function1,timeseries
+11,tau_N,residual_FWD_INV_validation/MATLAB Function1,timeseries
+12,thetaObservable,residual_FWD_INV_validation/MATLAB Function1,timeseries
+13,d_length,residual_FWD_INV_validation/MATLAB Function2,timeseries
+14,dd_length,residual_FWD_INV_validation/MATLAB Function2,timeseries
+15,length,residual_FWD_INV_validation/MATLAB Function2,timeseries
+16,inverseModelValid,residual_FWD_INV_validation/MATLAB Function3,timeseries
+17,pressureCommand_bar,residual_FWD_INV_validation/MATLAB Function3,timeseries
+18,pressureLimited,residual_FWD_INV_validation/MATLAB Function3,timeseries
+19,tauAvailable_N,residual_FWD_INV_validation/MATLAB Function3,timeseries
+20,tauDesired_N,residual_FWD_INV_validation/MATLAB Function3,timeseries
+21,inverseContext,residual_FWD_INV_validation/MATLAB Function4,struct
+22,predictionAtMeasurement_m,residual_FWD_INV_validation/MATLAB Function4,timeseries
+23,predictionLength_m,residual_FWD_INV_validation/MATLAB Function4,timeseries
+24,retimePrediction_m,residual_FWD_INV_validation/MATLAB Function4,timeseries
+25,shadowDiagnotic,residual_FWD_INV_validation/MATLAB Function4,struct
+26,filtered_d_length,residual_FWD_INV_validation/MATLAB Function5,timeseries
+27,filtered_dd_length,residual_FWD_INV_validation/MATLAB Function5,timeseries
+28,fitered_length,residual_FWD_INV_validation/MATLAB Function5,timeseries
+29,meas_position,residual_FWD_INV_validation/NDI Sensor reading,timeseries
+30,meas_positionTip_offsetCorrected,residual_FWD_INV_validation/NDI Sensor reading,timeseries
+31,,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+32,,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+33,configurationValid,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+34,fitResidual_m,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+35,frame,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+36,hostTime_s,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+37,meas_length,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+38,overrun,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+39,phi,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+40,pollStart_s,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+41,position,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+42,sensorValid,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+43,theta,residual_FWD_INV_validation/NDI Sensor reading/Sensor,timeseries
+44,moduleTipXYZValid,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB Function1,timeseries
+45,moduleTipXYZ_m,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB Function1,timeseries
+46,R_NDI_from_arm,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+47,baseOreintationValid,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+48,frame,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+49,gravity_arm,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+50,hostTime,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+51,lengthChnage_m,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+52,ndiDiagnostics,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+53,nonBendingRotation_rad,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+54,orientationValid,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+55,overrun,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+56,phiOrientation,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+57,pollStart,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+58,raw1,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+59,raw2,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+60,raw3,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+61,raw4,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+62,raw5,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+63,raw6,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+64,raw7,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+65,raw8,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+66,thetaObservable,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+67,thetaOrientation,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+68,valid,residual_FWD_INV_validation/NDI Sensor reading/Sensor/MATLAB System,timeseries
+69,X,residual_FWD_INV_validation/NDI Sensor reading/Sensor/Subtract,timeseries
+70,P1_voltage,residual_FWD_INV_validation/Pneumatic Valves/Gain,timeseries
+71,P2_voltage,residual_FWD_INV_validation/Pneumatic Valves/Gain1,timeseries
+72,P3_voltage,residual_FWD_INV_validation/Pneumatic Valves/Gain2,timeseries
+73,kill_switch,residual_FWD_INV_validation/Pneumatic Valves/Kill,timeseries
+74,P1_NI_DAQ,residual_FWD_INV_validation/Pneumatic Valves/Saturation,timeseries
+75,P2_NI_DAQ,residual_FWD_INV_validation/Pneumatic Valves/Saturation1,timeseries
+76,P3_NI_DAQ,residual_FWD_INV_validation/Pneumatic Valves/Saturation2,timeseries
+77,sim time,residual_FWD_INV_validation/Reference clock,timeseries
+78,sampled time,residual_FWD_INV_validation/Reference time 50 ms,timeseries
+79,comp_ltheta,residual_FWD_INV_validation/Seperate paramter calculation/MATLAB Function,timeseries
+80,phi error,residual_FWD_INV_validation/Seperate paramter calculation/MATLAB Function1,timeseries
+81,theta error,residual_FWD_INV_validation/Seperate paramter calculation/MATLAB Function1,timeseries
+82,channelId,residual_FWD_INV_validation/pressure combine,timeseries
+83,cycleId,residual_FWD_INV_validation/pressure combine,timeseries
+84,done,residual_FWD_INV_validation/pressure combine,timeseries
+85,phaseId,residual_FWD_INV_validation/pressure combine,timeseries
+86,pressureRequested_bar,residual_FWD_INV_validation/pressure combine,timeseries
+87,testEnd_s,residual_FWD_INV_validation/pressure combine,timeseries
+88,trialId,residual_FWD_INV_validation/pressure combine,timeseries
+89,measurementTime_s,residual_FWD_INV_validation/validMeasurementTime,timeseries

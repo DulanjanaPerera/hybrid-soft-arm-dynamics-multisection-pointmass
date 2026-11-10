@@ -1,0 +1,7 @@
+PASS: packed64/128 cells match frozen streaming cells 0; pressure Jacobian FD 9.8e-11; candidate state purity.
+PASS: zero/.2/.8 activation-map re-expression, residual RHS sign and units.
+PASS: PAC force exactly nominal-reference force + Y*(theta-theta0); adaptive law unchanged.
+PASS: all28 PAC model-off outputs exactly match existing wrapper, fixed/variable common, adaptation and dropouts.
+PASS: zero learned residual recovers matched zero-activation pressure path, warmup and dropout/fault behavior.
+PASS:48 known-target inversions; max 8.818e-06N, P95 1.456ms; impossible requests bounded/limited.
+PASS: selected-pressure single commit, short-gap hold/recovery and sustained fault/slew; no automatic rearm.

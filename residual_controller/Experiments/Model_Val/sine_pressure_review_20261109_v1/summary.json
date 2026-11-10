@@ -1,0 +1,88 @@
+{
+  "file": "C:\\Users\\dperera\\OneDrive - Texas A&M University\\Lab\\Research\\fDyn_ExpCom\\hyDyn_Ctrl\\residual_controller\\Experiments\\Model_Val\\sinewave_FWD_INV_test_1_fwdPressure.mat",
+  "modelVersion": "1.59",
+  "duration_s": 212,
+  "rows": 4241,
+  "validRows": 3267,
+  "orientationInvalidRows": 5,
+  "tipMissingRows": 5,
+  "baseInvalidRows": 0,
+  "commandAgeRange_s": [
+    0,
+    0
+  ],
+  "longPhysicalIntervalRows": 2,
+  "qDesiredRange_m": [
+    [
+      -0.016424503693798925,
+      -0.016424503693798935
+    ],
+    [
+      0.0328489575996432,
+      0.0328489192140574
+    ]
+  ],
+  "qMeasuredRange_m": [
+    [
+      -0.014612399515792369,
+      -0.01645363046233247
+    ],
+    [
+      0.025102617992264323,
+      0.02867708182596745
+    ]
+  ],
+  "nonfiniteActualRows": 435,
+  "actualVsDelayMax_bar": 4.440892098500626e-16,
+  "delayVsHandoffPriorTickMax_bar": 2.999958457851366,
+  "targetVsRecordedDesiredMax_N": 1.4210854715202004e-14,
+  "correctedScaledRows": 868,
+  "correctedSlewRows": 3,
+  "handoffLimitedRows": 0,
+  "maxActualStep_bar": 0.30000000000000004,
+  "faultRange_s": [
+    145.95000000000002,
+    198.60000000000002
+  ],
+  "orientationInvalidRawTipStatuses": 2,
+  "invalidOrientationQRange_m": [
+    [
+      -0.004029234630146061,
+      0.005056838353370139
+    ],
+    [
+      -0.0016450073022879653,
+      0.009571484490856593
+    ]
+  ],
+  "observerInvalidWithSensorsValid": 434,
+  "nominalRange_bar": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      3,
+      3
+    ]
+  ],
+  "nominalVsRawSineMax_bar": 0.09135434841664658,
+  "frozenPressureMapProbeRows": 654,
+  "frozenPressureMapRadiusMedianP95Max": [
+    0.1883541085757541,
+    0.23725050907441275,
+    0.2570212832388821
+  ],
+  "frozenPressureMapRadiusAboveOne": 0,
+  "candidateModelErrorMedianP95Max_N": [
+    0.13092943937582968,
+    16.84698949143784,
+    21.27178852191968
+  ],
+  "retainedVectorControlledSwitchNaNPatternExact": true,
+  "retainedVectorControlledSwitchMax_bar": 0,
+  "handoffNonfiniteRows": 0,
+  "firstNonfiniteActual_sim_s": 145.95
+}

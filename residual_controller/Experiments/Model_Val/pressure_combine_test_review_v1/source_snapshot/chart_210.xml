@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chart id="210">
+  <P Name="name">pressure combine</P>
+  <P Name="windowPosition">[422 539.941 189 413]</P>
+  <P Name="viewLimits">[0 156.75 0 153.75]</P>
+  <P Name="screen">[1 1 3600 1200 1.180555555555556]</P>
+  <P Name="viewObj">210</P>
+  <P Name="ssIdHighWaterMark">11</P>
+  <P Name="decomposition">CLUSTER_CHART</P>
+  <P Name="type">EML_CHART</P>
+  <P Name="chartFileNumber">18</P>
+  <P Name="disableImplicitCasting">1</P>
+  <eml>
+    <P Name="name">rlPressureCombinedBlock</P>
+  </eml>
+  <Children>
+    <state SSID="1">
+      <P Name="labelString">eML_blk_kernel()</P>
+      <P Name="position">[18 64.5 118 66]</P>
+      <P Name="fontSize">12</P>
+      <P Name="superState">SUBCHART</P>
+      <P Name="subviewer">210</P>
+      <P Name="type">FUNC_STATE</P>
+      <P Name="decomposition">CLUSTER_STATE</P>
+      <eml>
+        <P Name="isEML">1</P>
+        <P Name="script">function [pressureRequest_bar,trialId,phaseId,channelId,cycleId,done,testEnd_s] = rlPressureCombinedBlock(t)
+%#codegen
+% OPEN-LOOP common/differential pressure excitation, not angle tracking.
+% trialId: 1 common pulse, 2 symmetric s, 3 antisymmetric a, 4 rotating s/a.
+% channelId=0 means combined channels. No deadzone compensation.
+commonPeak_bar=3.0;
+bias_bar=1.5;
+differentialAmplitude_bar=0.5;
+omega_radPerS=0.5;
+cyclesPerTrial=2;
+initialZero_s=5.0;
+preloadRise_s=5.0;
+preloadFall_s=5.0;
+relax_s=10.0;
+% phase: -1 invalid, 0 initial zero, 1 preload rise, 3 preload fall,
+% 4 zero relaxation, 5 periodic excitation, 9 complete.
+assert(commonPeak_bar&gt;=0 &amp;&amp; commonPeak_bar&lt;=3 &amp;&amp; differentialAmplitude_bar&gt;=0);
+% Conservative bound for the rotating differential combination.
+assert(bias_bar-4*differentialAmplitude_bar/3&gt;=0 &amp;&amp; bias_bar+4*differentialAmplitude_bar/3&lt;=3);
+assert(omega_radPerS&gt;0 &amp;&amp; cyclesPerTrial&gt;=1 &amp;&amp; cyclesPerTrial==floor(cyclesPerTrial));
+assert(initialZero_s&gt;=0 &amp;&amp; preloadRise_s&gt;0 &amp;&amp; preloadFall_s&gt;0 &amp;&amp; relax_s&gt;0);
+period_s=2*pi/omega_radPerS;
+excitation_s=cyclesPerTrial*period_s;
+trialDuration_s=preloadRise_s+excitation_s+preloadFall_s+relax_s;
+testEnd_s=initialZero_s+4*trialDuration_s;
+pressureRequest_bar=zeros(3,1);trialId=0;phaseId=0;channelId=0;cycleId=0;done=false;
+if ~isfinite(t) || t&lt;0,phaseId=-1;return;end
+if t&lt;initialZero_s,return;end
+if t&gt;=testEnd_s,phaseId=9;done=true;return;end
+index=floor((t-initialZero_s)/trialDuration_s);trialId=index+1;
+local=t-initialZero_s-index*trialDuration_s;
+% Each mode has matching endpoints; preload/fall remove inter-mode jumps.
+endpoint=zeros(3,1);
+if trialId==2 || trialId==3,endpoint(:)=bias_bar;end
+if trialId==4
+    endpoint=[bias_bar-2*differentialAmplitude_bar/3; ...
+        bias_bar+differentialAmplitude_bar/3;bias_bar+differentialAmplitude_bar/3];
+end
+if local&lt;preloadRise_s
+    phaseId=1;u=local/preloadRise_s;pressureRequest_bar=endpoint*u*u*(3-2*u);
+elseif local&lt;preloadRise_s+excitation_s
+    phaseId=5;tau=local-preloadRise_s;angle=omega_radPerS*tau;
+    cycleId=floor(tau/period_s)+1;
+    if trialId==1
+        pressureRequest_bar(:)=commonPeak_bar*.5*(1-cos(angle));
+    else
+        s=0;a=0;
+        if trialId==2,s=differentialAmplitude_bar*sin(angle);end
+        if trialId==3,a=differentialAmplitude_bar*sin(angle);end
+        if trialId==4
+            s=differentialAmplitude_bar*cos(angle);
+            a=differentialAmplitude_bar*sin(angle);
+        end
+        pressureRequest_bar=[bias_bar-2*s/3;bias_bar+s/3-a;bias_bar+s/3+a];
+    end
+elseif local&lt;preloadRise_s+excitation_s+preloadFall_s
+    phaseId=3;u=(local-preloadRise_s-excitation_s)/preloadFall_s;
+    pressureRequest_bar=endpoint*(1-u*u*(3-2*u));
+else
+    phaseId=4;
+end
+end
+</P>
+      </eml>
+    </state>
+    <data SSID="4" name="t">
+      <P Name="scope">INPUT_DATA</P>
+      <props>
+        <array>
+          <P Name="size">-1</P>
+        </array>
+        <type>
+          <P Name="method">SF_INHERITED_TYPE</P>
+          <P Name="primitive">SF_DOUBLE_TYPE</P>
+        </type>
+        <P Name="complexity">SF_COMPLEX_INHERITED</P>
+        <unit>
+          <P Name="name">inherit</P>
+        </unit>
+      </props>
+      <P Name="dataType">Inherit: Same as Simulink</P>
+    </data>
+    <data SSID="5" name="pressureRequest_bar">
+      <P Name="scope">OUTPUT_DATA</P>
+      <props>
+        <array>
+          <P Name="size">-1</P>
+        </array>
+        <type>
+          <P Name="method">SF_INHERITED_TYPE</P>
+          <P Name="primitive">SF_DOUBLE_TYPE</P>
+        </type>
+        <P Name="complexity">SF_COMPLEX_INHERITED</P>
+        <P Name="frame">SF_FRAME_NO</P>
+        <unit>
+          <P Name="name">inherit</P>
+        </unit>
+      </props>
+      <P Name="dataType">Inherit: Same as Simulink</P>
+    </data>
+    <data SSID="6" name="trialId">
+      <P Name="scope">OUTPUT_DATA</P>
+      <props>
+        <array>
+          <P Name="size">-1</P>
+        </array>
+        <type>
+          <P Name="method">SF_INHERITED_TYPE</P>
+          <P Name="primitive">SF_DOUBLE_TYPE</P>
+          <P Name="isSigned">1</P>
+          <P Name="wordLength">16</P>
+        </type>
+        <P Name="complexity">SF_COMPLEX_INHERITED</P>
+        <P Name="frame">SF_FRAME_NO</P>
+        <unit>
+          <P Name="name">inherit</P>
+        </unit>
+      </props>
+      <P Name="dataType">Inherit: Same as Simulink</P>
+    </data>
+    <data SSID="7" name="phaseId">
+      <P Name="scope">OUTPUT_DATA</P>
+      <props>
+        <array>
+          <P Name="size">-1</P>
+        </array>
+        <type>
+          <P Name="method">SF_INHERITED_TYPE</P>
+          <P Name="primitive">SF_DOUBLE_TYPE</P>
+          <P Name="isSigned">1</P>
+          <P Name="wordLength">16</P>
+        </type>
+        <P Name="complexity">SF_COMPLEX_INHERITED</P>
+        <P Name="frame">SF_FRAME_NO</P>
+        <unit>
+          <P Name="name">inherit</P>
+        </unit>
+      </props>
+      <P Name="dataType">Inherit: Same as Simulink</P>
+    </data>
+    <data SSID="8" name="channelId">
+      <P Name="scope">OUTPUT_DATA</P>
+      <props>
+        <array>
+          <P Name="size">-1</P>
+        </array>
+        <type>
+          <P Name="method">SF_INHERITED_TYPE</P>
+          <P Name="primitive">SF_DOUBLE_TYPE</P>
+          <P Name="isSigned">1</P>
+          <P Name="wordLength">16</P>
+        </type>
+        <P Name="complexity">SF_COMPLEX_INHERITED</P>
+        <P Name="frame">SF_FRAME_NO</P>
+        <unit>
+          <P Name="name">inherit</P>
+        </unit>
+      </props>
+      <P Name="dataType">Inherit: Same as Simulink</P>
+    </data>
+    <data SSID="9" name="cycleId">
+      <P Name="scope">OUTPUT_DATA</P>
+      <props>
+        <array>
+          <P Name="size">-1</P>
+        </array>
+        <type>
+          <P Name="method">SF_INHERITED_TYPE</P>
+          <P Name="primitive">SF_DOUBLE_TYPE</P>
+          <P Name="isSigned">1</P>
+          <P Name="wordLength">16</P>
+        </type>
+        <P Name="complexity">SF_COMPLEX_INHERITED</P>
+        <P Name="frame">SF_FRAME_NO</P>
+        <unit>
+          <P Name="name">inherit</P>
+        </unit>
+      </props>
+      <P Name="dataType">Inherit: Same as Simulink</P>
+    </data>
+    <data SSID="10" name="done">
+      <P Name="scope">OUTPUT_DATA</P>
+      <props>
+        <array>
+          <P Name="size">-1</P>
+        </array>
+        <type>
+          <P Name="method">SF_INHERITED_TYPE</P>
+          <P Name="primitive">SF_DOUBLE_TYPE</P>
+          <P Name="isSigned">1</P>
+          <P Name="wordLength">16</P>
+        </type>
+        <P Name="complexity">SF_COMPLEX_INHERITED</P>
+        <P Name="frame">SF_FRAME_NO</P>
+        <unit>
+          <P Name="name">inherit</P>
+        </unit>
+      </props>
+      <P Name="dataType">Inherit: Same as Simulink</P>
+    </data>
+    <data SSID="11" name="testEnd_s">
+      <P Name="scope">OUTPUT_DATA</P>
+      <props>
+        <array>
+          <P Name="size">-1</P>
+        </array>
+        <type>
+          <P Name="method">SF_INHERITED_TYPE</P>
+          <P Name="primitive">SF_DOUBLE_TYPE</P>
+          <P Name="isSigned">1</P>
+          <P Name="wordLength">16</P>
+        </type>
+        <P Name="complexity">SF_COMPLEX_INHERITED</P>
+        <P Name="frame">SF_FRAME_NO</P>
+        <unit>
+          <P Name="name">inherit</P>
+        </unit>
+      </props>
+      <P Name="dataType">Inherit: Same as Simulink</P>
+    </data>
+    <transition SSID="2">
+      <P Name="labelString">{eML_blk_kernel();}</P>
+      <P Name="labelPosition">[28.125 13.875 102.544 14.964]</P>
+      <P Name="fontSize">12</P>
+      <src>
+        <P Name="intersection">[0 0 1 0 23.5747 14.625 0 0]</P>
+      </src>
+      <dst>
+        <P Name="SSID">3</P>
+        <P Name="intersection">[1 0 -1 0 23.5747 42.5747 0 0]</P>
+      </dst>
+      <P Name="midPoint">[23.5747 24.9468]</P>
+      <P Name="dataLimits">[21.175 25.975 14.625 42.575]</P>
+      <P Name="subviewer">210</P>
+      <P Name="drawStyle">SMART</P>
+      <slide>
+        <P Name="sticky">BOTH_STICK</P>
+      </slide>
+      <P Name="executionOrder">1</P>
+    </transition>
+    <junction SSID="3">
+      <P Name="position">[23.5747 49.5747 7]</P>
+      <P Name="subviewer">210</P>
+      <P Name="type">CONNECTIVE_JUNCTION</P>
+    </junction>
+  </Children>
+</chart>

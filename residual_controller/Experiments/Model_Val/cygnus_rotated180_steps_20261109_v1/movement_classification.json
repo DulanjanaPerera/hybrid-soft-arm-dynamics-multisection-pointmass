@@ -1,0 +1,60 @@
+{
+  "method": "Valid raw-tip displacement >30mm from1-5sbaseline; join active samples across <=8s; split long rest gaps at midpoints.",
+  "PMA_order_source": "User-confirmed activation order; no pressure timestamps in tracker log",
+  "groups": [
+    {
+      "PMA": "P3",
+      "response_start_s": 20.68293657732371,
+      "response_end_s": 54.25523942747233,
+      "group_start_s": 0,
+      "group_end_s": 60.46261833986961,
+      "runtime_reports": 2411,
+      "tip_missing_reports": 0,
+      "base_missing_reports": 0,
+      "median_raw_tip_deflection_X_mm": -99.79215574264526,
+      "median_raw_tip_deflection_Y_mm": 195.0374698638916,
+      "median_raw_tip_deflection_Z_mm": -125.4560546875
+    },
+    {
+      "PMA": "P2",
+      "response_start_s": 66.66999725226688,
+      "response_end_s": 91.72432742987036,
+      "group_start_s": 60.46261833986961,
+      "group_end_s": 96.17065920615492,
+      "runtime_reports": 1421,
+      "tip_missing_reports": 36,
+      "base_missing_reports": 0,
+      "median_raw_tip_deflection_X_mm": -66.46820402145386,
+      "median_raw_tip_deflection_Y_mm": 133.41336059570312,
+      "median_raw_tip_deflection_Z_mm": 163.14835357666016
+    },
+    {
+      "PMA": "P1",
+      "response_start_s": 100.61699098243949,
+      "response_end_s": 125.27165088801738,
+      "group_start_s": 96.17065920615492,
+      "group_end_s": 132.21592186446182,
+      "runtime_reports": 1439,
+      "tip_missing_reports": 0,
+      "base_missing_reports": 0,
+      "median_raw_tip_deflection_X_mm": 159.3250012397766,
+      "median_raw_tip_deflection_Y_mm": 142.75673866271973,
+      "median_raw_tip_deflection_Z_mm": -11.1048583984375
+    }
+  ],
+  "comparison": {
+    "previous": "residual_controller\\Experiments\\Model_Val\\cygnus_pressure_steps_P3_P2_P1_20261109_v1",
+    "baseline_base_sensor_orientation_change_deg": 171.1662372865731,
+    "previous_adjacent_valid_tip_Z_range_mm": [
+      -243.7736053466797,
+      -222.3013458251953,
+      -170.57713317871094
+    ],
+    "current_adjacent_valid_tip_Z_range_mm": [
+      -250.27040100097656,
+      -193.72722625732422,
+      -146.7897186279297
+    ],
+    "caveat": "Adjacent valid coordinates are not measured coordinates during a missing transform; raw tracker-frame positions, no sensor-offset correction."
+  }
+}

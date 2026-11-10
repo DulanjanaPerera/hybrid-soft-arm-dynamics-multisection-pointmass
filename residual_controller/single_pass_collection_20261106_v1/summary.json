@@ -1,0 +1,48 @@
+{
+  "syntheticWidths": 2,
+  "busUnchanged": true,
+  "syntheticPassed": true,
+  "validSavedRows": 5266,
+  "targetMaxDifference_N": 0,
+  "residualMaxDifference_N": 1.4210854715202004E-14,
+  "collectionPolicyMaxDifference_bar": 1.3322676295501878E-15,
+  "errorIdentityMaxDifference_N": 1.0053497077208614E-14,
+  "correctedAllocationScaledRows": 30,
+  "correctedSlewLimitedRows": 861,
+  "nominalSlewLimitedRows": 3336,
+  "equalBeforeSlewRows": 0,
+  "equalAfterSlewRows": 0,
+  "zeroActualCommandRows": 853,
+  "zeroCommandAllOutputsPoint3Rows": 0,
+  "firstValidTime_s": 1.6,
+  "firstCorrected_bar": [
+    0.022919282348348353,
+    0.01182049848715276,
+    0
+  ],
+  "firstNominal_bar": [
+    0.0095612261061440041,
+    0.0386710919357963,
+    0
+  ],
+  "firstCorrectedBeforeSlew_bar": [
+    0.022919282348348353,
+    0.01182049848715276,
+    0
+  ],
+  "firstNominalBeforeSlew_bar": [
+    0.0095612261061440041,
+    0.0386710919357963,
+    0
+  ],
+  "frozenErrorMedianP95Max_N": [
+    4.7194680596461467E-16,
+    2.6529732261380068,
+    7.0612878223933446
+  ],
+  "candidateErrorMedianP95Max_N": [
+    0.10101474883404729,
+    3.2008404002748669,
+    7.6572206556833882
+  ]
+}

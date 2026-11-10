@@ -1,0 +1,34 @@
+[
+  {
+    "file": "residual_controller/analyzeSinePressureRun.m",
+    "sha256": "7e58288e972fadb2de3ba2df78df41e6ba97fa1f17e756e954871757e250ec12"
+  },
+  {
+    "file": "residual_controller/residualCommandValid.m",
+    "sha256": "207ec324274931b50fe14ea9113364dfdb632b3202d26082ba0e3e63be4e9caf"
+  },
+  {
+    "file": "residual_controller/rlResidualDesiredPressureBlock.m",
+    "sha256": "50a458e330d64f688d6484ce192908e513887e24b18d4d0f2fa613bc26bbc867"
+  },
+  {
+    "file": "residual_controller/residualShadowStep.m",
+    "sha256": "7001813870b66c38592937e0395c127185b59effeec81daed40fc709f3af18d4"
+  },
+  {
+    "file": "residual_controller/COMMAND_HANDOFF.md",
+    "sha256": "378964c4222be9fe296a3fcb86f4ea556a7eb983a96b1ddd1d7b1ce580219afe"
+  },
+  {
+    "file": "residual_controller/residualNetwork128_v1.mat",
+    "sha256": "a5efd346d2d23a0dfb83dcda9647f9ec5f2fe690364cb226c03fafb0363fcd60"
+  },
+  {
+    "file": "residual_controller/Experiments/Model_Val/sinewave_FWD_INV_test_1_fwdPressure.mat",
+    "sha256": "ef4b279b012f36150ab5fde4fd05bed0ebd498ce24b9f9d93af262067b1317b0"
+  },
+  {
+    "file": "residual_FWD_INV_validation_v2.slx",
+    "sha256": "1c53063a443bbcbf4f3ac6899faa0c379e7ee28d6795b0184386e4f0e6d8ac4d"
+  }
+]

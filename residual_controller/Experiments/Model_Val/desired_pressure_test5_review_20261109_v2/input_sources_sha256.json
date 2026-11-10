@@ -1,0 +1,34 @@
+[
+  {
+    "file": "residual_controller/analyzeDesiredPressureRun.m",
+    "sha256": "351d8c2e7036f8b53d448325a1b82d84de5b972f6c62eb01a6e1b1d233a481d9"
+  },
+  {
+    "file": "residual_controller/residualShadowStep.m",
+    "sha256": "7001813870b66c38592937e0395c127185b59effeec81daed40fc709f3af18d4"
+  },
+  {
+    "file": "residual_controller/rlResidualDesiredPressureBlock.m",
+    "sha256": "50a458e330d64f688d6484ce192908e513887e24b18d4d0f2fa613bc26bbc867"
+  },
+  {
+    "file": "residual_controller/ACTUATION_CAUSALITY.md",
+    "sha256": "eb66902c1ef69c7b305ce5b65b8e60e87a4a6dbaa02d0cfe4bc292f8051b0dc7"
+  },
+  {
+    "file": "residual_FWD_INV_validation_v2.slx",
+    "sha256": "1c53063a443bbcbf4f3ac6899faa0c379e7ee28d6795b0184386e4f0e6d8ac4d"
+  },
+  {
+    "file": "residual_controller/residualNetwork128_v1.mat",
+    "sha256": "a5efd346d2d23a0dfb83dcda9647f9ec5f2fe690364cb226c03fafb0363fcd60"
+  },
+  {
+    "file": "residual_controller/Experiments/Model_Val/circlesweep_FWD_INV_test_5_fwdPressure.mat",
+    "sha256": "2d5531d269c78df9976f16cc063406ffbea65cbb348ff026ce552af865b9f298"
+  },
+  {
+    "file": "residual_controller/Experiments/Model_Val/circlesweep_FWD_INV_test_4.mat",
+    "sha256": "e9cec406208de7ff8332827b653e7fcad926133ea7f9001324eaa9fbfc49952d"
+  }
+]

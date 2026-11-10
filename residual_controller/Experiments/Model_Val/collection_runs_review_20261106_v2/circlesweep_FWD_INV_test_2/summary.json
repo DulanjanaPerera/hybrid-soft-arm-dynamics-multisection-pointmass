@@ -1,0 +1,168 @@
+{
+  "file": "circlesweep_FWD_INV_test_2.mat",
+  "rows": 7501,
+  "duration_s": 375,
+  "validRows": 6961,
+  "modelVersion": "1.53",
+  "stopEvent": "ReachedStopTime",
+  "hasSimulationError": false,
+  "savedPressureOptions": [
+    1.6,
+    0,
+    0,
+    0,
+    3,
+    2.5,
+    2.5,
+    6,
+    0,
+    13.273228961416876
+  ],
+  "savedSinglePassOptions": [
+    128,
+    0.02
+  ],
+  "savedShadowOptions": [
+    128,
+    0.05,
+    0.2,
+    0.6,
+    1,
+    0.1,
+    0.075,
+    0.075,
+    0.005,
+    0.05,
+    3
+  ],
+  "commandAgeRange_s": [
+    0,
+    0
+  ],
+  "contextPressureVsStampedNI_max_bar": 0,
+  "rawForceVsForward_max_N": 0,
+  "networkEvaluations": 1,
+  "minimumPreSlewPressureMax_bar": 0,
+  "pressureOutputRange_bar": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      2.8840904643819179,
+      3,
+      3
+    ]
+  ],
+  "correctedScaledRows": 64,
+  "nominalScaledRows": 0,
+  "correctedSlewRows": 774,
+  "nominalSlewRows": 4254,
+  "equalBeforeSlewRows": 0,
+  "equalAfterSlewRows": 3,
+  "preSlewCorrectionMax_bar": 1.6278758514482154,
+  "postSlewCorrectionMax_bar": 0.60000000000000053,
+  "componentCorrectionRange_bar": [
+    [
+      -0.73582121618299523,
+      -0.73839834715893315,
+      -0.58699102705229267
+    ],
+    [
+      1.6278758514482154,
+      1.5336280439192433,
+      1.4958875028950267
+    ]
+  ],
+  "zeroCommandRows": 979,
+  "zeroCommandAllThreePoint3Rows": 0,
+  "firstValidTime_s": 1.6500000000000001,
+  "firstActual_bar": [
+    0,
+    0,
+    0
+  ],
+  "firstNominal_bar": [
+    0,
+    0.018915110922275439,
+    0.011397099606079281
+  ],
+  "firstCorrected_bar": [
+    0.020016110454854422,
+    0.016766907169738051,
+    0
+  ],
+  "firstNominalBeforeSlew_bar": [
+    0,
+    0.018915110922275439,
+    0.011397099606079281
+  ],
+  "firstCorrectedBeforeSlew_bar": [
+    0.020016110454854422,
+    0.016766907169738051,
+    0
+  ],
+  "orientationInvalid": 16,
+  "baseInvalid": 0,
+  "tipInvalid": 16,
+  "tipMissing": 16,
+  "thetaUnobservableDespiteOrientationValid": 0,
+  "overruns": 3,
+  "collectionSourceReplayMax_bar": 1.3322676295501878E-15,
+  "diagnosticReplayMax": 1.0658141036401503E-14,
+  "flagMismatchRows": 0,
+  "oldPACSinglePassReplayMismatch_bar": 1.597769729321062,
+  "oldIterativeFixedVariableReplayMax_bar": [
+    0.447791370921387,
+    1.0251336224342822E-8
+  ],
+  "minimumPolicyIdentityMax_bar": 4.4408920985006262E-16,
+  "slewIdentityMax_bar": 4.4408920985006262E-16,
+  "frozenErrorMedianP95Max_N": [
+    4.9650683064945462E-16,
+    3.4458693217780718,
+    7.7025032674348646
+  ],
+  "candidateErrorMedianP95Max_N": [
+    0.061096766336010924,
+    4.0415899701851,
+    8.4019455995952335
+  ],
+  "preSlewCandidateErrorMedianP95Max_N": [
+    0.061096766336010924,
+    0.99759547675251892,
+    1.7398132417172527
+  ],
+  "nominalForceErrorMedianP95Max_N": [
+    6.8406628295860132,
+    19.823603061160959,
+    32.329246139403118
+  ],
+  "frozenBalanceSatisfiedRows": 6185,
+  "candidateBalanceBelowToleranceRows": 1154,
+  "pressureVsActualRMSE_bar": [
+    [
+      0.18081826673777343,
+      0.20835911676653923,
+      0.20446927899603282
+    ],
+    [
+      0.077187741466872475,
+      0.07764656291187845,
+      0.081760042499347013
+    ]
+  ],
+  "forwardScoredRows": 6927,
+  "forwardMeasurementIdentityMax_m": 0,
+  "forwardErrorIdentityMax_m": 0,
+  "previousIssuedPredictionIdentityMax_m": 0,
+  "invalidOrientationAcceptedRows": 0,
+  "thetaUnobservableAcceptedRows": 0,
+  "thetaUnobservablePhiRange_rad": [
+    null,
+    null
+  ],
+  "forwardNumericalGuardRows": 0,
+  "actualCommandVsCollectionRequestMax_bar": 0
+}

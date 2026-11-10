@@ -1,0 +1,127 @@
+[
+  {
+    "file": "analysis.mat",
+    "bytes": 5919331,
+    "sha256": "042e314312b703d2f027771fd4d50d278f3ea5dfe09e6b2cd6a48590c0f07f8e"
+  },
+  {
+    "file": "channel_metrics.csv",
+    "bytes": 323,
+    "sha256": "77e09cec7b237eb7f5a52194c426f587b1d7f22f5b5bad6a1575c32a9a22ec21"
+  },
+  {
+    "file": "first_fault_window.csv",
+    "bytes": 2578,
+    "sha256": "a1ca58951e5ab9305832e217c4b3c9bbf0d07eb83584d3f2d3febb86355834e7"
+  },
+  {
+    "file": "handoff_modes.csv",
+    "bytes": 44,
+    "sha256": "014e4ee4fb39b950c049cc8c7d65b4280ec80830d6d064e2f97833b2879cdc7c"
+  },
+  {
+    "file": "handoff_source_replays.csv",
+    "bytes": 525,
+    "sha256": "9655ce674b3be78de6883a1e14e3297eca6554a1d6e7265a80f25dd1ab11d053"
+  },
+  {
+    "file": "independent_csv_switch_check.json",
+    "bytes": 123,
+    "sha256": "eafac628424bd0b37d124235b05bdfd8aada5e29399ac72aba101a1d3216db97"
+  },
+  {
+    "file": "input_sources_sha256.json",
+    "bytes": 1259,
+    "sha256": "43e1caeb355f1fa812437a82750083d7b9cba8dc683b7a1d9ea8f88204c55ce1"
+  },
+  {
+    "file": "overview.fig",
+    "bytes": 508568,
+    "sha256": "7420661ba13a973809e62c3b2598345de6affb195b28bf49b880442f9448fe51"
+  },
+  {
+    "file": "overview.pdf",
+    "bytes": 488865,
+    "sha256": "abf1fad3cfb4486b8541870d89d4dcc81ba577493de8395b1b322c79078b0a80"
+  },
+  {
+    "file": "overview.png",
+    "bytes": 460900,
+    "sha256": "d3da23024f9fcd6a3251b696e36bca3400d26177617e45d366820711d8ba1ebd"
+  },
+  {
+    "file": "P1_detail.fig",
+    "bytes": 508717,
+    "sha256": "870a6a1c34e91a712527102593a508170588941af02d284f2f08fefdef71dc38"
+  },
+  {
+    "file": "P1_detail.pdf",
+    "bytes": 30997,
+    "sha256": "c890cb3802d17acc5ef8c137533341c14f6295bea18c87b950c9e6089840d0ed"
+  },
+  {
+    "file": "P1_detail.png",
+    "bytes": 210545,
+    "sha256": "497ed5cd9c805b086ff5c33b943fa2bbb19ee2243d3e32913680eece3902d371"
+  },
+  {
+    "file": "P3_detail.fig",
+    "bytes": 508769,
+    "sha256": "5af01e11f2e8af9d864a7ac2e3a0dc9ad3da513fb79196aa327d2e9f1c51b906"
+  },
+  {
+    "file": "P3_detail.pdf",
+    "bytes": 27318,
+    "sha256": "41ff37d506f6a0b4c4341d698aa23cd3e5ce5392e52151b90f91bfc6e8e452de"
+  },
+  {
+    "file": "P3_detail.png",
+    "bytes": 251142,
+    "sha256": "e5c71988b2bc6d2c5053573c48cc1ef586203edf4660e172dba784cd3df4132a"
+  },
+  {
+    "file": "README.md",
+    "bytes": 6385,
+    "sha256": "e9330cf2b21a0da3a5b05dd069abecd51a2e1bdfcbb1e1c2d907aafb8c3eed09"
+  },
+  {
+    "file": "retained_switch_check.json",
+    "bytes": 142,
+    "sha256": "e7a8621e6f816dfe7b417bc482372e22261cd7bfd891bb9e81121a42a4b30490"
+  },
+  {
+    "file": "source_snapshot\\analyzeSinePressureRun.m",
+    "bytes": 10885,
+    "sha256": "7e58288e972fadb2de3ba2df78df41e6ba97fa1f17e756e954871757e250ec12"
+  },
+  {
+    "file": "source_snapshot\\COMMAND_HANDOFF.md",
+    "bytes": 6911,
+    "sha256": "378964c4222be9fe296a3fcb86f4ea556a7eb983a96b1ddd1d7b1ce580219afe"
+  },
+  {
+    "file": "source_snapshot\\residualCommandValid.m",
+    "bytes": 4602,
+    "sha256": "207ec324274931b50fe14ea9113364dfdb632b3202d26082ba0e3e63be4e9caf"
+  },
+  {
+    "file": "source_snapshot\\residualShadowStep.m",
+    "bytes": 5555,
+    "sha256": "7001813870b66c38592937e0395c127185b59effeec81daed40fc709f3af18d4"
+  },
+  {
+    "file": "source_snapshot\\rlResidualDesiredPressureBlock.m",
+    "bytes": 5258,
+    "sha256": "50a458e330d64f688d6484ce192908e513887e24b18d4d0f2fa613bc26bbc867"
+  },
+  {
+    "file": "summary.json",
+    "bytes": 2135,
+    "sha256": "157337f9f135f486807f9893c4e284bf1cd3d18b7db9d51215ddbc3541d95029"
+  },
+  {
+    "file": "trace.csv",
+    "bytes": 858687,
+    "sha256": "ca8b2ab60bbc15b150051569360def782924699ead56415d3e0e9fb187496452"
+  }
+]

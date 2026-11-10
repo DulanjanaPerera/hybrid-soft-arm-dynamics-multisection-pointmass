@@ -1,0 +1,13 @@
+function v = feedbacklinearization(desired, e, Kd, Kp, Ki, ie)
+%#codegen
+% v = desired acceleration + Kd*velocity error + Kp*position error.
+% desired,e: [l2;l3;dl2;dl3;ddl2;ddl3]; gains are 2-vectors.
+% Kd units 1/s, Kp units 1/s^2; v units m/s^2.
+v = zeros(2,1);
+if ~all(isfinite(desired)) || ~all(isfinite(e)) || ...
+        ~all(isfinite(Kd)) || ~all(isfinite(Kp)) || ...
+        any(Kd < 0) || any(Kp < 0)
+    return;
+end
+v = desired(5:6) + Kd(:).*e(3:4) + Kp(:).*e(1:2) + Ki.* ie(:);
+end

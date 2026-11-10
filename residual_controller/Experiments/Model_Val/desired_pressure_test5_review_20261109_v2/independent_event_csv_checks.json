@@ -1,0 +1,6 @@
+{
+  "episodes": 37,
+  "all_fallback_first_commands_one_tick_after_gate": true,
+  "orientation_onsets": 32,
+  "gap_onsets": 5
+}

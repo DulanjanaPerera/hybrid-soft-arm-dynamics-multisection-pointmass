@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "rows": 764,
+  "maximumAbsoluteDifference": 1.9895196601282805e-13,
+  "scope": "Offline native component replay, no SLX/hardware/full-loop qualification"
+}

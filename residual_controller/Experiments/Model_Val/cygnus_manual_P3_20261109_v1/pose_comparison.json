@@ -1,0 +1,38 @@
+{
+  "manualAdjacentValidPoseCount": 52,
+  "sineAdjacentValidPoseCount": 30,
+  "nearestEarlierMissingAdjacentPoseDistance_mm": {
+    "min": 1.1246571719866514,
+    "median": 12.196596143130442,
+    "max": 88.28382726432018
+  },
+  "manualAdjacentValidRawXYZRange_mm": [
+    [
+      -29.33268928527832,
+      106.44725036621094
+    ],
+    [
+      -164.96238708496094,
+      -97.83097839355469
+    ],
+    [
+      -289.61181640625,
+      -184.91114807128906
+    ]
+  ],
+  "sineAdjacentValidRawXYZRange_mm": [
+    [
+      31.21758270263672,
+      63.0285530090332
+    ],
+    [
+      -149.6905517578125,
+      -111.65629577636719
+    ],
+    [
+      -220.28915405273438,
+      -169.38107299804688
+    ]
+  ],
+  "caveat": "These are valid samples adjacent to missing events, not measured poses during missing transforms. Distances use tracker base-frame sensor separation, no tip-offset correction."
+}

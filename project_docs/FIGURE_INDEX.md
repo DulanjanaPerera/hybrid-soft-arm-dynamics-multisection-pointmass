@@ -1,3 +1,48 @@
+## 2026-11-06 - Updated collection-policy operator circle/helix test2
+
+residual_controller/Experiments/Model_Val/collection_runs_review_20261106_v2:
+perrecordpressure_full/pressure_startup PNG180dpi,vectorPDF,editableFIG.
+Actualcommands/nominal/corrected afterslew(left) andnominal/corrected
+pre-slew(right). No0.3startupartifact; pre-slew correctionmax~1.62bar.
+These are shadowpredictions, not corrected hardwaretracking. FullCSV/MAT,
+savedsettings/flags/sourcehashes andforwardmetrics retained; seeREADME.
+
+## 2026-11-06 - Single-pass runtime helix pressure-policy diagnostic
+
+residual_controller/Experiments/Model_Val/single_pass_helix_review_20261106_v2:
+pressure_startup andpressure_full PNG/PDF/FIG. Leftactual/nominal/iterative/
+singlepass post-slew; rightnominal/singlepass pre-slew. Startupactualzero,
+allocated~1.6bar clippedto.3bar inall3predictions. Diagnostic of implemented
+policy, NOT learned deadzone/actualpressure measurement. FullCSV/contextMAT,
+sourcechart/hash,offline minimum-pressure counterfactual retained. No runtime
+protection/settings changed. See README before using a plot in presentation.
+
+## 2026-11-06 - Real-time residual shadow angle/length/error figures
+
+Final bundle: residual_controller/Experiments/Model_Val/
+presentation_shadow_20261106_v2 (adjacent ZIP). User selected later runtime
+circlesweep_test,helix_FWD_INV_test,sinewave_test,sinewave_test_100g MATs.
+Each has separate theta/phi+errors and l2/l3+errors 16:9figures. Also metadata-
+selected circle159-169s completephi-reference1cycle,helix5-65s firstepisode;
+12figure stems total, eachPNG4320x2430/PDF/SVG/FIG. Raw/reference phi not
+conflated: circle actualbend is belowrequested1rad. Prior-issued50ms matched
+predictions, not free runs/controltracking. Errorsprediction-minusmeasured,
+theta circular/nearstraight masked, validityNaNgaps/no smoothing. Common-row
+theta metrics; exact rawq/loggederror/previousissue checks passall4files.
+CSV/MAT,source/inputhashes/inventory/README retained; no raw/model/hardware edits.
+
+## 2026-11-06 - PAC candidates1/5/8/9 single presentation figure
+
+Six-panel tracking/error figure: passivity_adaptive_control/experimentations/
+autotuning/no_payload_phi1_T10_20261027/
+presentation_candidates_1_5_8_9_20261106_v1/autotuning_candidates_1_5_8_9.
+PNG300dpi,vectorPDF/SVG,FIG; underlying CSV/MAT,metrics,hashes/source retained.
+Candidate1=baseline r01 (no candidate01file);9=smooth_candidate09. Toptheta/phi,
+middle signedangularerrors,bottoml2/l3errors. Desiredminusmeasured,20-140s
+tracking aligned to0-120s, invalidNaNgaps/no smoothing. Allfour archived full/
+late metrics reproduce<1e-9. These are actual PAC tracking runs, not residual
+model predictions. Candidate9 comes from later smoothness-primary campaign.
+
 ## 2026-11-03 - Three-seed GRU capacity comparison completed
 
 Seven capacity comparison figure bundles at residual_dynamics_learning/force_model/capacity_comparison/campaign_20261103_v1:

@@ -1,0 +1,9 @@
+{
+  "source": "circlesweep_FWD_INV_test_2.mat",
+  "passed": true,
+  "validRows": 6961,
+  "independentClippingMaxDifference_bar": 1.021405182655144e-14,
+  "tailAbove1N": 735,
+  "tailWithLimiting": 733,
+  "medianErrorWithoutLimiting_N": 0.0495650683212003
+}

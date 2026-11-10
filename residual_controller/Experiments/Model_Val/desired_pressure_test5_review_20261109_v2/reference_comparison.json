@@ -1,0 +1,11 @@
+{
+  "baseline": "circlesweep_FWD_INV_test_4.mat",
+  "residual_on": "circlesweep_FWD_INV_test_5_fwdPressure.mat",
+  "common_samples": 5433,
+  "max_desired_length_difference_m": 0,
+  "kill_values": [
+    1
+  ],
+  "valid_overrun_rows": 13,
+  "overrun_and_orientation_invalid_rows": 0
+}

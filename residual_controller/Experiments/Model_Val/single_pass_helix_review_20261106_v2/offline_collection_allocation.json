@@ -1,0 +1,29 @@
+{
+  "scope": "OFFLINE allocation-policy comparison, not a new controller or exact inverse",
+  "firstValidTime_s": 1.6,
+  "firstNominalMinPressure_bar": [
+    0.0095612261061440041,
+    0.0386710919357963,
+    0
+  ],
+  "firstSinglePassMinPressure_bar": [
+    0.022919282348348353,
+    0.01182049848715276,
+    0
+  ],
+  "firstPACNominalBeforeSlew_bar": [
+    1.5934837867588307,
+    1.622593652588483,
+    1.5839225606526866
+  ],
+  "firstPACSinglePassBeforeSlew_bar": [
+    1.6113393554031814,
+    1.6002405715419858,
+    1.588420073054833
+  ],
+  "singlePassMinPolicyScaledRows": 30,
+  "nominalMinPolicyScaledRows": 0,
+  "validRows": 5266,
+  "feasibleSameForceRows": 5186,
+  "feasiblePreSlewForceDifferenceMax_N": 7.1054273576010019E-15
+}

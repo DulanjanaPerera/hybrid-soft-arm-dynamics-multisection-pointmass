@@ -1,0 +1,28 @@
+{
+  "physicsMaxDifference_m": 0,
+  "zeroResidualMatchesNominal": true,
+  "sequentialCellMaxDifference_N": 0,
+  "numericStepMedianP95Max_ms": [
+    0.8336,
+    2.11362,
+    4.839
+  ],
+  "dropoutCases": 3,
+  "boundaryCases": 6,
+  "prefixCausalityPassed": true,
+  "wrapperMaxDifference_m": 0,
+  "shadowInverseConsistencyPassed": true,
+  "bothWidthsPassed": true,
+  "savedRecording": "C:\\Users\\dperera\\OneDrive - Texas A&M University\\Lab\\Research\\fDyn_ExpCom\\hyDyn_Ctrl\\residual_controller\\Experiments\\PAC\\20261103\\firstTime.mat",
+  "recordedRows": 1935,
+  "predictionRows": 1825,
+  "prospectiveScoreRows": 1814,
+  "retimedScoreRows": 1822,
+  "recordedReplayMedianP95Max_ms": [
+    0.7045,
+    0.798275,
+    1.7994
+  ],
+  "firstReadyAfterFault_s": 23,
+  "status": "numeric_checks_passed"
+}

@@ -1,0 +1,75 @@
+{
+  "allFourMetricChecksPassed": true,
+  "trackingWindow_sim_s": [
+    20,
+    140
+  ],
+  "figure": "C:\\Users\\dperera\\OneDrive - Texas A&M University\\Lab\\Research\\fDyn_ExpCom\\hyDyn_Ctrl\\passivity_adaptive_control\\experimentations\\autotuning\\no_payload_phi1_T10_20261027\\presentation_candidates_1_5_8_9_20261106_v1\\autotuning_candidates_1_5_8_9.png",
+  "rowsPerCandidate": 2400,
+  "metrics": [
+    {
+      "candidate": "Candidate 1 (baseline)",
+      "window": "All 12 circles",
+      "l2Rmse_mm": 2.9438513015804455,
+      "l3Rmse_mm": 3.4158482867343731,
+      "thetaMae_rad": 0.3010760568637213,
+      "phiMae_rad": 0.1049582138183647
+    },
+    {
+      "candidate": "Candidate 1 (baseline)",
+      "window": "Last 3 circles",
+      "l2Rmse_mm": 1.5684367344511139,
+      "l3Rmse_mm": 1.8887311818004593,
+      "thetaMae_rad": 0.15201758783627575,
+      "phiMae_rad": 0.062479631765670687
+    },
+    {
+      "candidate": "Candidate 5",
+      "window": "All 12 circles",
+      "l2Rmse_mm": 3.0087841420251968,
+      "l3Rmse_mm": 3.5713818254076437,
+      "thetaMae_rad": 0.32338411918689347,
+      "phiMae_rad": 0.10259416489167154
+    },
+    {
+      "candidate": "Candidate 5",
+      "window": "Last 3 circles",
+      "l2Rmse_mm": 1.8360207561598665,
+      "l3Rmse_mm": 2.0686217447032913,
+      "thetaMae_rad": 0.18400558921321961,
+      "phiMae_rad": 0.061951309073853766
+    },
+    {
+      "candidate": "Candidate 8",
+      "window": "All 12 circles",
+      "l2Rmse_mm": 2.5458537692363086,
+      "l3Rmse_mm": 2.7439594933847262,
+      "thetaMae_rad": 0.23552957598826579,
+      "phiMae_rad": 0.096254591504075546
+    },
+    {
+      "candidate": "Candidate 8",
+      "window": "Last 3 circles",
+      "l2Rmse_mm": 1.1725165501964931,
+      "l3Rmse_mm": 1.3028913459457232,
+      "thetaMae_rad": 0.10974055663151788,
+      "phiMae_rad": 0.071870770500308587
+    },
+    {
+      "candidate": "Candidate 9 (smooth)",
+      "window": "All 12 circles",
+      "l2Rmse_mm": 3.7314078550868923,
+      "l3Rmse_mm": 4.0433024827896666,
+      "thetaMae_rad": 0.40913057108790868,
+      "phiMae_rad": 0.12496759896235836
+    },
+    {
+      "candidate": "Candidate 9 (smooth)",
+      "window": "Last 3 circles",
+      "l2Rmse_mm": 2.5279107363572439,
+      "l3Rmse_mm": 2.7520043292509175,
+      "thetaMae_rad": 0.27080570334991638,
+      "phiMae_rad": 0.072738535539782836
+    }
+  ]
+}

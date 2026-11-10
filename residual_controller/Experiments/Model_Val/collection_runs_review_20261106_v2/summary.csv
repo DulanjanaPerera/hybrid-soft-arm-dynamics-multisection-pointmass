@@ -1,0 +1,3 @@
+source,rows,validRows,correctedScaled,correctedSlew,nominalSlew,equalOutputs,maxPreSlewCorrection_bar,candidateErrorMedian_N,orientationInvalid,tipMissing,forwardScoredRows
+circlesweep_FWD_INV_test_2.mat,7501,6961,64,774,4254,3,1.62787585144822,0.0610967663360109,16,16,6927
+helix_FWD_INV_singlePass_test_2.mat,5801,5257,40,859,3334,0,1.62109817995057,0.100347202367264,18,18,5236

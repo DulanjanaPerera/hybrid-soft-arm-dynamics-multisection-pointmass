@@ -1,5 +1,61 @@
 # Residual-model accuracy and PAC / PID feedback performance
 
+2026-11-06 updatedpassive option: rlResidualSinglePassCollectionShadowBlock.m
+now supplies user-authorized minimum-pressure mapping with sameports/bus and
+retainedrails/slew. Manualpasteinstructions SINGLE_PASS_COLLECTION_SHADOW.md;
+5266savedcontexts and764native rows verified. Olditerativeinverse still uses
+PAC common-pressure policy, so those curves are not now a matched solver
+comparison. Use newblock nominaloutput for same-policy compensation review.
+No actualcontroller/SLX/hardware changes; physicalcontrolcomparison pending.
+
+2026-11-05 single-pass follow-up: user-authorized separate passive block now
+implements r(actualpressure) subtraction without iterative inversion; manual
+installation in residual_controller/SINGLE_PASS_SHADOW.md. Same measuredq/v+
+desiredacceleration target, same allocation/protections, forward-owned history.
+Saveddata11964valid/native764rows pass; pre-slew correction nonzero throughout,
+but slew still hides most differences. Frozen versus candidatepressure residual
+mismatch is quantified; no exactinverse or physicalcontrol claim. Current
+controllers remain unchanged; this is a disconnected comparison option first.
+
+2026-11-05 inverse/NDI evidence: circlesweep_FWD_INV_test and helix_FWD_INV_test
+show17/28 raw tipMISSING transforms, hidden by held publicXYZ; base staysvalid.
+Nearstraight theta-unobservable9/796valid samples are accepted by observer.
+Inverse nominal/augmented pressure equality79.76/70.13% is substantially due
+to actualcommand-reanchored +/-0.30bar clipping, plus confirmed local solver
+plateaus (15/16 selected contexts improved through same bounded projector).
+Only2.26/4.85% inverses converge; finite validoutput is not inverseaccuracy.
+See inverse_ndi_review_20261105_v1/README.md. Before live residualcontrol,
+improve disconnected inverse offline and define dropout recovery. Do not
+remove slew protection or treat heldXYZ as fresh to conceal these issues.
+No production source, SLX or neuralweights changed during this saveddataaudit.
+
+2026-11-05 evidence update: circle audit finds no future-NDI leakage, but current
+measurement-reset50ms residual predictions lose to CV AND persistence. No-reset
+recorded-input rollouts0.1–0.5s also lack uniform CV improvement. See
+residual_controller/Experiments/Model_Val/circlesweep_test_review_v1. NMPC using
+the pressure-dependent GRU+physics forward map remains a proposal; good-looking
+one-step overlays do not qualify pressure sensitivity, hidden-state rollouts,
+runtime/stability. Review velocity coverage and model accuracy first. Keep
+separate free nominal model curves distinct from matched one-step comparisons.
+
+2026-11-04 status: operator forward shadow test pressure_combine_test completed
+191s. Issued one-step residual predictions improve nominal RMSE[.234,.198]
+versus[1.007,1.569]mm, but CV[.046,.047]mm remains better. Causality, actual
+NDI/NI inputs and frozen-model implementation independently verified. See
+residual_controller/Experiments/Model_Val/pressure_combine_test_review_v1.
+Next recommendation: longer0.1–0.5s causal rollout comparison with actual command
+history and disconnected learned-inverse observation. No inverse result or
+physical closed-loop improvement established by this forward-only recording.
+
+2026-11-03 next-step update: before further residual-on tracking, manually
+install the passive code in residual_controller/SHADOW_VALIDATION.md. User
+edits RL_dataCollection_v2; no automatic SLX modification. First observe
+forward predictions and optional disconnected inverse under existing known
+collection inputs. Strict training-matched segmentation and separate physical/
+simulation clocks apply. Offline numerical/native replay passed; actual model
+build/timing/physical accuracy remain unqualified. Existing PAC cold-history
+fault recovery still needs an explicit design before enabling residual control.
+
 2026-11-03. User clarified the primary intended application: augment the
 dynamics model used by existing PAC and PID feedback controllers, then measure
 whether improved model accuracy improves their physical tracking. This sets
@@ -136,3 +192,13 @@ and preserve the64-unit reference; neither is controller-qualified. Exact
 paths/hashes, tradeoffs and required sequence are in RESIDUAL_CONTROLLER_HANDOFF.md.
 Branch requested: codex/residual-controller-integration. No hardware or SLX
 changes are implied by creating the branch.
+
+## November3 implementation status
+
+Source wrappers and shared frozen-network inverse are now implemented and
+component-verified in residual_controller. See README/VERIFICATION and
+project_docs/RESIDUAL_CONTROLLER_RESULTS.md. PAC model-off remains exact;
+PDFB's corrected new nominal/model-on pair shares an updated supervisor and
+allocator, requiring a fresh nominal baseline. Manual installation/build and
+operator smoke are pending. HIL updates remain deferred; no physical model
+accuracy/tracking improvement follows automatically from the component tests.

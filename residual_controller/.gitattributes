@@ -1,0 +1,2 @@
+# Preserve source/fixture/generated-C bytes used by the validation manifests.
+* -text
