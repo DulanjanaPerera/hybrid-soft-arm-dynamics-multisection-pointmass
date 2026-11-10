@@ -1,0 +1,2 @@
+# Rebuilt by build_native.ps1; keep the distributed MATLAB MEX separately.
+/test_parser.exe
